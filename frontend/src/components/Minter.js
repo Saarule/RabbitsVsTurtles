@@ -942,8 +942,8 @@ function Minter() {
       </div>
       <ul class="a" style={{border:"white",}} >
       <li style={{paddingBottom:5,fontSize:15, letterSpacing:1.5, fontFamily:"slapstick"}}>Every player that joins the game recives an NFT that represents the player's status in the game.</li>
-      <li style={{paddingBottom:5,fontSize:15, letterSpacing:1.5, fontFamily:"slapstick"}}>Each player recive pseudo-randomly generated attack and defense attributes</li>
-      <li style={{paddingBottom:5,fontSize:15, letterSpacing:1.5, fontFamily:"slapstick"}}>To attack another player successfuly your attack value should be greater than your opponent's defense AND your defense value should be greater than your opponent's attack.</li>
+      <li style={{paddingBottom:5,fontSize:15, letterSpacing:1.5, fontFamily:"slapstick"}}>Each player receives pseudo-randomly generated attack and defense attributes.</li>
+      <li style={{paddingBottom:5,fontSize:15, letterSpacing:1.5, fontFamily:"slapstick"}}>To attack another player successfully, your attack value should be greater than your opponent's defense AND your defense value should be greater than your opponent's attack.</li>
       <li style={{paddingBottom:5,fontSize:15, letterSpacing:1.5, fontFamily:"slapstick"}}>You can only attack players from the opponent team.</li>
       <li style={{paddingBottom:5,fontSize:15, letterSpacing:1.5, fontFamily:"slapstick"}}>Increasing your attack will give your player +5 in attack.</li>
       <li style={{paddingBottom:5,fontSize:15, letterSpacing:1.5, fontFamily:"slapstick"}}>Increasing your defense will give your player +5 in defense.</li>
