@@ -33,7 +33,7 @@ const initialMintState = {
   attackedPlayerNumber: 1,
   supply: "0",
   cost: "0",
-  gameInfo: [50,50,40,30,10,20,0,0],
+  gameInfo: [3,2,2,2,1,0,0,0],
   increaseAttackCost: "5000000000000000000",   // 5 Matic
   increaseDefenseCost: "5000000000000000000",   // 5 Matic
   increaseStaminaCost: "10000000000000000000",  // 10 Matic
@@ -137,26 +137,26 @@ function Minter() {
         params: [params],
       });
     let newArray = [0,0,0,0,0,0,0,0];
-    for (let i=0; i < result.length; i++) {
-        console.log(result[i]);
-        // console.log(result[i].replace(/^0+/, ''));
-        console.log(info.web3.utils.hexToNumberString(result[i]));
-
-        newArray[i] = result[i];
+    // console.log("Important 1: " +result);
+    // console.log("Important 2: "+result.replace(/^0x+/, ''));
+    let resultCleaned = result.replace(/^0x+/, '');
+    // console.log("Important 3: "+resultCleaned);
+    let resultArray = resultCleaned.match(/.{1,64}/g);
+    // console.log("Important 4: " +resultArray);
+    
+    for(let i = 0; i < resultArray.length; i++){
+      // console.log("Important 5: " +parseInt(resultArray[i]));
+      newArray[i] = (parseInt(resultArray[i]));
     }
 
-    let output = JSON.stringify(result, null, 4);
-    console.log("Important1" + output);
-
-      console.log("Important: "+newArray);
       setMintInfo((prevState) => ({
         ...prevState,
-        gameInfo: info.web3.utils.hexToNumberString(newArray),
+        gameInfo: newArray,
       }));
     } catch (err) {
       setMintInfo((prevState) => ({
         ...prevState,
-        gameInfo: [55,50,45,30,10,20,0,0],
+        gameInfo: [3,2,2,2,1,0,0,0],
       }));
     }
   };
