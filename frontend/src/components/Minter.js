@@ -5,7 +5,7 @@ import Alt from "../assets/logo.png"
 import OpenSea from "../assets/open-sea-logo.png"
 import Discord from "../assets/discord-logo.png"
 import Twitter from "../assets/twitter-logo.png"
-import ImageMinter from "../assets/preview.gif"
+import ImageMinter from "../assets/preview4.gif"
 import Logo from "../assets/logo3.png"
 import LogoFacing from "../assets/logo4.png"
 
@@ -33,7 +33,7 @@ const initialMintState = {
   attackedPlayerNumber: 1,
   supply: "0",
   cost: "0",
-  gameInfo: [3,2,2,2,1,0,0,0],
+  gameInfo: [0,0,0,0,0,0,0,0],
   increaseAttackCost: "5000000000000000000",   // 5 Matic
   increaseDefenseCost: "5000000000000000000",   // 5 Matic
   increaseStaminaCost: "10000000000000000000",  // 10 Matic
@@ -156,7 +156,7 @@ function Minter() {
     } catch (err) {
       setMintInfo((prevState) => ({
         ...prevState,
-        gameInfo: [3,2,2,2,1,0,0,0],
+        gameInfo: [0,0,0,0,0,0,0,0],
       }));
     }
   };
@@ -172,7 +172,7 @@ function Minter() {
         method: "eth_call",
         params: [params],
       });
-      console.log(info.web3.utils.hexToNumberString(result));
+      console.log("check this:",info.web3.utils.hexToNumberString(result));
       setMintInfo((prevState) => ({
         ...prevState,
         cost: info.web3.utils.hexToNumberString(result),
@@ -530,32 +530,32 @@ function Minter() {
   <div>
     <div>
       <div style={{color:"#ebc596", fontSize:20}}>
-      Rabbits: {mintInfo.gameInfo[0]} &#128007; <br></br>
+      Rabbits: {mintInfo.gameInfo[1]} &#128007; <br></br>
       </div>
       <div style={{color:"#ebc596", fontSize:20}}>
-      Alive: {mintInfo.gameInfo[2]}  &#128513;<br></br>
+      Alive: {mintInfo.gameInfo[3]}  &#128513;<br></br>
       </div>
       <div style={{color:"#ebc596", fontSize:20}}>
-      Dead: {mintInfo.gameInfo[4]}  &#128123;<br></br>
+      Dead: {mintInfo.gameInfo[5]}  &#128123;<br></br>
       </div>
       <div style={{color:"#ebc596", fontSize:20}}>
-      Revived: {mintInfo.gameInfo[6]}  &#128519;<br></br>
+      Revived: {mintInfo.gameInfo[7]}  &#128519;<br></br>
       </div>
     </div>
   </div>
   <div> 
     <div>
       <div style={{color:"#c2feff", fontSize:20}}>
-      Turtles: {mintInfo.gameInfo[1]}  &#128034;<br></br>
+      Turtles: {mintInfo.gameInfo[0]}  &#128034;<br></br>
       </div>
       <div style={{color:"#c2feff", fontSize:20}}>
-      Alive: {mintInfo.gameInfo[3]}  &#128513;<br></br>
+      Alive: {mintInfo.gameInfo[2]}  &#128513;<br></br>
       </div>
       <div style={{color:"#c2feff", fontSize:20}}>
-      Dead: {mintInfo.gameInfo[5]}  &#128123;<br></br>
+      Dead: {mintInfo.gameInfo[4]}  &#128123;<br></br>
       </div>
       <div style={{color:"#c2feff", fontSize:20}}>
-      Revived: {mintInfo.gameInfo[7]}  &#128519;<br></br>
+      Revived: {mintInfo.gameInfo[6]}  &#128519;<br></br>
       </div>
       </div>
     </div>
@@ -574,10 +574,10 @@ function Minter() {
       </div>
 
       <div style={{color:"#ffffff"}}>
-      <div style={{ color:"#7fd2f5", height: 20, paddingLeft:50 ,paddingTop:50, paddingBottom:50, fontSize:40, fontFamily:"slapstickShaded", textAlign:"center"}}> Duty is calling!</div>
+      <div style={{ color:"#c2feff", height: 20, paddingLeft:50 ,paddingTop:50, paddingBottom:50, fontSize:40, fontFamily:"slapstickShaded", textAlign:"center"}}> Duty is calling!</div>
       <div style={{ height: 20, paddingTop:0, paddingBottom:20, fontSize:20, fontFamily:"slapstick", textAlign:"center"}}> Ready to take your part at the greatest war between the rabbits and the turtles?</div>
       <div style={{ height: 20, paddingTop:0, paddingBottom:20, fontSize:20, fontFamily:"slapstick", textAlign:"center"}}> Rabbits Vs. Turtles is 100% on-chain, dynamic, NFT game. </div>
-      <div style={{ height: 20, paddingTop:0, paddingBottom:20, fontSize:20, fontFamily:"slapstick", textAlign:"center"}}>Each NFT represents a player in the game and the value of each NFT is highly tied to the player's performance in the game!</div>
+      <div style={{ height: 20, paddingTop:0, paddingBottom:20, fontSize:20, fontFamily:"slapstick", textAlign:"center"}}> The NFTs change dynamically as the game progress and each NFT mirror the complete status of the player in the game!</div>
       {/* <div style={{ height: 20, paddingTop:0, paddingBottom:20, fontSize:20, fontFamily:"slapstick", textAlign:"center"}}>Take your part in the battle of the rabbits and the turtles and become the best of the best!</div> */}
       <div style={{ height: 20, paddingTop:0, paddingBottom:20, fontSize:20, fontFamily:"slapstick", textAlign:"center"}}>Connect your wallet to the Polygon network, mint your NFT and join the game!</div>
 
@@ -964,7 +964,7 @@ function Minter() {
       <div style={{ height: 25 }}></div>
       <div style={{ display: "grid",  gridTemplateColumns: "repeat(3, 10fr)", gridGap: 10 }}>
       <div> 
-        <a href="https://discord.gg/FGwhMDAv3s" target="_blank" rel="noopener noreferrer">
+        <a href="https://discord.gg/FGwhMDAv3s" target="_blank" rel="noopener noreferrer" >
         <img src={Discord} height={50} width={50} style={{borderRadius:50}} />
         </a>
       </div>
@@ -975,7 +975,7 @@ function Minter() {
       </div>
       <div> 
         <a href="https://twitter.com/RabbitsVTurtles" target="_blank" rel="noopener noreferrer">
-        <img src={Twitter} height={50} width={50} style={{borderRadius:50}} />
+        <img src={Twitter} height={50} width={50} style={{borderRadius:50, border: 10}}  />
         </a>
       </div>
       </div>
