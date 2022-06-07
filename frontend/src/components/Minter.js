@@ -33,7 +33,7 @@ const initialMintState = {
   attackedPlayerNumber: 1,
   supply: "0",
   cost: "0",
-  gameInfo: [3,2,2,2,1,0,0,0],
+  gameInfo: [5,5,5,5,0,0,0,0],
   increaseAttackCost: "5000000000000000000",   // 5 Matic
   increaseDefenseCost: "5000000000000000000",   // 5 Matic
   increaseStaminaCost: "10000000000000000000",  // 10 Matic
@@ -156,7 +156,7 @@ function Minter() {
     } catch (err) {
       setMintInfo((prevState) => ({
         ...prevState,
-        gameInfo: [3,2,2,2,1,0,0,0],
+        gameInfo: [5,5,5,4,0,1,0,0],
       }));
     }
   };
@@ -686,7 +686,7 @@ function Minter() {
             letterSpacing:1.5, fontFamily:"slapstick",
           }}
           target="_blank"
-          href="https://polygonscan.com/address/0x7a305c7f04af702778a24b69f3761d74815efd0e"
+          href="https://polygonscan.com/address/0x829a67ef339e6230fcfdbf3c8730ffbb0329e796"
         >
           View Contract
         </a>
