@@ -33,7 +33,7 @@ const initialMintState = {
   attackedPlayerNumber: 1,
   supply: "0",
   cost: "0",
-  gameInfo: [0,0,0,0,0,0,0,0],
+  gameInfo: [3,2,2,2,1,0,0,0],
   increaseAttackCost: "5000000000000000000",   // 5 Matic
   increaseDefenseCost: "5000000000000000000",   // 5 Matic
   increaseStaminaCost: "10000000000000000000",  // 10 Matic
@@ -156,7 +156,7 @@ function Minter() {
     } catch (err) {
       setMintInfo((prevState) => ({
         ...prevState,
-        gameInfo: [0,0,0,0,0,0,0,0],
+        gameInfo: [3,2,2,2,1,0,0,0],
       }));
     }
   };
@@ -190,7 +190,7 @@ function Minter() {
       to: info.contractJSON.address,
       from: info.account,
       value: String(
-        info.web3.utils.toHex(Number(mintInfo.cost) * mintInfo.amount + 10000000000000000) // The 10000000000000000 is solving an issuse of overflow numbers when calculating the price.
+        info.web3.utils.toHex(Number(mintInfo.cost) * mintInfo.amount + 10000000000000000) // The 10000000000000000 is solving an issue of overflow numbers when calculating the price.
       ),
       data: info.contract.methods
         .mint()
@@ -578,7 +578,6 @@ function Minter() {
       <div style={{ height: 20, paddingTop:0, paddingBottom:20, fontSize:20, fontFamily:"slapstick", textAlign:"center"}}> Ready to take your part at the greatest war between the rabbits and the turtles?</div>
       <div style={{ height: 20, paddingTop:0, paddingBottom:20, fontSize:20, fontFamily:"slapstick", textAlign:"center"}}> Rabbits Vs. Turtles is 100% on-chain, dynamic, NFT game. </div>
       <div style={{ height: 20, paddingTop:0, paddingBottom:20, fontSize:20, fontFamily:"slapstick", textAlign:"center"}}> The NFTs change dynamically as the game progress and each NFT mirror the complete status of the player in the game!</div>
-      {/* <div style={{ height: 20, paddingTop:0, paddingBottom:20, fontSize:20, fontFamily:"slapstick", textAlign:"center"}}>Take your part in the battle of the rabbits and the turtles and become the best of the best!</div> */}
       <div style={{ height: 20, paddingTop:0, paddingBottom:20, fontSize:20, fontFamily:"slapstick", textAlign:"center"}}>Connect your wallet to the Polygon network, mint your NFT and join the game!</div>
 
       </div>
