@@ -578,10 +578,10 @@ function Minter() {
 
       <div style={{color:"#ffffff"}}>
       <div style={{ color:"#c2feff", height: 20, paddingLeft:50 ,paddingTop:50, paddingBottom:50, fontSize:40, fontFamily:"slapstickShaded", textAlign:"center"}}> Duty is calling!</div>
-      <div style={{ height: 20, paddingTop:0, paddingBottom:20, fontSize:20, fontFamily:"slapstick", textAlign:"center"}}> Ready to take your part at the greatest war between the rabbits and the turtles?</div>
-      <div style={{ height: 20, paddingTop:0, paddingBottom:20, fontSize:20, fontFamily:"slapstick", textAlign:"center"}}> Rabbits Vs. Turtles is 100% on-chain, dynamic, NFT game. </div>
-      <div style={{ height: 20, paddingTop:0, paddingBottom:20, fontSize:20, fontFamily:"slapstick", textAlign:"center"}}> The NFTs change dynamically as the game progress and each NFT mirrors the complete status of the player in the game!</div>
-      <div style={{ height: 20, paddingTop:0, paddingBottom:20, fontSize:20, fontFamily:"slapstick", textAlign:"center"}}>Connect your wallet to the Polygon network, mint your NFT and join the game!</div>
+      <div style={{ height: 20, paddingTop:0, paddingBottom:25, fontSize:20, fontFamily:"slapstick", textAlign:"center"}}> Ready to take your part at the greatest war between the rabbits and the turtles?</div>
+      <div style={{ height: 20, paddingTop:0, paddingBottom:25, fontSize:20, fontFamily:"slapstick", textAlign:"center"}}> Rabbits Vs. Turtles is 100% on-chain, dynamic, NFT game. </div>
+      <div style={{ height: 20, paddingTop:0, paddingBottom:25, fontSize:20, fontFamily:"slapstick", textAlign:"center"}}> The NFTs change dynamically as the game progress and each NFT mirrors the complete status of the player in the game!</div>
+      <div style={{ height: 20, paddingTop:0, paddingBottom:25, fontSize:20, fontFamily:"slapstick", textAlign:"center"}}>Connect your wallet to the Polygon network, mint your NFT and join the game!</div>
 
       </div>
       
@@ -680,6 +680,7 @@ function Minter() {
             </span>
           ) : null}
         </div>
+        <div>
         <a
           style={{
             position: "absolute",
@@ -687,14 +688,16 @@ function Minter() {
             left: 110,
             color: "#ffffff",
             letterSpacing:1.5, fontFamily:"slapstick",
+            
           }}
           target="_blank"
           href="https://polygonscan.com/address/0x829a67ef339e6230fcfdbf3c8730ffbb0329e796"
         >
           View Contract
         </a>
+        </div>
       </div>
-      <div style={{ height: 20 }}></div>
+      <div style={{ height: 30 }}></div>
 
       <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 0fr)", gridGap: 30, }}>
 
@@ -703,7 +706,7 @@ function Minter() {
 
                 <div style={{ width: 10 }}></div>
 
-                <div style={{textAlign:"center", paddingBottom:10, fontSize:15, letterSpacing:1.5, fontFamily:"slapstick"}} >Increase Attack to player number:</div>
+                <div style={{textAlign:"center",lineHeight:1, paddingBottom:10, fontSize:15, letterSpacing:1.5, fontFamily:"slapstick"}} >Increase Attack to player number:</div>
                 <div style={{paddingLeft:23}}>
                 <button
                 disabled={!info.connected || mintInfo.cost == "0"}
@@ -736,7 +739,7 @@ function Minter() {
 
                 <div style={{ width: 10 }}></div>
 
-                <div style={{textAlign:"center", paddingBottom:10, fontSize:15, letterSpacing:1.5, fontFamily:"slapstick"}}>Increase Defense to player number:</div>
+                <div style={{textAlign:"center",lineHeight:1, paddingBottom:10, fontSize:15, letterSpacing:1.5, fontFamily:"slapstick"}}>Increase Defense to player number:</div>
                 <div style={{paddingLeft:23}}>
                 <button
                 disabled={!info.connected || mintInfo.cost == "0"}
@@ -770,7 +773,7 @@ function Minter() {
 
                 <div style={{ width: 10 }}></div>
 
-                <div style={{textAlign:"center", paddingBottom:10, fontSize:15, letterSpacing:1.5, fontFamily:"slapstick"}}>Increase Stamina to player number:</div>
+                <div style={{textAlign:"center",lineHeight:1, paddingBottom:10, fontSize:15, letterSpacing:1.5, fontFamily:"slapstick"}}>Increase Stamina to player number:</div>
                 <div style={{paddingLeft:23}}>
                 <button 
                 disabled={!info.connected || mintInfo.cost == "0"}
@@ -804,7 +807,7 @@ function Minter() {
 
                 <div style={{ width: 10 }}></div>
 
-                <div style={{textAlign:"center", paddingBottom:10, fontSize:15, letterSpacing:1.5, fontFamily:"slapstick"}}>Increase Armor to player number:</div>
+                <div style={{textAlign:"center",lineHeight:1, paddingBottom:10, fontSize:15, letterSpacing:1.5, fontFamily:"slapstick"}}>Increase Armor to player number:</div>
                 <div style={{paddingLeft:23}}>
                 <button
                 disabled={!info.connected || mintInfo.cost == "0"}
@@ -843,7 +846,7 @@ function Minter() {
                   {/* ************** Revive start here! ************** */}
                 <div style={{width: 200, paddingLeft:5, paddingTop:25}}>
 
-                <div style={{paddingBottom:10, paddingLeft:32, fontSize:15, letterSpacing:1.5, fontFamily:"slapstick"}}>Revive player number:</div>
+                <div style={{textAlign:"center",paddingTop:10, paddingBottom:10, paddingLeft:24.5, fontSize:15, letterSpacing:1.5, fontFamily:"slapstick"}}>Revive player number:</div>
                 <div style={{paddingLeft:67}}>
                 <button
                 disabled={!info.connected || mintInfo.cost == "0"}
@@ -880,7 +883,7 @@ function Minter() {
                <div style={{width: 200, paddingTop:25}}>
 
 
-                <div style={{paddingLeft:23, paddingBottom:10,fontSize:15, letterSpacing:1.5, fontFamily:"slapstick"}}>Attack player number:</div>
+                <div style={{paddingLeft:23, fpaddingTop:5, paddingBottom:10,fontSize:15, letterSpacing:1.5, fontFamily:"slapstick"}}>Attack player number:</div>
 
                 <div style={{paddingLeft:"58px", paddingBottom:10 }}>
                 <button
@@ -902,7 +905,7 @@ function Minter() {
                 </button>
                 </div>
 
-                <div style={{paddingLeft:"25px",fontSize:15,letterSpacing:1.5, fontFamily:"slapstick", paddingBottom:10}}>with player number:</div>
+                <div style={{paddingLeft:29, paddingBottom:10,fontSize:15,letterSpacing:1.5, fontFamily:"slapstick", paddingBottom:10}}>with player number:</div>
 
                 <div style={{paddingLeft:"59px"}}>
                 <button
@@ -924,7 +927,7 @@ function Minter() {
                 </button>
                 </div>
 
-                <button style={{marginLeft: 35,fontSize:15, letterSpacing:1.5, fontFamily:"slapstick"}}
+                <button style={{marginLeft: 40,fontSize:15, letterSpacing:1.5, fontFamily:"slapstick"}}
                 disabled={!info.connected || mintInfo.cost == "0"}
                 className="button"
                 onClick={() => attackPlayer()}
@@ -935,7 +938,7 @@ function Minter() {
                 {/* ************** Attacking Player ends here! ************** */}
   
   
-  <div style={{ height: 20, fontSize:15 }}></div>
+  <div style={{ height:30, fontSize:15 }}></div>
 
       <div style={{color:"#c2feff"}}>
       <div style={{ height: 20, fontSize:28 , paddingTop:20, paddingBottom:30, fontFamily:"slapstickShaded",}}>
