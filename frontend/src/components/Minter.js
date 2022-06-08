@@ -122,6 +122,7 @@ function Minter() {
         ...prevState,
         supply: 0,
       }));
+      getSupply();
     }
   };
 
@@ -156,8 +157,9 @@ function Minter() {
     } catch (err) {
       setMintInfo((prevState) => ({
         ...prevState,
-        gameInfo: [5,5,5,4,0,1,0,0],
+        gameInfo: [5,5,5,5,0,0,0,0],
       }));
+      getGameInfo();
     }
   };
 
@@ -182,6 +184,7 @@ function Minter() {
         ...prevState,
         cost: "0",
       }));
+      getCost();
     }
   };
 
@@ -577,7 +580,7 @@ function Minter() {
       <div style={{ color:"#c2feff", height: 20, paddingLeft:50 ,paddingTop:50, paddingBottom:50, fontSize:40, fontFamily:"slapstickShaded", textAlign:"center"}}> Duty is calling!</div>
       <div style={{ height: 20, paddingTop:0, paddingBottom:20, fontSize:20, fontFamily:"slapstick", textAlign:"center"}}> Ready to take your part at the greatest war between the rabbits and the turtles?</div>
       <div style={{ height: 20, paddingTop:0, paddingBottom:20, fontSize:20, fontFamily:"slapstick", textAlign:"center"}}> Rabbits Vs. Turtles is 100% on-chain, dynamic, NFT game. </div>
-      <div style={{ height: 20, paddingTop:0, paddingBottom:20, fontSize:20, fontFamily:"slapstick", textAlign:"center"}}> The NFTs change dynamically as the game progress and each NFT mirror the complete status of the player in the game!</div>
+      <div style={{ height: 20, paddingTop:0, paddingBottom:20, fontSize:20, fontFamily:"slapstick", textAlign:"center"}}> The NFTs change dynamically as the game progress and each NFT mirrors the complete status of the player in the game!</div>
       <div style={{ height: 20, paddingTop:0, paddingBottom:20, fontSize:20, fontFamily:"slapstick", textAlign:"center"}}>Connect your wallet to the Polygon network, mint your NFT and join the game!</div>
 
       </div>
