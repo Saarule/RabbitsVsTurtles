@@ -33,7 +33,7 @@ const initialMintState = {
   attackedPlayerNumber: 1,
   supply: "0",
   cost: "0",
-  gameInfo: [5,5,5,5,0,0,0,0],
+  gameInfo: [7,7,7,7,0,0,0,0],
   increaseAttackCost: "5000000000000000000",   // 5 Matic
   increaseDefenseCost: "5000000000000000000",   // 5 Matic
   increaseStaminaCost: "10000000000000000000",  // 10 Matic
@@ -157,7 +157,7 @@ function Minter() {
     } catch (err) {
       setMintInfo((prevState) => ({
         ...prevState,
-        gameInfo: [5,5,5,5,0,0,0,0],
+        gameInfo: [7,7,7,7,0,0,0,0],
       }));
       getGameInfo();
     }
@@ -883,7 +883,7 @@ function Minter() {
                <div style={{width: 200, paddingTop:25}}>
 
 
-                <div style={{paddingLeft:23, fpaddingTop:5, paddingBottom:10,fontSize:15, letterSpacing:1.5, fontFamily:"slapstick"}}>Attack player number:</div>
+                <div style={{textAlign:"center",paddingLeft:10, fpaddingTop:5, paddingBottom:10,fontSize:15, letterSpacing:1.5, fontFamily:"slapstick"}}>Attack player number:</div>
 
                 <div style={{paddingLeft:"58px", paddingBottom:10 }}>
                 <button
@@ -905,7 +905,7 @@ function Minter() {
                 </button>
                 </div>
 
-                <div style={{paddingLeft:29, paddingBottom:10,fontSize:15,letterSpacing:1.5, fontFamily:"slapstick", paddingBottom:10}}>with player number:</div>
+                <div style={{textAlign:"center",paddingLeft:5, paddingBottom:10,fontSize:15,letterSpacing:1.5, fontFamily:"slapstick", paddingBottom:10}}>with player number:</div>
 
                 <div style={{paddingLeft:"59px"}}>
                 <button
@@ -927,7 +927,7 @@ function Minter() {
                 </button>
                 </div>
 
-                <button style={{marginLeft: 40,fontSize:15, letterSpacing:1.5, fontFamily:"slapstick"}}
+                <button style={{marginLeft: 39,fontSize:15, letterSpacing:1.5, fontFamily:"slapstick"}}
                 disabled={!info.connected || mintInfo.cost == "0"}
                 className="button"
                 onClick={() => attackPlayer()}
