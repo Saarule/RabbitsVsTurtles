@@ -846,7 +846,7 @@ function Minter() {
                   {/* ************** Revive start here! ************** */}
                 <div style={{width: 200, paddingLeft:5, paddingTop:25}}>
 
-                <div style={{textAlign:"center",paddingTop:10, paddingBottom:10, paddingLeft:24.5, fontSize:15, letterSpacing:1.5, fontFamily:"slapstick"}}>Revive player number:</div>
+                <div style={{textAlign:"center",paddingTop:10, paddingBottom:10, paddingLeft:25, fontSize:15, letterSpacing:1.5, fontFamily:"slapstick"}}>Revive player number:</div>
                 <div style={{paddingLeft:67}}>
                 <button
                 disabled={!info.connected || mintInfo.cost == "0"}
@@ -883,7 +883,7 @@ function Minter() {
                <div style={{width: 200, paddingTop:25}}>
 
 
-                <div style={{textAlign:"center",paddingLeft:10, fpaddingTop:5, paddingBottom:10,fontSize:15, letterSpacing:1.5, fontFamily:"slapstick"}}>Attack player number:</div>
+                <div style={{textAlign:"center", paddingLeft:7, fpaddingTop:5, paddingBottom:10, fontSize:15, letterSpacing:1.5, fontFamily:"slapstick"}}>Attack player number:</div>
 
                 <div style={{paddingLeft:"58px", paddingBottom:10 }}>
                 <button
@@ -905,7 +905,7 @@ function Minter() {
                 </button>
                 </div>
 
-                <div style={{textAlign:"center",paddingLeft:5, paddingBottom:10,fontSize:15,letterSpacing:1.5, fontFamily:"slapstick", paddingBottom:10}}>with player number:</div>
+                <div style={{textAlign:"center", paddingLeft:9, paddingBottom:10, fontSize:15, letterSpacing:1.5, fontFamily:"slapstick", paddingBottom:10}}>with player number:</div>
 
                 <div style={{paddingLeft:"59px"}}>
                 <button
@@ -927,7 +927,7 @@ function Minter() {
                 </button>
                 </div>
 
-                <button style={{marginLeft: 39,fontSize:15, letterSpacing:1.5, fontFamily:"slapstick"}}
+                <button style={{marginLeft: 40.5, fontSize:15, letterSpacing:1.5, fontFamily:"slapstick"}}
                 disabled={!info.connected || mintInfo.cost == "0"}
                 className="button"
                 onClick={() => attackPlayer()}
