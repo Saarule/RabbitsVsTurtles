@@ -1,5 +1,6 @@
 # Rabbits Vs Turtles
 
+
 Rabbits Vs. Turtles is 100% on-chain, dynamic, NFT Multiplayer game.
 
 The NFTs change dynamically as the game progress and each NFT mirrors the complete status of the player in the game.
