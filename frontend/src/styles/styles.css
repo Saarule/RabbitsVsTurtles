@@ -250,6 +250,11 @@ button:disabled {
   background-color: var(--small-button-active-bg);
 }
 
+.logo_image {
+  width:100%;
+}
+
+
 @keyframes item-spin {
   from {
     transform: rotate(0deg);
@@ -258,3 +263,23 @@ button:disabled {
     transform: rotate(360deg);
   }
 }
+
+
+/* 
+@media (max-width: 600px) {
+  body {
+    background: linear-gradient(
+      to right,
+      #069149 0%,
+      #09d231 50%,
+      #971b1b 50%,
+      #971b1b 100%
+    );
+    color: rgb(255, 255, 255);
+    font: 100% MyFont;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+  }
+} */

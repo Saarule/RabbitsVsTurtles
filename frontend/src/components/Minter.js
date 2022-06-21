@@ -33,7 +33,8 @@ const initialMintState = {
   attackedPlayerNumber: 1,
   supply: "0",
   cost: "0",
-  gameInfo: [7,7,7,7,0,0,0,0],
+  gameInfo: [9,9,9,9,0,0,0,0],
+  playersMetadata: [],
   increaseAttackCost: "5000000000000000000",   // 5 Matic
   increaseDefenseCost: "5000000000000000000",   // 5 Matic
   increaseStaminaCost: "10000000000000000000",  // 10 Matic
@@ -126,6 +127,56 @@ function Minter() {
     }
   };
 
+  
+
+  const getSpecificPlayerInfo = async (playerNumber) => {
+      const params = {
+        to: info.contractJSON.address,
+        from: info.account,
+        data: info.contract.methods.tokenURI(playerNumber).encodeABI(),
+      };
+      try {
+        const result = await window.ethereum.request({
+          method: "eth_call",
+          params: [params],
+        });
+        return result;
+      }catch (err) {
+        getSpecificPlayerInfo(playerNumber);
+    }
+  }
+
+  const getPlayersInfo = async () => {
+  let playersMetadata = [];
+  const params = {
+    to: info.contractJSON.address,
+    from: info.account,
+    data: info.contract.methods.tokenURI(1).encodeABI(),
+  };
+  try {
+    const result = await window.ethereum.request({
+      method: "eth_call",
+      params: [params],
+    });
+    console.log("is Hex: ",info.web3.utils.isHex(result));
+    console.log("result: ",result);
+    let res = await info.web3.utils.hexToUtf8(result);
+    console.log("succeed: ",res);
+    fetch(res)
+    .then(response => response.json())
+    .then(data => console.log("succeed3: ",data));
+
+    // .then(response => response.json())
+    // .then(playersMetadata.push(data));
+
+  }catch (err) {
+    console.log("failed - error : ",err);
+    // let res = await info.web3.utils.hexToUtf8(getSpecificPlayerInfo(1))
+    // console.log("failed: ",res);
+  }
+};
+
+
   const getGameInfo = async () => {
     const params = {
       to: info.contractJSON.address,
@@ -157,7 +208,7 @@ function Minter() {
     } catch (err) {
       setMintInfo((prevState) => ({
         ...prevState,
-        gameInfo: [7,7,7,7,0,0,0,0],
+        gameInfo: [9,9,9,9,0,0,0,0],
       }));
       getGameInfo();
     }
@@ -521,6 +572,7 @@ function Minter() {
       getGameInfo();
       getSupply();
       getCost();
+      getPlayersInfo();
     }
   }, [info.connected]);
 
@@ -529,59 +581,62 @@ function Minter() {
     <div className="page" >
 
        {/* ************** Counters starts here! ************** */}
-<div style={{ display: "grid", paddingTop:100, gridTemplateColumns: "repeat(2, 10fr)", gridGap: 670 }}>
-  <div>
-    <div>
-      <div style={{color:"#ebc596", fontSize:20}}>
-      Rabbits: {mintInfo.gameInfo[1]} &#128007; <br></br>
+    {/* <div style={{padding:"3em", display: "grid", gridTemplateColumns: "repeat(auto-fit, 2fr)", gridGap: "2em"}}> */}
+    <div style={{ display: "grid", paddingTop:100, gridTemplateColumns: "repeat(2, 10fr)", gridGap: 70 ,paddingBottom: 30}}>
+      <div>
+        <div>
+          <div style={{color:"#ebc596", fontSize:20}}>
+          Rabbits: {mintInfo.gameInfo[1]} &#128007; <br></br>
+          </div>
+          <div style={{color:"#ebc596", fontSize:20}}>
+          Alive: {mintInfo.gameInfo[3]}  &#128513;<br></br>
+          </div>
+          <div style={{color:"#ebc596", fontSize:20}}>
+          Dead: {mintInfo.gameInfo[5]}  &#128123;<br></br>
+          </div>
+          <div style={{color:"#ebc596", fontSize:20}}>
+          Revived: {mintInfo.gameInfo[7]}  &#128519;<br></br>
+          </div>
+        </div>
       </div>
-      <div style={{color:"#ebc596", fontSize:20}}>
-      Alive: {mintInfo.gameInfo[3]}  &#128513;<br></br>
-      </div>
-      <div style={{color:"#ebc596", fontSize:20}}>
-      Dead: {mintInfo.gameInfo[5]}  &#128123;<br></br>
-      </div>
-      <div style={{color:"#ebc596", fontSize:20}}>
-      Revived: {mintInfo.gameInfo[7]}  &#128519;<br></br>
+
+      <div> 
+        <div>
+          <div style={{color:"#c2feff", fontSize:20}}>
+          Turtles: {mintInfo.gameInfo[0]}  &#128034;<br></br>
+          </div>
+          <div style={{color:"#c2feff", fontSize:20}}>
+          Alive: {mintInfo.gameInfo[2]}  &#128513;<br></br>
+          </div>
+          <div style={{color:"#c2feff", fontSize:20}}>
+          Dead: {mintInfo.gameInfo[4]}  &#128123;<br></br>
+          </div>
+          <div style={{color:"#c2feff", fontSize:20}}>
+          Revived: {mintInfo.gameInfo[6]}  &#128519;<br></br>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-  <div> 
-    <div>
-      <div style={{color:"#c2feff", fontSize:20}}>
-      Turtles: {mintInfo.gameInfo[0]}  &#128034;<br></br>
-      </div>
-      <div style={{color:"#c2feff", fontSize:20}}>
-      Alive: {mintInfo.gameInfo[2]}  &#128513;<br></br>
-      </div>
-      <div style={{color:"#c2feff", fontSize:20}}>
-      Dead: {mintInfo.gameInfo[4]}  &#128123;<br></br>
-      </div>
-      <div style={{color:"#c2feff", fontSize:20}}>
-      Revived: {mintInfo.gameInfo[6]}  &#128519;<br></br>
-      </div>
-      </div>
-    </div>
-  </div>
+      
         {/* ************** Counters ends here! ************** */}
 
 
        {/* ************** Intro starts here! ************** */}
 
-       <div style={{color:"#ffffff", paddingTop:50 ,paddingLeft:15}}> 
-        <img src={Logo} />
+       <div style={{color:"#ffffff",padding:10}}> 
+        <img className="logo_image" style={{maxWidth:950}}  src={Logo} />
       </div>
 
-      <div style={{color:"#ffffff", paddingTop:20,paddingBottom:50,paddingLeft:38} }> 
-        <img style={{width:800 }} src={LogoFacing} />
+      <div style={{color:"#ffffff", paddingTop:30, paddingBottom:50, paddingLeft:38}} > 
+        <img className="logo_image_facing" style={{width:"100%", maxWidth:750 }} src={LogoFacing} />
       </div>
 
       <div style={{color:"#ffffff"}}>
-      <div style={{ color:"#c2feff", height: 20, paddingLeft:50 ,paddingTop:50, paddingBottom:50, fontSize:40, fontFamily:"slapstickShaded", textAlign:"center"}}> Duty is calling!</div>
+      <div style={{ color:"#c2feff", height: 20, paddingLeft:40 ,paddingTop:50, paddingBottom:60, fontSize:40, fontFamily:"slapstickShaded", textAlign:"center"}}> Duty is calling!</div>
       <div style={{ height: 20, paddingTop:0, paddingBottom:25, fontSize:20, fontFamily:"slapstick", textAlign:"center"}}> Ready to take your part at the greatest war between the rabbits and the turtles?</div>
       <div style={{ height: 20, paddingTop:0, paddingBottom:25, fontSize:20, fontFamily:"slapstick", textAlign:"center"}}> Rabbits Vs. Turtles is 100% on-chain, dynamic, NFT game. </div>
-      <div style={{ height: 20, paddingTop:0, paddingBottom:25, fontSize:20, fontFamily:"slapstick", textAlign:"center"}}> The NFTs change dynamically as the game progress and each NFT mirrors the complete status of the player in the game!</div>
-      <div style={{ height: 20, paddingTop:0, paddingBottom:25, fontSize:20, fontFamily:"slapstick", textAlign:"center"}}>Connect your wallet to the Polygon network, mint your NFT and join the game!</div>
+      <div style={{ height: 20, paddingTop:0, paddingBottom:55, fontSize:20, fontFamily:"slapstick", textAlign:"center"}}> The NFTs change dynamically as the game progress and each NFT mirrors the complete status of the player in the game!</div>
+      <div style={{ color:"#64eb50", height: 20, paddingTop:20, paddingBottom:45, fontSize:25, fontFamily:"slapstick", textAlign:"center"}}>Connect your wallet to the Polygon network, mint your NFT, and join the game!</div>
 
       </div>
       
@@ -697,7 +752,7 @@ function Minter() {
         </a>
         </div>
       </div>
-      <div style={{ height: 30 }}></div>
+      <div style={{ height: 45 }}></div>
 
       <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 0fr)", gridGap: 30, }}>
 
@@ -936,9 +991,14 @@ function Minter() {
                 </button>
                 </div>
                 {/* ************** Attacking Player ends here! ************** */}
+                
+                {/* ************** Arena starts here! ************** */}
+                {/* <div style={{ color:"#c2feff", height: 20 ,paddingTop:100, paddingBottom:500, fontSize:40, fontFamily:"slapstickShaded", textAlign:"center"}}> Arena</div> */}
+                {/* ************** Arena ends here! ************** */}
+
   
   
-  <div style={{ height:30, fontSize:15 }}></div>
+  <div style={{ height:45, fontSize:15 }}></div>
 
       <div style={{color:"#c2feff"}}>
       <div style={{ height: 20, fontSize:28 , paddingTop:20, paddingBottom:30, fontFamily:"slapstickShaded",}}>
@@ -966,7 +1026,7 @@ function Minter() {
       <div style={{color:"#c2feff", paddingBottom:10, fontSize:18, fontFamily:"slapstickShaded"}}>
       Join our discord to discuss the game and get help from other players.
       </div>
-      <div style={{ height: 25 }}></div>
+      <div style={{ height: 30 }}></div>
       <div style={{ display: "grid",  gridTemplateColumns: "repeat(3, 10fr)", gridGap: 10 }}>
       <div> 
         <a href="https://discord.gg/FGwhMDAv3s" target="_blank" rel="noopener noreferrer" >
@@ -984,7 +1044,7 @@ function Minter() {
         </a>
       </div>
       </div>
-      <div style={{ height: 20 }}></div>
+      <div style={{ height: 25 }}></div>
 
     </div>
   );
