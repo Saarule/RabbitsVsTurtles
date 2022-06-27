@@ -189,16 +189,16 @@ function Minter() {
         params: [params],
       });
     let newArray = [0,0,0,0,0,0,0,0];
-    // console.log("Important 1: " +result);
+    console.log("Important 1: " +result);
     // console.log("Important 2: "+result.replace(/^0x+/, ''));
     let resultCleaned = result.replace(/^0x+/, '');
-    // console.log("Important 3: "+resultCleaned);
+    console.log("Important 3: "+resultCleaned);
     let resultArray = resultCleaned.match(/.{1,64}/g);
-    // console.log("Important 4: " +resultArray);
+    console.log("Important 4: " +resultArray);
     
     for(let i = 0; i < resultArray.length; i++){
-      // console.log("Important 5: " +parseInt(resultArray[i]));
-      newArray[i] = (parseInt(resultArray[i]));
+      console.log("Important 5: " +parseInt(resultArray[i],16));
+      newArray[i] = (parseInt(resultArray[i],16));
     }
 
       setMintInfo((prevState) => ({
