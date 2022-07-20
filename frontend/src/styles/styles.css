@@ -254,6 +254,25 @@ button:disabled {
   width:100%;
 }
 
+.player_image_wrapper {
+  padding: 5px;
+  cursor: pointer;
+}
+
+.turtle_active {
+  border: 1px solid blue;
+}
+
+.rabbit_active {
+  border: 1px solid red;
+}
+
+.player_image:hover {
+  position: absolute;
+  z-index: 3;
+  width: 300px;
+  height: 300px;
+}
 
 @keyframes item-spin {
   from {
