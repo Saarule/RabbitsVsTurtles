@@ -57,7 +57,6 @@ function Arena({ info, mintInfo }) {
     setDeadTurtles(deadturtles);
     setDeadItems(dead);
     players.sort((a, b) => b.kills - a.kills);
-    console.log(players);
     setPlayers(players);
     setLoading(false);
   }
@@ -66,14 +65,19 @@ function Arena({ info, mintInfo }) {
     info && info.contract && mintInfo && getData();
   }, [info, mintInfo])
 
-  const startFighting = () => {
+  const startFighting = async () => {
     setIsFighting(true);
+    const attackerID = selectedRabbit?.name.slice(selectedRabbit?.name.indexOf("#") + 1)
+    const attackedID = selectedTurtle?.name.slice(selectedTurtle?.name.indexOf("#") + 1)
+    await info.contract.methods.attackPlayer(attackerID, attackedID).send({ from: info.account });
     audio.play();
-    const timer = setTimeout(() => {
-      setIsFighting(false);
-      audio.pause();
-    }, 3000);
-    return () => clearTimeout(timer);
+    // const timer = setTimeout(() => {
+    //   setIsFighting(false);
+    //   audio.pause();
+    // }, 3000);
+    // return () => clearTimeout(timer);
+    audio.pause();
+    setIsFighting(false);
   }
 
   return (
