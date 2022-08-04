@@ -56,6 +56,8 @@ function Arena({ info, mintInfo }) {
     setDeadRabbits(deadrabbits);
     setDeadTurtles(deadturtles);
     setDeadItems(dead);
+    players.sort((a, b) => b.kills - a.kills);
+    console.log(players);
     setPlayers(players);
     setLoading(false);
   }
@@ -151,14 +153,14 @@ function Arena({ info, mintInfo }) {
           <div style={{ display: "grid", gridTemplateColumns: "25% 25% 25% 25%", padding: "50px", width: "100%", height: "100%", maxHeight: "200px", overflow: "scroll" }}>
             {deadItems.map(dead => {
               return (<div key={dead.name} style={{ padding: "5px" }}>
-                <img src={dead.image} alt={`dead`} />
+                <img src={dead.image} alt={`dead`} className="player_image" />
               </div>);
             })}
           </div>}
       </div>
       <div style={{ marginTop: "10px" }}>
         <button style={{ backgroundColor: "#E7EB32", padding: "20px 50px", color: "#000", fontSize: "20px", border: "none", cursor: "pointer" }} onClick={() => setIsOpenLeaderBoard(true)}>Leaderboard</button>
-        {isOpenLeaderboard && <div style={{ position: "absolute", bottom: 13, right: 0, backgroundColor: "#0184f9", width: "350px", height: "500px", padding: "80px 50px" }}>
+        {isOpenLeaderboard && <div style={{ position: "absolute", bottom: 50, boxShadow: "0 0 25px black", borderRadius: "10px", left: "50%", transform: "translateX(-50%)", backgroundColor: "#0184f9", width: "350px", height: "500px", padding: "80px 50px" }}>
           <div style={{ position: "relative", backgroundColor: "#fffeef", borderRadius: "30px", height: "100%", height: "400px", padding: "70px 20px 30px 20px" }}>
             <div style={{ position: "absolute", top: "-20px", left: "50%", transform: "translateX(-50%)", background: "linear-gradient(90deg, #00a1f7, #0058cc)", padding: "10px 20px", fontSize: "20px", borderRadius: "10px" }}>LEADERBOARD</div>
             <div style={{ height: "350px", overflow: "scroll", display: "flex", flexDirection: "column", gap: "10px" }}>
