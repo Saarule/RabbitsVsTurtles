@@ -7,7 +7,9 @@ import FightingSound from "../assets/fighting.wav";
 function Arena({ info, mintInfo }) {
   const [players, setPlayers] = useState([]);
   const [aliveRabbits, setAliveRabbits] = useState([]);
+  const [rabbitsOwner, setRabbitsOwner] = useState([]);
   const [aliveTurtles, setAliveTurtles] = useState([]);
+  const [turtlesOwner, setTurtlesOwner] = useState([]);
   const [deadRabbits, setDeadRabbits] = useState([]);
   const [deadTurtles, setDeadTurtles] = useState([]);
   const [deadItems, setDeadItems] = useState([]);
@@ -23,7 +25,9 @@ function Arena({ info, mintInfo }) {
   const getData = async () => {
     setLoading(true);
     const rabbits = [];
+    const rabbitsOwner = [];
     const turtles = [];
+    const turtlesOwner = [];
     const deadrabbits = [];
     const deadturtles = [];
     const dead = [];
@@ -34,11 +38,14 @@ function Arena({ info, mintInfo }) {
       const result = JSON.parse(json);
       const type = await info.contract.methods.getPlayerType(i).call();
       const isAlive = await info.contract.methods.isAlive(i).call();
+      const owner = await info.contract.methods.ownerOf(i).call();
       if (isAlive) {
         if (type == "Turtle") {
           turtles.push(result);
+          turtlesOwner.push(owner);
         } else {
           rabbits.push(result);
+          rabbitsOwner.push(owner);
         }
       } else {
         dead.push(result);
@@ -52,7 +59,9 @@ function Arena({ info, mintInfo }) {
       players.push(player);
     }
     setAliveRabbits(rabbits);
+    setRabbitsOwner(rabbitsOwner);
     setAliveTurtles(turtles);
+    setTurtlesOwner(turtlesOwner);
     setDeadRabbits(deadrabbits);
     setDeadTurtles(deadturtles);
     setDeadItems(dead);
@@ -67,15 +76,10 @@ function Arena({ info, mintInfo }) {
 
   const startFighting = async () => {
     setIsFighting(true);
+    audio.play();
     const attackerID = selectedRabbit?.name.slice(selectedRabbit?.name.indexOf("#") + 1)
     const attackedID = selectedTurtle?.name.slice(selectedTurtle?.name.indexOf("#") + 1)
     await info.contract.methods.attackPlayer(attackerID, attackedID).send({ from: info.account });
-    audio.play();
-    // const timer = setTimeout(() => {
-    //   setIsFighting(false);
-    //   audio.pause();
-    // }, 3000);
-    // return () => clearTimeout(timer);
     audio.pause();
     setIsFighting(false);
   }
@@ -91,9 +95,10 @@ function Arena({ info, mintInfo }) {
           </div>
           {loading ? <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)" }}>Loading...</div> :
             <div style={{ display: "grid", gridTemplateColumns: "25% 25% 25% 25%", padding: "50px" }}>
-              {turtleFilter == "alive" && aliveTurtles.map(turtle => {
+              {turtleFilter == "alive" && aliveTurtles.map((turtle, index) => {
                 return (<div key={turtle.name} onClick={() => setSelectedTurtle(turtle)} className={[selectedTurtle?.name == turtle.name && "turtle_active", "player_image_wrapper"].join(" ")}>
                   <img src={turtle.image} alt={`turtle`} className="player_image" />
+                  {turtlesOwner[index] == info.account && <div className="owner_mark" />}
                 </div>);
               })}
               {turtleFilter == "dead" && deadTurtles.map(turtle => {
@@ -110,9 +115,10 @@ function Arena({ info, mintInfo }) {
           </div>
           {loading ? <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)" }}>Loading...</div> :
             <div style={{ display: "grid", gridTemplateColumns: "25% 25% 25% 25%", padding: "50px" }}>
-              {rabbitFilter == "alive" && aliveRabbits.map(rabbit => {
+              {rabbitFilter == "alive" && aliveRabbits.map((rabbit, index) => {
                 return (<div key={rabbit.name} onClick={() => setSelectedRabbit(rabbit)} className={[selectedRabbit?.name == rabbit.name && "rabbit_active", "player_image_wrapper"].join(" ")}>
                   <img src={rabbit.image} alt={`rabbit`} className="player_image" />
+                  {rabbitsOwner[index] == info.account && <div className="owner_mark" />}
                 </div>);
               })}
               {rabbitFilter == "dead" && deadRabbits.map(rabbit => {
