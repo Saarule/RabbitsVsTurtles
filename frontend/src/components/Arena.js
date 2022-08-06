@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
+import Web3 from "web3";
+import { multicall } from '@defifofum/multicall';
 import ArenaBackground from "../assets/arena-bg.svg";
 import BattleBackground from "../assets/battle-bg.svg";
 import FireAnimation from "../assets/fire.gif";
 import FightingSound from "../assets/fighting.wav";
+import contract from "../contracts/contract.json";
 
 function Arena({ info, mintInfo }) {
   const [players, setPlayers] = useState([]);
@@ -31,32 +34,62 @@ function Arena({ info, mintInfo }) {
     const deadrabbits = [];
     const deadturtles = [];
     const dead = [];
-    const players = [];
-    for (let i = 1; i < mintInfo.gameInfo[1] + mintInfo.gameInfo[0]; i++) {
-      const data = await info.contract.methods.tokenURI(i).call();
-      const json = atob(data.substring(29));
+
+    window.web3 = new Web3(window.ethereum);
+    const POLYGON_RPC_URL = "https://matic-mainnet.chainstacklabs.com	";
+    const len = mintInfo.gameInfo[1] + mintInfo.gameInfo[0];
+    const callData = [], callDataType = [], callDataAlive = [], callDataOwner = [], callDataPlayer = [];
+    for (let i = 1; i < len + 1; i++) {
+      callData.push({ address: contract.address, functionName: "tokenURI", params: [i] });
+      callDataType.push({ address: contract.address, functionName: "getPlayerType", params: [i] });
+      callDataAlive.push({ address: contract.address, functionName: "isAlive", params: [i] });
+      callDataOwner.push({ address: contract.address, functionName: "ownerOf", params: [i] });
+      callDataPlayer.push({ address: contract.address, functionName: "getPlayerByIndex", params: [i] });
+    }
+    const data = await multicall(
+      POLYGON_RPC_URL,
+      contract.abi,
+      callData
+    )
+    const dataType = await multicall(
+      POLYGON_RPC_URL,
+      contract.abi,
+      callDataType
+    )
+    const dataAlive = await multicall(
+      POLYGON_RPC_URL,
+      contract.abi,
+      callDataAlive
+    )
+    const dataOwner = await multicall(
+      POLYGON_RPC_URL,
+      contract.abi,
+      callDataOwner
+    )
+    const dataPlayers = await multicall(
+      POLYGON_RPC_URL,
+      contract.abi,
+      callDataPlayer
+    )
+    for (let i = 0; i < len; i++) {
+      const json = atob(data[i][0].substring(29));
       const result = JSON.parse(json);
-      const type = await info.contract.methods.getPlayerType(i).call();
-      const isAlive = await info.contract.methods.isAlive(i).call();
-      const owner = await info.contract.methods.ownerOf(i).call();
-      if (isAlive) {
-        if (type == "Turtle") {
+      if (dataAlive[i][0]) {
+        if (dataType[i] == "Turtle") {
           turtles.push(result);
-          turtlesOwner.push(owner);
+          turtlesOwner.push(dataOwner[i]);
         } else {
           rabbits.push(result);
-          rabbitsOwner.push(owner);
+          rabbitsOwner.push(dataOwner[i]);
         }
       } else {
         dead.push(result);
-        if (type == "Turtle") {
+        if (dataType[i] == "Turtle") {
           deadturtles.push(result);
         } else {
           deadrabbits.push(result);
         }
       }
-      const player = await info.contract.methods.getPlayerByIndex(i).call();
-      players.push(player);
     }
     setAliveRabbits(rabbits);
     setRabbitsOwner(rabbitsOwner);
@@ -65,14 +98,14 @@ function Arena({ info, mintInfo }) {
     setDeadRabbits(deadrabbits);
     setDeadTurtles(deadturtles);
     setDeadItems(dead);
-    players.sort((a, b) => b.kills - a.kills);
-    setPlayers(players);
+    dataPlayers.sort((a, b) => b.kills - a.kills);
+    setPlayers(dataPlayers);
     setLoading(false);
   }
 
   useEffect(() => {
     info && info.contract && mintInfo && getData();
-  }, [info, mintInfo])
+  }, [mintInfo])
 
   const startFighting = async () => {
     setIsFighting(true);

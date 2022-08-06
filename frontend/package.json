@@ -3,6 +3,8 @@
   "version": "v1.0.0",
   "private": true,
   "dependencies": {
+    "@defifofum/multicall": "^1.1.1",
+    "@dopex-io/web3-multicall": "^0.1.8",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
