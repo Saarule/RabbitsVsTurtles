@@ -45,6 +45,12 @@ const initialMintState = {
 function Minter() {
   const [info, setInfo] = useState(initialInfoState);
   const [mintInfo, setMintInfo] = useState(initialMintState);
+  const [width, setWidth]   = useState(window.innerWidth);
+  const [height, setHeight] = useState(window.innerHeight);
+  const updateDimensions = () => {
+    setWidth(window.innerWidth);
+    setHeight(window.innerHeight);
+ }
 
   console.log(info);
 
@@ -576,6 +582,11 @@ function Minter() {
     }
   }, [info.connected]);
 
+  useEffect(() => {
+    window.addEventListener("resize", updateDimensions);
+    return () => window.removeEventListener("resize", updateDimensions);
+  }, []);
+
   return (
     
     <div className="page" >
@@ -585,16 +596,16 @@ function Minter() {
     <div style={{ display: "grid", paddingTop:100, gridTemplateColumns: "repeat(2, 10fr)", gridGap: 70 ,paddingBottom: 30}}>
       <div>
         <div>
-          <div style={{color:"#ebc596", fontSize:20}}>
+          <div style={{color:"#ebc596", fontSize: window.innerWidth > 400 ? 20 : 14.5 }}>
           Rabbits: {mintInfo.gameInfo[1]} &#128007; <br></br>
           </div>
-          <div style={{color:"#ebc596", fontSize:20}}>
+          <div style={{color:"#ebc596", fontSize: window.innerWidth > 400 ? 20 : 14.5}}>
           Alive: {mintInfo.gameInfo[3]}  &#128513;<br></br>
           </div>
-          <div style={{color:"#ebc596", fontSize:20}}>
+          <div style={{color:"#ebc596", fontSize: window.innerWidth > 400 ? 20 : 14.5}}>
           Dead: {mintInfo.gameInfo[5]}  &#128123;<br></br>
           </div>
-          <div style={{color:"#ebc596", fontSize:20}}>
+          <div style={{color:"#ebc596", fontSize: window.innerWidth > 400 ? 20 : 14.5}}>
           Revived: {mintInfo.gameInfo[7]}  &#128519;<br></br>
           </div>
         </div>
@@ -602,16 +613,16 @@ function Minter() {
 
       <div> 
         <div>
-          <div style={{color:"#c2feff", fontSize:20}}>
+          <div style={{color:"#c2feff", fontSize: window.innerWidth > 400 ? 20 : 14.5}}>
           Turtles: {mintInfo.gameInfo[0]}  &#128034;<br></br>
           </div>
-          <div style={{color:"#c2feff", fontSize:20}}>
+          <div style={{color:"#c2feff", fontSize: window.innerWidth > 400 ? 20 : 14.5}}>
           Alive: {mintInfo.gameInfo[2]}  &#128513;<br></br>
           </div>
-          <div style={{color:"#c2feff", fontSize:20}}>
+          <div style={{color:"#c2feff", fontSize: window.innerWidth > 400 ? 20 : 14.5}}>
           Dead: {mintInfo.gameInfo[4]}  &#128123;<br></br>
           </div>
-          <div style={{color:"#c2feff", fontSize:20}}>
+          <div style={{color:"#c2feff", fontSize: window.innerWidth > 400 ? 20 : 14.5}}>
           Revived: {mintInfo.gameInfo[6]}  &#128519;<br></br>
           </div>
         </div>
@@ -628,15 +639,15 @@ function Minter() {
       </div>
 
       <div style={{color:"#ffffff", paddingTop:30, paddingBottom:50, paddingLeft:38}} > 
-        <img className="logo_image_facing" style={{width:"100%", maxWidth:750 }} src={LogoFacing} />
+        <img className="logo_image_facing" style={{width:"100%", maxWidth:750, marginRight: window.innerWidth > 650 ? 0 : 700  }} src={LogoFacing} />
       </div>
 
       <div style={{color:"#ffffff"}}>
-      <div style={{ color:"#c2feff", height: 20, paddingLeft:40 ,paddingTop:50, paddingBottom:60, fontSize:40, fontFamily:"slapstickShaded", textAlign:"center"}}> Duty is calling!</div>
-      <div style={{ height: 20, paddingTop:0, paddingBottom:25, fontSize:20, fontFamily:"slapstick", textAlign:"center"}}> Ready to take your part at the greatest war between the rabbits and the turtles?</div>
-      <div style={{ height: 20, paddingTop:0, paddingBottom:25, fontSize:20, fontFamily:"slapstick", textAlign:"center"}}> Rabbits Vs. Turtles is 100% on-chain, dynamic, NFT game. </div>
-      <div style={{ height: 20, paddingTop:0, paddingBottom:55, fontSize:20, fontFamily:"slapstick", textAlign:"center"}}> The NFTs change dynamically as the game progress and each NFT mirrors the complete status of the player in the game!</div>
-      <div style={{ color:"#64eb50", height: 20, paddingTop:20, paddingBottom:45, fontSize:25, fontFamily:"slapstick", textAlign:"center"}}>Connect your wallet to the Polygon network, mint your NFT, and join the game!</div>
+      <div style={{ color:"#c2feff", height: 20, paddingLeft:40, paddingRight: window.innerWidth > 650 ? 0 : 40  ,paddingTop:50, paddingBottom:60, fontSize:40, fontFamily:"slapstickShaded", textAlign:"center"}}> Duty is calling!</div>
+      <div style={{ height: 20, paddingTop:0, paddingBottom: window.innerWidth > 400 ? 25: 45, fontSize:20, letterSpacing:1.2, lineHeight: 1.1, fontFamily:"slapstick", textAlign:"center"}}> Ready to take your part at the greatest war between the rabbits and the turtles?</div>
+      <div style={{ height: 20, paddingTop:0, paddingBottom:25, fontSize:20, letterSpacing:1.2, lineHeight: 1.1, fontFamily:"slapstick", textAlign:"center"}}> Rabbits Vs. Turtles is 100% on-chain, dynamic, NFT game. </div>
+      <div style={{ height: 20, paddingTop:0, paddingBottom:55, fontSize:20, letterSpacing:1.2, lineHeight: 1.1, fontFamily:"slapstick", textAlign:"center"}}> The NFTs change dynamically as the game progress and each NFT mirrors the complete status of the player in the game!</div>
+      <div style={{ color:"#64eb50", height: 20, paddingTop:20, paddingBottom:45, fontSize:25, lineHeight: 1.1, fontFamily:"slapstick", textAlign:"center"}}>Connect your wallet to the Polygon network, mint your NFT, and join the game!</div>
 
       </div>
       
@@ -753,8 +764,9 @@ function Minter() {
         </div>
       </div>
       <div style={{ height: 45 }}></div>
+      
+      <div style={{ display: "grid", gridTemplateColumns: window.innerWidth > 650 ? "repeat(4, 0fr)" : "repeat(2, 0fr)", gridGap: 30, }}>
 
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 0fr)", gridGap: 30, }}>
 
                 {/* ************** Attack start here! ************** */}
                 <div style={{width: 130}}>
@@ -987,7 +999,7 @@ function Minter() {
                <div style={{width: 200, paddingTop:25, paddingRight:25}}>
 
 
-                <div style={{textAlign:"center", paddingLeft:7, fpaddingTop:5, paddingBottom:10, fontSize:15, letterSpacing:1.5, fontFamily:"slapstick"}}>Attack player number:</div>
+                <div style={{textAlign:"center", paddingLeft:7, fpaddingTop:5, paddingBottom:10, fontSize:15, letterSpacing:1.5, paddingLeft:34.5 ,fontFamily:"slapstick"}}>Attack player number:</div>
 
                 <div style={{paddingLeft:"58px", paddingBottom:10 }}>
                   <button
@@ -1019,7 +1031,7 @@ function Minter() {
                   </button>
                 </div>
 
-                <div style={{textAlign:"center", paddingLeft:9, paddingBottom:10, fontSize:15, letterSpacing:1.5, fontFamily:"slapstick", paddingBottom:10}}>with player number:</div>
+                <div style={{textAlign:"center", paddingLeft:9, paddingBottom:10, fontSize:15, letterSpacing:1.5, paddingLeft:35, fontFamily:"slapstick", paddingBottom:10}}>with player number:</div>
 
                 <div style={{paddingLeft:"59px"}}>
                 <button
@@ -1076,24 +1088,24 @@ function Minter() {
       </div>
       </div>
       <ul class="a" style={{border:"white",}} >
-      <li style={{paddingBottom:5,fontSize:15, letterSpacing:1.5, fontFamily:"slapstick"}}>Every player that joins the game recives an NFT that represents the player's status in the game.</li>
-      <li style={{paddingBottom:5,fontSize:15, letterSpacing:1.5, fontFamily:"slapstick"}}>Each player receives pseudo-randomly generated attack and defense attributes.</li>
-      <li style={{paddingBottom:5,fontSize:15, letterSpacing:1.5, fontFamily:"slapstick"}}>To attack another player successfully, your attack value should be greater than your opponent's defense AND your defense value should be greater than your opponent's attack.</li>
-      <li style={{paddingBottom:5,fontSize:15, letterSpacing:1.5, fontFamily:"slapstick"}}>You can only attack players from the opponent team.</li>
-      <li style={{paddingBottom:5,fontSize:15, letterSpacing:1.5, fontFamily:"slapstick"}}>Increasing your attack will give your player +5 in attack.</li>
-      <li style={{paddingBottom:5,fontSize:15, letterSpacing:1.5, fontFamily:"slapstick"}}>Increasing your defense will give your player +5 in defense.</li>
-      <li style={{paddingBottom:5,fontSize:15, letterSpacing:1.5, fontFamily:"slapstick"}}>Increasing your stamina will give your player +20 in attack.</li>
-      <li style={{paddingBottom:5,fontSize:15, letterSpacing:1.5, fontFamily:"slapstick"}}>Increasing your armor will give your player +20 in defense.</li>
-      <li style={{paddingBottom:5,fontSize:15, letterSpacing:1.5, fontFamily:"slapstick"}}>Increasing your attack, defense, stamina or armor costs a fee.</li>
-      <li style={{paddingBottom:5,fontSize:15, letterSpacing:1.5, fontFamily:"slapstick"}}>Attacking other players is free!</li>
-      <li style={{paddingBottom:5,fontSize:15, letterSpacing:1.5, fontFamily:"slapstick"}}>Your level is calculated based on your time alive and number of players you eliminated from the game.</li>
-      <li style={{paddingBottom:5,fontSize:15, letterSpacing:1.5, fontFamily:"slapstick"}}>Every player can revive his Rabbit/Turtle only once in the game and it costs a fee.</li>
-      <li style={{paddingBottom:5,fontSize:15, letterSpacing:1.5, fontFamily:"slapstick"}}>When a player joins the game, the minting price increases by 0.1%.</li>
+      <li style={{paddingBottom:5,fontSize:15, letterSpacing:1.5, lineHeight: 1, fontFamily:"slapstick"}}>Every player that joins the game recives an NFT that represents the player's status in the game.</li>
+      <li style={{paddingBottom:5,fontSize:15, letterSpacing:1.5, lineHeight: 1, fontFamily:"slapstick"}}>Each player receives pseudo-randomly generated attack and defense attributes.</li>
+      <li style={{paddingBottom:5,fontSize:15, letterSpacing:1.5, lineHeight: 1, fontFamily:"slapstick"}}>To attack another player successfully, your attack value should be greater than your opponent's defense AND your defense value should be greater than your opponent's attack.</li>
+      <li style={{paddingBottom:5,fontSize:15, letterSpacing:1.5, lineHeight: 1, fontFamily:"slapstick"}}>You can only attack players from the opponent team.</li>
+      <li style={{paddingBottom:5,fontSize:15, letterSpacing:1.5, lineHeight: 1, fontFamily:"slapstick"}}>Increasing your attack will give your player +5 in attack.</li>
+      <li style={{paddingBottom:5,fontSize:15, letterSpacing:1.5, lineHeight: 1, fontFamily:"slapstick"}}>Increasing your defense will give your player +5 in defense.</li>
+      <li style={{paddingBottom:5,fontSize:15, letterSpacing:1.5, lineHeight: 1, fontFamily:"slapstick"}}>Increasing your stamina will give your player +20 in attack.</li>
+      <li style={{paddingBottom:5,fontSize:15, letterSpacing:1.5, lineHeight: 1, fontFamily:"slapstick"}}>Increasing your armor will give your player +20 in defense.</li>
+      <li style={{paddingBottom:5,fontSize:15, letterSpacing:1.5, lineHeight: 1, fontFamily:"slapstick"}}>Increasing your attack, defense, stamina or armor costs a fee.</li>
+      <li style={{paddingBottom:5,fontSize:15, letterSpacing:1.5, lineHeight: 1, fontFamily:"slapstick"}}>Attacking other players is free!</li>
+      <li style={{paddingBottom:5,fontSize:15, letterSpacing:1.5, lineHeight: 1, fontFamily:"slapstick"}}>Your level is calculated based on your time alive and number of players you eliminated from the game.</li>
+      <li style={{paddingBottom:5,fontSize:15, letterSpacing:1.5, lineHeight: 1, fontFamily:"slapstick"}}>Every player can revive his Rabbit/Turtle only once in the game and it costs a fee.</li>
+      <li style={{paddingBottom:5,fontSize:15, letterSpacing:1.5, lineHeight: 1, fontFamily:"slapstick"}}>When a player joins the game, the minting price increases by 0.1%.</li>
       </ul>
-      <div style={{color:"#c2feff" ,paddingTop:15,paddingBottom:20, fontSize:20, fontFamily:"slapstick"}}>
+      <div style={{color:"#c2feff" ,paddingTop:15,paddingBottom:20, fontSize:20, lineHeight: 1, fontFamily:"slapstick"}}>
       Do you think you have what it takes to become the best of the best?
       </div>
-      <div style={{color:"#c2feff", paddingBottom:10, fontSize:18, fontFamily:"slapstickShaded"}}>
+      <div style={{color:"#c2feff", paddingBottom:10, fontSize:18, lineHeight: 1, fontFamily:"slapstickShaded"}}>
       Join our discord to discuss the game and get help from other players.
       </div>
       <div style={{ height: 30 }}></div>
