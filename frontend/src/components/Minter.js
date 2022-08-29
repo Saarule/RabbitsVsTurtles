@@ -643,11 +643,11 @@ function Minter() {
       </div>
 
       <div style={{color:"#ffffff"}}>
-      <div style={{ color:"#c2feff", height: 20, paddingLeft:40, paddingRight: window.innerWidth > 650 ? 0 : 40  ,paddingTop:50, paddingBottom:60, fontSize:40, fontFamily:"slapstickShaded", textAlign:"center"}}> Duty is calling!</div>
+      <div style={{ color:"#c2feff", height: 20, paddingLeft:40, paddingRight: window.innerWidth > 650 ? 0 : 40  ,paddingTop:50, paddingBottom:60, fontSize:40, letterSpacing:1.4, fontFamily:"slapstickShaded", textAlign:"center"}}> Duty is calling!</div>
       <div style={{ height: 20, paddingTop:0, paddingBottom: window.innerWidth > 400 ? 25: 45, fontSize:20, letterSpacing:1.2, lineHeight: 1.1, fontFamily:"slapstick", textAlign:"center"}}> Ready to take your part at the greatest war between the rabbits and the turtles?</div>
       <div style={{ height: 20, paddingTop:0, paddingBottom:25, fontSize:20, letterSpacing:1.2, lineHeight: 1.1, fontFamily:"slapstick", textAlign:"center"}}> Rabbits Vs. Turtles is 100% on-chain, dynamic, NFT game. </div>
       <div style={{ height: 20, paddingTop:0, paddingBottom:55, fontSize:20, letterSpacing:1.2, lineHeight: 1.1, fontFamily:"slapstick", textAlign:"center"}}> The NFTs change dynamically as the game progress and each NFT mirrors the complete status of the player in the game!</div>
-      <div style={{ color:"#64eb50", height: 20, paddingTop:20, paddingBottom:45, fontSize:25, lineHeight: 1.1, fontFamily:"slapstick", textAlign:"center"}}>Connect your wallet to the Polygon network, mint your NFT, and join the game!</div>
+      <div style={{ color:"#64eb50", height: 20, paddingTop:20, paddingBottom:45, fontSize:25, letterSpacing:1.1, lineHeight: 1.1, fontFamily:"slapstick", textAlign:"center"}}>Connect your wallet to the Polygon network, mint your NFT, and join the game!</div>
 
       </div>
       
@@ -751,7 +751,7 @@ function Minter() {
           style={{
             position: "absolute",
             bottom: -25,
-            left: 110,
+            left: 93,
             color: "#ffffff",
             letterSpacing:1.5, fontFamily:"slapstick",
             
@@ -759,7 +759,7 @@ function Minter() {
           target="_blank"
           href="https://polygonscan.com/address/0x829a67ef339e6230fcfdbf3c8730ffbb0329e796"
         >
-          View Contract
+          View Smart Contract
         </a>
         </div>
       </div>
@@ -801,7 +801,7 @@ function Minter() {
                 +
               </button>
               </div>
-              <button  style={{textAlign:"center", paddingBottom:10, fontSize:15, letterSpacing:1.5, fontFamily:"slapstick"}}
+              <button  style={{textAlign:"center", paddingBottom:10, fontSize:15, letterSpacing:1.5, lineHeight: 0.9, fontFamily:"slapstick"}}
                 disabled={!info.connected || mintInfo.cost == "0"}
                 className="button"
                 onClick={() => increaseAttack()}
@@ -845,7 +845,7 @@ function Minter() {
                 +
               </button>
               </div>
-              <button  style={{textAlign:"center", paddingBottom:10, fontSize:15, letterSpacing:1.5, fontFamily:"slapstick"}}
+              <button  style={{textAlign:"center", paddingBottom:10, fontSize:15, letterSpacing:1.5, lineHeight: 0.9, fontFamily:"slapstick"}}
                 disabled={!info.connected || mintInfo.cost == "0"}
                 className="button"
                 onClick={() => increaseDefense()}
@@ -888,7 +888,7 @@ function Minter() {
                 +
               </button>
               </div>
-              <button style={{textAlign:"center", paddingBottom:10, fontSize:15, letterSpacing:1.5, fontFamily:"slapstick"}}
+              <button style={{textAlign:"center", paddingBottom:10, fontSize:15, letterSpacing:1.5, lineHeight: 0.9, fontFamily:"slapstick"}}
                 disabled={!info.connected || mintInfo.cost == "0"}
                 className="button"
                 onClick={() => increaseStamina()}
@@ -932,7 +932,7 @@ function Minter() {
                 +
               </button>
               </div>
-              <button style={{textAlign:"center", paddingBottom:10, fontSize:15, letterSpacing:1.5, fontFamily:"slapstick"}}
+              <button style={{textAlign:"center", paddingBottom:10, fontSize:15, letterSpacing:1.5, lineHeight: 0.9, fontFamily:"slapstick"}}
                 disabled={!info.connected || mintInfo.cost == "0"}
                 className="button"
                 onClick={() => increaseArmor()}
@@ -1102,10 +1102,10 @@ function Minter() {
       <li style={{paddingBottom:5,fontSize:15, letterSpacing:1.5, lineHeight: 1, fontFamily:"slapstick"}}>Every player can revive his Rabbit/Turtle only once in the game and it costs a fee.</li>
       <li style={{paddingBottom:5,fontSize:15, letterSpacing:1.5, lineHeight: 1, fontFamily:"slapstick"}}>When a player joins the game, the minting price increases by 0.1%.</li>
       </ul>
-      <div style={{color:"#c2feff" ,paddingTop:15,paddingBottom:20, fontSize:20, lineHeight: 1, fontFamily:"slapstick"}}>
+      <div style={{color:"#c2feff" ,paddingTop:15,paddingBottom:20, fontSize:20, letterSpacing:1.1, lineHeight: 1, fontFamily:"slapstick"}}>
       Do you think you have what it takes to become the best of the best?
       </div>
-      <div style={{color:"#c2feff", paddingBottom:10, fontSize:18, lineHeight: 1, fontFamily:"slapstickShaded"}}>
+      <div style={{color:"#c2feff", paddingBottom:10, fontSize:18, letterSpacing:1.1,lineHeight: 1, fontFamily:"slapstickShaded"}}>
       Join our discord to discuss the game and get help from other players.
       </div>
       <div style={{ height: 30 }}></div>
