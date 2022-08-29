@@ -24,13 +24,13 @@ const initialMintState = {
   loading: false,
   status: `Mint your ${contract.name} NFTs`,
   amount: 1,
-  increaseAttackToNumber: 1,
-  increaseDefenseToNumber: 1,
-  increaseStaminaToNumber: 1,
-  increaseArmorToNumber: 1,
-  reviveplayerNumber: 1,
-  attackerPlayerNumber: 1,
-  attackedPlayerNumber: 1,
+  increaseAttackToNumber: 10,
+  increaseDefenseToNumber: 90,
+  increaseStaminaToNumber: 20,
+  increaseArmorToNumber: 70,
+  reviveplayerNumber: 50,
+  attackerPlayerNumber: 30,
+  attackedPlayerNumber: 80,
   supply: "0",
   cost: "0",
   gameInfo: [9,9,9,9,0,0,0,0],
@@ -762,7 +762,7 @@ function Minter() {
                 <div style={{ width: 10 }}></div>
 
                 <div style={{textAlign:"center",lineHeight:1, paddingBottom:10, fontSize:15, letterSpacing:1.5, fontFamily:"slapstick"}} >Increase Attack to player number:</div>
-                <div style={{paddingLeft:23}}>
+                <div style={{paddingLeft:9}}>
                 <button
                 disabled={!info.connected || mintInfo.cost == "0"}
                 className="small_button"
@@ -770,7 +770,16 @@ function Minter() {
               >
                 -
                 </button>
-                 {" #"+mintInfo.increaseAttackToNumber+" "} 
+                 {" #"} 
+                 {/* {" #"+mintInfo.increaseAttackToNumber+" "}  */}
+
+                 <input
+                 style={{width: 30, height: 20, margin:4, marginRight:7}}
+                  type="text"
+                  pattern="[0-9]*"
+                  value={mintInfo.increaseAttackToNumber}
+                  onChange={(e) => (e.target.validity.valid ? updateIncreaseAttackToNumber(parseInt(e.target.value)) : mintInfo.increaseAttackToNumber)}
+                />
 
                 <button
                 disabled={!info.connected || mintInfo.cost == "0"}
@@ -795,7 +804,7 @@ function Minter() {
                 <div style={{ width: 10 }}></div>
 
                 <div style={{textAlign:"center",lineHeight:1, paddingBottom:10, fontSize:15, letterSpacing:1.5, fontFamily:"slapstick"}}>Increase Defense to player number:</div>
-                <div style={{paddingLeft:23}}>
+                <div style={{paddingLeft:7.5}}>
                 <button
                 disabled={!info.connected || mintInfo.cost == "0"}
                 className="small_button"
@@ -804,7 +813,17 @@ function Minter() {
                 -
                 </button>
 
-                 {" #"+mintInfo.increaseDefenseToNumber+" "} 
+                 {/* {" #"+mintInfo.increaseDefenseToNumber+" "}  */}
+                 {" #"} 
+
+                 <input
+                 style={{width: 30, height: 20, margin:4, marginRight:7}}
+                  type="text"
+                  pattern="[0-9]*"
+                  value={mintInfo.increaseDefenseToNumber}
+                  onChange={(e) => (e.target.validity.valid ? updateIncreaseDefenseToNumber(parseInt(e.target.value)) : mintInfo.increaseDefenseToNumber)}
+                />
+
 
                 <button
                 disabled={!info.connected || mintInfo.cost == "0"}
@@ -829,7 +848,7 @@ function Minter() {
                 <div style={{ width: 10 }}></div>
 
                 <div style={{textAlign:"center",lineHeight:1, paddingBottom:10, fontSize:15, letterSpacing:1.5, fontFamily:"slapstick"}}>Increase Stamina to player number:</div>
-                <div style={{paddingLeft:23}}>
+                <div style={{paddingLeft:7.5}}>
                 <button 
                 disabled={!info.connected || mintInfo.cost == "0"}
                 className="small_button"
@@ -838,7 +857,16 @@ function Minter() {
                 -
                 </button>
 
-                 {" #"+mintInfo.increaseStaminaToNumber+" "} 
+                 {/* {" #"+mintInfo.increaseStaminaToNumber+" "}  */}
+                 {" #"} 
+
+                <input
+                style={{width: 30, height: 20, margin:4, marginRight:7}}
+                type="text"
+                pattern="[0-9]*"
+                value={mintInfo.increaseStaminaToNumber}
+                onChange={(e) => (e.target.validity.valid ? updateIncreaseStaminaToNumber(parseInt(e.target.value)) : mintInfo.increaseStaminaToNumber)}
+                />
 
                 <button
                 disabled={!info.connected || mintInfo.cost == "0"}
@@ -863,7 +891,7 @@ function Minter() {
                 <div style={{ width: 10 }}></div>
 
                 <div style={{textAlign:"center",lineHeight:1, paddingBottom:10, fontSize:15, letterSpacing:1.5, fontFamily:"slapstick"}}>Increase Armor to player number:</div>
-                <div style={{paddingLeft:23}}>
+                <div style={{paddingLeft:7.5}}>
                 <button
                 disabled={!info.connected || mintInfo.cost == "0"}
                 className="small_button"
@@ -872,7 +900,17 @@ function Minter() {
                 -
                 </button>
 
-                 {" #"+mintInfo.increaseArmorToNumber+" "} 
+                {/* {" #"+mintInfo.increaseArmorToNumber+" "}  */}
+                {" #"} 
+
+                <input
+                style={{width: 30, height: 20, margin:4, marginRight:1}}
+                type="text"
+                pattern="[0-9]*"
+                value={mintInfo.increaseArmorToNumber}
+                onChange={(e) => (e.target.validity.valid ? updateIncreaseArmorToNumber(parseInt(e.target.value)) : mintInfo.increaseArmorToNumber)}
+                />
+
 
                 <button
                 disabled={!info.connected || mintInfo.cost == "0"}
@@ -899,10 +937,10 @@ function Minter() {
                <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 0fr)", gridGap: 20 }}>
                  
                   {/* ************** Revive start here! ************** */}
-                <div style={{width: 200, paddingLeft:5, paddingTop:25}}>
+                <div style={{width: 200, paddingLeft:1, paddingTop:25}}>
 
                 <div style={{textAlign:"center",paddingTop:10, paddingBottom:10, paddingLeft:25, fontSize:15, letterSpacing:1.5, fontFamily:"slapstick"}}>Revive player number:</div>
-                <div style={{paddingLeft:67}}>
+                <div style={{paddingLeft:54}}>
                 <button
                 disabled={!info.connected || mintInfo.cost == "0"}
                 className="small_button"
@@ -911,7 +949,18 @@ function Minter() {
                 -
                 </button>
 
-                 {" #"+mintInfo.reviveplayerNumber+" "} 
+                 {/* {" #"+mintInfo.reviveplayerNumber+" "}  */}
+                 {" #"} 
+
+                <input
+                style={{width: 30, height: 20, margin:4, marginRight:7}}
+                type="text"
+                pattern="[0-9]*"
+                value={mintInfo.reviveplayerNumber}
+                onChange={(e) => (e.target.validity.valid ? updaterevivePlayerNumber(parseInt(e.target.value)) : mintInfo.reviveplayerNumber)}
+                />
+
+
 
                 <button
                 disabled={!info.connected || mintInfo.cost == "0"}
@@ -935,29 +984,39 @@ function Minter() {
               
                 </div>
                   {/* ************** Attacking Player start here! ************** */}
-               <div style={{width: 200, paddingTop:25}}>
+               <div style={{width: 200, paddingTop:25, paddingRight:25}}>
 
 
                 <div style={{textAlign:"center", paddingLeft:7, fpaddingTop:5, paddingBottom:10, fontSize:15, letterSpacing:1.5, fontFamily:"slapstick"}}>Attack player number:</div>
 
                 <div style={{paddingLeft:"58px", paddingBottom:10 }}>
-                <button
-                disabled={!info.connected || mintInfo.cost == "0"}
-                className="small_button"
-                onClick={() => updateAttackedPlayerNumber(mintInfo.attackedPlayerNumber - 1)}
-                >
-                -
-                </button>
+                  <button
+                  disabled={!info.connected || mintInfo.cost == "0"}
+                  className="small_button"
+                  onClick={() => updateAttackedPlayerNumber(mintInfo.attackedPlayerNumber - 1)}
+                  >
+                  -
+                  </button>
 
-                {" #"+mintInfo.attackedPlayerNumber+" "} 
+                  {/* {" #"+mintInfo.attackedPlayerNumber+" "}  */}
+                  {" #"} 
 
-                <button
-                disabled={!info.connected || mintInfo.cost == "0"}
-                className="small_button"
-                onClick={() => updateAttackedPlayerNumber(mintInfo.attackedPlayerNumber + 1)}
-                >
-                +
-                </button>
+                  <input
+                  style={{width: 30, height: 20, margin:4, marginRight:7}}
+                  type="text"
+                  pattern="[0-9]*"
+                  value={mintInfo.attackedPlayerNumber}
+                  onChange={(e) => (e.target.validity.valid ? updateAttackedPlayerNumber(parseInt(e.target.value)) : mintInfo.attackedPlayerNumber)}
+                  />
+
+
+                  <button
+                  disabled={!info.connected || mintInfo.cost == "0"}
+                  className="small_button"
+                  onClick={() => updateAttackedPlayerNumber(mintInfo.attackedPlayerNumber + 1)}
+                  >
+                  +
+                  </button>
                 </div>
 
                 <div style={{textAlign:"center", paddingLeft:9, paddingBottom:10, fontSize:15, letterSpacing:1.5, fontFamily:"slapstick", paddingBottom:10}}>with player number:</div>
@@ -971,7 +1030,17 @@ function Minter() {
                 -
                 </button>
 
-                {" #"+mintInfo.attackerPlayerNumber+" "} 
+                {/* {" #"+mintInfo.attackerPlayerNumber+" "} */}
+                {" #"} 
+
+                <input
+                style={{width: 30, height: 20, margin:4, marginRight:7}}
+                type="text"
+                pattern="[0-9]*"
+                value={mintInfo.attackerPlayerNumber}
+                onChange={(e) => (e.target.validity.valid ? updateAttackerPlayerNumber(parseInt(e.target.value)) : mintInfo.attackerPlayerNumber)}
+                />
+
 
                 <button
                 disabled={!info.connected || mintInfo.cost == "0"}
@@ -981,14 +1050,15 @@ function Minter() {
                 +
                 </button>
                 </div>
-
-                <button style={{marginLeft: 40.5, fontSize:15, letterSpacing:1.5, fontFamily:"slapstick"}}
-                disabled={!info.connected || mintInfo.cost == "0"}
-                className="button"
-                onClick={() => attackPlayer()}
-                >
-                Attack Player
-                </button>
+                <div style={{paddingLeft:9.5}}>
+                  <button style={{marginLeft: 40.5, fontSize:15, letterSpacing:1.5, fontFamily:"slapstick"}}
+                  disabled={!info.connected || mintInfo.cost == "0"}
+                  className="button"
+                  onClick={() => attackPlayer()}
+                  >
+                  Attack Player
+                  </button>
+                </div>
                 </div>
                 {/* ************** Attacking Player ends here! ************** */}
                 
