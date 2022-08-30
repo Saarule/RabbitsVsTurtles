@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const YoutubeEmbed = ({ embedId, widthSize, heightSize }) => (
-  <div style={{paddingTop: 13, paddingBottom: 13}}>
+  <div style={{paddingTop: 90, paddingBottom: 90}}>
     <iframe
       width={widthSize}
       height={heightSize}
