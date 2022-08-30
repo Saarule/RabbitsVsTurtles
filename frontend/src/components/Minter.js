@@ -597,16 +597,16 @@ function Minter() {
     <div style={{ display: "grid", paddingTop:100, gridTemplateColumns: "repeat(2, 10fr)", gridGap: 80 ,paddingBottom: 30}}>
       <div>
         <div>
-          <div style={{color:"#ebc596", fontSize: window.innerWidth > 400 ? 20 : 12}}>
+          <div style={{color:"#ebc596", fontSize: window.innerWidth > 408 ? 20 : 13}}>
           Rabbits: {mintInfo.gameInfo[1]} &#128007; <br></br>
           </div>
-          <div style={{color:"#ebc596", fontSize: window.innerWidth > 400 ? 20 : 12}}>
+          <div style={{color:"#ebc596", fontSize: window.innerWidth > 408 ? 20 : 13}}>
           Alive: {mintInfo.gameInfo[3]}  &#128513;<br></br>
           </div>
-          <div style={{color:"#ebc596", fontSize: window.innerWidth > 400 ? 20 : 12}}>
+          <div style={{color:"#ebc596", fontSize: window.innerWidth > 408 ? 20 : 13}}>
           Dead: {mintInfo.gameInfo[5]}  &#128123;<br></br>
           </div>
-          <div style={{color:"#ebc596", fontSize: window.innerWidth > 400 ? 20 : 12}}>
+          <div style={{color:"#ebc596", fontSize: window.innerWidth > 408 ? 20 : 13}}>
           Revived: {mintInfo.gameInfo[7]}  &#128519;<br></br>
           </div>
         </div>
@@ -614,16 +614,16 @@ function Minter() {
 
       <div> 
         <div>
-          <div style={{color:"#c2feff", fontSize: window.innerWidth > 400 ? 20 : 12}}>
+          <div style={{color:"#c2feff", fontSize: window.innerWidth > 408 ? 20 : 13}}>
           Turtles: {mintInfo.gameInfo[0]}  &#128034;<br></br>
           </div>
-          <div style={{color:"#c2feff", fontSize: window.innerWidth > 400 ? 20 : 12}}>
+          <div style={{color:"#c2feff", fontSize: window.innerWidth > 408 ? 20 : 13}}>
           Alive: {mintInfo.gameInfo[2]}  &#128513;<br></br>
           </div>
-          <div style={{color:"#c2feff", fontSize: window.innerWidth > 400 ? 20 : 12}}>
+          <div style={{color:"#c2feff", fontSize: window.innerWidth > 408 ? 20 : 13}}>
           Dead: {mintInfo.gameInfo[4]}  &#128123;<br></br>
           </div>
-          <div style={{color:"#c2feff", fontSize: window.innerWidth > 400 ? 20 : 12}}>
+          <div style={{color:"#c2feff", fontSize: window.innerWidth > 408 ? 20 : 13}}>
           Revived: {mintInfo.gameInfo[6]}  &#128519;<br></br>
           </div>
         </div>
@@ -655,7 +655,8 @@ function Minter() {
       <div style={{ height: 20, paddingTop:0, paddingBottom: window.innerWidth > 400 ? 25: 45, fontSize:20, letterSpacing:1.2, lineHeight: 1.1, fontFamily:"slapstick", textAlign:"center"}}> Ready to take your part at the greatest war between the rabbits and the turtles?</div>
       <div style={{ height: 20, paddingTop:0, paddingBottom:25, fontSize:20, letterSpacing:1.2, lineHeight: 1.1, fontFamily:"slapstick", textAlign:"center"}}> Rabbits Vs. Turtles is 100% on-chain, dynamic, NFT Multiplayer game. </div>
       <div style={{ height: 20, paddingTop:0, paddingBottom:55, fontSize:20, letterSpacing:1.2, lineHeight: 1.1, fontFamily:"slapstick", textAlign:"center"}}> The NFTs change dynamically as the game progress and each NFT mirrors the complete status of the player in the game!</div>
-      <div style={{ color:"#64eb50", height: 20, paddingTop:20, paddingBottom:45, fontSize:25, letterSpacing:1.1, lineHeight: 1.1, fontFamily:"slapstick", textAlign:"center"}}>Connect your wallet to the Polygon network, mint your NFT, and join the game!</div>
+      {/* <div style={{ color:"#64eb50", height: 20, paddingTop:20, paddingBottom:45, fontSize:25, letterSpacing:1.1, lineHeight: 1.1, fontFamily:"slapstick", textAlign:"center"}}>Connect your wallet to the Polygon network, mint your NFT, and join the game!</div> */}
+      <div style={{ background: "-webkit-linear-gradient(270deg, #0afafa, #0cebeb, #20e3b2, #29ffc6)",WebkitTextStroke:"0.001px #a6c9ff", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", height: 20, paddingTop:40, paddingBottom:70, fontSize:26, letterSpacing:1.3, lineHeight: 1.1, fontFamily:"slapstick", textAlign:"center"}}>Connect your wallet to the Polygon network, mint your NFT, and join the game!</div>
 
       </div>
       
