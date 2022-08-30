@@ -594,19 +594,19 @@ function Minter() {
 
        {/* ************** Counters starts here! ************** */}
     {/* <div style={{padding:"3em", display: "grid", gridTemplateColumns: "repeat(auto-fit, 2fr)", gridGap: "2em"}}> */}
-    <div style={{ display: "grid", paddingTop:100, gridTemplateColumns: "repeat(2, 10fr)", gridGap: 70 ,paddingBottom: 30}}>
+    <div style={{ display: "grid", paddingTop:100, gridTemplateColumns: "repeat(2, 10fr)", gridGap: 80 ,paddingBottom: 30}}>
       <div>
         <div>
-          <div style={{color:"#ebc596", fontSize: window.innerWidth > 400 ? 20 : 13}}>
+          <div style={{color:"#ebc596", fontSize: window.innerWidth > 400 ? 20 : 12}}>
           Rabbits: {mintInfo.gameInfo[1]} &#128007; <br></br>
           </div>
-          <div style={{color:"#ebc596", fontSize: window.innerWidth > 400 ? 20 : 13}}>
+          <div style={{color:"#ebc596", fontSize: window.innerWidth > 400 ? 20 : 12}}>
           Alive: {mintInfo.gameInfo[3]}  &#128513;<br></br>
           </div>
-          <div style={{color:"#ebc596", fontSize: window.innerWidth > 400 ? 20 : 13}}>
+          <div style={{color:"#ebc596", fontSize: window.innerWidth > 400 ? 20 : 12}}>
           Dead: {mintInfo.gameInfo[5]}  &#128123;<br></br>
           </div>
-          <div style={{color:"#ebc596", fontSize: window.innerWidth > 400 ? 20 : 13}}>
+          <div style={{color:"#ebc596", fontSize: window.innerWidth > 400 ? 20 : 12}}>
           Revived: {mintInfo.gameInfo[7]}  &#128519;<br></br>
           </div>
         </div>
@@ -614,16 +614,16 @@ function Minter() {
 
       <div> 
         <div>
-          <div style={{color:"#c2feff", fontSize: window.innerWidth > 400 ? 20 : 13}}>
+          <div style={{color:"#c2feff", fontSize: window.innerWidth > 400 ? 20 : 12}}>
           Turtles: {mintInfo.gameInfo[0]}  &#128034;<br></br>
           </div>
-          <div style={{color:"#c2feff", fontSize: window.innerWidth > 400 ? 20 : 13}}>
+          <div style={{color:"#c2feff", fontSize: window.innerWidth > 400 ? 20 : 12}}>
           Alive: {mintInfo.gameInfo[2]}  &#128513;<br></br>
           </div>
-          <div style={{color:"#c2feff", fontSize: window.innerWidth > 400 ? 20 : 13}}>
+          <div style={{color:"#c2feff", fontSize: window.innerWidth > 400 ? 20 : 12}}>
           Dead: {mintInfo.gameInfo[4]}  &#128123;<br></br>
           </div>
-          <div style={{color:"#c2feff", fontSize: window.innerWidth > 400 ? 20 : 13}}>
+          <div style={{color:"#c2feff", fontSize: window.innerWidth > 400 ? 20 : 12}}>
           Revived: {mintInfo.gameInfo[6]}  &#128519;<br></br>
           </div>
         </div>
