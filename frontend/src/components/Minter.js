@@ -598,16 +598,16 @@ function Minter() {
       <div>
         <div>
           <div style={{color:"#ebc596", fontSize: window.innerWidth > 408 ? 20 : 13}}>
-          Rabbits: {mintInfo.gameInfo[1]} &#128007; <br></br>
+          Rabbits: {mintInfo.gameInfo[1]} &#128007;<br></br>
           </div>
           <div style={{color:"#ebc596", fontSize: window.innerWidth > 408 ? 20 : 13}}>
-          Alive: {mintInfo.gameInfo[3]}  &#128513;<br></br>
+          Alive: {mintInfo.gameInfo[3]} &#128513;<br></br>
           </div>
           <div style={{color:"#ebc596", fontSize: window.innerWidth > 408 ? 20 : 13}}>
-          Dead: {mintInfo.gameInfo[5]}  &#128123;<br></br>
+          Dead: {mintInfo.gameInfo[5]} &#128123;<br></br>
           </div>
           <div style={{color:"#ebc596", fontSize: window.innerWidth > 408 ? 20 : 13}}>
-          Revived: {mintInfo.gameInfo[7]}  &#128519;<br></br>
+          Revived: {mintInfo.gameInfo[7]} &#128519;<br></br>
           </div>
         </div>
       </div>
@@ -615,16 +615,16 @@ function Minter() {
       <div> 
         <div>
           <div style={{color:"#c2feff", fontSize: window.innerWidth > 408 ? 20 : 13}}>
-          Turtles: {mintInfo.gameInfo[0]}  &#128034;<br></br>
+          Turtles: {mintInfo.gameInfo[0]} &#128034;<br></br>
           </div>
           <div style={{color:"#c2feff", fontSize: window.innerWidth > 408 ? 20 : 13}}>
-          Alive: {mintInfo.gameInfo[2]}  &#128513;<br></br>
+          Alive: {mintInfo.gameInfo[2]} &#128513;<br></br>
           </div>
           <div style={{color:"#c2feff", fontSize: window.innerWidth > 408 ? 20 : 13}}>
-          Dead: {mintInfo.gameInfo[4]}  &#128123;<br></br>
+          Dead: {mintInfo.gameInfo[4]} &#128123;<br></br>
           </div>
           <div style={{color:"#c2feff", fontSize: window.innerWidth > 408 ? 20 : 13}}>
-          Revived: {mintInfo.gameInfo[6]}  &#128519;<br></br>
+          Revived: {mintInfo.gameInfo[6]} &#128519;<br></br>
           </div>
         </div>
       </div>
