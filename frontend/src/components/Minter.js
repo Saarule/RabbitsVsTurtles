@@ -632,7 +632,7 @@ function Minter() {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-    }, 3200);
+    }, 4000);
   }, []);
 
 
@@ -646,7 +646,7 @@ function Minter() {
       ) : (
     <div className="page" >
        {/* ************** Counters starts here! ************** */}
-    <div style={{ display: "grid", paddingTop:100, gridTemplateColumns: "repeat(2, 10fr)", gridGap: 80 ,paddingBottom: 30}}>
+      <div style={{ display: "grid", paddingTop:105, gridTemplateColumns: "repeat(2, 10fr)", gridGap: 90 ,paddingBottom: 40}}>
       <div>
         <div>
           <div style={{color:"#ebc596", fontSize: window.innerWidth > 408 ? 20 : 13}}>
