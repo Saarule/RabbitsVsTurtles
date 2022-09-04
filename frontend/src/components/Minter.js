@@ -57,6 +57,8 @@ function Minter() {
     setHeight(window.innerHeight);
  }
  const [firstTimeLoadout, setfirstTimeLoadout] = useState(firstTimeLoadoutState);
+ const [loading, setLoading] = useState(false);
+
 
 // Template popups alerts
 //  const alertInfo = () => alert({ message: 'info', type: 'info' });
@@ -627,8 +629,22 @@ function Minter() {
     return () => window.removeEventListener("resize", updateDimensions);
   }, []);
 
+  useEffect(() => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 3000);
+  }, []);
+
+
   return (
-    
+
+    <div className="container">
+      {loading ? (
+        <div className="loader-container">
+      	  <div className="loader"></div>
+        </div>
+      ) : (
     <div className="page" >
 
        {/* ************** Counters starts here! ************** */}
@@ -1184,7 +1200,10 @@ function Minter() {
       <div style={{ height: 25 }}></div>
 
     </div>
+     )}
+   </div>
   );
+  
 }
 
 export default Minter;
