@@ -286,7 +286,7 @@ function Minter() {
         loading: true,
         status: `Minting Your NFT`,
       }));
-      alert({ message: `Minting your Rabbits Vs Turtles NFT!`, type: 'success' });
+      alert({ message: `Minting your Rabbits Vs. Turtles NFT!`, type: 'success' });
       const txHash = await window.ethereum.request({
         method: "eth_sendTransaction",
         params: [params],
@@ -646,7 +646,7 @@ function Minter() {
       ) : (
     <div className="page" >
        {/* ************** Counters starts here! ************** */}
-    <div style={{ display: "grid", paddingTop:110, gridTemplateColumns: "repeat(2, 10fr)", gridGap: 90 ,paddingBottom: 50}}>
+    <div style={{ display: "grid", paddingTop:100, gridTemplateColumns: "repeat(2, 10fr)", gridGap: 80 ,paddingBottom: 30}}>
       <div>
         <div>
           <div style={{color:"#ebc596", fontSize: window.innerWidth > 408 ? 20 : 13}}>
@@ -698,7 +698,7 @@ function Minter() {
         <img className="logo_image" style={{maxWidth:950}}  src={Logo} />
       </div>
 
-      <div style={{color:"#ffffff", paddingTop:50, paddingBottom:55, paddingLeft:38}} > 
+      <div style={{color:"#ffffff", paddingTop:30, paddingBottom:50, paddingLeft:38}} > 
         <img className="logo_image_facing" style={{width:"100%", maxWidth:750, marginRight: window.innerWidth > 650 ? 0 : 700  }} src={LogoFacing} />
       </div>
 
