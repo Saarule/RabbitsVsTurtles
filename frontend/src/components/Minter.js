@@ -646,7 +646,7 @@ function Minter() {
       ) : (
     <div className="page" >
        {/* ************** Counters starts here! ************** */}
-    <div style={{ display: "grid", paddingTop:105, gridTemplateColumns: "repeat(2, 10fr)", gridGap: 84 ,paddingBottom: 40}}>
+    <div style={{ display: "grid", paddingTop:110, gridTemplateColumns: "repeat(2, 10fr)", gridGap: 90 ,paddingBottom: 50}}>
       <div>
         <div>
           <div style={{color:"#ebc596", fontSize: window.innerWidth > 408 ? 20 : 13}}>
@@ -698,7 +698,7 @@ function Minter() {
         <img className="logo_image" style={{maxWidth:950}}  src={Logo} />
       </div>
 
-      <div style={{color:"#ffffff", paddingTop:40, paddingBottom:50, paddingLeft:38}} > 
+      <div style={{color:"#ffffff", paddingTop:50, paddingBottom:55, paddingLeft:38}} > 
         <img className="logo_image_facing" style={{width:"100%", maxWidth:750, marginRight: window.innerWidth > 650 ? 0 : 700  }} src={LogoFacing} />
       </div>
 
