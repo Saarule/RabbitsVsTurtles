@@ -73,7 +73,6 @@ function Minter() {
       var isMetaMaskInstalled = window.ethereum.isMetaMask;
     }
     catch{
-      console.log("Pleaseeeeeee install metamask")
       alert({ message: 'This is a Web3 Application! Please Install Metamask to use it.', type: 'info' });
     }
     if (isMetaMaskInstalled) {
@@ -287,7 +286,7 @@ function Minter() {
         loading: true,
         status: `Minting Your NFT`,
       }));
-      alert({ message: `Minting your Rabbits Vs Turtles NFT!`, type: 'success' });
+      alert({ message: `Minting your Rabbits Vs. Turtles NFT!`, type: 'success' });
       const txHash = await window.ethereum.request({
         method: "eth_sendTransaction",
         params: [params],
@@ -633,7 +632,7 @@ function Minter() {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-    }, 3000);
+    }, 3200);
   }, []);
 
 
@@ -646,9 +645,7 @@ function Minter() {
         </div>
       ) : (
     <div className="page" >
-
        {/* ************** Counters starts here! ************** */}
-    {/* <div style={{padding:"3em", display: "grid", gridTemplateColumns: "repeat(auto-fit, 2fr)", gridGap: "2em"}}> */}
     <div style={{ display: "grid", paddingTop:100, gridTemplateColumns: "repeat(2, 10fr)", gridGap: 80 ,paddingBottom: 30}}>
       <div>
         <div>
