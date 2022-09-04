@@ -9,6 +9,8 @@ import ImageMinter from "../assets/preview4.gif"
 import Logo from "../assets/logo3.png"
 import LogoFacing from "../assets/logo4.png"
 import YoutubeEmbed from "./YoutubeEmbed";
+import { alert } from 'react-custom-alert';
+
 
 
 const initialInfoState = {
@@ -34,7 +36,7 @@ const initialMintState = {
   attackedPlayerNumber: 80,
   supply: "0",
   cost: "0",
-  gameInfo: [9,9,9,9,0,0,0,0],
+  gameInfo: [10,10,5,10,5,0,0,0],
   playersMetadata: [],
   increaseAttackCost: "5000000000000000000",   // 5 Matic
   increaseDefenseCost: "5000000000000000000",   // 5 Matic
@@ -42,6 +44,8 @@ const initialMintState = {
   increaseArmorCost: "10000000000000000000",  // 10 Matic
   revivePlayerCost: "500000000000000000000", // 500 Matic
 };
+
+const firstTimeLoadoutState = true;
 
 function Minter() {
   const [info, setInfo] = useState(initialInfoState);
@@ -52,11 +56,25 @@ function Minter() {
     setWidth(window.innerWidth);
     setHeight(window.innerHeight);
  }
+ const [firstTimeLoadout, setfirstTimeLoadout] = useState(firstTimeLoadoutState);
+
+// Template popups alerts
+//  const alertInfo = () => alert({ message: 'info', type: 'info' });
+//  const alertSuccess = () => alert({ message: 'success', type: 'success' });
+//  const alertWarning = () => alert({ message: 'warning', type: 'warning' });
+//  const alertError = () => alert({ message: 'error', type: 'error' });
 
   console.log(info);
 
   const init = async (_request, _contractJSON) => {
-    if (window.ethereum.isMetaMask) {
+    try{
+      var isMetaMaskInstalled = window.ethereum.isMetaMask;
+    }
+    catch{
+      console.log("Pleaseeeeeee install metamask")
+      alert({ message: 'This is a Web3 Application! Please Install Metamask to use it.', type: 'info' });
+    }
+    if (isMetaMaskInstalled) {
       try {
         const accounts = await window.ethereum.request({
           method: _request,
@@ -83,6 +101,10 @@ function Minter() {
             ...initialInfoState,
             status: `Change network to ${_contractJSON.chain}.`,
           }));
+          if(!firstTimeLoadout){
+            alert({ message: `Please change your network to the Polygon Network To use this Dapp!`, type: 'info' });
+          }
+          setfirstTimeLoadout(false);
         }
       } catch (err) {
         console.log(err.message);
@@ -93,7 +115,7 @@ function Minter() {
     } else {
       setInfo(() => ({
         ...initialInfoState,
-        status: "Please install metamask.",
+        status: `This is a Web3 Application!\n Please Install Metamask to use it.`,
       }));
     }
   };
@@ -261,8 +283,9 @@ function Minter() {
       setMintInfo((prevState) => ({
         ...prevState,
         loading: true,
-        status: `Minting ${mintInfo.amount}...`,
+        status: `Minting Your NFT`,
       }));
+      alert({ message: `Minting your Rabbits Vs Turtles NFT!`, type: 'success' });
       const txHash = await window.ethereum.request({
         method: "eth_sendTransaction",
         params: [params],
@@ -273,6 +296,7 @@ function Minter() {
         status:
           "Nice! Your NFT will show up on Opensea, once the transaction is successful.",
       }));
+      alert({ message: `Nice! Your NFT will show up on Opensea, once the transaction is successful.`, type: 'success' });
       getSupply();
     } catch (err) {
       setMintInfo((prevState) => ({
@@ -280,6 +304,7 @@ function Minter() {
         loading: false,
         status: err.message,
       }));
+      alert({ message: `${err.message}`, type: 'error' });
     }
   };
 
@@ -629,7 +654,14 @@ function Minter() {
         </div>
       </div>
     </div>
-      
+
+    {/* <div>
+      <button onClick={alertInfo}>Info</button>
+      <button onClick={alertSuccess}>Success</button>
+      <button onClick={alertWarning}>Warning</button>
+      <button onClick={alertError}>Error</button>
+    </div> */}
+
         {/* ************** Counters ends here! ************** */}
 
 
@@ -719,7 +751,7 @@ function Minter() {
               <p className="statusText">{mintInfo.status}</p>
             ) : null}
             {info.status ? (
-              <p className="statusText" style={{ color: "var(--error)" }}>
+              <p className="statusText" style={{ color: "var(--errorColor)", whiteSpace:"pre-wrap"}}>
                 {info.status}
               </p>
             ) : null}

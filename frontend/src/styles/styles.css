@@ -15,6 +15,7 @@
   --success: #106823;
   --warning: #ca5824;
   --error: #ca2f24;
+  --errorColor: #ec766e;
 }
 
 * {
