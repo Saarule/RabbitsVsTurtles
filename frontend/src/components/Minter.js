@@ -325,6 +325,8 @@ function Minter() {
         loading: true,
         status: `Increasing Attack...`,
       }));
+      alert({ message: `Increasing Attack to player number ${mintInfo.increaseAttackToNumber}!`, type: 'success' });
+      // alert({ message: `Make sure you are trying to increase attack to the right player!`, type: 'info' });
       const txHash = await window.ethereum.request({
         method: "eth_sendTransaction",
         params: [params],
@@ -335,6 +337,7 @@ function Minter() {
         status:
           "Nice! You've just increased attack to a player.",
       }));
+      // alert({ message: `Nice! You've just increased attack to player number ${mintInfo.increaseAttackToNumber}!`, type: 'success' });
       getSupply();
     } catch (err) {
       setMintInfo((prevState) => ({
@@ -342,6 +345,7 @@ function Minter() {
         loading: false,
         status: err.message,
       }));
+      alert({ message: `${err.message}`, type: 'error' });
     }
   };
 
@@ -362,6 +366,7 @@ function Minter() {
         loading: true,
         status: `Increasing Defense...`,
       }));
+      alert({ message: `Increasing Defense to player number ${mintInfo.increaseDefenseToNumber}!`, type: 'success' });
       const txHash = await window.ethereum.request({
         method: "eth_sendTransaction",
         params: [params],
@@ -379,6 +384,7 @@ function Minter() {
         loading: false,
         status: err.message,
       }));
+      alert({ message: `${err.message}`, type: 'error' });
     }
   };
 
@@ -399,6 +405,7 @@ function Minter() {
         loading: true,
         status: `Increasing Stamina...`,
       }));
+      alert({ message: `Increasing Stamina to player number ${mintInfo.increaseStaminaToNumber}!`, type: 'success' });
       const txHash = await window.ethereum.request({
         method: "eth_sendTransaction",
         params: [params],
@@ -416,6 +423,7 @@ function Minter() {
         loading: false,
         status: err.message,
       }));
+      alert({ message: `${err.message}`, type: 'error' });
     }
   };
 
@@ -436,6 +444,7 @@ function Minter() {
         loading: true,
         status: `Increasing Armor...`,
       }));
+      alert({ message: `Increasing Stamina to player number ${mintInfo.increaseArmorToNumber}!`, type: 'success' });
       const txHash = await window.ethereum.request({
         method: "eth_sendTransaction",
         params: [params],
@@ -453,6 +462,7 @@ function Minter() {
         loading: false,
         status: err.message,
       }));
+      alert({ message: `${err.message}`, type: 'error' });
     }
   };
 
@@ -474,6 +484,7 @@ function Minter() {
         loading: true,
         status: `Reviving Player...`,
       }));
+      alert({ message: `Reviving player number ${mintInfo.reviveplayerNumber}!`, type: 'success' });
       const txHash = await window.ethereum.request({
         method: "eth_sendTransaction",
         params: [params],
@@ -491,6 +502,7 @@ function Minter() {
         loading: false,
         status: err.message,
       }));
+      alert({ message: `${err.message}`, type: 'error' });
     }
   };
 
@@ -508,6 +520,7 @@ function Minter() {
         loading: true,
         status: `Attacking Player...`,
       }));
+      alert({ message: `Using player number ${mintInfo.attackerPlayerNumber} to attack player number ${mintInfo.attackedPlayerNumber}!`, type: 'success' });
       const txHash = await window.ethereum.request({
         method: "eth_sendTransaction",
         params: [params],
@@ -525,6 +538,7 @@ function Minter() {
         loading: false,
         status: err.message,
       }));
+      alert({ message: `${err.message}`, type: 'error' });
     }
   };
 
