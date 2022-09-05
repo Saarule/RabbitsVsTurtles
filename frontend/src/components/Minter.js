@@ -1193,7 +1193,7 @@ function Minter() {
       Join our discord to discuss the game and get help from other players.
       </div>
       <div style={{ height: 40 }}></div>
-      <div style={{ display: "grid",  gridTemplateColumns: "repeat(3, 10fr)", gridGap: 10 }}>
+      <div style={{ display: "grid",  gridTemplateColumns: "repeat(4, 10fr)", gridGap: 10 }}>
       <div> 
         <a href="https://discord.gg/FGwhMDAv3s" target="_blank" rel="noopener noreferrer" >
         <img src={Discord} height={50} width={50} style={{borderRadius:50}} />
@@ -1218,17 +1218,17 @@ function Minter() {
         <a href="https://opensea.io/collection/rabbits-vs-turtles" target="_blank" rel="noopener noreferrer">
         <img src={GitHub} height={50} width={50} style={{borderRadius:50, border: 10, background:"white"}}/>
         </a>
-      </div>
-      <div> 
-        <a href="https://opensea.io/collection/rabbits-vs-turtles" target="_blank" rel="noopener noreferrer">
+      </div> */}
+      {/* <div> 
+        <a href="https://www.reddit.com/r/RabbitsVsTurtles/" target="_blank" rel="noopener noreferrer">
         <img src={Reddit} height={50} width={50} style={{borderRadius:50}}/>
         </a>
-      </div>
+      </div> */}
       <div> 
-        <a href="https://opensea.io/collection/rabbits-vs-turtles" target="_blank" rel="noopener noreferrer">
+        <a href="https://www.youtube.com/channel/UCHdqSybbS3OS6KYRCucZQ6Q" target="_blank" rel="noopener noreferrer">
         <img src={YouTube} height={50} width={50} style={{borderRadius:50}}/>
         </a>
-      </div> */}
+      </div>
 
       </div>
       <div style={{ height: 35 }}></div>
