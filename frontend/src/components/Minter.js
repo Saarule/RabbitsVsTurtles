@@ -5,9 +5,14 @@ import Alt from "../assets/logo.png"
 import OpenSea from "../assets/open-sea-logo.png"
 import Discord from "../assets/discord-logo.png"
 import Twitter from "../assets/twitter-logo.png"
+import YouTube from "../assets/youtube-logo.png"
+import GitHub from "../assets/github-logo.png"
+import GitBook from "../assets/gitbook-logo.png"
+import Reddit from "../assets/reddit-logo.png"
 import ImageMinter from "../assets/preview4.gif"
 import Logo from "../assets/logo3.png"
 import LogoFacing from "../assets/logo4.png"
+import Arena from "../assets/Arena.png"
 import YoutubeEmbed from "./YoutubeEmbed";
 import { alert } from 'react-custom-alert';
 
@@ -131,6 +136,11 @@ function Minter() {
       });
     }
   };
+
+  const comingSoon = async () => {
+    alert({ message: `Coming Soon! Follow our Official Twitter and Website to be the first one to know about every update from Rabbits Vs Turtles!`, type: 'info' });
+  };
+
 
   const getSupply = async () => {
     const params = {
@@ -632,7 +642,7 @@ function Minter() {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-    }, 4000);
+    }, 5100);
   }, []);
 
 
@@ -1146,7 +1156,13 @@ function Minter() {
                 {/* <div style={{ color:"#c2feff", height: 20 ,paddingTop:100, paddingBottom:500, fontSize:40, fontFamily:"slapstickShaded", textAlign:"center"}}> Arena</div> */}
                 {/* ************** Arena ends here! ************** */}
 
-  
+                
+                {/* <div style={{paddingTop:120, paddingBottom:50, position:"relative", textAlign:"center", color:"white"}}>
+                   <img className="blurred-image" style={{maxWidth:950, borderRadius:"50px", border:"10px solid black"}}  src={Arena} />
+                   <button onClick={() => comingSoon()} className="coming-soon-button">
+                      <div style={{position:"absolute", top:"55%", left:"37.5%", transform:"translate(-50%, -50%);", border:"2px solid white", borderRadius:"20px", fontSize:26, lineHeight: 1, color:"black", padding:20}}>Coming Soon...</div>  
+                    </button>
+                </div> */}
   
   <div style={{ height:45, fontSize:15 }}></div>
 
@@ -1176,7 +1192,7 @@ function Minter() {
       <div style={{color:"#c2feff", paddingBottom:10, fontSize:18, letterSpacing:1.1,lineHeight: 1, fontFamily:"slapstickShaded"}}>
       Join our discord to discuss the game and get help from other players.
       </div>
-      <div style={{ height: 30 }}></div>
+      <div style={{ height: 40 }}></div>
       <div style={{ display: "grid",  gridTemplateColumns: "repeat(3, 10fr)", gridGap: 10 }}>
       <div> 
         <a href="https://discord.gg/FGwhMDAv3s" target="_blank" rel="noopener noreferrer" >
@@ -1193,8 +1209,29 @@ function Minter() {
         <img src={Twitter} height={50} width={50} style={{borderRadius:50, border: 10}}  />
         </a>
       </div>
+      {/* <div> 
+        <a href="https://opensea.io/collection/rabbits-vs-turtles" target="_blank" rel="noopener noreferrer">
+        <img src={GitBook} height={50} width={50}/>
+        </a>
       </div>
-      <div style={{ height: 25 }}></div>
+      <div> 
+        <a href="https://opensea.io/collection/rabbits-vs-turtles" target="_blank" rel="noopener noreferrer">
+        <img src={GitHub} height={50} width={50} style={{borderRadius:50, border: 10, background:"white"}}/>
+        </a>
+      </div>
+      <div> 
+        <a href="https://opensea.io/collection/rabbits-vs-turtles" target="_blank" rel="noopener noreferrer">
+        <img src={Reddit} height={50} width={50} style={{borderRadius:50}}/>
+        </a>
+      </div>
+      <div> 
+        <a href="https://opensea.io/collection/rabbits-vs-turtles" target="_blank" rel="noopener noreferrer">
+        <img src={YouTube} height={50} width={50} style={{borderRadius:50}}/>
+        </a>
+      </div> */}
+
+      </div>
+      <div style={{ height: 35 }}></div>
 
     </div>
      )}
