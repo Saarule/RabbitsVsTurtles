@@ -72,7 +72,7 @@ function Minter() {
 //  const alertWarning = () => alert({ message: 'warning', type: 'warning' });
 //  const alertError = () => alert({ message: 'error', type: 'error' });
 
-  console.log(info);
+  // console.log(info);
 
   const init = async (_request, _contractJSON) => {
     try{
@@ -230,15 +230,15 @@ function Minter() {
         params: [params],
       });
     let newArray = [0,0,0,0,0,0,0,0];
-    console.log("Important 1: " +result);
+    // console.log("Important 1: " +result);
     // console.log("Important 2: "+result.replace(/^0x+/, ''));
     let resultCleaned = result.replace(/^0x+/, '');
-    console.log("Important 3: "+resultCleaned);
+    // console.log("Important 3: "+resultCleaned);
     let resultArray = resultCleaned.match(/.{1,64}/g);
-    console.log("Important 4: " +resultArray);
+    // console.log("Important 4: " +resultArray);
     
     for(let i = 0; i < resultArray.length; i++){
-      console.log("Important 5: " +parseInt(resultArray[i],16));
+      // console.log("Important 5: " +parseInt(resultArray[i],16));
       newArray[i] = (parseInt(resultArray[i],16));
     }
 
@@ -266,7 +266,7 @@ function Minter() {
         method: "eth_call",
         params: [params],
       });
-      console.log("check this:",info.web3.utils.hexToNumberString(result));
+      // console.log("check this:",info.web3.utils.hexToNumberString(result));
       setMintInfo((prevState) => ({
         ...prevState,
         cost: info.web3.utils.hexToNumberString(result),
@@ -643,18 +643,18 @@ function Minter() {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-    }, 3100);
+    }, 4100);
   }, []);
 
 
   return (
 
     <div className="container">
-      {/* {loading ? (
+      {loading ? (
         <div className="loader-container">
       	  <div className="loader"></div>
         </div>
-      ) : ( */}
+      ) : (
     <div className="page" >
        {/* ************** Counters starts here! ************** */}
       <div style={{ display: "grid", paddingTop:105, gridTemplateColumns: "repeat(2, 10fr)", gridGap: 90 ,paddingBottom: 40}}>
@@ -1239,7 +1239,11 @@ function Minter() {
       <div style={{ height: 42 }}></div>
 
     </div>
-     {/* )} */}
+
+
+     )}
+
+
    </div>
   );
   
