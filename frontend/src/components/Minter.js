@@ -12,9 +12,10 @@ import Reddit from "../assets/reddit-logo.png"
 import ImageMinter from "../assets/preview4.gif"
 import Logo from "../assets/logo3.png"
 import LogoFacing from "../assets/logo4.png"
-import Arena from "../assets/Arena.png"
+import ArenaImage from "../assets/ArenaImage.png"
 import YoutubeEmbed from "./YoutubeEmbed";
 import { alert } from 'react-custom-alert';
+import Arena from "./Arena";
 
 
 
@@ -642,7 +643,7 @@ function Minter() {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-    }, 5100);
+    }, 3100);
   }, []);
 
 
@@ -1158,11 +1159,15 @@ function Minter() {
 
                 
                 {/* <div style={{paddingTop:120, paddingBottom:50, position:"relative", textAlign:"center", color:"white"}}>
-                   <img className="blurred-image" style={{maxWidth:950, borderRadius:"50px", border:"10px solid black"}}  src={Arena} />
+                   <img className="blurred-image" style={{maxWidth:950, borderRadius:"50px", border:"10px solid black"}}  src={ArenaImage} />
                    <button onClick={() => comingSoon()} className="coming-soon-button">
                       <div style={{position:"absolute", top:"55%", left:"37.5%", transform:"translate(-50%, -50%);",backgroundColor:"white", border:"1px solid white", borderRadius:"20px", fontSize:26, lineHeight: 1, color:"black", padding:20}}>Coming Soon...</div>  
                     </button>
                 </div> */}
+
+        <div style={{paddingTop:40, display: !info.connected ? "none": ""}}>
+            <Arena info={info} mintInfo={mintInfo}/>
+        </div>
   
   <div style={{ height:45, fontSize:15 }}></div>
 

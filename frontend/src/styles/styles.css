@@ -67,7 +67,7 @@ body {
 
 .blurred-image {
   /* The image used */
-  background-image: url("/src/assets/Arena.png");
+  background-image: url("/src/assets/ArenaImage.png");
   
   /* Add the blur effect */
   filter: blur(4px);
