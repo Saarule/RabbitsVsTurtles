@@ -650,11 +650,11 @@ function Minter() {
   return (
 
     <div className="container">
-      {loading ? (
+      {/* {loading ? (
         <div className="loader-container">
       	  <div className="loader"></div>
         </div>
-      ) : (
+      ) : ( */}
     <div className="page" >
        {/* ************** Counters starts here! ************** */}
       <div style={{ display: "grid", paddingTop:105, gridTemplateColumns: "repeat(2, 10fr)", gridGap: 90 ,paddingBottom: 40}}>
@@ -1165,7 +1165,7 @@ function Minter() {
                     </button>
                 </div> */}
 
-        <div style={{paddingTop:40, display: !info.connected ? "none": ""}}>
+        <div style={{paddingTop:75, paddingBottom:30 , display: !info.connected ? "none": ""}}>
             <Arena info={info} mintInfo={mintInfo}/>
         </div>
   
@@ -1197,7 +1197,7 @@ function Minter() {
       <div style={{color:"#c2feff", paddingBottom:10, fontSize:18, letterSpacing:1.1,lineHeight: 1, fontFamily:"slapstickShaded"}}>
       Join our discord to discuss the game and get help from other players.
       </div>
-      <div style={{ height: 40 }}></div>
+      <div style={{ height: 50 }}></div>
       <div style={{ display: "grid",  gridTemplateColumns: "repeat(5, 10fr)", gridGap: 10 }}>
       <div> 
         <a href="https://discord.gg/FGwhMDAv3s" target="_blank" rel="noopener noreferrer" >
@@ -1236,10 +1236,10 @@ function Minter() {
       </div>
 
       </div>
-      <div style={{ height: 35 }}></div>
+      <div style={{ height: 42 }}></div>
 
     </div>
-     )}
+     {/* )} */}
    </div>
   );
   
