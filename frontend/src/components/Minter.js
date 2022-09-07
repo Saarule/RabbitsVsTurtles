@@ -1160,7 +1160,7 @@ function Minter() {
                 {/* <div style={{paddingTop:120, paddingBottom:50, position:"relative", textAlign:"center", color:"white"}}>
                    <img className="blurred-image" style={{maxWidth:950, borderRadius:"50px", border:"10px solid black"}}  src={Arena} />
                    <button onClick={() => comingSoon()} className="coming-soon-button">
-                      <div style={{position:"absolute", top:"55%", left:"37.5%", transform:"translate(-50%, -50%);", border:"2px solid white", borderRadius:"20px", fontSize:26, lineHeight: 1, color:"black", padding:20}}>Coming Soon...</div>  
+                      <div style={{position:"absolute", top:"55%", left:"37.5%", transform:"translate(-50%, -50%);",backgroundColor:"white", border:"1px solid white", borderRadius:"20px", fontSize:26, lineHeight: 1, color:"black", padding:20}}>Coming Soon...</div>  
                     </button>
                 </div> */}
   
