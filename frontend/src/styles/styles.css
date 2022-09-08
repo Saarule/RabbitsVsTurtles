@@ -324,7 +324,7 @@ button:disabled {
   width:100%;
 }
 
-/* .player_image_wrapper {
+.player_image_wrapper {
   padding: 5px;
   cursor: pointer;
   position: relative;
@@ -336,7 +336,7 @@ button:disabled {
   transform: scale(1.3); 
 }
 
- */
+
 
 
 @keyframes item-spin {
