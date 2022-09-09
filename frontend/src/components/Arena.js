@@ -83,7 +83,7 @@ function Arena({ info, mintInfo }) {
 <div style={{ display: "grid",  gridTemplateColumns: window.innerWidth<891 ? "repeat(1, 10fr)" : "repeat(3, 10fr)", gridGap: 10 }}>
       <div style={{ position: "relative", backgroundColor: "#e34464", width: "210px", height: "228px", marginTop: "50px", padding: "15px 40px", display: "flex", flexDirection: "column", alignItems: "center", borderRadius:"20px", border:"3px solid black" }}>
         <div style={{ fontSize: "20px", color: "white", letterSpacing:1.5, lineHeight: 1, fontFamily:"slapstick" , height:70}}>Turtles</div>
-        {loading ? <div style={{ position: "absolute", top: "55%", left: "52%", transform: "translate(-50%, -50%)", color: "white" }}>Loading...</div> :
+        {loading ? <div style={{ position: "absolute", top: "55%", left: "52%", transform: "translate(-50%, -50%)", color: "white" }}>Loading... <div className="spinner-loader" style={{borderTop:"3px solid white"}}></div></div> :
           <div style={{ display: "grid", gridTemplateColumns: "25% 25% 25% 25%", padding: "50px", width: "100%", height: "100%", maxHeight: "200px", overflow: "scroll" }}>
             {aliveTurtles.map(turtle => {
               return (<div key={turtle.name} style={{ padding: "5px" }}>
@@ -94,7 +94,7 @@ function Arena({ info, mintInfo }) {
       </div>
       <div style={{ position: "relative", backgroundColor: "#a4a5ab", width: "210px", height: "228px", marginTop: "50px", padding: "15px 40px", display: "flex", flexDirection: "column", alignItems: "center", borderRadius:"20px", border:"3px solid black" }}>
         <div style={{ fontSize: "20px", color: "white", letterSpacing:1.5, lineHeight: 1, fontFamily:"slapstick" , height:70}}>Graveyard</div>
-        {loading ? <div style={{ position: "absolute", top: "55%", left: "52%", transform: "translate(-50%, -50%)", color: "white" }}>Loading...</div> :
+        {loading ? <div style={{ position: "absolute", top: "55%", left: "52%", transform: "translate(-50%, -50%)", color: "white" }}>Loading... <div className="spinner-loader" style={{borderTop:"3px solid white"}}></div></div> :
           <div style={{ display: "grid", gridTemplateColumns: "25% 25% 25% 25%", padding: "50px", width: "100%", height: "100%", maxHeight: "200px", overflow: "scroll" }}>
             {deadItems.map(dead => {
               return (<div key={dead.name} style={{ padding: "5px" }}>
@@ -105,7 +105,7 @@ function Arena({ info, mintInfo }) {
       </div>
       <div style={{ position: "relative", backgroundColor: "#4596c4", width: "210px", height: "228px", marginTop: "50px", padding: "15px 40px", display: "flex", flexDirection: "column", alignItems: "center", borderRadius:"20px", border:"3px solid black" }}>
         <div style={{ fontSize: "20px", color: "white", letterSpacing:1.5, lineHeight: 1, fontFamily:"slapstick", height:70 }}>Rabbits</div>
-        {loading ? <div style={{ position: "absolute", top: "55%", left: "52%", transform: "translate(-50%, -50%)", color: "white" }}>Loading...</div> :
+        {loading ? <div style={{ position: "absolute", top: "55%", left: "52%", transform: "translate(-50%, -50%)", color: "white" }}>Loading... <div className="spinner-loader" style={{borderTop:"3px solid white"}}></div></div> :
           <div style={{ display: "grid", gridTemplateColumns: "25% 25% 25% 25%", padding: "50px", width: "100%", height: "100%", maxHeight: "200px", overflow: "scroll" }}>
             {aliveRabbits.map(rabbit => {
               return (<div key={rabbit.name} style={{ padding: "5px" }}>
@@ -122,7 +122,7 @@ function Arena({ info, mintInfo }) {
         {isOpenLeaderboard && <div style={{ position: "absolute", bottom: 50, boxShadow: "0 0 25px black", borderRadius: "30px", left: "50%", transform: "translateX(-50%)", backgroundColor: "#0184f9", width: "350px", height: "500px", padding: "80px 50px" }}>
           <div style={{ position: "relative", backgroundColor: "#fffeef", borderRadius: "30px", height: "100%", height: "400px", padding: "70px 20px 30px 20px" }}>
             <div style={{ position: "absolute", top: "-20px", left: "50%", transform: "translateX(-50%)", background: "linear-gradient(90deg, #00a1f7, #0058cc)", padding: "10px 20px", fontSize: "20px", borderRadius: "10px",letterSpacing:1.5, lineHeight: 1, fontFamily:"slapstick" }}>LEADERBOARD</div>
-            {loading ? <div style={{ position: "absolute", top: "55%", left: "52%", transform: "translate(-50%, -50%)", color: "black" }}>Loading...</div> :
+            {loading ? <div style={{ position: "absolute", top: "55%", left: "52%", transform: "translate(-50%, -50%)", color: "black" }}>Loading... <div className="spinner-loader"></div></div> :
             <div style={{ height: "350px", overflow: "scroll", display: "flex", flexDirection: "column", gap: "10px" }}>
               {players.map((player, index) => {
                 return <div style={{ background: "linear-gradient(90deg, #02a2fc, #0255c8)", padding: "5px 20px", borderRadius: "10px", display: "flex", justifyContent: "center"}}>
@@ -141,7 +141,6 @@ function Arena({ info, mintInfo }) {
       </div>
       
             {/* ************** New leaderboard ends here! ************** */}
-
     </div>
 
     
