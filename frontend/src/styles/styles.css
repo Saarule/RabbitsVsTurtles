@@ -371,11 +371,10 @@ button:disabled {
   background-color: #fcff41;
 }
 .leaderboard-button:hover {
-  background-color:#fcff30;
   transition: 0.1s;
-  -ms-transform: scale(1.02);
-  -webkit-transform: scale(1.02);
-  transform: scale(1.02); 
+  -ms-transform: scale(1.01);
+  -webkit-transform: scale(1.01);
+  transform: scale(1.01); 
 }
 /* 
 @media (max-width: 600px) {
