@@ -79,6 +79,13 @@ function Arena({ info, mintInfo }) {
   return (
     <div style={{ position: "relative", backgroundImage: `url(${ArenaBackground})`, backgroundSize: "100% 100%", width: "1146px", display: "flex", flexDirection: "column", alignItems: "center", padding: "188px 0" , borderRadius:"50px", border:"10px solid black", paddingTop:"220px"}}>
         {/* <div style={{ fontSize: "40px", color: "white", letterSpacing:1.5, lineHeight: 1, fontFamily:"slapstick" , height:50}}>Game Overview</div> */}
+        {info.connected ? (
+            <span className="accountText" style={{fontSize: 15, color:"black", position:"absolute", top: "8px", right: "20px"}}>
+              {String(info.account).substring(0, 6) +
+                "..." +
+                String(info.account).substring(38)}
+            </span>
+          ) : null}
 
                 {/* ************** All 3 sections starts here! ************** */}
 <div style={{ display: "grid",  gridTemplateColumns: window.innerWidth<891 ? "repeat(1, 10fr)" : "repeat(3, 10fr)", gridGap: 10 }}>
@@ -142,7 +149,10 @@ function Arena({ info, mintInfo }) {
       </div>
       
             {/* ************** New leaderboard ends here! ************** */}
+            
     </div>
+
+
 
     
   );
