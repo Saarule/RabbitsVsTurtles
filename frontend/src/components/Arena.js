@@ -82,7 +82,6 @@ function Arena({ info, mintInfo }) {
 
                 {/* Info about connected user starts here */}
 
-
                     {info.connected ? (
                         <span className="accountText" style={{fontSize: 15, color:"black", position:"absolute", top: "5px", right: "26px"}}>
                         {String(info.account).substring(0, 6) +
@@ -92,7 +91,7 @@ function Arena({ info, mintInfo }) {
 
                         </span>
                     ) : null}
-                    <span style={{position: "absolute", color:"#092a85", fontSize:16, top:"45px", right:"px"}}>
+                    <span style={{position: "absolute", color:"#092a85", fontSize:16, top:"45px", right:"50px"}}>
                     {info.account ? "Connected" : "Connect Wallet"}
                     </span>
 
