@@ -82,16 +82,19 @@ function Arena({ info, mintInfo }) {
 
                 {/* Info about connected user starts here */}
 
-                    <span style={{position: "absolute", color:"#50e687", fontSize:16, top:"31px", left:"38px"}}>
-                    {info.account ? "Connected" : "Connect Wallet"}
-                    </span>
+
                     {info.connected ? (
-                        <span className="accountText" style={{fontSize: 15, color:"#4e5451", position:"absolute", top: "5px", right: "26px"}}>
+                        <span className="accountText" style={{fontSize: 15, color:"black", position:"absolute", top: "5px", right: "26px"}}>
                         {String(info.account).substring(0, 6) +
                             "..." +
                             String(info.account).substring(38)}
+                         
+
                         </span>
                     ) : null}
+                    <span style={{position: "absolute", color:"#092a85", fontSize:16, top:"45px", right:"px"}}>
+                    {info.account ? "Connected" : "Connect Wallet"}
+                    </span>
 
                 {/* Info about connected user ends here */}
 
