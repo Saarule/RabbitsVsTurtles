@@ -119,7 +119,7 @@ function Arena({ info, mintInfo }) {
                 {/* ************** All 3 section ends here! ************** */}
                 {/* ************** New leaderboard starts here! ************** */}
                 <div style={{ marginTop: "10px" }}>
-        <button style={{ backgroundColor: "#E7EB32", padding: "20px 50px", color: "#000", fontSize: "20px", border: "none", cursor: "pointer", letterSpacing:1.5, lineHeight: 1, fontFamily:"slapstick", borderRadius:"30px", border:"4px solid black",  }} onClick={() => setIsOpenLeaderBoard(true)}>Leaderboard</button>
+        <button className="leaderboard-button" style={{ padding: "20px 50px", color: "#000", fontSize: "20px", border: "none", cursor: "pointer", letterSpacing:1.5, lineHeight: 1, fontFamily:"slapstick", borderRadius:"30px", border:"4px solid black",  }} onClick={() => setIsOpenLeaderBoard(true)}>Leaderboard</button>
         {isOpenLeaderboard && <div style={{ position: "absolute", bottom: 50, boxShadow: "0 0 25px black", borderRadius: "30px", left: "50%", transform: "translateX(-50%)", backgroundColor: "#0184f9", width: "350px", height: "500px", padding: "80px 50px" }}>
           <div style={{ position: "relative", backgroundColor: "#fffeef", borderRadius: "30px", height: "100%", height: "400px", padding: "70px 20px 30px 20px" }}>
             <div style={{ position: "absolute", top: "-20px", left: "50%", transform: "translateX(-50%)", background: "linear-gradient(90deg, #00a1f7, #0058cc)", padding: "10px 20px", fontSize: "20px", borderRadius: "10px",letterSpacing:1.5, lineHeight: 1, fontFamily:"slapstick" }}>LEADERBOARD</div>
