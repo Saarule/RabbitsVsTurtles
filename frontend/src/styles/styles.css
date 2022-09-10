@@ -371,6 +371,7 @@ button:disabled {
   background-color: #fcff41;
 }
 .leaderboard-button:hover {
+  background-color: #fbff00;
   transition: 0.1s;
   -ms-transform: scale(1.01);
   -webkit-transform: scale(1.01);
