@@ -81,6 +81,8 @@ function Arena({ info, mintInfo }) {
 
     setSelectedTurtle(turtle);
 
+    
+    setIsOpenLeaderBoard(false)
     setIsOpenRabbitPlayerCard(false);
     setIsOpenDeadPlayerCard(false);
     setIsOpenTurtlePlayerCard(true);
@@ -89,6 +91,7 @@ function Arena({ info, mintInfo }) {
 
     setSelectedDead(dead);
 
+    setIsOpenLeaderBoard(false)
     setIsOpenRabbitPlayerCard(false);
     setIsOpenTurtlePlayerCard(false);
     setIsOpenDeadPlayerCard(true);
@@ -97,6 +100,7 @@ function Arena({ info, mintInfo }) {
 
     setSelectedRabbit(rabbit);
 
+    setIsOpenLeaderBoard(false)
     setIsOpenTurtlePlayerCard(false);
     setIsOpenDeadPlayerCard(false);
     setIsOpenRabbitPlayerCard(true);
