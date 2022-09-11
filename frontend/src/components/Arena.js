@@ -8,11 +8,21 @@ function Arena({ info, mintInfo }) {
   const [deadItems, setDeadItems] = useState([]);
   const [loading, setLoading] = useState(false);
   const [isOpenLeaderboard, setIsOpenLeaderBoard] = useState(false);
+  const [isOpenTurtlePlayerCard, setIsOpenTurtlePlayerCard] = useState(false);
+  const [isOpenDeadPlayerCard, setIsOpenDeadPlayerCard] = useState(false);
+  const [isOpenRabbitPlayerCard, setIsOpenRabbitPlayerCard] = useState(false);
+
+
 
   const [rabbitsOwner, setRabbitsOwner] = useState([]);
   const [turtlesOwner, setTurtlesOwner] = useState([]);
   const [deadRabbits, setDeadRabbits] = useState([]);
   const [deadTurtles, setDeadTurtles] = useState([]);
+
+  const [selectedTurtle, setSelectedTurtle] = useState();
+  const [selectedRabbit, setSelectedRabbit] = useState();
+  const [selectedDead, setSelectedDead] = useState();
+
 
 
   const getData = async () => {
@@ -71,6 +81,31 @@ function Arena({ info, mintInfo }) {
     // console.timeEnd('checkTime')
   }
 
+  const chosenTurtle = (turtle) => {
+
+    setSelectedTurtle(turtle);
+
+    setIsOpenRabbitPlayerCard(false);
+    setIsOpenDeadPlayerCard(false);
+    setIsOpenTurtlePlayerCard(true);
+};
+ const chosenDead = (dead) => {
+
+    setSelectedDead(dead);
+
+    setIsOpenRabbitPlayerCard(false);
+    setIsOpenTurtlePlayerCard(false);
+    setIsOpenDeadPlayerCard(true);
+};
+ const chosenRabbit = (rabbit) => {
+
+    setSelectedRabbit(rabbit);
+
+    setIsOpenTurtlePlayerCard(false);
+    setIsOpenDeadPlayerCard(false);
+    setIsOpenRabbitPlayerCard(true);
+};
+
   useEffect(() => {
     info && info.contract && mintInfo && getData();
   }, [info, mintInfo])
@@ -106,7 +141,7 @@ function Arena({ info, mintInfo }) {
           <div style={{ display: "grid", gridTemplateColumns: "25% 25% 25% 25%", padding: "50px", width: "100%", height: "100%", maxHeight: "200px", overflow: "scroll" }}>
             {aliveTurtles.map(turtle => {
               return (<div key={turtle.name} style={{ padding: "5px" }}>
-                <img src={turtle.image} alt={`turtle`} className="player_image" />
+                <img src={turtle.image} alt={`turtle`} style={{cursor: "pointer"}} className="player_image" onClick={() => chosenTurtle(turtle)} />
               </div>);
             })}
           </div>}
@@ -117,7 +152,7 @@ function Arena({ info, mintInfo }) {
           <div style={{ display: "grid", gridTemplateColumns: "25% 25% 25% 25%", padding: "50px", width: "100%", height: "100%", maxHeight: "200px", overflow: "scroll" }}>
             {deadItems.map(dead => {
               return (<div key={dead.name} style={{ padding: "5px" }}>
-                <img src={dead.image} alt={`dead`} className="player_image" />
+                <img src={dead.image} alt={`dead`} style={{cursor: "pointer"}} className="player_image" onClick={() => chosenDead(dead)}/>
               </div>);
             })}
           </div>}
@@ -128,11 +163,38 @@ function Arena({ info, mintInfo }) {
           <div style={{ display: "grid", gridTemplateColumns: "25% 25% 25% 25%", padding: "50px", width: "100%", height: "100%", maxHeight: "200px", overflow: "scroll" }}>
             {aliveRabbits.map(rabbit => {
               return (<div key={rabbit.name} style={{ padding: "5px" }}>
-                <img src={rabbit.image} alt={`rabbit`} className="player_image" />
+                <img src={rabbit.image} alt={`rabbit`} style={{cursor: "pointer"}} className="player_image" onClick={() => chosenRabbit(rabbit)}/>
               </div>);
             })}
           </div>}
       </div>
+
+            {/* ************** Players cards section starts here! ************** */}
+      {isOpenTurtlePlayerCard && <div style={{ position: "absolute", bottom: 50, boxShadow: "0 0 25px black", borderRadius: "30px", left: "50%",top:"15%", transform: "translateX(-50%)", backgroundColor: "#0184f9", width: "350px", height: "400px", padding: "80px 50px" }}>
+            <div style={{ position: "relative", backgroundColor: "#fffeef", borderRadius: "50px", height: "100%", height: "350px", padding: "60px 20px 30px 20px" }}>
+                <div style={{ position: "absolute", top: "-20px", left: "50%", transform: "translateX(-50%)", background: "linear-gradient(90deg, #00a1f7, #0058cc)", padding: "10px 20px", fontSize: "22px", borderRadius: "10px",letterSpacing:1.5, lineHeight: 1, fontFamily:"slapstick" }}>Turtle #{selectedTurtle?.name.slice(selectedTurtle?.name.indexOf("#") + 1)}</div>
+                    {selectedTurtle && <img src={selectedTurtle.image} alt={`selected turtle`} /> }
+                </div>
+                <button style={{ position: "absolute", bottom: "-20px", left: "50%", transform: "translateX(-50%)", background: "linear-gradient(#00a1f7, #0058cc)", padding: "10px 20px", fontSize: "20px", borderRadius: "10px", outline: "none", border: "none", color: "#fff", cursor: "pointer", letterSpacing:1.5, lineHeight: 1, fontFamily:"slapstick" }} onClick={() => setIsOpenTurtlePlayerCard(false)}>EXIT</button>
+            </div>}
+
+      {isOpenDeadPlayerCard && <div style={{ position: "absolute", bottom: 50, boxShadow: "0 0 25px black", borderRadius: "30px", left: "50%",top:"15%", transform: "translateX(-50%)", backgroundColor: "#0184f9", width: "350px", height: "400px", padding: "80px 50px" }}>
+            <div style={{ position: "relative", backgroundColor: "#fffeef", borderRadius: "50px", height: "100%", height: "350px", padding: "60px 20px 30px 20px" }}>
+                <div style={{ position: "absolute", top: "-20px", left: "50%", transform: "translateX(-50%)", background: "linear-gradient(90deg, #00a1f7, #0058cc)", padding: "10px 20px", fontSize: "22px", borderRadius: "10px",letterSpacing:1.5, lineHeight: 1, fontFamily:"slapstick" }}>Dead #{selectedDead?.name.slice(selectedDead?.name.indexOf("#") + 1)}</div>
+                    {selectedDead && <img src={selectedDead.image} alt={`selected turtle`} /> }
+                </div>
+                <button style={{ position: "absolute", bottom: "-20px", left: "50%", transform: "translateX(-50%)", background: "linear-gradient(#00a1f7, #0058cc)", padding: "10px 20px", fontSize: "20px", borderRadius: "10px", outline: "none", border: "none", color: "#fff", cursor: "pointer", letterSpacing:1.5, lineHeight: 1, fontFamily:"slapstick" }} onClick={() => setIsOpenDeadPlayerCard(false)}>EXIT</button>
+            </div>}
+
+      {isOpenRabbitPlayerCard && <div style={{ position: "absolute", bottom: 50, boxShadow: "0 0 25px black", borderRadius: "30px", left: "50%",top:"15%", transform: "translateX(-50%)", backgroundColor: "#0184f9", width: "350px", height: "400px", padding: "80px 50px" }}>
+            <div style={{ position: "relative", backgroundColor: "#fffeef", borderRadius: "50px", height: "100%", height: "350px", padding: "60px 20px 30px 20px" }}>
+                <div style={{ position: "absolute", top: "-20px", left: "50%", transform: "translateX(-50%)", background: "linear-gradient(90deg, #00a1f7, #0058cc)", padding: "10px 20px", fontSize: "22px", borderRadius: "10px",letterSpacing:1.5, lineHeight: 1, fontFamily:"slapstick" }}>Rabbit #{selectedRabbit?.name.slice(selectedRabbit?.name.indexOf("#") + 1)}</div>
+                    {selectedRabbit && <img src={selectedRabbit.image} alt={`selected turtle`} /> }
+                </div>
+                <button style={{ position: "absolute", bottom: "-20px", left: "50%", transform: "translateX(-50%)", background: "linear-gradient(#00a1f7, #0058cc)", padding: "10px 20px", fontSize: "20px", borderRadius: "10px", outline: "none", border: "none", color: "#fff", cursor: "pointer", letterSpacing:1.5, lineHeight: 1, fontFamily:"slapstick" }} onClick={() => setIsOpenRabbitPlayerCard(false)}>EXIT</button>
+            </div>}
+                {/* ************** Players cards section ends here! ************** */}
+
 </div>
                 {/* ************** All 3 section ends here! ************** */}
                 {/* ************** New leaderboard starts here! ************** */}

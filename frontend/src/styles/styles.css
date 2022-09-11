@@ -334,6 +334,7 @@ button:disabled {
   -ms-transform: scale(1.3);
   -webkit-transform: scale(1.3);
   transform: scale(1.3); 
+  cursor: pointer,
 }
 
 .spinner-loader {
