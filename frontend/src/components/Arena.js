@@ -14,8 +14,6 @@ function Arena({ info, mintInfo }) {
 
 
 
-  const [rabbitsOwner, setRabbitsOwner] = useState([]);
-  const [turtlesOwner, setTurtlesOwner] = useState([]);
   const [deadRabbits, setDeadRabbits] = useState([]);
   const [deadTurtles, setDeadTurtles] = useState([]);
 
@@ -52,10 +50,8 @@ function Arena({ info, mintInfo }) {
       if (isAlive) {
         if (type == "Turtle") {
           turtles.push(result);
-          turtlesOwner.push(owner);
         } else {
           rabbits.push(result);
-          rabbitsOwner.push(owner);
         }
       } else {
         dead.push(result);
@@ -68,9 +64,7 @@ function Arena({ info, mintInfo }) {
       players.push(player);
     }
     setAliveRabbits(rabbits);
-    setRabbitsOwner(rabbitsOwner);
     setAliveTurtles(turtles);
-    setTurtlesOwner(turtlesOwner);
     setDeadRabbits(deadrabbits);
     setDeadTurtles(deadturtles);
     setDeadItems(dead);
