@@ -206,7 +206,7 @@ function Arena({ info, mintInfo }) {
           <div style={{ position: "relative", backgroundColor: "#fffeef", borderRadius: "30px", height: "100%", height: "400px", padding: "70px 20px 30px 20px" }}>
             <div style={{ position: "absolute", top: "-20px", left: "50%", transform: "translateX(-50%)", background: "linear-gradient(90deg, #00a1f7, #0058cc)", padding: "10px 20px", fontSize: "22px", borderRadius: "10px",letterSpacing:1.5, lineHeight: 1, fontFamily:"slapstick" }}>LEADERBOARD</div>
             {loading ? <div style={{ position: "absolute", top: "55%", left: "52%", transform: "translate(-50%, -50%)", color: "black" }}>Loading...  <span style={{paddingLeft:3}}></span><div className="spinner-loader"></div></div> :
-            <div style={{ height: "350px", overflow: "scroll", display: "flex", flexDirection: "column", gap: "10px" }}>
+            <div style={{ position: "absolute", left:37, top:48, height: "415px", overflow: "scroll", display: "flex", flexDirection: "column", gap: "10px", }}>
               {players.map((player, index) => {
                 return <div style={{ background: "linear-gradient(90deg, #02a2fc, #0255c8)", padding: "5px 20px", borderRadius: "10px", display: "flex", justifyContent: "center"}}>
                   <span style={{ fontSize: "22px", color: index == 0 ? "gold" : index == 1 ? "silver" : index==2 ? "#cd7f32" : "white" , textShadow: "2px 2px 1px black", letterSpacing:1.5, lineHeight: 1, fontFamily:"slapstick", marginRight:"7px"}}>{`${index + 1} `+" "}</span>
