@@ -392,8 +392,9 @@ button:disabled {
   transform: scale(1.2); 
 }
 
+/* Glowing button starts here*/
 .glow-on-hover {
-  width: 220px;
+  width: 150px;
   height: 50px;
   border: none;
   outline: none;
@@ -403,6 +404,10 @@ button:disabled {
   position: relative;
   z-index: 0;
   border-radius: 10px;
+  border: 1px solid black;
+}
+.glow-on-hover:hover {
+  color: rgb(255, 255, 255);
 }
 
 .glow-on-hover:before {
@@ -413,21 +418,26 @@ button:disabled {
   left:-2px;
   background-size: 400%;
   z-index: -1;
-  filter: blur(5px);
-  width: calc(100% + 4px);
-  height: calc(100% + 4px);
+  filter: blur(1px);
+  width: calc(100% + 5px);
+  height: calc(100% + 5px);
   animation: glowing 20s linear infinite;
   opacity: 0;
   transition: opacity .3s ease-in-out;
   border-radius: 10px;
+  
 }
 
 .glow-on-hover:active {
-  color: #000
+  color: white;
+  background: #111;
+
 }
 
 .glow-on-hover:active:after {
-  background: transparent;
+  background: #111;
+  color: white;
+
 }
 
 .glow-on-hover:hover:before {
@@ -438,9 +448,9 @@ button:disabled {
   z-index: -1;
   content: '';
   position: absolute;
+  color:#000;
   width: 100%;
   height: 100%;
-  background: #111;
   left: 0;
   top: 0;
   border-radius: 10px;
@@ -451,6 +461,9 @@ button:disabled {
   50% { background-position: 400% 0; }
   100% { background-position: 0 0; }
 }
+
+/* Glowing button ends here*/
+
 
 /* 
 @media (max-width: 600px) {
