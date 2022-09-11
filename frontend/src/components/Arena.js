@@ -218,11 +218,47 @@ function Arena({ info, mintInfo }) {
       </div>
       
             {/* ************** New leaderboard ends here! ************** */}
-            
+            {/* ************** Attack section starts here! ************** */}
+
+            {/* <div style={{paddingTop:20}}>
+                <div style={{marginBottom:5}}>
+                    <span style={{color:"black", fontSize:14, paddingRight:10}}>
+                    Attacker Player:
+                    </span>
+                    <span style={{paddingRight:10}}>
+                        <select name="Attacker" id="attackers">
+                            <option value="Rabbit">Rabbit &#128007; </option>
+                            <option value="Turtle">Turtle &#128034; </option>
+                        </select>
+                    </span>
+                    <span style={{color:"black", fontSize:14, paddingRight:10}}>
+                        Number 
+                    </span>
+                    <input style={{width:50}} type="number" pattern="[0-9]*">
+                    </input>
+                </div>
+                <div>
+                    <span style={{color:"black", fontSize:14, paddingRight:10}}>
+                    Attacked Player:
+                    </span>
+                    <span style={{paddingRight:10}}>
+                        <select name="Attacked" id="attackeds" >
+                            <option value="Turtle">Turtle &#128034; </option>
+                            <option value="Rabbit">Rabbit &#128007; </option>
+                        </select>
+                    </span>
+                    <span style={{color:"black", fontSize:14, paddingRight:10}}>
+                        Number 
+                    </span>
+                    <input style={{width:50}} type="number" pattern="[0-9]*">
+                    </input>
+                </div>
+            </div> */}
+
+            {/* ************** Attack section ends here! ************** */}
+  
+
     </div>
-
-
-
     
   );
 }
