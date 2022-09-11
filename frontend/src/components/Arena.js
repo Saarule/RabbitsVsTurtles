@@ -175,7 +175,7 @@ function Arena({ info, mintInfo }) {
                 <div style={{ position: "absolute", top: "-20px", left: "50%", transform: "translateX(-50%)", background: "linear-gradient(90deg, #00a1f7, #0058cc)", padding: "10px 20px", fontSize: "22px", borderRadius: "10px",letterSpacing:1.5, lineHeight: 1, fontFamily:"slapstick" }}>Turtle #{selectedTurtle?.name.slice(selectedTurtle?.name.indexOf("#") + 1)}</div>
                     {selectedTurtle && <img src={selectedTurtle.image} alt={`selected turtle`} /> }
                 </div>
-                <button style={{ position: "absolute", bottom: "-20px", left: "50%", transform: "translateX(-50%)", background: "linear-gradient(#00a1f7, #0058cc)", padding: "10px 20px", fontSize: "20px", borderRadius: "10px", outline: "none", border: "none", color: "#fff", cursor: "pointer", letterSpacing:1.5, lineHeight: 1, fontFamily:"slapstick" }} onClick={() => setIsOpenTurtlePlayerCard(false)}>EXIT</button>
+                <button className="exit-button" style={{ position: "absolute", bottom: "-20px", left: "50%", transform: "translateX(-50%)", padding: "10px 20px", fontSize: "20px", borderRadius: "10px", outline: "none", border: "none", color: "#fff", cursor: "pointer", letterSpacing:1.5, lineHeight: 1, fontFamily:"slapstick" }} onClick={() => setIsOpenTurtlePlayerCard(false)}>EXIT</button>
             </div>}
 
       {isOpenDeadPlayerCard && <div style={{ position: "absolute", bottom: 50, boxShadow: "0 0 25px black", borderRadius: "30px", left: "50%",top:"15%", transform: "translateX(-50%)", backgroundColor: "#0184f9", width: "350px", height: "400px", padding: "80px 50px" }}>
@@ -183,7 +183,7 @@ function Arena({ info, mintInfo }) {
                 <div style={{ position: "absolute", top: "-20px", left: "50%", transform: "translateX(-50%)", background: "linear-gradient(90deg, #00a1f7, #0058cc)", padding: "10px 20px", fontSize: "22px", borderRadius: "10px",letterSpacing:1.5, lineHeight: 1, fontFamily:"slapstick" }}>Dead #{selectedDead?.name.slice(selectedDead?.name.indexOf("#") + 1)}</div>
                     {selectedDead && <img src={selectedDead.image} alt={`selected turtle`} /> }
                 </div>
-                <button style={{ position: "absolute", bottom: "-20px", left: "50%", transform: "translateX(-50%)", background: "linear-gradient(#00a1f7, #0058cc)", padding: "10px 20px", fontSize: "20px", borderRadius: "10px", outline: "none", border: "none", color: "#fff", cursor: "pointer", letterSpacing:1.5, lineHeight: 1, fontFamily:"slapstick" }} onClick={() => setIsOpenDeadPlayerCard(false)}>EXIT</button>
+                <button className="exit-button" style={{ position: "absolute", bottom: "-20px", left: "50%", transform: "translateX(-50%)", padding: "10px 20px", fontSize: "20px", borderRadius: "10px", outline: "none", border: "none", color: "#fff", cursor: "pointer", letterSpacing:1.5, lineHeight: 1, fontFamily:"slapstick" }} onClick={() => setIsOpenDeadPlayerCard(false)}>EXIT</button>
             </div>}
 
       {isOpenRabbitPlayerCard && <div style={{ position: "absolute", bottom: 50, boxShadow: "0 0 25px black", borderRadius: "30px", left: "50%",top:"15%", transform: "translateX(-50%)", backgroundColor: "#0184f9", width: "350px", height: "400px", padding: "80px 50px" }}>
@@ -191,7 +191,7 @@ function Arena({ info, mintInfo }) {
                 <div style={{ position: "absolute", top: "-20px", left: "50%", transform: "translateX(-50%)", background: "linear-gradient(90deg, #00a1f7, #0058cc)", padding: "10px 20px", fontSize: "22px", borderRadius: "10px",letterSpacing:1.5, lineHeight: 1, fontFamily:"slapstick" }}>Rabbit #{selectedRabbit?.name.slice(selectedRabbit?.name.indexOf("#") + 1)}</div>
                     {selectedRabbit && <img src={selectedRabbit.image} alt={`selected turtle`} /> }
                 </div>
-                <button style={{ position: "absolute", bottom: "-20px", left: "50%", transform: "translateX(-50%)", background: "linear-gradient(#00a1f7, #0058cc)", padding: "10px 20px", fontSize: "20px", borderRadius: "10px", outline: "none", border: "none", color: "#fff", cursor: "pointer", letterSpacing:1.5, lineHeight: 1, fontFamily:"slapstick" }} onClick={() => setIsOpenRabbitPlayerCard(false)}>EXIT</button>
+                <button className="exit-button" style={{ position: "absolute", bottom: "-20px", left: "50%", transform: "translateX(-50%)", padding: "10px 20px", fontSize: "20px", borderRadius: "10px", outline: "none", border: "none", color: "#fff", cursor: "pointer", letterSpacing:1.5, lineHeight: 1, fontFamily:"slapstick" }} onClick={() => setIsOpenRabbitPlayerCard(false)}>EXIT</button>
             </div>}
                 {/* ************** Players cards section ends here! ************** */}
 
@@ -216,7 +216,7 @@ function Arena({ info, mintInfo }) {
               })}
             </div>
           }
-            <button style={{ position: "absolute", bottom: "-20px", left: "50%", transform: "translateX(-50%)", background: "linear-gradient(#00a1f7, #0058cc)", padding: "10px 20px", fontSize: "20px", borderRadius: "10px", outline: "none", border: "none", color: "#fff", cursor: "pointer", letterSpacing:1.5, lineHeight: 1, fontFamily:"slapstick" }} onClick={() => setIsOpenLeaderBoard(false)}>EXIT</button>
+            <button className="exit-button" style={{ position: "absolute", bottom: "-20px", left: "50%", transform: "translateX(-50%)", padding: "10px 20px", fontSize: "20px", borderRadius: "10px", outline: "none", border: "none", color: "#fff", cursor: "pointer", letterSpacing:1.5, lineHeight: 1, fontFamily:"slapstick" }} onClick={() => setIsOpenLeaderBoard(false)}>EXIT</button>
           </div>
         </div>}
       </div>

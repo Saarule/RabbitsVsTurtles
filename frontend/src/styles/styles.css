@@ -370,6 +370,8 @@ button:disabled {
 
 .leaderboard-button{
   background-color: #fcff41;
+  /* background: linear-gradient(#00a1f7, #0058cc) */
+
 }
 .leaderboard-button:hover {
   background-color: #fbff00;
@@ -377,6 +379,17 @@ button:disabled {
   -ms-transform: scale(1.01);
   -webkit-transform: scale(1.01);
   transform: scale(1.01); 
+}
+
+.exit-button{
+  background: linear-gradient(#00a1f7, #0058cc)
+}
+.exit-button:hover {
+  background: linear-gradient(#00a1f7, #0058cc , #014fb4);
+  transition: 0.3s;
+  -ms-transform: scale(1.2);
+  -webkit-transform: scale(1.2);
+  transform: scale(1.2); 
 }
 /* 
 @media (max-width: 600px) {
