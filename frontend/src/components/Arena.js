@@ -262,7 +262,7 @@ function Arena({ info, mintInfo }) {
 
             {/* ************** Explore Map section starts here! ************** */}
 
-            <div style={{marginTop:35, position:"absolute", bottom:70}} >
+            <div style={{marginTop:35, position:"absolute", bottom:20}} >
                 <button style={{fontSize:20, letterSpacing:1.5, lineHeight: 1, fontFamily:"slapstick"}} class="glow-on-hover" type="button"  onClick={() => alert({ message: 'Coming Soon! Please follow updates on the website and social media to stay up to date.', type: 'success' })}>Explore Map</button>   
             </div>
 
