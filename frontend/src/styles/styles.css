@@ -421,7 +421,7 @@ button:disabled {
   filter: blur(1px);
   width: calc(100% + 5px);
   height: calc(100% + 5px);
-  animation: glowing 20s linear infinite;
+  animation: glowing 30s linear infinite;
   opacity: 0;
   transition: opacity .3s ease-in-out;
   border-radius: 10px;
@@ -461,6 +461,7 @@ button:disabled {
   50% { background-position: 400% 0; }
   100% { background-position: 0 0; }
 }
+
 
 /* Glowing button ends here*/
 
