@@ -382,7 +382,7 @@ button:disabled {
 }
 
 .exit-button{
-  background: linear-gradient(#00a1f7, #0058cc)
+  background: linear-gradient(#00a1f7, #0058cc);
 }
 .exit-button:hover {
   background: linear-gradient(#00a1f7, #0058cc , #014fb4);
@@ -391,6 +391,42 @@ button:disabled {
   -webkit-transform: scale(1.2);
   transform: scale(1.2); 
 }
+.exit-button-turtle{
+  background: linear-gradient(#f54d33, #ba3420);
+}
+
+.exit-button-turtle:hover{
+  background: linear-gradient(#f54d33, #ba3420, #a41c08);
+  transition: 0.3s;
+  -ms-transform: scale(1.2);
+  -webkit-transform: scale(1.2);
+  transform: scale(1.2); 
+}
+
+.exit-button-dead{
+  background: linear-gradient(#a4a6a6, #787878);
+}
+
+.exit-button-dead:hover{
+  background: linear-gradient(#a4a6a6, #787878, #4d4d4d);
+  transition: 0.3s;
+  -ms-transform: scale(1.2);
+  -webkit-transform: scale(1.2);
+  transform: scale(1.2); 
+}
+
+.exit-button-rabbit{
+  background: linear-gradient(#00a1f7, #0058cc);
+}
+
+.exit-button-rabbit:hover{
+  background: linear-gradient(#00a1f7, #0058cc , #014fb4);
+  transition: 0.3s;
+  -ms-transform: scale(1.2);
+  -webkit-transform: scale(1.2);
+  transform: scale(1.2); 
+}
+
 
 /* Glowing button starts here*/
 .glow-on-hover {
