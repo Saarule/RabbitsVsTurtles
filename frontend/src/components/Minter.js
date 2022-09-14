@@ -716,7 +716,7 @@ function Minter() {
 
       {/* ************** Youtube Embed starts here! ************** */}
 
-      <YoutubeEmbed embedId="0yu0Ut3MCjI" widthSize={ window.innerWidth > 870 ? "853": window.innerWidth > 545 ? "507": "284"} heightSize={window.innerWidth > 870 ? "480" : window.innerWidth > 545 ? "300" : "180"} />
+      <YoutubeEmbed embedId="0yu0Ut3MCjI" widthSize={ window.innerWidth > 870 ? "853": window.innerWidth > 545 ? "507": window.innerWidth > 400 ? "384": "280"} heightSize={window.innerWidth > 870 ? "480" : window.innerWidth > 545 ? "300" :  window.innerWidth > 400 ?  "240": "160"} />
 
       {/* ************** Youtube Embed ends here! ************** */}
 
@@ -844,7 +844,7 @@ function Minter() {
       </div>
       <div style={{ height: 45 }}></div>
       
-      <div style={{ display: "grid", gridTemplateColumns: window.innerWidth > 650 ? "repeat(4, 0fr)" : "repeat(2, 0fr)", gridGap: 30, }}>
+      <div style={{ display: "grid", gridTemplateColumns: window.innerWidth > 650 ? "repeat(4, 0fr)" : "repeat(2, 0fr)", gridGap: 45 }}>
 
 
                 {/* ************** Attack start here! ************** */}

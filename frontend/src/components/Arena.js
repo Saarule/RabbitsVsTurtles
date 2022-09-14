@@ -122,8 +122,6 @@ function Arena({ info, mintInfo }) {
                         {String(info.account).substring(0, 6) +
                             "..." +
                             String(info.account).substring(38)}
-                         
-
                         </span>
                     ) : null}
                     <span style={{position: "absolute", color:"#092a85", fontSize:16, top:"45px", right:"50px"}}>
