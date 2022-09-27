@@ -100,17 +100,34 @@ function Arena({ info, mintInfo }) {
   };
 
   const getPastEvents = async () => {
-    let blockNo = 33057700
+    let blockStart = 33057700
+    const gap = 10000
     let allPastEvents = []
-    for(let i=0; i<15 ; i++){
-      const pastEvents = await info.contract.getPastEvents(
-        'allEvents',
-        {fromBlock:  blockNo,
-        toBlock: blockNo+10000}
-        );
-        blockNo += 10000
-        allPastEvents = [...allPastEvents, ...pastEvents]
-      }
+    const pastEvents = await Promise.all([
+      info.contract.getPastEvents('allEvents', {fromBlock:  blockStart, toBlock: blockStart + gap}),
+      info.contract.getPastEvents('allEvents', {fromBlock:  blockStart+gap, toBlock: blockStart + gap*2}),
+      info.contract.getPastEvents('allEvents', {fromBlock:  blockStart+gap*2, toBlock: blockStart + gap*3}),
+      info.contract.getPastEvents('allEvents', {fromBlock:  blockStart+gap*3, toBlock: blockStart + gap*4}),
+      info.contract.getPastEvents('allEvents', {fromBlock:  blockStart+gap*4, toBlock: blockStart + gap*5}),
+      info.contract.getPastEvents('allEvents', {fromBlock:  blockStart+gap*5, toBlock: blockStart + gap*6}),
+      info.contract.getPastEvents('allEvents', {fromBlock:  blockStart+gap*6, toBlock: blockStart + gap*7}),
+      info.contract.getPastEvents('allEvents', {fromBlock:  blockStart+gap*7, toBlock: blockStart + gap*8}),
+      info.contract.getPastEvents('allEvents', {fromBlock:  blockStart+gap*8, toBlock: blockStart + gap*9}),
+      info.contract.getPastEvents('allEvents', {fromBlock:  blockStart+gap*9, toBlock: blockStart + gap*10}),
+      info.contract.getPastEvents('allEvents', {fromBlock:  blockStart+gap*10, toBlock: blockStart + gap*11}),
+    ]);
+    // for(let i=0; i<15 ; i++){
+    //   const pastEvents = await info.contract.getPastEvents(
+    //     'allEvents',
+    //     {fromBlock:  blockNo,
+    //     toBlock: blockNo+10000}
+    //     );
+    //     blockNo += 10000
+    //     allPastEvents = [...allPastEvents, ...pastEvents]
+    //   }
+    for(let i = 0; i < pastEvents.length; i++){
+      allPastEvents = [...allPastEvents, ...pastEvents[i]]
+    }
     console.log(allPastEvents);
       setPastEvents(allPastEvents)
   };
@@ -928,6 +945,7 @@ function Arena({ info, mintInfo }) {
                           display: "flex",
                           justifyContent: "center",
                         }}
+                        key={index}
                       >
                         <span
                           style={{
