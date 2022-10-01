@@ -4,6 +4,7 @@ import { alert } from "react-custom-alert";
 
 function Arena({ info, mintInfo }) {
   const [players, setPlayers] = useState([]);
+  const [playersData, setPlayersData] = useState([]);
   const [aliveRabbits, setAliveRabbits] = useState([]);
   const [aliveTurtles, setAliveTurtles] = useState([]);
   const [deadItems, setDeadItems] = useState([]);
@@ -33,34 +34,67 @@ function Arena({ info, mintInfo }) {
     const deadturtles = [];
     const dead = [];
     const players = [];
+    const playersData = [];
+    // for (let i = 1; i <= mintInfo.gameInfo[1] + mintInfo.gameInfo[0]; i++) {
+    //   const [data, type, isAlive, owner, player] = await Promise.all([
+    //     info.contract.methods.tokenURI(i).call(),
+    //     info.contract.methods.getPlayerType(i).call(),
+    //     info.contract.methods.isAlive(i).call(),
+    //     info.contract.methods.ownerOf(i).call(),
+    //     info.contract.methods.getPlayerByIndex(i).call(),
+    //   ]);
+    //   const json = atob(data.substring(29));
+    //   const result = JSON.parse(json);
+
+    //   if (isAlive) {
+    //     if (type == "Turtle") {
+    //       turtles.push(result);
+    //     } else {
+    //       rabbits.push(result);
+    //     }
+    //   } else {
+    //     dead.push(result);
+    //     if (type == "Turtle") {
+    //       deadturtles.push(result);
+    //     } else {
+    //       deadrabbits.push(result);
+    //     }
+    //   }
+    //   players.push(player);
+    // }
+    console.time("checkTime");
+    let request = [];
     for (let i = 1; i <= mintInfo.gameInfo[1] + mintInfo.gameInfo[0]; i++) {
-      // console.time('checkTime')
-
-      const [data, type, isAlive, owner, player] = await Promise.all([
-        info.contract.methods.tokenURI(i).call(),
-        info.contract.methods.getPlayerType(i).call(),
-        info.contract.methods.isAlive(i).call(),
-        info.contract.methods.ownerOf(i).call(),
-        info.contract.methods.getPlayerByIndex(i).call(),
-      ]);
-      const json = atob(data.substring(29));
+      request.push(
+        Promise.all([
+          info.contract.methods.tokenURI(i).call(),
+          info.contract.methods.getPlayerType(i).call(),
+          info.contract.methods.isAlive(i).call(),
+          info.contract.methods.ownerOf(i).call(),
+          info.contract.methods.getPlayerByIndex(i).call(),
+        ])
+      );
+    }
+    const allData = await Promise.all(request);
+    for (let i = 0; i < allData.length; i++) {
+      const json = atob(allData[i][0].substring(29));
       const result = JSON.parse(json);
-
-      if (isAlive) {
-        if (type == "Turtle") {
+      playersData.push({result, player: allData[i][4]})
+      if (allData[i][2]) {
+        if (allData[i][1] == "Turtle") {
           turtles.push(result);
         } else {
           rabbits.push(result);
         }
       } else {
         dead.push(result);
-        if (type == "Turtle") {
+        if (allData[i][1] == "Turtle") {
           deadturtles.push(result);
         } else {
           deadrabbits.push(result);
         }
       }
-      players.push(player);
+      players.push(allData[i][4]);
     }
     setAliveRabbits(rabbits);
     setAliveTurtles(turtles);
@@ -70,8 +104,9 @@ function Arena({ info, mintInfo }) {
     players.sort((a, b) => b.kills - a.kills);
     setPlayers(players);
     setLoading(false);
+    setPlayersData(playersData)
 
-    // console.timeEnd('checkTime')
+    console.timeEnd("checkTime");
   };
 
   const chosenTurtle = (turtle) => {
@@ -100,37 +135,56 @@ function Arena({ info, mintInfo }) {
   };
 
   const getPastEvents = async () => {
-    let blockStart = 33057700
-    const gap = 10000
-    let allPastEvents = []
-    const pastEvents = await Promise.all([
-      info.contract.getPastEvents('allEvents', {fromBlock:  blockStart, toBlock: blockStart + gap}),
-      info.contract.getPastEvents('allEvents', {fromBlock:  blockStart+gap, toBlock: blockStart + gap*2}),
-      info.contract.getPastEvents('allEvents', {fromBlock:  blockStart+gap*2, toBlock: blockStart + gap*3}),
-      info.contract.getPastEvents('allEvents', {fromBlock:  blockStart+gap*3, toBlock: blockStart + gap*4}),
-      info.contract.getPastEvents('allEvents', {fromBlock:  blockStart+gap*4, toBlock: blockStart + gap*5}),
-      info.contract.getPastEvents('allEvents', {fromBlock:  blockStart+gap*5, toBlock: blockStart + gap*6}),
-      info.contract.getPastEvents('allEvents', {fromBlock:  blockStart+gap*6, toBlock: blockStart + gap*7}),
-      info.contract.getPastEvents('allEvents', {fromBlock:  blockStart+gap*7, toBlock: blockStart + gap*8}),
-      info.contract.getPastEvents('allEvents', {fromBlock:  blockStart+gap*8, toBlock: blockStart + gap*9}),
-      info.contract.getPastEvents('allEvents', {fromBlock:  blockStart+gap*9, toBlock: blockStart + gap*10}),
-      info.contract.getPastEvents('allEvents', {fromBlock:  blockStart+gap*10, toBlock: blockStart + gap*11}),
-    ]);
-    // for(let i=0; i<15 ; i++){
-    //   const pastEvents = await info.contract.getPastEvents(
-    //     'allEvents',
-    //     {fromBlock:  blockNo,
-    //     toBlock: blockNo+10000}
-    //     );
-    //     blockNo += 10000
-    //     allPastEvents = [...allPastEvents, ...pastEvents]
-    //   }
-    for(let i = 0; i < pastEvents.length; i++){
-      allPastEvents = [...allPastEvents, ...pastEvents[i]]
+    const currBlock = await info.web3.eth.getBlockNumber();
+    let block = 29000000;
+    const gap = 10000;
+    let allPastEvents = [];
+    let requests = [];
+    while (block < currBlock) {
+      requests.push(
+        info.contract.getPastEvents("allEvents", {
+          fromBlock: block,
+          toBlock: block + gap,
+        })
+      );
+      block += gap;
     }
-    console.log(allPastEvents);
-      setPastEvents(allPastEvents)
+    const pastEvents = await Promise.all(requests);
+    for (let i = pastEvents.length; i > 0; i--) {
+      allPastEvents = [...allPastEvents, ...pastEvents[i - 1]];
+    }
+    setPastEvents(allPastEvents);
   };
+
+  const getPlayerByHex = (event) =>{
+    const num = parseInt(event.raw.topics[1], 16)
+    const num2 = parseInt(event.raw.topics[2], 16)
+    for(let i = 0 ; i < playersData.length ; i++){
+      if(playersData[i].result.name === `Rabbits Vs Turtles #${num}`) {
+        if(playersData[i].player[1] === 'Rabbit'){
+          return (
+          <>
+            {`Rabbit #${num-1} Attacked`}
+            {/* <img
+          src={playersData[i].result.image}
+          style={{ cursor: "pointer" }}
+          className="player_image"
+        /> */}
+         </>)
+        }else{
+          return (
+            <>
+              {`Turtles #${num-1} Attacked`}
+              {/* <img
+            src={playersData[i].result.image}
+            style={{ cursor: "pointer" }}
+            className="player_image"
+          /> */}
+           </>)
+        }
+      }
+    }
+  }
 
   useEffect(() => {
     info && info.contract && mintInfo && getData();
@@ -973,7 +1027,7 @@ function Arena({ info, mintInfo }) {
                         >
                           {"|"}
                         </span>
-                        <span
+                        {event.event === "Attacked" && <span
                           style={{
                             fontSize: "16px",
                             letterSpacing: 1.5,
@@ -983,32 +1037,22 @@ function Arena({ info, mintInfo }) {
                             paddingTop: "3px",
                           }}
                         >
-                          {event.event}
-                        </span>
-                        <span
-                          style={{
-                            fontSize: "16px",
-                            letterSpacing: 1.5,
-                            lineHeight: 1,
-                            fontFamily: "slapstick",
-                            marginRight: "4px",
-                            paddingTop: "2px",
-                          }}
-                        >
-                          {event.event}
-                        </span>
-                        <span
-                          style={{
-                            fontSize: "16px",
-                            padding: "0 7px",
-                            letterSpacing: 1.5,
-                            lineHeight: 1,
-                            fontFamily: "slapstick",
-                            paddingTop: "2px",
-                          }}
-                        >
-                          {event.event}
-                        </span>
+                          {getPlayerByHex(event)} 
+                        </span>}
+                        {event.event !== "Attacked" && (
+                          <span
+                            style={{
+                              fontSize: "16px",
+                              padding: "0 7px",
+                              letterSpacing: 1.5,
+                              lineHeight: 1,
+                              fontFamily: "slapstick",
+                              paddingTop: "2px",
+                            }}
+                          >
+                            {event.event}
+                          </span>
+                        )}
                       </div>
                     );
                   })}

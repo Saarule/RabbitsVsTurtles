@@ -91,16 +91,17 @@ function Minter() {
         });
         if (networkId == _contractJSON.chain_id) {
           let web3 = new Web3(window.ethereum);
+          const contract = new web3.eth.Contract(
+            _contractJSON.abi,
+            _contractJSON.address
+          )
           setInfo((prevState) => ({
             ...prevState,
             connected: true,
             status: null,
             account: accounts[0],
-            web3: web3,
-            contract: new web3.eth.Contract(
-              _contractJSON.abi,
-              _contractJSON.address
-            ),
+            web3,
+            contract,
             contractJSON: _contractJSON,
           }));
         } else {
@@ -125,6 +126,7 @@ function Minter() {
         status: `This is a Web3 Application!\n Please Install Metamask to use it.`,
       }));
     }
+    
   };
 
   const initListeners = () => {
@@ -199,10 +201,10 @@ function Minter() {
       method: "eth_call",
       params: [params],
     });
-    console.log("is Hex: ",info.web3.utils.isHex(result));
-    console.log("result: ",result);
+    // console.log("is Hex: ",info.web3.utils.isHex(result));
+    // console.log("result: ",result);
     let res = await info.web3.utils.hexToUtf8(result);
-    console.log("succeed: ",res);
+    // console.log("succeed: ",res);
     fetch(res)
     .then(response => response.json())
     .then(data => console.log("succeed3: ",data));
@@ -614,7 +616,6 @@ function Minter() {
       }));
     }
   };
-
 
   const connectToContract = (_contractJSON) => {
     init("eth_requestAccounts", _contractJSON);
