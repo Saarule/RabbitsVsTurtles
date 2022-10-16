@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import ArenaBackground from "../assets/arena-bg.png";
 import { alert } from "react-custom-alert";
+import {useWeb3React} from '@web3-react/core'
 
 function Arena({ info, mintInfo }) {
   const [players, setPlayers] = useState([]);
@@ -15,6 +16,8 @@ function Arena({ info, mintInfo }) {
   const [isOpenDeadPlayerCard, setIsOpenDeadPlayerCard] = useState(false);
   const [isOpenRabbitPlayerCard, setIsOpenRabbitPlayerCard] = useState(false);
   const [pastEvents, setPastEvents] = useState([]);
+  const [eventsToShow, setEventsToShow] = useState('Attacked');
+  const { library, chainId, account, activate, deactivate, active } = useWeb3React();
 
   const [deadRabbits, setDeadRabbits] = useState([]);
   const [deadTurtles, setDeadTurtles] = useState([]);
@@ -62,7 +65,7 @@ function Arena({ info, mintInfo }) {
     //   }
     //   players.push(player);
     // }
-    console.time("checkTime");
+    // console.time("checkTime");
     let request = [];
     for (let i = 1; i <= mintInfo.gameInfo[1] + mintInfo.gameInfo[0]; i++) {
       request.push(
@@ -79,7 +82,7 @@ function Arena({ info, mintInfo }) {
     for (let i = 0; i < allData.length; i++) {
       const json = atob(allData[i][0].substring(29));
       const result = JSON.parse(json);
-      playersData.push({result, player: allData[i][4]})
+      playersData.push({ result, player: allData[i][4] });
       if (allData[i][2]) {
         if (allData[i][1] == "Turtle") {
           turtles.push(result);
@@ -104,9 +107,9 @@ function Arena({ info, mintInfo }) {
     players.sort((a, b) => b.kills - a.kills);
     setPlayers(players);
     setLoading(false);
-    setPlayersData(playersData)
+    setPlayersData(playersData);
 
-    console.timeEnd("checkTime");
+    // console.timeEnd("checkTime");
   };
 
   const chosenTurtle = (turtle) => {
@@ -153,38 +156,78 @@ function Arena({ info, mintInfo }) {
     for (let i = pastEvents.length; i > 0; i--) {
       allPastEvents = [...allPastEvents, ...pastEvents[i - 1]];
     }
+    // let blockInfo = await info.web3.eth.getBlock(allPastEvents[0].blockNumber);
+    // console.log(new Date (blockInfo.timestamp*1000));
+    allPastEvents.sort((a, b) => b.blockNumber - a.blockNumber);
+    console.log(allPastEvents);
     setPastEvents(allPastEvents);
   };
 
-  const getPlayerByHex = (event) =>{
-    const num = parseInt(event.raw.topics[1], 16)
-    const num2 = parseInt(event.raw.topics[2], 16)
-    for(let i = 0 ; i < playersData.length ; i++){
-      if(playersData[i].result.name === `Rabbits Vs Turtles #${num}`) {
-        if(playersData[i].player[1] === 'Rabbit'){
-          return (
-          <>
-            {`Rabbit #${num-1} Attacked`}
-            {/* <img
-          src={playersData[i].result.image}
-          style={{ cursor: "pointer" }}
-          className="player_image"
-        /> */}
-         </>)
-        }else{
-          return (
-            <>
-              {`Turtles #${num-1} Attacked`}
-              {/* <img
-            src={playersData[i].result.image}
-            style={{ cursor: "pointer" }}
-            className="player_image"
-          /> */}
-           </>)
-        }
+  // const getTimeByBlock = async(txHash) => {
+  //   const blockN = await web3.eth.getTransaction(txHash)
+  //   const blockData = await web3.eth.getBlock(blockN.blockNumber)
+  
+  //   return blockData.timestamp
+  // }
+
+  const setEventsToDisplay = ()=>{
+    if(eventsToShow === "Attacked") setEventsToShow('Transfer')
+    else setEventsToShow('Attacked')
+  }
+
+  const getPlayerByHex = (event) => {
+    const num = parseInt(event.raw.topics[1], 16);
+    const num2 = parseInt(event.raw.topics[2], 16);
+    let attacker = "";
+    let deffender = "";
+    for (let i = 0; i < playersData.length; i++) {
+      if (playersData[i].result.name === `Rabbits Vs Turtles #${num}`) {
+        if (playersData[i].player[1] === "Rabbit") {
+          attacker = `Rabbit #${num - 1}`;
+        } else attacker = `Turtles #${num - 1}`;
       }
     }
-  }
+    for (let i = 0; i < playersData.length; i++) {
+      if (playersData[i].result.name === `Rabbits Vs Turtles #${num2}`) {
+        if (playersData[i].player[1] === "Rabbit") {
+          deffender = `Rabbit #${num2 - 1}`;
+        } else deffender = `Turtles #${num2 - 1}`;
+      }
+    }
+    return (
+      <>
+        <span
+          style={{
+            fontSize: "16px",
+            letterSpacing: 1.5,
+            lineHeight: 1,
+            fontFamily: "slapstick",
+            marginRight: "5px",
+            paddingTop: "3px",
+            alignItems: "center",
+            justifyContent: "center",
+            display: "flex"
+          }}
+        >
+          <img
+          src={playersData[num-1].result.image}
+          style={{ cursor: "pointer" }}
+          className="player_image_event"
+          />
+          {`${attacker} attacked`}
+          <img
+          src={playersData[num2-1].result.image}
+          style={{
+            cursor: "pointer",
+            marginLeft: "8px"
+           }}
+          className="player_image_event"
+          />
+          {deffender}
+        </span>
+      </>
+    );
+  };
 
   useEffect(() => {
     info && info.contract && mintInfo && getData();
@@ -301,7 +344,7 @@ function Arena({ info, mintInfo }) {
                 width: "100%",
                 height: "100%",
                 maxHeight: "200px",
-                overflow: "scroll",
+                overflow: "auto",
               }}
             >
               {aliveTurtles.map((turtle) => {
@@ -372,7 +415,7 @@ function Arena({ info, mintInfo }) {
                 width: "100%",
                 height: "100%",
                 maxHeight: "200px",
-                overflow: "scroll",
+                overflow: "auto",
               }}
             >
               {deadItems.map((dead) => {
@@ -443,7 +486,7 @@ function Arena({ info, mintInfo }) {
                 width: "100%",
                 height: "100%",
                 maxHeight: "200px",
-                overflow: "scroll",
+                overflow: "auto",
               }}
             >
               {aliveRabbits.map((rabbit) => {
@@ -930,7 +973,7 @@ function Arena({ info, mintInfo }) {
               left: "50%",
               transform: "translateX(-50%)",
               backgroundColor: "#0184f9",
-              width: "350px",
+              minWidth: "350px",
               height: "500px",
               padding: "50px 40px",
             }}
@@ -940,9 +983,9 @@ function Arena({ info, mintInfo }) {
                 position: "relative",
                 backgroundColor: "#fffeef",
                 borderRadius: "30px",
-                height: "100%",
-                height: "400px",
-                padding: "70px 20px 30px 20px",
+                // height: "100%",
+                minHeight: "400px",
+                padding: "44px 20px 40px 20px",
               }}
             >
               <div
@@ -962,6 +1005,23 @@ function Arena({ info, mintInfo }) {
               >
                 Last Events
               </div>
+                <div style={{
+                  position: "absolute",
+                  top: "-15px",
+                  left: "calc(50% + 137px)",
+                  transform: "translateX(-50%)",
+                  background: "linear-gradient(90deg, #00c77e, #ccb300)",
+                  padding: "10px 20px",
+                  fontSize: "14px",
+                  borderRadius: "10px",
+                  letterSpacing: 1.5,
+                  lineHeight: 1,
+                  fontFamily: "slapstick",
+                  cursor: "pointer",
+                }}
+                onClick={setEventsToDisplay}
+                >
+                  {eventsToShow === "Attacked"? "Transfers":"Attacks"}</div>
               {pastEvents.length === 0 ? (
                 <div
                   style={{
@@ -978,17 +1038,17 @@ function Arena({ info, mintInfo }) {
               ) : (
                 <div
                   style={{
-                    position: "absolute",
-                    left: 37,
-                    top: 48,
+                    // position: "absolute",
+                    // left: 37,
+                    // top: 48,
                     height: "415px",
-                    overflow: "scroll",
+                    overflowY: "auto",
                     display: "flex",
                     flexDirection: "column",
                     gap: "10px",
                   }}
                 >
-                  {pastEvents.map((event, index) => {
+                  {pastEvents.filter(event=>event.event === eventsToShow).map((event, index) => {
                     return (
                       <div
                         style={{
@@ -998,6 +1058,7 @@ function Arena({ info, mintInfo }) {
                           borderRadius: "10px",
                           display: "flex",
                           justifyContent: "center",
+                          // alignItems: "center",
                         }}
                         key={index}
                       >
@@ -1027,19 +1088,8 @@ function Arena({ info, mintInfo }) {
                         >
                           {"|"}
                         </span>
-                        {event.event === "Attacked" && <span
-                          style={{
-                            fontSize: "16px",
-                            letterSpacing: 1.5,
-                            lineHeight: 1,
-                            fontFamily: "slapstick",
-                            marginRight: "5px",
-                            paddingTop: "3px",
-                          }}
-                        >
-                          {getPlayerByHex(event)} 
-                        </span>}
-                        {event.event !== "Attacked" && (
+                        {event.event === "Attacked" && getPlayerByHex(event)}
+                        {event.event === "Transfer" && (
                           <span
                             style={{
                               fontSize: "16px",

@@ -337,6 +337,11 @@ button:disabled {
   cursor: pointer,
 }
 
+.player_image_event{
+width: 20px;
+height: 20px;
+}
+
 .spinner-loader {
   width: 18px;
   height: 18px;
