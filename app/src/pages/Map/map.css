@@ -1,0 +1,14 @@
+.map {
+  background: url("../../assets/pic/game-map.png");
+  height: 100vh;
+  width: 100vw;
+  background-position: 50% !important;
+  background-size: cover !important;
+  background-size: 100% 100%;
+}
+
+.move-to-mint{
+  width: 200px;
+  height: 200px;
+  background-color: azure;
+}

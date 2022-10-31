@@ -1,0 +1,46 @@
+.notification{
+    position: absolute;
+    top: 75px;
+    right: 15px;
+    height: 163px;
+    width: 475px;
+    background: #FFFFF1;
+    border-radius: 32px;
+    padding: 41px 61px 17px 85px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: black;
+    /* transition: top 1s; */
+}
+
+.after{
+    right: 15px;
+}
+
+.exit{
+    position: absolute;
+    top: 21px;
+    right: 26px;
+    cursor: pointer;
+}
+.exit:hover{
+    transform: scale(1.08);
+}
+.indication{
+    position: absolute;
+    top: 46px;
+    left: 29px;
+}
+.text{
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 29px;
+}
+.view-in-explorer{
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    letter-spacing: 0.1em;
+    color: #FF6D44;
+}

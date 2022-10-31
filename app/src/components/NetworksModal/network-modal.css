@@ -1,0 +1,32 @@
+.network-modal{
+    position: absolute;
+    top: 71px;
+    background: #ffffff;
+    color: #000000;
+    right: 497px;
+    font-size: 16px;
+    border-radius: 10px;
+    width: 256px;
+    box-shadow: 0 4px 12px 0 rgb(0 0 0 / 15%);
+    display: flex;
+    flex-direction: column;
+    padding: 10px 6px;
+    gap:5px;
+}
+
+.network-modal-name{
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    padding: 10px 12px 0px 12px;
+    display: flex;
+    gap: 10px;
+    cursor: pointer;
+    transition: background-color 250ms ease 0s;
+}
+.network-modal-name:hover{
+    background-color: rgb(199, 199, 199);
+}
+
+.network-active{
+    margin-left: auto;
+}

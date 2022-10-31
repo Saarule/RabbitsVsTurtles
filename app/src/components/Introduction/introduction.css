@@ -1,0 +1,7 @@
+.introduction{
+    background: url("../../assets/pic/frame.png");
+    height:670px;
+    width: 690px;
+    background-position: 50% !important;
+    background-size: cover !important;
+}

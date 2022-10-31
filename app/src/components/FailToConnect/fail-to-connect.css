@@ -1,0 +1,74 @@
+.fail-connect{
+    background-color: #fffff1;
+    color: black;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 639px;
+    max-height: 600px;
+    height: 75%;
+    width: 60%;
+    z-index: 1;
+    display: flex;
+    border-radius: 40px;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 60px 43px 0;
+}
+
+.fail-connect-exit{
+    position: absolute;
+    right: 31px;
+    top: 30px;
+    cursor: pointer;
+}
+.fail-connect-exit:hover{
+    transform: scale(1.07);
+}
+
+.fail-connect-go-back{
+    position: absolute;
+    left: 31px;
+    top: 30px;
+    cursor: pointer;
+}
+.fail-connect-header{
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 39px;
+}
+.fail-connect-text{
+    font-size: 25px;
+    font-weight: 400;
+    line-height: 30px;
+}
+.fail-connect-btn{
+    color: #ffffff;
+    background-color: #FF6D44;
+    width: 100%;
+    border-radius: 8px;
+    height: 84px;
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 39px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.fail-connect-btn:hover{
+    background-color: #fd815e;
+}
+
+.fail-connect-footer{
+    font-size: 25px;
+    font-weight: 700;
+    line-height: 30px;
+    color: #FF6D44;
+    cursor: pointer;
+}
+.fail-connect-footer:hover{
+    color: #fd815e;
+}
