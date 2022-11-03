@@ -1,8 +1,54 @@
-.shop{
-    background: url("../../assets/pic/shop-background.png");
-    height: 100vh;
-    width: 100vw;
-    background-position: 50% !important;
-    background-size: cover !important;
+.shop {
+  background: url("../../assets/pic/shop-background.png");
+  height: 100%;
+  width: 100%;
+  background-position: 50% !important;
+  background-size: cover !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
 }
 
+.products-frame {
+  position: relative;
+  background: url("../../assets/pic/frame.png");
+  background-size: 100% 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1.5%;
+  height: 77%;
+  aspect-ratio: 1/1.031;
+  max-width: 95%;
+}
+
+.character {
+  position: absolute;
+  height: 61%;
+}
+.character img{
+  height: 100%;
+}
+
+.shop-frame-header {
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 48px;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  color: #ffd36b;
+  position: absolute;
+  top: 9px;
+}
+
+.product-list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  height: 100%;
+  margin-top: 20%;
+  gap: 0% 10%;
+  padding: 8% 5% 14%;
+}

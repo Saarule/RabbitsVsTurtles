@@ -15,7 +15,7 @@ const Map = ({setActivePage}) => {
   return (
     <div className='map'>
         {notification.open && <Notification msg={msg} type={true}/>}
-        <div className='move-to-mint' onClick={()=>setActivePage('mint')}>Mint</div>
+        {/* <div className='move-to-mint' onClick={()=>setActivePage('mint')}>Mint</div> */}
     </div>
   )
 }

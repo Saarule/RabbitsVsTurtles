@@ -7,9 +7,10 @@ import contractJSON from "./contracts/contract.json"
 import "./App.css";
 import Welcome from "./pages/Welcome/Welcome";
 import Map from "./pages/Map/Map";
-import Header from "./components/Header/Header";
+import Header from "./components/Header/Header2";
 import Mint from "./pages/Mint/Mint";
 import Shop from "./pages/Shop/Shop";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   const [activePage, setActivePage] = useState("welcome");
@@ -52,15 +53,15 @@ function App() {
         setActivePage("welcome");
     }
   };
-  
+  console.log(activePage);
   return (
     <div className="App">
-      {isActive && <Header />}
-      {}
+      {isActive && <Header setActivePage={setActivePage}/>}
       {activePage === "welcome" && <Welcome setActivePage={setActivePage} />}
       {activePage === "map" && <Map setActivePage={setActivePage} />}
       {activePage === "mint" && <Mint setActivePage={setActivePage} info={info}/>}
       {activePage === "shop" && <Shop setActivePage={setActivePage}/>}
+      {isActive && <Footer setActivePage={setActivePage}/>}
     </div>
   );
 }

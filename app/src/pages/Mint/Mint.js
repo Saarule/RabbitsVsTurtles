@@ -11,19 +11,18 @@ import mintBtn from "../../assets/pic/mint-btn.png";
 import mintRockRed from "../../assets/pic/mint-rock-red.png";
 import mintRockBlue from "../../assets/pic/mint-rock-blue.png";
 
-
 const Mint = ({ setActivePage, info }) => {
   const [mintInfo, setMintInfo] = useState({ cost: "0", supply: "0" });
-  const [switchMint, setSwitchMint] = useState(false);
-  const [activeModal, setActiveModal] = useState('');
-  const [notificationDetails, setNotificationDetails] = useState({type: false, msg: ''});
+  const [switchMint, setSwitchMint] = useState(true);
+  const [activeModal, setActiveModal] = useState("");
+  const [notificationDetails, setNotificationDetails] = useState({
+    type: false,
+    msg: "",
+    subMsg: ''
+  });
   const intervalId = useRef(0);
   const timeoutId = useRef(0);
-  const {
-    accounts,
-    isActive,
-    provider,
-  } = useWeb3React();
+  const { accounts, isActive, provider } = useWeb3React();
 
   useEffect(() => {
     if (!isActive) setActivePage("welcome");
@@ -92,15 +91,20 @@ const Mint = ({ setActivePage, info }) => {
       data: info.contract.methods.mint().encodeABI(),
     };
     try {
-      setActiveModal('confirmation')
+      setActiveModal("confirmation");
       const txHash = await provider.getSigner().sendTransaction(params);
       console.log(txHash);
-      setActiveModal('')
+      setActiveModal("");
       getSupply();
     } catch (err) {
-      setNotificationDetails({type: false, msg: 'Failed to send the transaction'})
-      setActiveModal('notification')
-      timeoutId.current = setTimeout(()=>setActiveModal(''), 4000)
+      const error = JSON.parse(JSON.stringify(err))
+      setNotificationDetails({
+        type: false,
+        msg: "Failed to send the transaction",
+        subMsg: error.reason
+      });
+      setActiveModal("notification");
+      timeoutId.current = setTimeout(() => setActiveModal(""), 4000);
       console.log(err);
     }
   };
@@ -118,12 +122,12 @@ const Mint = ({ setActivePage, info }) => {
       };
   };
 
-  const closeNote = ()=>{
-    clearTimeout(timeoutId.current)
-    setActiveModal('')
-  }
+  const closeNote = () => {
+    clearTimeout(timeoutId.current);
+    setActiveModal("");
+  };
 
-  info.contract.events.Transfer().on('data', (event) => {
+  info.contract.events.Transfer().on("data", (event) => {
     console.log(event);
     // if(from === "0x0000000000000000000000000000000000000000" && to === accounts[0]){
     //   setNotificationDetails({type: true, msg: 'Failed to send the transaction'})
@@ -136,43 +140,58 @@ const Mint = ({ setActivePage, info }) => {
   if (!isActive) return;
   return (
     <div className="mint">
-      {activeModal === 'confirmation' && <WaitingToConnect closeFunction={()=>setActiveModal('')} header={'Waiting for confirmation'} orangetxt={'Confirm this transaction in your wallet'}/>}
-      {activeModal === 'notification' && <Notification type={notificationDetails.type} msg={notificationDetails.msg} closeFunc={closeNote}/>}
+      {activeModal === "confirmation" && (
+        <WaitingToConnect
+          closeFunction={() => setActiveModal("")}
+          header={"Waiting for confirmation"}
+          subHeader={"Mint your player"}
+          orangetxt={"Confirm this transaction in your wallet"}
+          loadingUp={true}
+        />
+      )}
+      {activeModal === "notification" && (
+        <Notification
+          type={notificationDetails.type}
+          msg={notificationDetails.msg}
+          subMsg={notificationDetails.subMsg}
+          closeFunc={closeNote}
+        />
+      )}
       <div className="mint-data" style={getMintDataBackground()}>
         <div className="mint-nft">
-          <div>
             {switchMint ? (
               <img alt="" src={turtlePic} />
             ) : (
               <img alt="" src={rubbitPic} />
             )}
-          </div>
         </div>
+        <div className="details-container">
           <div>Mint your Rabbits VS Turtles NFTs</div>
-        <div className="mint-details">
-          <div className="mint-price">
-            <div>
-              {Number(info.web3?.utils.fromWei(mintInfo.cost, "ether")).toFixed(
-                2
-              )}
+          <div className="mint-details">
+            <div className="mint-price">
+              <div>
+                {Number(
+                  info.web3?.utils.fromWei(mintInfo.cost, "ether")
+                ).toFixed(2)}
+              </div>
+              <div className="mint-coint">
+                <img alt="" src={mintCoinIcon} />
+                Matic
+              </div>
             </div>
-            <div className="mint-coint">
-              <img alt="" src={mintCoinIcon} />
-              Matic
+            <div className="mint-btn" onClick={mint}>
+              <img alt="" src={mintBtn} />
+              <div className="mint-mint">MINT</div>
             </div>
-          </div>
-          <div className="mint-btn" onClick={mint}>
-            <img alt="" src={mintBtn} />
-            <div className="mint-mint">MINT</div>
-          </div>
-          <div className="mint-amount-players">
-            <div>{`${mintInfo.supply}/${info.contractJSON.total_supply}`}</div>
-            <div>
-              {accounts[0]
-                ? `${String(accounts[0]).substring(0, 6)}...${String(
-                    accounts[0]
-                  ).substring(38)}`
-                : "Guest"}
+            <div className="mint-amount-players">
+              <div>{`${mintInfo.supply}/${info.contractJSON.total_supply}`}</div>
+              <div>
+                {accounts[0]
+                  ? `${String(accounts[0]).substring(0, 6)}...${String(
+                      accounts[0]
+                    ).substring(38)}`
+                  : "Guest"}
+              </div>
             </div>
           </div>
         </div>

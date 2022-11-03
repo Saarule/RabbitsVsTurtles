@@ -1,16 +1,17 @@
 .notification{
     position: absolute;
-    top: 75px;
+    top: 100px;
     right: 15px;
     height: 163px;
     width: 475px;
     background: #FFFFF1;
     border-radius: 32px;
-    padding: 41px 61px 17px 85px;
+    padding: 31px 61px 27px 85px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     color: black;
+    gap: 5px;
     /* transition: top 1s; */
 }
 
@@ -32,11 +33,18 @@
     top: 46px;
     left: 29px;
 }
-.text{
+.msg{
     font-weight: 400;
     font-size: 24px;
     line-height: 29px;
 }
+
+.sub-msg{
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+}
+
 .view-in-explorer{
     font-weight: 400;
     font-size: 20px;

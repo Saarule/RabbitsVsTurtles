@@ -6,7 +6,7 @@ import exitIcon from "../../assets/pic/exit-icon.png";
 import successIcon from "../../assets/pic/success-icon.png";
 import failerIcon from "../../assets/pic/failer-icon.png";
 
-const Notification = ({ type, msg, closeFunc}) => {
+const Notification = ({ type, msg, closeFunc, link, subMsg}) => {
   const notification = type ? successIcon : failerIcon;
   return (
         <motion.div
@@ -22,8 +22,9 @@ const Notification = ({ type, msg, closeFunc}) => {
           <div className="indication">
             <img alt="" src={notification} />
           </div>
-          <div className="text">{msg}</div>
-          <div className="view-in-explorer">View on Explorer</div>
+          <div className="msg">{msg}</div>
+          {subMsg && <div className="sub-msg">{subMsg}</div>}
+          {link && <div className="view-in-explorer">View on Explorer</div>}
         </motion.div>
   );
 };

@@ -1,7 +1,7 @@
 .mint {
   background: url("../../assets/pic/mint-background.png");
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
   background-position: 50% !important;
   background-size: cover !important;
   display: flex;
@@ -9,34 +9,43 @@
   justify-content: center;
   align-items: center;
   gap: 20px;
-  padding-top: 74px;
   color: #ffffff;
 }
 
 .mint-data {
-  background: linear-gradient(
+  /* background: linear-gradient(
     132.07deg,
     #bf4040 0%,
     #cc6677 35.49%,
     #bf406a 70.98%
-  );
-  width: 469px;
-  height: 470px;
+  ); */
+  /* width: 30%; */
+  max-width: 90%;
+  height: 40%;
+  max-height: 470px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding: 40px 20px 19px;
+  padding: 20px 0px 19px;
   font-weight: 700;
   font-size: 13px;
   line-height: 16px;
+  margin-top: 2%;
+  aspect-ratio: 1.1/1;
 }
+
 .mint-nft {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 10px;
+  width: 50%;
+}
+
+.mint-nft img{
+  width: 100%;
 }
 
 .mint-details {
@@ -50,6 +59,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 33%
 }
 
 .mint-coint {
@@ -64,6 +74,14 @@
   line-height: 18px;
   color: #ffdd6e;
   cursor: pointer;
+  width: 33%;
+  display: flex;
+  align-items: center;
+  justify-content: center;  
+}
+
+.mint-btn img{
+  width: 100%;
 }
 
 .mint-mint {
@@ -78,4 +96,25 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 33%
+}
+
+.details-container{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.mint-rock{
+  max-width: 90%;
+  height: 24%;
+  max-height: 470px;
+}
+
+.mint-rock img{
+  height: 100%;
+  width: 100%;
 }
