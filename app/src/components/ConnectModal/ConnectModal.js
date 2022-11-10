@@ -61,7 +61,7 @@ const ConnectModal = ({ setActiveModal, setChosenConnection }) => {
   return (
     <div className="modal-container">
       <div className="modal-header">
-        <div className="modal-exit" onClick={() => setActiveModal("welcome")}>
+        <div className="connect-exit" onClick={() => setActiveModal("welcome")}>
           <img alt="" src={exitIcon} />
         </div>
         <div className="modal-title">Connect a wallet</div>
@@ -74,7 +74,7 @@ const ConnectModal = ({ setActiveModal, setChosenConnection }) => {
           }}
         >
           <div className="modal-link-txt">Metamask</div>
-          <img alt="" src={metamaskIcon} />
+          <div className="modal-link-img"><img alt="" src={metamaskIcon} /></div>
         </div>
         <div
           className="modal-link"
@@ -83,7 +83,7 @@ const ConnectModal = ({ setActiveModal, setChosenConnection }) => {
           }}
         >
           <div className="modal-link-txt">Coinbase Wallet</div>
-          <img alt="" src={coinbaseWalletIcon} />
+          <div className="modal-link-img"><img alt="" src={coinbaseWalletIcon} /></div>
         </div>
         <div
           className="modal-link"
@@ -92,7 +92,7 @@ const ConnectModal = ({ setActiveModal, setChosenConnection }) => {
           }}
         >
           <div className="modal-link-txt">WalletConnect</div>
-          <img alt="" src={walletConnectIcon} />
+          <div className="modal-link-img"><img alt="" src={walletConnectIcon} /></div>
         </div>
         {/* <div
       className="modal_link"

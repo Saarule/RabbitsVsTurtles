@@ -10,7 +10,7 @@
   gap: 20px;
   color: #ffffff;
   font-weight: 700;
-  font-size: 20px;
+  font-size: 1.25rem;
   line-height: 24px;
   letter-spacing: 0.1em;
 }
@@ -27,7 +27,7 @@
 }
 
 .network-name {
-  font-size: 20px;
+  font-size: 1.25rem;
   font-weight: 700;
   line-height: 24px;
 }

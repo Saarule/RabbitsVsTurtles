@@ -1,5 +1,5 @@
 .map {
-  background: url("../../assets/pic/game-map.png");
+  background: #c0c0c0 url("../../assets/pic/game-map.png");
   height: 100vh;
   width: 100vw;
   background-position: 50% !important;

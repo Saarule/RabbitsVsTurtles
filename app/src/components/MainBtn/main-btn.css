@@ -1,0 +1,21 @@
+.main-btn {
+  position: relative;
+  height: 100%;
+}
+
+.main-btn img {
+    height: 100%;
+    cursor: pointer;
+}
+
+.main-btn div {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 45%;
+    left: 50%;
+    font-weight: 800;
+    font-size: 1.125rem;
+    line-height: 22px;
+    color: #ffd36b;
+    cursor: pointer;
+}

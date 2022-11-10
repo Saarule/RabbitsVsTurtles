@@ -1,5 +1,5 @@
 .mint {
-  background: url("../../assets/pic/mint-background.png");
+  background: #c0c0c0 url("../../assets/pic/mint-background.png");
   height: 100%;
   width: 100%;
   background-position: 50% !important;
@@ -27,9 +27,9 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding: 20px 0px 19px;
+  padding: 10px 0px 10px;
   font-weight: 700;
-  font-size: 13px;
+  font-size: 0.8125rem;
   line-height: 16px;
   margin-top: 2%;
   aspect-ratio: 1.1/1;
@@ -70,7 +70,7 @@
 .mint-btn {
   position: relative;
   font-weight: 800;
-  font-size: 15px;
+  font-size: 0.9375rem;
   line-height: 18px;
   color: #ffdd6e;
   cursor: pointer;
@@ -96,7 +96,9 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 33%
+  width: 33%;
+  height: 100%;
+  gap: 8%;
 }
 
 .details-container{
@@ -105,7 +107,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 15px;
+  gap: 10%;
+  flex-grow: 1;
 }
 
 .mint-rock{

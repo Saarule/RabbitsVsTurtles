@@ -2,7 +2,6 @@ import React from 'react'
 
 import './introduction.css'
 import btnIcon from '../../assets/pic/mint-btn.png'
-import frame from '../../assets/pic/frame.png'
 
 const Introduction = ({txt,header,btnTxt}) => {
   return (

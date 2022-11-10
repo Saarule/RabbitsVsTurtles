@@ -29,24 +29,6 @@ const Welcome = ({setActivePage}) => {
     if(isActive) setActivePage('map')
   },[isActive])
 
-  const changeModal = (modalName) => {
-    switch(modalName){
-      case 'welcome':
-        setActiveModal('welcome')
-        break;
-      case 'ConnectModal':
-        setActiveModal('ConnectModal')
-        break;
-      case 'WaitingToConnect':
-        setActiveModal('WaitingToConnect')
-        break;
-      case 'FailToConnect':
-        setActiveModal('FailToConnect')
-        break;
-      default:
-        setActiveModal('')
-    }
-}
 
 const connectToWallet = async (connectionName) => {
   setChosenConnection(connectionName)
@@ -64,7 +46,7 @@ const connectToWallet = async (connectionName) => {
 console.log(isActive, chainId);
   return (
     <div className='welcome'>
-        {activeModal === 'welcome' && <div className='welcome-connect' onClick={()=>changeModal('ConnectModal')}>
+        {activeModal === 'welcome' && <div className='welcome-connect' onClick={()=>setActiveModal('ConnectModal')}>
           <div className='connect-header'>Play using your wallet</div>
           <div className='connect-context'>Connect your account to fully enjoy RABBITS VS. TURTLES!</div>
           <div className='connect-pic'><img alt='' src={connectWalletPic}/></div>

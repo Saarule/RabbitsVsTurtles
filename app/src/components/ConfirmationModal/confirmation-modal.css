@@ -1,0 +1,72 @@
+.confirmation-modal {
+  background-color: #fffff1;
+  color: black;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  height: 53%;
+  max-width: 98vw;
+  aspect-ratio: 1.1/1;
+  z-index: 1;
+  display: flex;
+  border-radius: 40px;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+}
+
+.error-exit {
+  position: absolute;
+  right: 6%;
+  top: 7%;
+  height: 5%;
+  cursor: pointer;
+}
+.error-exit:hover {
+  transform: scale(1.1);
+}
+
+.error-header {
+  position: relative;
+  left: -35%;
+  margin-top: 6%;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.estimate-cost {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.confirmation-btn {
+  background: #ff6d44;
+  width: 80%;
+  border-radius: 10px;
+  height: 16%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+  margin-top: 9%;
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+.confirmation-btn:hover {
+  background: #ff7b56;
+}
+
+.enable:hover {
+  background: rgb(172, 172, 172);
+}
+
+.enable{
+    background: rgb(172, 172, 172);
+    cursor: default;
+}

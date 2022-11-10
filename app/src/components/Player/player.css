@@ -1,0 +1,23 @@
+.player-display {
+  height: 50%;
+  position: relative;
+  padding-top: 2%;
+  cursor: pointer;
+}
+
+.player-display img {
+  height: 100%;
+}
+
+.player-display-name {
+  position: absolute;
+  transform: translateX(-50%);
+  top: 0%;
+  left: 50%;
+  padding: 2% 11%;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 3px;
+  border-radius: 2px;
+}

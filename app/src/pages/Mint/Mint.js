@@ -4,6 +4,8 @@ import { useWeb3React } from "@web3-react/core";
 import "./mint.css";
 import WaitingToConnect from "../../components/WaitingToConnect/WaitingToConnect";
 import Notification from "../../components/Notification/Notification";
+import ErrorModal from "../../components/ErrorModal/ErrorModal";
+import ConfirmationModal from "../../components/ConfirmationModal/ConfirmationModal";
 import turtlePic from "../../assets/pic/mint-turtle.png";
 import rubbitPic from "../../assets/pic/mint-rubbit.png";
 import mintCoinIcon from "../../assets/pic/matic-coint.png";
@@ -11,10 +13,10 @@ import mintBtn from "../../assets/pic/mint-btn.png";
 import mintRockRed from "../../assets/pic/mint-rock-red.png";
 import mintRockBlue from "../../assets/pic/mint-rock-blue.png";
 
-const Mint = ({ setActivePage, info }) => {
-  const [mintInfo, setMintInfo] = useState({ cost: "0", supply: "0" });
+const Mint = ({ setActivePage, info, confirmTransaction }) => {
+  const [mintInfo, setMintInfo] = useState({ cost: "0" });
   const [switchMint, setSwitchMint] = useState(true);
-  const [activeModal, setActiveModal] = useState("");
+  const [activeModal, setActiveModal] = useState('confirmationModal');
   const [notificationDetails, setNotificationDetails] = useState({
     type: false,
     msg: "",
@@ -30,7 +32,6 @@ const Mint = ({ setActivePage, info }) => {
 
   useEffect(() => {
     getCost();
-    getSupply();
     intervalId.current = setInterval(() => {
       setSwitchMint((switchMint) => !switchMint);
     }, 500);
@@ -60,27 +61,6 @@ const Mint = ({ setActivePage, info }) => {
     }
   };
 
-  const getSupply = async () => {
-    const params = {
-      to: info.contractJSON.address,
-      data: info.contract.methods.totalSupply().encodeABI(),
-    };
-    try {
-      const result = await info.web3.eth.call(params);
-      setMintInfo((prevState) => ({
-        ...prevState,
-        supply: info.web3.utils.hexToNumberString(result),
-      }));
-    } catch (err) {
-      console.log("supply error", err);
-      setMintInfo((prevState) => ({
-        ...prevState,
-        supply: 0,
-      }));
-      // getSupply();
-    }
-  };
-
   const mint = async () => {
     const params = {
       to: info.contractJSON.address,
@@ -90,23 +70,28 @@ const Mint = ({ setActivePage, info }) => {
       ),
       data: info.contract.methods.mint().encodeABI(),
     };
-    try {
-      setActiveModal("confirmation");
-      const txHash = await provider.getSigner().sendTransaction(params);
-      console.log(txHash);
-      setActiveModal("");
-      getSupply();
-    } catch (err) {
-      const error = JSON.parse(JSON.stringify(err))
-      setNotificationDetails({
-        type: false,
-        msg: "Failed to send the transaction",
-        subMsg: error.reason
-      });
-      setActiveModal("notification");
-      timeoutId.current = setTimeout(() => setActiveModal(""), 4000);
-      console.log(err);
-    }
+    confirmTransaction(params, 'Mint')
+  //   try {
+  //     setActiveModal("confirmation");
+  //     const estimateGasAmount = await provider.estimateGas(params)
+  //     const estimateGasPrice = await provider.getGasPrice()
+  //     console.log(info.web3?.utils.fromWei(String(estimateGasAmount*estimateGasPrice)));
+  //     console.log(estimateGasAmount,estimateGasPrice);
+  //     const txHash = await provider.getSigner().sendTransaction(params);
+  //     console.log(txHash);
+  //     setActiveModal("");
+  //     // getSupply();
+  //   } catch (err) {
+  //     const error = JSON.parse(JSON.stringify(err))
+  //     setNotificationDetails({
+  //       type: false,
+  //       msg: "Failed to send the transaction",
+  //       subMsg: error.reason
+  //     });
+  //     setActiveModal("notification");
+  //     timeoutId.current = setTimeout(() => setActiveModal(""), 4000);
+  //     console.log(err);
+  //   }
   };
 
   const getMintDataBackground = () => {
@@ -149,6 +134,7 @@ const Mint = ({ setActivePage, info }) => {
           loadingUp={true}
         />
       )}
+      {activeModal === 'errorModal' && <ErrorModal/>}
       {activeModal === "notification" && (
         <Notification
           type={notificationDetails.type}
@@ -157,6 +143,14 @@ const Mint = ({ setActivePage, info }) => {
           closeFunc={closeNote}
         />
       )}
+      {/* {activeModal === "confirmationModal" && (
+        <ConfirmationModal
+          type={notificationDetails.type}
+          msg={notificationDetails.msg}
+          subMsg={notificationDetails.subMsg}
+          closeFunc={closeNote}
+        />
+      )} */}
       <div className="mint-data" style={getMintDataBackground()}>
         <div className="mint-nft">
             {switchMint ? (
@@ -184,7 +178,7 @@ const Mint = ({ setActivePage, info }) => {
               <div className="mint-mint">MINT</div>
             </div>
             <div className="mint-amount-players">
-              <div>{`${mintInfo.supply}/${info.contractJSON.total_supply}`}</div>
+              <div>{`${info.totalSupply}/${info.contractJSON.total_supply}`}</div>
               <div>
                 {accounts[0]
                   ? `${String(accounts[0]).substring(0, 6)}...${String(

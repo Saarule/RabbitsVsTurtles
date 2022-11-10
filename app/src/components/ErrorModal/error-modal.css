@@ -1,0 +1,71 @@
+.error-modal {
+  background-color: #fffff1;
+  color: black;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  height: 53%;
+  max-width: 98vw;
+  aspect-ratio: 1.1/1;
+  z-index: 1;
+  display: flex;
+  border-radius: 40px;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.error-exit{
+    position: absolute;
+    right: 6%;
+    top: 7%;
+    height: 5%;
+    cursor: pointer;
+}
+.error-exit:hover{
+    transform: scale(1.1);
+}
+
+.error-header{
+    position: relative;
+    left: -35%;
+    margin-top: 6%;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.error-img{
+    margin-top: 6%;
+    height: 30%;
+}
+
+.error-msg{
+    font-size: 1.5rem;
+    margin-top: 5%;
+}
+
+.error-reason{
+    margin-top: 1%;
+}
+
+.error-btn{
+    background: #FF6D44;
+    width: 80%;
+    border-radius: 10px;
+    height: 12%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    margin-top: 6%;
+    margin-bottom: 3%;
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+.error-btn:hover{
+    background: #ff7b56;
+}

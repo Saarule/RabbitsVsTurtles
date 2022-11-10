@@ -8,7 +8,7 @@ const WaitingToConnect = ({closeFunction,header,subHeader,orangetxt,footer,loadi
     <div className='waiting-connect'>
         {closeFunction && <div className='modal-exit' onClick={closeFunction}><img alt='' src={exitIcon}/></div>}
         {loadingUp &&<div className='lds-ring'><div></div><div></div><div></div></div>}
-        <div style={{textAlign: 'center'}}>
+        <div>
         {header && <div className='waiting-header'>{header}</div>}
         {subHeader && <div className='waiting-subheader'>{subHeader}</div>}
         </div>

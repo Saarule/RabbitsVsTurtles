@@ -35,19 +35,19 @@
 }
 .msg{
     font-weight: 400;
-    font-size: 24px;
+    font-size:  1.5rem;
     line-height: 29px;
 }
 
 .sub-msg{
     font-weight: 400;
-    font-size: 20px;
+    font-size: 1.25rem;
     line-height: 24px;
 }
 
 .view-in-explorer{
     font-weight: 400;
-    font-size: 20px;
+    font-size: 1.25rem;
     line-height: 24px;
     letter-spacing: 0.1em;
     color: #FF6D44;
