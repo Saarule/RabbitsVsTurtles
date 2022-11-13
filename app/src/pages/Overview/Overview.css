@@ -11,7 +11,7 @@
   transform: translate(-50%);
   top: 8%;
   left: 50%;
-  height: 26%;
+  height: 23%;
 }
 
 .overview-main-header {
@@ -67,7 +67,7 @@
 .overview-all-data {
   position: absolute;
   transform: translate(-50%, -50%);
-  top: 38%;
+  top: 44%;
   left: 50%;
   font-weight: 600;
   font-size: 20px;
@@ -76,6 +76,8 @@
 }
 .overview-data {
   position: relative;
+  height: 5vh;
+  margin-bottom: 1%;
 }
 .data-rabbit {
     position: absolute;

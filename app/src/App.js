@@ -18,16 +18,21 @@ import WaitingToConnect from "./components/WaitingToConnect/WaitingToConnect";
 import ErrorModal from "./components/ErrorModal/ErrorModal";
 import Overview from "./pages/Overview/Overview";
 import SubmittedModal from "./components/SubmittedModal/SubmittedModal";
+import PlayerDetails from "./components/PlayerDetails/PlayerDetails";
+import ConnectModal from "./components/ConnectModal/ConnectModal";
+import FailToConnect from "./components/FailToConnect/FailToConnect";
 
 function App() {
-  const [activePage, setActivePage] = useState("overview");
+  const [activePage, setActivePage] = useState("welcome");
   const [info, setInfo] = useState({});
   const [playersData, setPlayersData] = useState([]);
   const [params, setParams] = useState({});
   const [error, setError] = useState({});
-  const [activeModal, setActiveModal] = useState("submittedModal");
+  const [activeModal, setActiveModal] = useState("");
   const [txHash, setTxHash] = useState('');
-  const { provider, isActive } = useWeb3React();
+  const [playerToShow, setPlayerToShow] = useState(null);
+  const [chosenConnection, setChosenConnection] = useState('')
+  const { provider, isActive, chainId } = useWeb3React();
 
   useEffect(() => {
     if (!isActive) setActivePage("welcome");
@@ -115,9 +120,14 @@ function App() {
     }
   };
 
+  const afterTransaction = async (txHash)=>{
+    const afterTransaction = await txHash.wait
+    console.log(afterTransaction);
+  }
+console.log(provider);
   return (
     <div className="App">
-      {isActive && <Header setActivePage={setActivePage} info={info} />}
+      {activePage !== 'welcome' && <Header setActivePage={setActivePage} info={info} setActiveModal={setActiveModal} />}
       {activePage === "welcome" && <Welcome setActivePage={setActivePage} />}
       {activePage === "map" && <Map setActivePage={setActivePage} />}
       {activePage === "mint" && (
@@ -154,6 +164,7 @@ function App() {
           info={info}
         />
       )}
+      {playerToShow && <div className="outside-click" onClick={()=>setPlayerToShow(null)}><PlayerDetails setPlayerToShow={setPlayerToShow} player={playersData[0]}/></div>}
       {activeModal === 'confirmationModal' && <ConfirmationModal params={params} closeFunc={() => setActiveModal("")} info={info} confirmFanc={sendTransaction} />}
       {activeModal === 'waitingToConnect' && <WaitingToConnect closeFunction={() => setActiveModal("")}
           header={"Waiting for confirmation"}
@@ -162,7 +173,10 @@ function App() {
           loadingUp={true}/>}
       {activeModal === 'errorModal' && <ErrorModal func={() => setActiveModal("")} error={error}/>}
       {activeModal === 'submittedModal' && <SubmittedModal func={() => setActiveModal("")} txHash={txHash}/>}
-      {isActive && <Footer setActivePage={setActivePage} />}
+      {activeModal === 'connectModal' && <ConnectModal setActiveModal={setActiveModal} setChosenConnection={setChosenConnection}/>}
+      {activeModal === 'waitingToConnect' && <WaitingToConnect closeFunction={()=>setActiveModal('')} header={'Waiting to connect'} subHeader={'Confirm this connection in your wallet'} footer={'By connecting a wallet, you agree to Mverse Terms of Service and acknowledge that you have read and understand the Mverse Protocol Disclaimer.'}/>}
+      {activeModal === 'failToConnect' && <FailToConnect setActiveModal={setActiveModal} chosenConnection={chosenConnection}/>}
+      {activePage !== 'welcome' && <Footer setActivePage={setActivePage} />}
     </div>
   );
 }

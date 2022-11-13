@@ -1,0 +1,37 @@
+.player-details{
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 48%;
+    left: 50%;
+    height: 65%;
+    aspect-ratio: 1.1/1;
+    max-width: 98vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ffffff;
+    border-radius: 5%
+}
+.player-img{
+height: 93%;
+}
+.player-img img{
+max-width: 100%;
+}
+.player-name{
+
+}
+.player-exit{
+    position: absolute;
+    transform: translate(-50%);
+    top: 97%;
+    left: 50%;
+    background: gray;
+    color: #ffffff;
+    font-size: 1.25rem;
+    font-weight: 600;
+    padding: 2% 3%;
+    letter-spacing: 2px;
+    border-radius: 10px;
+    cursor: pointer;
+}

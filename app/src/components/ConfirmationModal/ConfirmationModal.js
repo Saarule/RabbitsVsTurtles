@@ -48,7 +48,7 @@ const ConfirmationModal = ({desc ,closeFunc, confirmFanc, params, info}) => {
       <div className="estimate-cost">
         <div>Estimate Cost:</div>
         <div>
-            <div>Mint cost:</div>
+            <div>{`${params.desc} cost:`}</div>
             <div>{params.params.value? info.web3.utils.fromWei(params.params.value) : 0}</div>
         </div>
         <div>

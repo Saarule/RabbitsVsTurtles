@@ -9,14 +9,11 @@ import walletConnectIcon from "../../assets/pic/walletconnect-icon.png";
 import exitIcon from "../../assets/pic/exit-icon.png";
 
 const ConnectModal = ({ setActiveModal, setChosenConnection }) => {
+
   const connectToWallet = async (connectionName) => {
     setChosenConnection(connectionName);
     const connection = getConnection(connectionName);
-    // if (connectionName === "MetaMask") activateInjectedProvider("MetaMask");
-    // if (connectionName === "CoinbaseWallet") {
-    //   console.log('coinbase');
-    //   activateInjectedProvider("CoinbaseWallet");}
-    setActiveModal("WaitingToConnect");
+    setActiveModal("waitingToConnect");
     try {
       await connection.connector.connectEagerly(137);
       await connection.connector.activate(137);
@@ -26,37 +23,11 @@ const ConnectModal = ({ setActiveModal, setChosenConnection }) => {
         await connection.connector.activate(137);
       } catch (err) {
         console.log(err);
-        setActiveModal("FailToConnect");
+        setActiveModal("failToConnect");
       }
-    // } finally {
-    //   if (connectionName === "MetaMask") activateInjectedProvider("MetaMask");
-    //   if (connectionName === "CoinbaseWallet") {
-    //     console.log("coinbase");
-    //     activateInjectedProvider("CoinbaseWallet");
-    //   }
     }
   };
 
-  const activateInjectedProvider = (providerName) => {
-    const { ethereum } = window;
-    if (!ethereum?.providers) {
-      return undefined;
-    }
-    let provider;
-    switch (providerName) {
-      case "CoinbaseWallet":
-        provider = ethereum.providers.find(
-          ({ isCoinbaseWallet }) => isCoinbaseWallet
-        );
-        break;
-      case "MetaMask":
-        provider = ethereum.providers.find(({ isMetaMask }) => isMetaMask);
-        break;
-    }
-    if (provider) {
-      ethereum.setSelectedProvider(provider);
-    }
-  };
 
   return (
     <div className="modal-container">

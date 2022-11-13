@@ -1,38 +1,49 @@
-.header{
-    height: 12%;
-    width: 100%;
-    position: fixed;
-    top: 0;
-    display: flex;
-    align-items: stretch;
-    padding: 0px 10px;
-    z-index: 2;
+.header {
+  height: 12%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  display: flex;
+  align-items: stretch;
+  padding: 0px 10px;
+  z-index: 2;
 }
-.header-links{
-    flex-grow: 1;
-    width: 33%;
-    display: flex;
-    gap: 11px;
-    align-items: center;
+.header-links {
+  flex-grow: 1;
+  width: 33%;
+  display: flex;
+  gap: 11px;
+  align-items: center;
 }
-.header-links>*{
-    height: 80%;
-    cursor: pointer;
+.header-links > * {
+  height: 80%;
+  cursor: pointer;
 }
 
-.header-logo{
-    flex-grow: 1;
-    display: flex;
-    justify-content: center;
-    width: 33%;
+.header-logo {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  width: 33%;
 }
-.header-account{
-    flex-grow: 1;
-    display: flex;
-    flex-direction: row-reverse;
-    align-items: center;
-    width: 33%;
+.header-account {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  width: 33%;
 }
-.header-account img{
-    height: 80%;
+.header-account-container {
+  height: 80%;
+  position: relative;
+  cursor: pointer;
+}
+.header-account-container div {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.1em;
 }

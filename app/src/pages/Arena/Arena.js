@@ -47,8 +47,8 @@ const Arena = ({ playersData, info, confirmTransaction }) => {
         attack = choosenRabbit.player.name.split('#')[1]
         victim = choosenTurtle.player.name.split('#')[1]
       }else{
-        attack = choosenRabbit.player.name.split('#')[1]
-        victim = choosenTurtle.player.name.split('#')[1]
+        attack = choosenTurtle.player.name.split('#')[1]
+        victim = choosenRabbit.player.name.split('#')[1]
       }
       const params = {
         to: info.contractJSON.address,

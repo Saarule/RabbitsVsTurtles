@@ -36,10 +36,10 @@
   justify-content: center;
   gap: 28px;
 }
-.wallet-details-icons div {
+.wallet-details-icons>* {
   cursor: pointer;
 }
-.wallet-details-icons div:hover {
+.wallet-details-icons>*:hover {
   transform: scale(1.07);
 }
 .header-profile div {

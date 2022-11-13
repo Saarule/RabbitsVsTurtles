@@ -36,17 +36,17 @@ const connectToWallet = async (connectionName) => {
   setActiveModal('WaitingToConnect')
   try{ 
     console.log(connection);
-    await connection.connector.activate();
+    await connection.connector.activate(137);
   } catch (err){
     console.log(err);
     setActiveModal('FailToConnect')
   }
 };
 
-console.log(isActive, chainId);
+console.log(isActivating, chainId);
   return (
     <div className='welcome'>
-        {activeModal === 'welcome' && <div className='welcome-connect' onClick={()=>setActiveModal('ConnectModal')}>
+        {activeModal === 'welcome' && <div className='welcome-connect' onClick={()=>setActiveModal('connectModal')}>
           <div className='connect-header'>Play using your wallet</div>
           <div className='connect-context'>Connect your account to fully enjoy RABBITS VS. TURTLES!</div>
           <div className='connect-pic'><img alt='' src={connectWalletPic}/></div>
@@ -56,9 +56,9 @@ console.log(isActive, chainId);
           <div className='connect-context'>Your information will be locally stored and your experience limited.</div>
           <div className='connect-pic'><img alt='' src={playAsGuesePic}/></div>
         </div>}
-        {activeModal === 'ConnectModal' && <ConnectModal setActiveModal={setActiveModal} setChosenConnection={setChosenConnection}/>}
-        {activeModal === 'WaitingToConnect' && <WaitingToConnect closeFunction={()=>setActiveModal('welcome')} header={'Waiting to connect'} subHeader={'Confirm this connection in your wallet'} footer={'By connecting a wallet, you agree to Mverse Terms of Service and acknowledge that you have read and understand the Mverse Protocol Disclaimer.'}/>}
-        {activeModal === 'FailToConnect' && <FailToConnect setActiveModal={setActiveModal} chosenConnection={chosenConnection}/>}
+        {activeModal === 'connectModal' && <ConnectModal setActiveModal={setActiveModal} setChosenConnection={setChosenConnection}/>}
+        {activeModal === 'waitingToConnect' && <WaitingToConnect closeFunction={()=>setActiveModal('welcome')} header={'Waiting to connect'} subHeader={'Confirm this connection in your wallet'} footer={'By connecting a wallet, you agree to Mverse Terms of Service and acknowledge that you have read and understand the Mverse Protocol Disclaimer.'}/>}
+        {activeModal === 'failToConnect' && <FailToConnect setActiveModal={setActiveModal} chosenConnection={chosenConnection}/>}
     </div>
   )
 }

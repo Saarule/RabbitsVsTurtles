@@ -15,7 +15,7 @@ const SubmittedModal = ({func, txHash}) => {
       </div>
       <div className="submitted-header">Transaction submitted</div>
         <div className="submitted-btn" onClick={func}>Close</div>
-        <a href={`https://polygonscan.com/tx/${txHash}`} target="_blank" className="view-on-website">View on Polygonscan</a>
+        <a href={`https://polygonscan.com/tx/${txHash.hash}`} target="_blank" className="view-on-website">View on Polygonscan</a>
     </div>
   );
 };
