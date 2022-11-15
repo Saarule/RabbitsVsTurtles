@@ -3,6 +3,10 @@
   height: 100%;
 }
 
+.main-btn:hover{
+  transform: scale(1.05);
+}
+
 .main-btn img {
     height: 100%;
     cursor: pointer;

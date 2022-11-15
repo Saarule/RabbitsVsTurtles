@@ -82,6 +82,9 @@
   height: 17%;
   cursor: pointer;
 }
+.product-buy-btn:hover{
+  transform: scale(1.07);
+}
 .product-buy-btn img {
   height: 100%;
 }

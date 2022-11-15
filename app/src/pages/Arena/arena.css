@@ -46,6 +46,10 @@
   height: 8%;
 }
 
+.switch-position:hover{
+  transform: scale(1.07);
+}
+
 .arena-attack-btn {
   position: absolute;
   top: 49%;

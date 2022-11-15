@@ -12,6 +12,7 @@ import mintCoinIcon from "../../assets/pic/matic-coint.png";
 import mintBtn from "../../assets/pic/mint-btn.png";
 import mintRockRed from "../../assets/pic/mint-rock-red.png";
 import mintRockBlue from "../../assets/pic/mint-rock-blue.png";
+import MainBtn from "../../components/MainBtn/MainBtn";
 
 const Mint = ({ setActivePage, info, confirmTransaction }) => {
   const [mintInfo, setMintInfo] = useState({ cost: "0" });
@@ -173,9 +174,10 @@ const Mint = ({ setActivePage, info, confirmTransaction }) => {
                 Matic
               </div>
             </div>
-            <div className="mint-btn" onClick={mint}>
-              <img alt="" src={mintBtn} />
-              <div className="mint-mint">MINT</div>
+            <div className="mint-btn">
+              <MainBtn txt='MINT' func={mint}/>
+              {/* <img alt="" src={mintBtn} />
+              <div className="mint-mint">MINT</div> */}
             </div>
             <div className="mint-amount-players">
               <div>{`${info.totalSupply}/${info.contractJSON.total_supply}`}</div>

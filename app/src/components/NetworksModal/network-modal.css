@@ -1,6 +1,6 @@
 .network-modal{
     position: absolute;
-    top: 65%;
+    bottom: 9%;
     background: #ffffff;
     right: 2.4%;
     font-size: 1rem;
@@ -16,7 +16,7 @@
 
 .exit-icon{
     position: absolute;
-    top: 5px;
+    top: 10px;
     right: 10px;
     cursor: pointer;
     height: 17px;

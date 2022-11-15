@@ -15,6 +15,9 @@
   top: 16%;
   cursor: pointer;
 }
+.footer-side:hover{
+  transform: scale(1.04);
+}
 .footer-bar img {
   height: 100%;
 }
@@ -26,4 +29,20 @@
   font-weight: 700;
   font-size: 0.875rem;
   letter-spacing: 0.1em;
+}
+.footer-links{
+  position: relative;
+    bottom: 76%;
+    height: 42%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0% 19%;
+}
+.footer-links>*{
+  cursor: pointer;
+}
+.footer-links>*:hover{
+  transform: scale(1.07);
 }

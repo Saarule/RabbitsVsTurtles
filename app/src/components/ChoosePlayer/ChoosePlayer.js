@@ -9,6 +9,7 @@ import filterRabbits from "../../assets/pic/filter-rabbits.png";
 import filterTurtles from "../../assets/pic/filter-turtles.png";
 import filterMyPlayers from "../../assets/pic/filter-my-players.png";
 import Player from "../Player/Player";
+import MainBtn from "../MainBtn/MainBtn";
 
 const ChoosePlayer = ({ playersData, setChoosen }) => {
   const { accounts } = useWeb3React();

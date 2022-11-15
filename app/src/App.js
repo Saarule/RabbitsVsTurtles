@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useWeb3React } from "@web3-react/core";
 import Web3 from "web3";
 
@@ -166,7 +167,7 @@ console.log(provider);
         />
       )}
       {playerToShow && <div className="outside-click" onClick={()=>setPlayerToShow(null)}><PlayerDetails setPlayerToShow={setPlayerToShow} player={playersData[0]}/></div>}
-      {activeModal === 'confirmationModal' && <ConfirmationModal params={params} closeFunc={() => setActiveModal("")} info={info} confirmFanc={sendTransaction} />}
+      {activeModal === 'confirmationModal' && <div className="outside-click" onClick={() => setActiveModal("")}><ConfirmationModal params={params} closeFunc={() => setActiveModal("")} info={info} confirmFanc={sendTransaction} /></div>}
       {activeModal === 'waitingToConnect' && <WaitingToConnect closeFunction={() => setActiveModal("")}
           header={"Waiting for confirmation"}
           subHeader={"Mint your player"}

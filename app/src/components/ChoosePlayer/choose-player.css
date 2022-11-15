@@ -40,6 +40,9 @@
   cursor: pointer;
   top: -10%;
 }
+.select:hover{
+  transform: scale(1.05);
+}
 .select div {
   position: absolute;
   transform: translate(-50%, -50%);

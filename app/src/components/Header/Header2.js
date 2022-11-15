@@ -37,7 +37,7 @@ const Header = ({ setActivePage, info, setActiveModal, isDarkMode, setIsDarkMode
     <div className="header">
       <div className="header-links">
         <img alt="" src={lighting} onClick={() => setActivePage("mint")} />
-        <img alt="" src={heart} onClick={() => setActivePage("shop")} />
+        <img alt="" src={heart} onClick={() => setActivePage("graveyard")} />
         <img alt="" src={swords} onClick={() => setActivePage("arena")} />
         <img alt="" src={flags} onClick={() => setActivePage("overview")}/>
       </div>

@@ -6,6 +6,7 @@ import minusBtn from '../../assets/pic/minus-btn.png'
 import productPriceFrame from '../../assets/pic/product-price-frame.png'
 import maticSymbol from '../../assets/pic/matic-coint.png'
 import btn from '../../assets/pic/mint-btn.png'
+import MainBtn from '../MainBtn/MainBtn'
 
 const Product = ({productImg, price = null, header, func, btnTxt, height}) => {
   return (
