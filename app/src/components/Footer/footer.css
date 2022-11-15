@@ -1,19 +1,29 @@
-.footer{
-    height: 13%;
-    width: 100%;
-    position: fixed;
-    bottom: -28px;
-    display: flex;
-    align-items: stretch;
-    justify-content: center;
-    padding: 0px 10px;
-    z-index: 1;
+.footer {
+  height: 13%;
+  width: 100%;
+  position: fixed;
+  bottom: -28px;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  padding: 0px 10px;
+  z-index: 1;
 }
-.footer-bar{
-    width: 33%;
-    display: flex;
-    justify-content: center;
+.footer-side {
+  height: 70%;
+  position: relative;
+  top: 16%;
+  cursor: pointer;
 }
-.footer-bar img{
-    height: 100%;
+.footer-bar img {
+  height: 100%;
+}
+.side-txt {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  font-weight: 700;
+  font-size: 0.875rem;
+  letter-spacing: 0.1em;
 }

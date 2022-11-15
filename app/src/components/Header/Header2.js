@@ -10,11 +10,14 @@ import logo from "../../assets/pic/game-logo.png";
 import account from "../../assets/pic/header-account.png";
 import accountGuest from "../../assets/pic/header-account-guest.png";
 import WalletDetails from "../WalletDetails/WalletDetails";
+import NetworksModal from "../NetworksModal/NetworksModal";
+import Logout from "../Logout/Logout";
 
-const Header = ({ setActivePage, info, setActiveModal }) => {
+const Header = ({ setActivePage, info, setActiveModal, isDarkMode, setIsDarkMode }) => {
   const [isWalletDetails, setIsWalletDetails] = useState(false);
   const [balance, setBalance] = useState("");
   const { accounts } = useWeb3React();
+  const [isLogout, setIsLogout] = useState(false);
 
   const getUserBalance = async () => {
     const balance = await info.web3.eth.getBalance(accounts[0]);
@@ -22,6 +25,7 @@ const Header = ({ setActivePage, info, setActiveModal }) => {
   };
 
   useEffect(() => {
+    setBalance('')
     if(accounts?.length !== 0){
       // setIsWalletDetails(false)
       console.log(accounts?.length !== 0, accounts);
@@ -50,8 +54,13 @@ const Header = ({ setActivePage, info, setActiveModal }) => {
         </div>
       {isWalletDetails &&
         <div className="outside-click" onClick={() => setIsWalletDetails(false)}>
-          <WalletDetails balance={balance}/>
+          <WalletDetails balance={balance} setIsWalletDetails={setIsWalletDetails} isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} setIsLogout={setIsLogout}/>
         </div>
+      }
+      {/* <NetworksModal isDarkMode={isDarkMode}/> */}
+      {isLogout && <div className="outside-click" onClick={() => setIsLogout(false)}>
+      <Logout isDarkMode={isDarkMode} setIsLogout={setIsLogout}/>
+      </div>
       }
       <div></div>
     </div>

@@ -1,32 +1,43 @@
 .network-modal{
     position: absolute;
-    top: 71px;
+    top: 65%;
     background: #ffffff;
-    color: #000000;
-    right: 497px;
+    right: 2.4%;
     font-size: 1rem;
     border-radius: 10px;
-    width: 256px;
     box-shadow: 0 4px 12px 0 rgb(0 0 0 / 15%);
     display: flex;
     flex-direction: column;
-    padding: 10px 6px;
-    gap:5px;
+    height: 250px;
+    width: 270px;
+    justify-content: space-around;
+    padding: 34px 10px 10px;
+}
+
+.exit-icon{
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    cursor: pointer;
+    height: 17px;
 }
 
 .network-modal-name{
-    background-color: rgb(255, 255, 255);
     border-radius: 10px;
-    padding: 10px 12px 0px 12px;
     display: flex;
     gap: 10px;
     cursor: pointer;
     transition: background-color 250ms ease 0s;
+    padding: 6px 10px;
 }
 .network-modal-name:hover{
-    background-color: rgb(199, 199, 199);
+    background-color: rgb(180, 180, 180);
 }
-
 .network-active{
     margin-left: auto;
+    height: 24px;
+}
+
+.network-icon{
+    height: 21px;
 }

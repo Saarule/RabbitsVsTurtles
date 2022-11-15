@@ -32,11 +32,12 @@ function App() {
   const [txHash, setTxHash] = useState('');
   const [playerToShow, setPlayerToShow] = useState(null);
   const [chosenConnection, setChosenConnection] = useState('')
+  const [isDarkMode, setIsDarkMode] = useState(false);
   const { provider, isActive, chainId } = useWeb3React();
 
-  useEffect(() => {
-    if (!isActive) setActivePage("welcome");
-  }, [isActive]);
+  // useEffect(() => {
+  //   if (!isActive) setActivePage("welcome");
+  // }, [isActive]);
 
   // useEffect(() => {
   //   init()
@@ -127,7 +128,7 @@ function App() {
 console.log(provider);
   return (
     <div className="App">
-      {activePage !== 'welcome' && <Header setActivePage={setActivePage} info={info} setActiveModal={setActiveModal} />}
+      {activePage !== 'welcome' && <Header setActivePage={setActivePage} info={info} setActiveModal={setActiveModal} isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />}
       {activePage === "welcome" && <Welcome setActivePage={setActivePage} />}
       {activePage === "map" && <Map setActivePage={setActivePage} />}
       {activePage === "mint" && (
@@ -176,7 +177,7 @@ console.log(provider);
       {activeModal === 'connectModal' && <ConnectModal setActiveModal={setActiveModal} setChosenConnection={setChosenConnection}/>}
       {activeModal === 'waitingToConnect' && <WaitingToConnect closeFunction={()=>setActiveModal('')} header={'Waiting to connect'} subHeader={'Confirm this connection in your wallet'} footer={'By connecting a wallet, you agree to Mverse Terms of Service and acknowledge that you have read and understand the Mverse Protocol Disclaimer.'}/>}
       {activeModal === 'failToConnect' && <FailToConnect setActiveModal={setActiveModal} chosenConnection={chosenConnection}/>}
-      {activePage !== 'welcome' && <Footer setActivePage={setActivePage} />}
+      {activePage !== 'welcome' && <Footer setActivePage={setActivePage} isDarkMode={isDarkMode}/>}
     </div>
   );
 }
