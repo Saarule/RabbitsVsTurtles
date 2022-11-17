@@ -1,0 +1,25 @@
+.back-btn {
+  position: relative;
+  height: 100%;
+}
+
+.back-btn:hover {
+  transform: scale(1.05);
+}
+
+.back-btn img {
+  height: 100%;
+  cursor: pointer;
+}
+
+.back-btn div {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 45%;
+  left: 50%;
+  font-weight: 800;
+  font-size: 1rem;
+  line-height: 22px;
+  color: #ffffff;
+  cursor: pointer;
+}

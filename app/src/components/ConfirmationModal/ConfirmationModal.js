@@ -1,15 +1,18 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useWeb3React } from "@web3-react/core";
+import { selectAllInfo } from "../../features/infoSlice";
+import { useSelector } from "react-redux";
 
 import "./confirmation-modal.css";
 import exitIcon from '../../assets/pic/exit-icon.png'
 
-const ConfirmationModal = ({desc ,closeFunc, confirmFanc, params, info}) => {
+const ConfirmationModal = ({closeFunc, confirmFanc, params}) => {
 
     const [estimateGasFee, setEstimateGasFee] = useState(0)
     const [isBalance, setIsBalance] = useState(true)
     const { provider } = useWeb3React();
     const intervalId = useRef(0)
+    const info = useSelector(selectAllInfo)
 
     useEffect(()=>{
         getEstimateGasFee()
@@ -56,7 +59,7 @@ const ConfirmationModal = ({desc ,closeFunc, confirmFanc, params, info}) => {
             <div>{estimateGasFee}</div>
         </div>
         <div>
-            <div>Totlal:</div>
+            <div>Total:</div>
             <div>{params.params.value? Number(info.web3.utils.fromWei(params.params.value)): 0 + Number(estimateGasFee)}</div>
         </div>
         {isBalance? <div className="confirmation-btn" onClick={confirmFanc}>Confirm</div> :

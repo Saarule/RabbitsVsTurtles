@@ -1,11 +1,11 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useWeb3React } from "@web3-react/core";
+import { selectAllInfo } from "../../features/infoSlice";
+import { useSelector } from "react-redux";
 
 import "./mint.css";
 import WaitingToConnect from "../../components/WaitingToConnect/WaitingToConnect";
-import Notification from "../../components/Notification/Notification";
 import ErrorModal from "../../components/ErrorModal/ErrorModal";
-import ConfirmationModal from "../../components/ConfirmationModal/ConfirmationModal";
 import turtlePic from "../../assets/pic/mint-turtle.png";
 import rubbitPic from "../../assets/pic/mint-rubbit.png";
 import mintCoinIcon from "../../assets/pic/matic-coint.png";
@@ -14,25 +14,22 @@ import mintRockRed from "../../assets/pic/mint-rock-red.png";
 import mintRockBlue from "../../assets/pic/mint-rock-blue.png";
 import MainBtn from "../../components/MainBtn/MainBtn";
 
-const Mint = ({ setActivePage, info, confirmTransaction }) => {
-  const [mintInfo, setMintInfo] = useState({ cost: "0" });
+
+const Mint = ({ confirmTransaction }) => {
+  const [mintInfo, setMintInfo] = useState({ cost: "0", totalSupply: '0' });
   const [switchMint, setSwitchMint] = useState(true);
   const [activeModal, setActiveModal] = useState('confirmationModal');
-  const [notificationDetails, setNotificationDetails] = useState({
-    type: false,
-    msg: "",
-    subMsg: ''
-  });
   const intervalId = useRef(0);
   const timeoutId = useRef(0);
   const { accounts, isActive, provider } = useWeb3React();
+  const info = useSelector(selectAllInfo)
 
   useEffect(() => {
-    if (!isActive) setActivePage("welcome");
-  }, [isActive]);
+      getCost();
+      getTotal()
+  }, []);
 
   useEffect(() => {
-    getCost();
     intervalId.current = setInterval(() => {
       setSwitchMint((switchMint) => !switchMint);
     }, 500);
@@ -54,15 +51,26 @@ const Mint = ({ setActivePage, info, confirmTransaction }) => {
       }));
     } catch (err) {
       console.log(err);
-      setMintInfo((prevState) => ({
-        ...prevState,
-        cost: "0",
-      }));
-      // getCost();
     }
   };
 
+  const getTotal = async()=>{
+    try {
+      const result = await info.web3.eth.call({
+        to: info.contractJSON.address,
+        data: info.contract.methods.totalSupply().encodeABI(),
+      });
+      setMintInfo((prevState) => ({
+        ...prevState,
+        totalSupply: info.web3.utils.hexToNumberString(result),
+      }));
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   const mint = async () => {
+    if(accounts && accounts[0]){
     const params = {
       to: info.contractJSON.address,
       from: accounts[0],
@@ -72,27 +80,9 @@ const Mint = ({ setActivePage, info, confirmTransaction }) => {
       data: info.contract.methods.mint().encodeABI(),
     };
     confirmTransaction(params, 'Mint')
-  //   try {
-  //     setActiveModal("confirmation");
-  //     const estimateGasAmount = await provider.estimateGas(params)
-  //     const estimateGasPrice = await provider.getGasPrice()
-  //     console.log(info.web3?.utils.fromWei(String(estimateGasAmount*estimateGasPrice)));
-  //     console.log(estimateGasAmount,estimateGasPrice);
-  //     const txHash = await provider.getSigner().sendTransaction(params);
-  //     console.log(txHash);
-  //     setActiveModal("");
-  //     // getSupply();
-  //   } catch (err) {
-  //     const error = JSON.parse(JSON.stringify(err))
-  //     setNotificationDetails({
-  //       type: false,
-  //       msg: "Failed to send the transaction",
-  //       subMsg: error.reason
-  //     });
-  //     setActiveModal("notification");
-  //     timeoutId.current = setTimeout(() => setActiveModal(""), 4000);
-  //     console.log(err);
-  //   }
+    }else{
+      alert('connct your wallet to mint')
+    }
   };
 
   const getMintDataBackground = () => {
@@ -113,17 +103,6 @@ const Mint = ({ setActivePage, info, confirmTransaction }) => {
     setActiveModal("");
   };
 
-  info.contract.events.Transfer().on("data", (event) => {
-    console.log(event);
-    // if(from === "0x0000000000000000000000000000000000000000" && to === accounts[0]){
-    //   setNotificationDetails({type: true, msg: 'Failed to send the transaction'})
-    //   setActiveModal('notification')
-    //   timeoutId.current = setTimeout(()=>setActiveModal(''), 4000)
-
-    // }
-  });
-
-  if (!isActive) return;
   return (
     <div className="mint">
       {activeModal === "confirmation" && (
@@ -136,22 +115,6 @@ const Mint = ({ setActivePage, info, confirmTransaction }) => {
         />
       )}
       {activeModal === 'errorModal' && <ErrorModal/>}
-      {activeModal === "notification" && (
-        <Notification
-          type={notificationDetails.type}
-          msg={notificationDetails.msg}
-          subMsg={notificationDetails.subMsg}
-          closeFunc={closeNote}
-        />
-      )}
-      {/* {activeModal === "confirmationModal" && (
-        <ConfirmationModal
-          type={notificationDetails.type}
-          msg={notificationDetails.msg}
-          subMsg={notificationDetails.subMsg}
-          closeFunc={closeNote}
-        />
-      )} */}
       <div className="mint-data" style={getMintDataBackground()}>
         <div className="mint-nft">
             {switchMint ? (
@@ -176,13 +139,11 @@ const Mint = ({ setActivePage, info, confirmTransaction }) => {
             </div>
             <div className="mint-btn">
               <MainBtn txt='MINT' func={mint}/>
-              {/* <img alt="" src={mintBtn} />
-              <div className="mint-mint">MINT</div> */}
             </div>
             <div className="mint-amount-players">
-              <div>{`${info.totalSupply}/${info.contractJSON.total_supply}`}</div>
+              <div>{`${mintInfo.totalSupply}/${info.contractJSON.total_supply}`}</div>
               <div>
-                {accounts[0]
+                {(accounts && accounts[0])
                   ? `${String(accounts[0]).substring(0, 6)}...${String(
                       accounts[0]
                     ).substring(38)}`

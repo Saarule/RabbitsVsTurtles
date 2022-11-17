@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import {selectAllPlayers, getPlayersError, getPlayersStatus} from '../../features/playersSlice'
+import { selectAllInfo } from "../../features/infoSlice";
 
 import "./arena.css";
 import ArenaPlayer from "../../components/ArenaPlayer/ArenaPlayer";
@@ -11,15 +14,18 @@ import filterTurtles from "../../assets/pic/filter-turtles.png";
 import filterMyPlayers from "../../assets/pic/filter-my-players.png";
 import { useWeb3React } from "@web3-react/core";
 
-const Arena = ({ playersData, info, confirmTransaction }) => {
+const Arena = ({ confirmTransaction }) => {
 
     const [choosenTurtle, setChoosenTurtle] = useState();
     const [choosenRabbit, setChoosenRabbit] = useState();
     const [attacker, setAttacker] = useState('Rabbit');
     const [onChoosePlayer, setOnChoosePlayer] = useState();
-    // const [playersToShow, setPlayersToShow] = useState(playersData);
     const [filter, setFilter] = useState("");
     const { accounts } = useWeb3React();
+    const playersData = useSelector(selectAllPlayers).filter((player=>player.player.alive));
+    const playersStatus = useSelector(getPlayersStatus);
+    const error = useSelector(getPlayersError);
+    const info = useSelector(selectAllInfo)
 
     // useEffect(()=>{
     //     setPlayersToShow(playersData)
@@ -82,14 +88,14 @@ const Arena = ({ playersData, info, confirmTransaction }) => {
       </div>
         <div className="switch-position" onClick={switchPosition}><img alt="" src={switchPositionImg} /></div>
         <div className="arena-attack-btn"><MainBtn txt='ATTACK' func={attackPlayer}/></div>
-        {onChoosePlayer && <div className="all-players-arena">
+        {onChoosePlayer && <div className="outside-click" onClick={()=>setOnChoosePlayer(null)}><div className="all-players-arena">
         <div className="players-list">
           {getPlayersToShow().map((player, idx) => {
             return (
               <Player key={idx} player={player} onClickFunc={() => choosePlayer(player)} height={'50%'}/>
             );
           })}
-        </div>
+        </div></div>
         {/* <div className="players-filter">
           <img
             className={filter === "Turtle" ? "active" : ""}

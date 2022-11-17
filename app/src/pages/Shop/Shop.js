@@ -1,5 +1,8 @@
 import React, { useRef, useState } from "react";
 import { useWeb3React } from "@web3-react/core";
+import { selectAllPlayers } from "../../features/playersSlice";
+import { useSelector } from "react-redux";
+import { selectAllInfo } from "../../features/infoSlice";
 
 import "./shop.css";
 import Introduction from "../../components/Introduction/Introduction";
@@ -9,12 +12,12 @@ import UpgradeConfirm from "../../components/UpgradeConfirm/UpgradeConfirm";
 import WaitingToConnect from "../../components/WaitingToConnect/WaitingToConnect";
 import Notification from "../../components/Notification/Notification";
 
-const Shop = ({ playersData, info, confirmTransaction }) => {
+const Shop = ({ confirmTransaction }) => {
   const products = [
-    { header: "Attack", productImg: "potion-green", price: 300 },
-    { header: "Defence", productImg: "potion-blue", price: 350 },
-    { header: "Stamina", productImg: "potion-red", price: 600 },
-    { header: "Armor", productImg: "potion-yellow", price: 500 },
+    { header: "Attack", productImg: "potion-green", price: 5 },
+    { header: "Defence", productImg: "potion-blue", price: 5 },
+    { header: "Stamina", productImg: "potion-red", price: 10 },
+    { header: "Armor", productImg: "potion-yellow", price: 10 },
   ];
   const character = { url: "magition", top: "-2%", left: "86%" };
 
@@ -28,8 +31,9 @@ const Shop = ({ playersData, info, confirmTransaction }) => {
   const [activeStage, setActiveStage] = useState("store");
   const [choosenPlayer, setChoosenPlayer] = useState();
   const [choosenUpgrade, setChoosenUpgrade] = useState();
-
   const {accounts, provider} = useWeb3React();
+  const playersData = useSelector(selectAllPlayers).filter(player=>player.player.alive)
+  const info = useSelector(selectAllInfo)
 
   const setChoosen = (choosen) => {
     if (typeof choosen === "number") {
@@ -42,6 +46,12 @@ const Shop = ({ playersData, info, confirmTransaction }) => {
       else setActiveStage("confirmUpgrade");
     }
   };
+
+  const resetState = () =>{
+    setChoosenPlayer('')
+    setChoosenUpgrade('')
+    setActiveStage('store')
+  }
 
   const buyUpgrade = async () => {
     let desc
@@ -64,7 +74,7 @@ const Shop = ({ playersData, info, confirmTransaction }) => {
         break;
       case 1:
         params.value = String(
-          info.web3.utils.toHex(Number(mintInfo.increaseAttackCost))
+          info.web3.utils.toHex(Number(mintInfo.increaseDefenseCost))
         );
         params.data = info.contract.methods
           .increaseDefense(Number(choosenPlayer.player.name.split('#')[1]))
@@ -73,7 +83,7 @@ const Shop = ({ playersData, info, confirmTransaction }) => {
         break;
       case 2:
         params.value = String(
-          info.web3.utils.toHex(Number(mintInfo.increaseAttackCost))
+          info.web3.utils.toHex(Number(mintInfo.increaseStaminaCost))
         );
         params.data = info.contract.methods
           .increaseStamina(Number(choosenPlayer.player.name.split('#')[1]))
@@ -82,7 +92,7 @@ const Shop = ({ playersData, info, confirmTransaction }) => {
         break;
       case 3:
         params.value = String(
-          info.web3.utils.toHex(Number(mintInfo.increaseAttackCost))
+          info.web3.utils.toHex(Number(mintInfo.increaseArmorCost))
         );
         params.data = info.contract.methods
           .increaseArmor(Number(choosenPlayer.player.name.split('#')[1]))
@@ -143,6 +153,7 @@ const Shop = ({ playersData, info, confirmTransaction }) => {
           player={choosenPlayer}
           product={products[choosenUpgrade]}
           setActiveStage={setActiveStage}
+          resetState={resetState}
           buyUpgrade={buyUpgrade}
         />
       )}

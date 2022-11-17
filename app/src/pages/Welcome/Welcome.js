@@ -2,6 +2,7 @@ import React from 'react'
 import { useEffect, useState } from 'react';
 import {useWeb3React} from "@web3-react/core";
 import { getConnection } from '../../connectors/utils';
+import {useNavigate} from 'react-router-dom'
 
 
 import './welcome.css'
@@ -11,7 +12,7 @@ import ConnectModal from '../../components/ConnectModal/ConnectModal'
 import WaitingToConnect from '../../components/WaitingToConnect/WaitingToConnect'
 import FailToConnect from '../../components/FailToConnect/FailToConnect'
 
-const Welcome = ({setActivePage}) => {
+const Welcome = ({}) => {
 
   const [activeModal, setActiveModal] = useState('welcome')
   const [chosenConnection, setChosenConnection] = useState('')
@@ -24,9 +25,10 @@ const Welcome = ({setActivePage}) => {
     ENSNames,
     connector
   } = useWeb3React();
+  let navigate = useNavigate();
 
   useEffect(()=>{
-    if(isActive) setActivePage('map')
+    if(isActive) navigate('/map')
   },[isActive])
 
 
@@ -43,7 +45,6 @@ const connectToWallet = async (connectionName) => {
   }
 };
 
-console.log(isActivating, chainId);
   return (
     <div className='welcome'>
         {activeModal === 'welcome' && <div className='welcome-connect' onClick={()=>setActiveModal('connectModal')}>

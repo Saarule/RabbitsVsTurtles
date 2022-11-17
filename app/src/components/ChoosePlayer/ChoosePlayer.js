@@ -8,8 +8,7 @@ import btn from "../../assets/pic/mint-btn.png";
 import filterRabbits from "../../assets/pic/filter-rabbits.png";
 import filterTurtles from "../../assets/pic/filter-turtles.png";
 import filterMyPlayers from "../../assets/pic/filter-my-players.png";
-import Player from "../Player/Player";
-import MainBtn from "../MainBtn/MainBtn";
+import PlayersList from "../PlayersList/PlayersList";
 
 const ChoosePlayer = ({ playersData, setChoosen }) => {
   const { accounts } = useWeb3React();
@@ -28,7 +27,7 @@ const ChoosePlayer = ({ playersData, setChoosen }) => {
     }
     if (newFilter === "Turtle") setFilter("Turtle");
     if (newFilter === "Rabbit") setFilter("Rabbit");
-    if (newFilter === "Mine") setFilter("Mine");
+    if (newFilter === "Mine"  && accounts && accounts[0]) setFilter("Mine");
   };
 
   const filterPlayers = () => {
@@ -38,6 +37,7 @@ const ChoosePlayer = ({ playersData, setChoosen }) => {
         newPlayersToShow = playersData.filter(
           (player) => player.owner === accounts[0]
         );
+        else newPlayersToShow = []
     } else {
       newPlayersToShow = playersData.filter(
         (player) => player.player.playerType === filter
@@ -68,7 +68,7 @@ const ChoosePlayer = ({ playersData, setChoosen }) => {
           "linear-gradient(277.43deg,#0055ff 3.63%,#3355ff 38.08%,#1500ff 96.03%)",
       };
   };
-  console.log(playersToShow);
+  // console.log(playersToShow);
   if (playersToShow.length === 0)
     return (
       <div class="loading-page">
@@ -102,13 +102,7 @@ const ChoosePlayer = ({ playersData, setChoosen }) => {
         </div>
       </div>
       <div className="all-players">
-        <div className="players-list">
-          {playersToShow.map((player, idx) => {
-            return (
-              <Player key={idx} player={player} onClickFunc={() => setChoosenPlayer(idx)} height={'50%'}/>
-            );
-          })}
-        </div>
+        <PlayersList playersToShow={playersToShow} onClickFunc={setChoosenPlayer}/>
         <div className="players-filter">
           <img
             className={filter === "Turtle" ? "active" : ""}

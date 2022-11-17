@@ -1,15 +1,67 @@
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { selectAllInfo } from "../../features/infoSlice";
+import { selectAllPlayers } from "../../features/playersSlice";
+import { useWeb3React } from "@web3-react/core";
 
-import "./Overview.css";
+import "./overview.css";
 import headerImg from "../../assets/pic/overview-header.png";
 import dataImg from "../../assets/pic/overview-data.png";
+import PlayersList from "../../components/PlayersList/PlayersList";
+import filterRabbits from "../../assets/pic/filter-rabbits.png";
+import filterTurtles from "../../assets/pic/filter-turtles.png";
+import filterMyPlayers from "../../assets/pic/filter-my-players.png";
+import filterDead from "../../assets/pic/empty-btn.png";
 
-const Overview = ({ info }) => {
+const Overview = () => {
   const [gameInfo, setGameInfo] = useState([]);
+  const info = useSelector(selectAllInfo)
+  const [filter, setFilter] = useState("");
+  const playersData = useSelector(selectAllPlayers)
+  const {accounts} = useWeb3React()
+  const [playersToShow, setPlayersToShow] = useState(playersData);
 
+  
   useEffect(() => {
     getGameInfo();
   }, []);
+
+  useEffect(() => {
+    filterPlayers();
+  }, [filter, playersData]);
+
+  const setNewFilter = (newFilter) => {
+    if (newFilter === filter) {
+      setFilter("");
+      return;
+    }
+    if (newFilter === "Turtle") setFilter("Turtle");
+    if (newFilter === "Rabbit") setFilter("Rabbit");
+    if (newFilter === "Dead") setFilter("Dead");
+    if (newFilter === "Mine") setFilter("Mine");
+  };
+
+  const filterPlayers = () => {
+    let newPlayersToShow;
+    if (filter === "Mine") {
+      if (accounts)
+        newPlayersToShow = playersData.filter(
+          (player) => player.owner === accounts[0]
+        );
+        else newPlayersToShow = []
+    } else  if(filter === 'Dead') newPlayersToShow = playersData.filter(
+      (player) => !player.player.alive
+    );
+    else {
+      newPlayersToShow = playersData.filter(
+        (player) => player.player.playerType === filter
+      );
+    }
+   
+    if (filter === "") newPlayersToShow = playersData;
+    setPlayersToShow(newPlayersToShow);
+  };
+
 
   const getGameInfo = async () => {
     const params = {
@@ -17,7 +69,6 @@ const Overview = ({ info }) => {
       data: info.contract.methods.getGameInfo().encodeABI(),
     };
     try {
-      console.log('begin');
       const result = await info.web3.eth.call(params);
       let newArray = [0, 0, 0, 0, 0, 0, 0, 0];
       //   console.log("Important 1: " +result);
@@ -31,13 +82,12 @@ const Overview = ({ info }) => {
         newArray[i] = parseInt(resultArray[i], 16);
       }
       setGameInfo(newArray);
-      console.log(newArray);
     } catch (err) {
       setGameInfo([0, 0, 0, 0, 0, 0, 0, 0]);
       console.log(err);
     }
   };
-
+  // console.log(playersData);
   return (
     <div className="overview">
       <div className="overview-header">
@@ -80,6 +130,35 @@ const Overview = ({ info }) => {
             <div className="data-rabbit">{gameInfo[3]}</div>
             <div className="data-turtle">{gameInfo[2]}</div>
             <div className="data-sector">Alive</div>
+        </div>
+      </div>
+      <div className="overview-all-players">
+        <PlayersList playersToShow={playersToShow}/>
+        <div className="players-filter">
+          <img
+            className={filter === "Turtle" ? "active" : ""}
+            alt=""
+            src={filterTurtles}
+            onClick={() => setNewFilter("Turtle")}
+          />
+          <img
+            className={filter === "Rabbit" ? "active" : ""}
+            alt=""
+            src={filterRabbits}
+            onClick={() => setNewFilter("Rabbit")}
+          />
+          <img
+            className={filter === "Mine" ? "active" : ""}
+            alt=""
+            src={filterMyPlayers}
+            onClick={() => setNewFilter("Mine")}
+          />
+          <img
+            className={filter === "Dead" ? "active" : ""}
+            alt=""
+            src={filterDead}
+            onClick={() => setNewFilter("Dead")}
+          />
         </div>
       </div>
     </div>

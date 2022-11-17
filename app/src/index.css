@@ -43,6 +43,11 @@ body {
   src: local('CuteFrog'), url(./assets/fonts/CUTE-FROG.ttf);
 }
 
+@font-face {
+  font-family: 'gumdrop';
+  src: local('gumdrop'), url(./assets/fonts/GUMDROP.ttf);
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

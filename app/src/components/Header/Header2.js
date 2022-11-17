@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useWeb3React } from "@web3-react/core";
+import { selectAllInfo } from "../../features/infoSlice";
+import { useNavigate, Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 import "./header2.css";
 import lighting from "../../assets/pic/btn-lighting.png";
@@ -13,11 +16,13 @@ import WalletDetails from "../WalletDetails/WalletDetails";
 import NetworksModal from "../NetworksModal/NetworksModal";
 import Logout from "../Logout/Logout";
 
-const Header = ({ setActivePage, info, setActiveModal, isDarkMode, setIsDarkMode }) => {
+const Header = ({setActiveModal, isDarkMode, setIsDarkMode }) => {
   const [isWalletDetails, setIsWalletDetails] = useState(false);
   const [balance, setBalance] = useState("");
   const { accounts } = useWeb3React();
   const [isLogout, setIsLogout] = useState(false);
+  const info = useSelector(selectAllInfo) 
+  const navigate = useNavigate()
 
   const getUserBalance = async () => {
     const balance = await info.web3.eth.getBalance(accounts[0]);
@@ -26,7 +31,7 @@ const Header = ({ setActivePage, info, setActiveModal, isDarkMode, setIsDarkMode
 
   useEffect(() => {
     setBalance('')
-    if(accounts?.length !== 0){
+    if(accounts?.length !== 0 && accounts){
       // setIsWalletDetails(false)
       console.log(accounts?.length !== 0, accounts);
       getUserBalance();
@@ -36,14 +41,14 @@ const Header = ({ setActivePage, info, setActiveModal, isDarkMode, setIsDarkMode
   return (
     <div className="header">
       <div className="header-links">
-        <img alt="" src={lighting} onClick={() => setActivePage("mint")} />
-        <img alt="" src={heart} onClick={() => setActivePage("graveyard")} />
-        <img alt="" src={swords} onClick={() => setActivePage("arena")} />
-        <img alt="" src={flags} onClick={() => setActivePage("overview")}/>
+        <Link to='/mint'><img alt="" src={lighting}/></Link>
+        <Link to='/graveyard'><img alt="" src={heart}/></Link>
+        <Link to='/arena'><img alt="" src={swords}/></Link>
+        <Link to='/overview'><img alt="" src={flags}/></Link>
       </div>
-      <div className="header-logo" onClick={() => setActivePage("map")}>
+      <Link to='/map' className="header-logo">
         <img alt="" src={logo} style={{ height: "100%" }} />
-      </div>
+      </Link>
       <div className="header-account">
         <div className="header-account-container" onClick={accounts?.length?() => setIsWalletDetails(!isWalletDetails):()=>setActiveModal('connectModal')}>
         <img alt="" src={accounts?.length? account : accountGuest} />
@@ -57,7 +62,6 @@ const Header = ({ setActivePage, info, setActiveModal, isDarkMode, setIsDarkMode
           <WalletDetails balance={balance} setIsWalletDetails={setIsWalletDetails} isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} setIsLogout={setIsLogout}/>
         </div>
       }
-      {/* <NetworksModal isDarkMode={isDarkMode}/> */}
       {isLogout && <div className="outside-click" onClick={() => setIsLogout(false)}>
       <Logout isDarkMode={isDarkMode} setIsLogout={setIsLogout}/>
       </div>

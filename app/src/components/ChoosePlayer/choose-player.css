@@ -38,7 +38,7 @@
   position: relative;
   height: 20%;
   cursor: pointer;
-  top: -10%;
+  top: -3%;
 }
 .select:hover{
   transform: scale(1.05);
@@ -51,7 +51,7 @@
   font-weight: 800;
   font-size: 1.2rem;
   line-height: 29px;
-  color: #ffd36b;
+  color: #ffffff;
 }
 
 .player-name {
@@ -99,15 +99,6 @@
 }
 .players-filter img:hover {
   transform: scale(1.05);
-}
-
-.players-list {
-  height: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  overflow-y: auto;
-  row-gap: 3%;
-  column-gap: 2%;
 }
 
 .player-display img:hover {

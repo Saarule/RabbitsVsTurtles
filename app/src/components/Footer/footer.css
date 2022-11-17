@@ -40,6 +40,9 @@
     justify-content: space-between;
     padding: 0% 19%;
 }
+.footer-links a{
+  height: 100%;
+}
 .footer-links>*{
   cursor: pointer;
 }

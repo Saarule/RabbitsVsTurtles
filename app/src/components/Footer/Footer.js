@@ -4,10 +4,12 @@ import "./footer.css";
 import footerBar from "../../assets/pic/footer-bar.png";
 import goldFrame from "../../assets/pic/header-account.png";
 import NetworksModal from "../NetworksModal/NetworksModal";
-import potionGreenBtn from '../../assets/pic/potion-pink-btn.png'
+import potionBlueBtn from '../../assets/pic/potion-blue-btn.png'
 import potionPinkBtn from '../../assets/pic/potion-pink-btn.png'
 import shieldDiamondBtn from '../../assets/pic/shield-diamond-btn.png'
 import shieldSworddBtn from '../../assets/pic/shield-sword-btn.png'
+import emptyBtn from '../../assets/pic/empty-btn.png'
+import { Link } from "react-router-dom";
 
 const Footer = ({ setActivePage, isDarkMode }) => {
 
@@ -22,10 +24,11 @@ const Footer = ({ setActivePage, isDarkMode }) => {
       <div className="footer-center">
         <img alt="" src={goldFrame} />
         <div className="footer-links">
-        <img alt="" src={potionGreenBtn} onClick={()=>setActivePage('shop')}/>
-        <img alt="" src={potionPinkBtn} />
-        <img alt="" src={shieldDiamondBtn} />
-        <img alt="" src={shieldSworddBtn} />
+        <Link to="/shop"><img alt="" src={emptyBtn}/></Link>
+        <Link to="/shop"><img alt="" src={shieldSworddBtn} /></Link>
+        <Link to="/shop"><img alt="" src={shieldDiamondBtn} /></Link>
+        <Link to="/shop"><img alt="" src={potionPinkBtn} /></Link>
+        <Link to="/shop"><img alt="" src={potionBlueBtn} /></Link>
         </div>
       </div>
       <div className="footer-side" onClick={()=>setIsNetwork(true)}>
