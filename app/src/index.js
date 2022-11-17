@@ -15,10 +15,11 @@ import { Buffer } from "buffer";
 import { Provider } from "react-redux";
 import { store } from "./features/store";
 import { fetchPlayers } from "./features/playersSlice";
+import { fetchPastEvents } from "./features/pastEventsSlice";
 // import { fetchInfo } from './features/infoSlice';
 
 store.dispatch(fetchPlayers(137));
-// store.dispatch(fetchInfo())
+store.dispatch(fetchPastEvents())
 
 const connectors = [
   [injectedConnection.connector, injectedConnection.hooks],

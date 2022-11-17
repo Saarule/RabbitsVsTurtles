@@ -19,7 +19,7 @@ const Footer = ({ setActivePage, isDarkMode }) => {
     <div className="footer">
       <div className="footer-side">
         <img alt="" src={goldFrame} />
-        <div className="side-txt">My Worriors</div>
+        <div className="side-txt">My Warriors</div>
       </div>
       <div className="footer-center">
         <img alt="" src={goldFrame} />

@@ -7,7 +7,7 @@ import "./confirmation-modal.css";
 import exitIcon from '../../assets/pic/exit-icon.png'
 
 const ConfirmationModal = ({closeFunc, confirmFanc, params}) => {
-
+  
     const [estimateGasFee, setEstimateGasFee] = useState(0)
     const [isBalance, setIsBalance] = useState(true)
     const { provider } = useWeb3React();
@@ -17,15 +17,10 @@ const ConfirmationModal = ({closeFunc, confirmFanc, params}) => {
     useEffect(()=>{
         getEstimateGasFee()
         intervalId.current = setInterval(getEstimateGasFee, 4000)
-        // send()
         return ()=>{
           clearInterval(intervalId.current)
         }
     },[])
-
-    const send = async ()=>{
-      const txHash = await provider.getSigner().sendTransaction(params.params);
-    }
 
     const getEstimateGasFee = async()=> {
         try{
@@ -39,10 +34,10 @@ const ConfirmationModal = ({closeFunc, confirmFanc, params}) => {
         }
     }
 
-    console.log(params);
+    console.log(estimateGasFee);
 
   return (
-    <div className="confirmation-modal">
+    <div className="confirmation-modal" onClick={(e)=>{e.stopPropagation()}}>
       <div className="error-exit" onClick={closeFunc}>
         <img alt="" src={exitIcon} />
       </div>
@@ -60,7 +55,7 @@ const ConfirmationModal = ({closeFunc, confirmFanc, params}) => {
         </div>
         <div>
             <div>Total:</div>
-            <div>{params.params.value? Number(info.web3.utils.fromWei(params.params.value)): 0 + Number(estimateGasFee)}</div>
+            <div>{params.params.value? Number(info.web3.utils.fromWei(params.params.value)) + Number(estimateGasFee) : 0 + Number(estimateGasFee)}</div>
         </div>
         {isBalance? <div className="confirmation-btn" onClick={confirmFanc}>Confirm</div> :
         <div className="confirmation-btn enable">Insufficient MATIC balance</div>}

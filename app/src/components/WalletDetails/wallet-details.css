@@ -5,14 +5,15 @@
   z-index: 5;
   position: absolute;
   top: 13%;
-  right: 0.5%;
+  right: 1.5%;
   padding: 35px 20px 20px;
   box-shadow: rgb(51 53 72 / 4%) 8px 12px 20px, rgb(51 53 72 / 2%) 4px 6px 12px,
     rgb(51 53 72 / 4%) 4px 4px 8px;
-  height: 65%;
-  aspect-ratio: 1/1.1;
+  height: 59%;
+  aspect-ratio: 1/1.3;
   color: #000000;
   transition: 0.3s;
+  font-size: 0.7em;
 }
 
 .wallet-header {
@@ -35,24 +36,24 @@
   align-items: center;
   justify-content: space-between;
   height: 100%;
-  width: 34%;
+  width: 38%;
 }
 .wallet-details-icons > * {
   cursor: pointer;
   height: 24px;
 }
-svg{
+svg {
   height: 100%;
 }
-.svg path{
- color: #ffffff;
+.svg path {
+  color: #ffffff;
 }
 .wallet-details-icons > *:hover {
   transform: scale(1.07);
 }
 .header-profile div {
   font-weight: 700;
-  font-size: 1.15rem;
+  font-size: 1.15em;
   line-height: 24px;
   letter-spacing: 0.1em;
 }
@@ -68,13 +69,13 @@ svg{
 
 .balance-matic {
   font-weight: 500;
-  font-size: 3rem;
+  font-size: 3em;
   line-height: 77px;
   letter-spacing: 0.1em;
 }
 .balance-usd {
   font-weight: 500;
-  font-size: 1.5rem;
+  font-size: 1.5em;
   line-height: 29px;
   letter-spacing: 0.1em;
 }
@@ -105,7 +106,7 @@ svg{
 }
 .wallet-details-action {
   font-weight: 500;
-  font-size: 1.5rem;
+  font-size: 1.5em;
   line-height: 29px;
 }
 .darkmode-toggle {

@@ -71,10 +71,9 @@ const ChoosePlayer = ({ playersData, setChoosen }) => {
   // console.log(playersToShow);
   if (playersToShow.length === 0)
     return (
-      <div class="loading-page">
-        Loading
-        <span></span>
-      </div>
+      <div className="loader-container">
+          <div className="loader"></div>
+        </div>
     );
   return (
     <div className="choose-player">

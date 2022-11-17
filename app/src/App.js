@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { useWeb3React } from "@web3-react/core";
 
+
 import "./App.css";
 import Welcome from "./pages/Welcome/Welcome";
 import Map from "./pages/Map/Map";
@@ -39,8 +40,8 @@ function App() {
   };
 
   const sendTransaction = async () => {
+    setActiveModal("waitingToConnect");
     try {
-      setActiveModal("waitingToConnect");
       console.log("hi");
       const txHash = await provider.getSigner().sendTransaction(params.params);
       setTxHash(txHash);
@@ -55,6 +56,7 @@ function App() {
   };
 
   const afterTransaction = async (txHash) => {
+    console.log(txHash.wait);
     const afterTransaction = await txHash.wait;
     console.log(afterTransaction);
   };

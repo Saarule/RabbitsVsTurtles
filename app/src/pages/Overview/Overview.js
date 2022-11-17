@@ -3,6 +3,11 @@ import { useSelector } from "react-redux";
 import { selectAllInfo } from "../../features/infoSlice";
 import { selectAllPlayers } from "../../features/playersSlice";
 import { useWeb3React } from "@web3-react/core";
+import {
+  getPastEventsError,
+  getPastEventsStatus,
+  selectAllPastEvents,
+} from "../../features/pastEventsSlice";
 
 import "./overview.css";
 import headerImg from "../../assets/pic/overview-header.png";
@@ -14,21 +19,47 @@ import filterMyPlayers from "../../assets/pic/filter-my-players.png";
 import filterDead from "../../assets/pic/empty-btn.png";
 
 const Overview = () => {
-  const [gameInfo, setGameInfo] = useState([]);
-  const info = useSelector(selectAllInfo)
+  const [gameInfo, setGameInfo] = useState([0, 0, 0, 0, 0, 0, 0, 0]);
+  const [moreInfo, setMoreInfo] = useState([0, 0, 0, 0]);
+  const info = useSelector(selectAllInfo);
   const [filter, setFilter] = useState("");
-  const playersData = useSelector(selectAllPlayers)
-  const {accounts} = useWeb3React()
+  const playersData = useSelector(selectAllPlayers);
+  const { accounts } = useWeb3React();
   const [playersToShow, setPlayersToShow] = useState(playersData);
+  const pastEvents = useSelector(selectAllPastEvents);
 
-  
   useEffect(() => {
     getGameInfo();
   }, []);
 
   useEffect(() => {
+    getUpgrades();
+  }, [pastEvents]);
+
+  useEffect(() => {
     filterPlayers();
   }, [filter, playersData]);
+
+  const getUpgrades = () => {
+    let upgrades = [8, 2, 13, 17];
+    // for (let i = 0; i < pastEvents.length; i++) {
+    //   if (pastEvents[i].event.slice(-5) === "eased") {
+    //     if (pastEvents[i].returnValues._playerId % 2 === 0) {
+    //       upgrades[0]++;
+    //     } else {
+    //       upgrades[1]++;
+    //     }
+    //   }
+    //   if (pastEvents[i].event === "Attacked") {
+    //     if (pastEvents[i].returnValues._eaterId % 2 === 0) {
+    //       upgrades[2]++;
+    //     } else {
+    //       upgrades[3]++;
+    //     }
+    //   }
+    // }
+    setMoreInfo(upgrades)
+  };
 
   const setNewFilter = (newFilter) => {
     if (newFilter === filter) {
@@ -48,20 +79,18 @@ const Overview = () => {
         newPlayersToShow = playersData.filter(
           (player) => player.owner === accounts[0]
         );
-        else newPlayersToShow = []
-    } else  if(filter === 'Dead') newPlayersToShow = playersData.filter(
-      (player) => !player.player.alive
-    );
+      else newPlayersToShow = [];
+    } else if (filter === "Dead")
+      newPlayersToShow = playersData.filter((player) => !player.player.alive);
     else {
       newPlayersToShow = playersData.filter(
         (player) => player.player.playerType === filter
       );
     }
-   
+
     if (filter === "") newPlayersToShow = playersData;
     setPlayersToShow(newPlayersToShow);
   };
-
 
   const getGameInfo = async () => {
     const params = {
@@ -87,7 +116,7 @@ const Overview = () => {
       console.log(err);
     }
   };
-  // console.log(playersData);
+  // console.log(gameInfo);
   return (
     <div className="overview">
       <div className="overview-header">
@@ -102,38 +131,38 @@ const Overview = () => {
       </div>
       <div className="overview-all-data">
         <div className="overview-data">
-            <img alt="" src={dataImg} />
-            <div className="data-rabbit">56</div>
-            <div className="data-turtle">32</div>
-            <div className="data-sector">Attacks</div>
+          <img alt="" src={dataImg} />
+          <div className="data-rabbit">{moreInfo[2]}</div>
+          <div className="data-turtle">{moreInfo[3]}</div>
+          <div className="data-sector">Attacks</div>
         </div>
         <div className="overview-data">
-            <img alt="" src={dataImg} />
-            <div className="data-rabbit">56</div>
-            <div className="data-turtle">32</div>
-            <div className="data-sector">Upgrades</div>
+          <img alt="" src={dataImg} />
+          <div className="data-rabbit">{moreInfo[0]}</div>
+          <div className="data-turtle">{moreInfo[1]}</div>
+          <div className="data-sector">Upgrades</div>
         </div>
         <div className="overview-data">
-            <img alt="" src={dataImg} />
-            <div className="data-rabbit">{gameInfo[7]}</div>
-            <div className="data-turtle">{gameInfo[6]}</div>
-            <div className="data-sector">Revived</div>
+          <img alt="" src={dataImg} />
+          <div className="data-rabbit">{gameInfo[7]}</div>
+          <div className="data-turtle">{gameInfo[6]}</div>
+          <div className="data-sector">Revived</div>
         </div>
         <div className="overview-data">
-            <img alt="" src={dataImg} />
-            <div className="data-rabbit">{gameInfo[5]}</div>
-            <div className="data-turtle">{gameInfo[4]}</div>
-            <div className="data-sector">Dead</div>
+          <img alt="" src={dataImg} />
+          <div className="data-rabbit">{gameInfo[5]}</div>
+          <div className="data-turtle">{gameInfo[4]}</div>
+          <div className="data-sector">Dead</div>
         </div>
         <div className="overview-data">
-            <img alt="" src={dataImg} />
-            <div className="data-rabbit">{gameInfo[3]}</div>
-            <div className="data-turtle">{gameInfo[2]}</div>
-            <div className="data-sector">Alive</div>
+          <img alt="" src={dataImg} />
+          <div className="data-rabbit">{gameInfo[3]}</div>
+          <div className="data-turtle">{gameInfo[2]}</div>
+          <div className="data-sector">Alive</div>
         </div>
       </div>
       <div className="overview-all-players">
-        <PlayersList playersToShow={playersToShow}/>
+        <PlayersList playersToShow={playersToShow} />
         <div className="players-filter">
           <img
             className={filter === "Turtle" ? "active" : ""}

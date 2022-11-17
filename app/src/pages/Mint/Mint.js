@@ -47,7 +47,7 @@ const Mint = ({ confirmTransaction }) => {
       const result = await info.web3.eth.call(params);
       setMintInfo((prevState) => ({
         ...prevState,
-        cost: info.web3.utils.hexToNumberString(result),
+        cost: info.web3.utils.hexToNumberString(Number(result)+ 10000000000000000),
       }));
     } catch (err) {
       console.log(err);
@@ -75,10 +75,11 @@ const Mint = ({ confirmTransaction }) => {
       to: info.contractJSON.address,
       from: accounts[0],
       value: String(
-        info.web3.utils.toHex(Number(mintInfo.cost) + 10000000000000000) // The 10000000000000000 is solving an issue of overflow numbers when calculating the price.
+        info.web3.utils.toHex(Number(mintInfo.cost)) // The 10000000000000000 is solving an issue of overflow numbers when calculating the price.
       ),
       data: info.contract.methods.mint().encodeABI(),
     };
+    console.log(info.web3.utils.fromWei(params.value));
     confirmTransaction(params, 'Mint')
     }else{
       alert('connct your wallet to mint')
@@ -102,7 +103,7 @@ const Mint = ({ confirmTransaction }) => {
     clearTimeout(timeoutId.current);
     setActiveModal("");
   };
-
+  // console.log(Number(info.web3?.utils.fromWei(mintInfo.cost, "ether")));
   return (
     <div className="mint">
       {activeModal === "confirmation" && (
@@ -130,7 +131,7 @@ const Mint = ({ confirmTransaction }) => {
               <div>
                 {Number(
                   info.web3?.utils.fromWei(mintInfo.cost, "ether")
-                ).toFixed(2)}
+                ).toFixed(3)}
               </div>
               <div className="mint-coint">
                 <img alt="" src={mintCoinIcon} />
