@@ -42,7 +42,7 @@
   .modal-content {
     display: flex;
     flex-direction: column;
-    padding: 0px 7%;
+    padding: 0px 7% 4%;
     flex-grow: 1;
   }
   

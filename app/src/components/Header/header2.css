@@ -65,3 +65,11 @@
   letter-spacing: 0.1em;
   width: max-content;
 }
+.header-events{
+ height: 45%;
+ cursor: pointer;
+ margin-right: 3%;
+}
+.header-events:hover{
+  transform: scale(1.07);
+}

@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { useWeb3React } from "@web3-react/core";
 import { selectAllInfo } from "../../features/infoSlice";
 import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
 
 import "./mint.css";
 import WaitingToConnect from "../../components/WaitingToConnect/WaitingToConnect";
@@ -9,25 +10,18 @@ import ErrorModal from "../../components/ErrorModal/ErrorModal";
 import turtlePic from "../../assets/pic/mint-turtle.png";
 import rubbitPic from "../../assets/pic/mint-rubbit.png";
 import mintCoinIcon from "../../assets/pic/matic-coint.png";
-import mintBtn from "../../assets/pic/mint-btn.png";
 import mintRockRed from "../../assets/pic/mint-rock-red.png";
 import mintRockBlue from "../../assets/pic/mint-rock-blue.png";
 import MainBtn from "../../components/MainBtn/MainBtn";
 
 
-const Mint = ({ confirmTransaction }) => {
-  const [mintInfo, setMintInfo] = useState({ cost: "0", totalSupply: '0' });
+const Mint = ({ confirmTransaction, mintInfo }) => {
   const [switchMint, setSwitchMint] = useState(true);
   const [activeModal, setActiveModal] = useState('confirmationModal');
   const intervalId = useRef(0);
   const timeoutId = useRef(0);
   const { accounts, isActive, provider } = useWeb3React();
   const info = useSelector(selectAllInfo)
-
-  useEffect(() => {
-      getCost();
-      getTotal()
-  }, []);
 
   useEffect(() => {
     intervalId.current = setInterval(() => {
@@ -37,37 +31,6 @@ const Mint = ({ confirmTransaction }) => {
       clearInterval(intervalId.current);
     };
   }, []);
-
-  const getCost = async () => {
-    const params = {
-      to: info.contractJSON.address,
-      data: info.contract.methods.cost().encodeABI(),
-    };
-    try {
-      const result = await info.web3.eth.call(params);
-      setMintInfo((prevState) => ({
-        ...prevState,
-        cost: info.web3.utils.hexToNumberString(Number(result)+ 10000000000000000),
-      }));
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  const getTotal = async()=>{
-    try {
-      const result = await info.web3.eth.call({
-        to: info.contractJSON.address,
-        data: info.contract.methods.totalSupply().encodeABI(),
-      });
-      setMintInfo((prevState) => ({
-        ...prevState,
-        totalSupply: info.web3.utils.hexToNumberString(result),
-      }));
-    } catch (err) {
-      console.log(err);
-    }
-  }
 
   const mint = async () => {
     if(accounts && accounts[0]){
@@ -80,9 +43,10 @@ const Mint = ({ confirmTransaction }) => {
       data: info.contract.methods.mint().encodeABI(),
     };
     console.log(info.web3.utils.fromWei(params.value));
-    confirmTransaction(params, 'Mint')
+    const res = await confirmTransaction(params, 'Mint')
+    // console.log('res:' + res);
     }else{
-      alert('connct your wallet to mint')
+      toast.success('so easy', {theme: "dark"})
     }
   };
 
@@ -103,7 +67,6 @@ const Mint = ({ confirmTransaction }) => {
     clearTimeout(timeoutId.current);
     setActiveModal("");
   };
-  // console.log(Number(info.web3?.utils.fromWei(mintInfo.cost, "ether")));
   return (
     <div className="mint">
       {activeModal === "confirmation" && (
@@ -129,9 +92,11 @@ const Mint = ({ confirmTransaction }) => {
           <div className="mint-details">
             <div className="mint-price">
               <div>
-                {Number(
+                {mintInfo.cost !== '0'? Number(
                   info.web3?.utils.fromWei(mintInfo.cost, "ether")
-                ).toFixed(3)}
+                ).toFixed(3):
+                <div className="loader-small" style={{borderTop: '1px solid #ffffff', height: '16px'}}></div>
+                }
               </div>
               <div className="mint-coint">
                 <img alt="" src={mintCoinIcon} />
@@ -142,7 +107,9 @@ const Mint = ({ confirmTransaction }) => {
               <MainBtn txt='MINT' func={mint}/>
             </div>
             <div className="mint-amount-players">
-              <div>{`${mintInfo.totalSupply}/${info.contractJSON.total_supply}`}</div>
+              <div>{mintInfo.totalSupply !== '0'?`${mintInfo.totalSupply}/${info.contractJSON.total_supply}`:
+              <div><div className="loader-small" style={{borderTop: '1px solid #ffffff', height: '16px'}}></div>/{info.contractJSON.total_supply}</div>}
+              </div>
               <div>
                 {(accounts && accounts[0])
                   ? `${String(accounts[0]).substring(0, 6)}...${String(

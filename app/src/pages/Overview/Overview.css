@@ -9,12 +9,12 @@
 .overview-header {
   position: absolute;
   transform: translate(-50%);
-  top: 8%;
+  top: 13%;
   left: 50%;
-  height: 23%;
+  height: 13%;
 }
 
-.overview-main-header {
+/* .overview-main-header {
   position: absolute;
   transform: translate(-50%, -50%);
   top: 37%;
@@ -24,11 +24,11 @@
   line-height: 42px;
   color: #ffffff;
   text-shadow: 2px 2px 4px rgb(0 0 0 / 10%), -2px -2px 4px rgb(0 0 0 / 10%);
-}
+} */
 .overview-rabbit-header {
   position: absolute;
   transform: translate(-50%, -50%);
-  top: 64%;
+  top: 38%;
   left: 20%;
   font-weight: 700;
   font-size: 1.25rem;
@@ -38,7 +38,7 @@
 .overview-turtle-header {
   position: absolute;
   transform: translate(-50%, -50%);
-  top: 64%;
+  top: 38%;
   left: 82.5%;
   font-weight: 600;
   font-size: 1.25rem;
@@ -49,7 +49,7 @@
 .overview-score {
   position: absolute;
   transform: translate(-50%, -50%);
-  top: 68%;
+  top: 47%;
   left: 50%;
   font-weight: 700;
   font-size: 1.7rem;
@@ -67,7 +67,7 @@
 .overview-all-data {
   position: absolute;
   transform: translate(-50%, -50%);
-  top: 44%;
+  top: 40%;
   left: 50%;
   font-weight: 600;
   font-size: 20px;
@@ -99,12 +99,12 @@
 }
 
 .overview-all-players {
-  height: 30%;
+  height: 32%;
   width: 90%;
   position: absolute;
   transform: translateX(-50%);
   left: 50%;
-  top: 58%;
+  top: 56%;
   background: rgba(217, 217, 217, 0.2);
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25), -4px -4px 8px rgba(0, 0, 0, 0.25);
   padding: 1.5%;

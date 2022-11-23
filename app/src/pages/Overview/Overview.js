@@ -16,7 +16,8 @@ import PlayersList from "../../components/PlayersList/PlayersList";
 import filterRabbits from "../../assets/pic/filter-rabbits.png";
 import filterTurtles from "../../assets/pic/filter-turtles.png";
 import filterMyPlayers from "../../assets/pic/filter-my-players.png";
-import filterDead from "../../assets/pic/empty-btn.png";
+import filterDead from "../../assets/pic/filter-dead-players.png";
+import filterAllPlayers from "../../assets/pic/filter-all-players.png";
 
 const Overview = () => {
   const [gameInfo, setGameInfo] = useState([0, 0, 0, 0, 0, 0, 0, 0]);
@@ -25,7 +26,8 @@ const Overview = () => {
   const [filter, setFilter] = useState("");
   const playersData = useSelector(selectAllPlayers);
   const { accounts } = useWeb3React();
-  const [playersToShow, setPlayersToShow] = useState(playersData);
+  const [playersToShow, setPlayersToShow] = useState([]);
+  // const [playersData, setPlayersData] = useState([]);
   const pastEvents = useSelector(selectAllPastEvents);
 
   useEffect(() => {
@@ -38,7 +40,12 @@ const Overview = () => {
 
   useEffect(() => {
     filterPlayers();
-  }, [filter, playersData]);
+    getGameInfo();
+  }, [playersData]);
+
+  useEffect(() => {
+    filterPlayers();
+  }, [filter]);
 
   const getUpgrades = () => {
     let upgrades = [8, 2, 13, 17];
@@ -62,7 +69,7 @@ const Overview = () => {
   };
 
   const setNewFilter = (newFilter) => {
-    if (newFilter === filter) {
+    if (newFilter === filter || !newFilter) {
       setFilter("");
       return;
     }
@@ -116,12 +123,11 @@ const Overview = () => {
       console.log(err);
     }
   };
-  // console.log(gameInfo);
+  // console.log(playersData, playersToShow);
   return (
     <div className="overview">
       <div className="overview-header">
         <img alt="" src={headerImg} />
-        <div className="overview-main-header">OVERVIEW</div>
         <div className="overview-rabbit-header">TEAM RABBIT</div>
         <div className="overview-turtle-header">TEAM TURTLE</div>
         <div className="overview-score">
@@ -162,7 +168,9 @@ const Overview = () => {
         </div>
       </div>
       <div className="overview-all-players">
-        <PlayersList playersToShow={playersToShow} />
+        {playersData.length? <PlayersList playersToShow={playersToShow} />:
+        <div className="player-list"><div className="loader-container" style={{height: '40%'}}><div className="loader"></div></div></div>
+        }
         <div className="players-filter">
           <img
             className={filter === "Turtle" ? "active" : ""}
@@ -181,6 +189,12 @@ const Overview = () => {
             alt=""
             src={filterMyPlayers}
             onClick={() => setNewFilter("Mine")}
+          />
+          <img
+            className={filter === "" ? "active" : ""}
+            alt=""
+            src={filterAllPlayers}
+            onClick={() => setNewFilter("")}
           />
           <img
             className={filter === "Dead" ? "active" : ""}

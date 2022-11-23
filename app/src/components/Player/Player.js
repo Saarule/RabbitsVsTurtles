@@ -2,8 +2,8 @@ import React from 'react'
 
 import './player.css'
 
-const Player = ({player, onClickFunc, height}) => {
-  
+const Player = ({player, onClickFunc, height, onHover}) => {
+
   const getStyle = (player) => {
     if (player.player.playerType === "Turtle")
       return {
@@ -21,6 +21,8 @@ const Player = ({player, onClickFunc, height}) => {
           key={player.player.name}
           className="player-display"
           onClick={onClickFunc}
+          onMouseEnter={onHover?()=>onHover(player):()=>{}}
+          onMouseLeave={onHover?()=>onHover(null):()=>{}}
           style={{height}}
         >
           <img alt="" src={player.image} />

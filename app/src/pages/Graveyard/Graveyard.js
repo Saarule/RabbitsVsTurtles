@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useWeb3React } from "@web3-react/core";
 import { selectAllPlayers } from "../../features/playersSlice";
 import { useSelector } from "react-redux";
@@ -12,10 +12,21 @@ import MainBtn from "../../components/MainBtn/MainBtn";
 const Graveyard = ({confirmTransaction}) => {
   const [choosenPlayer, setChoosenPlayer] = useState();
   const [activeStage, setActiveStage] = useState("choosePlayer");
+  const [err, setErr] = useState('');
+  const [playersData, setPlayersData] = useState([]);
   const { accounts, provider } = useWeb3React();
   const revivePlayerCost = "500000000000000000000";
-  const playersData = useSelector(selectAllPlayers).filter(player=>!player.player.alive)
+  const players = useSelector(selectAllPlayers)
   const info = useSelector(selectAllInfo)
+
+  useEffect(()=>{
+    let filterPlayers = players.filter(
+      (player) =>{ 
+        if(choosenPlayer?.id === player.id) setChoosenPlayer(player)
+        return !player.player.alive
+      });
+      setPlayersData(filterPlayers)
+  },[players])
 
   const setChoosen = (choosen) => {
     setChoosenPlayer(choosen);
@@ -31,12 +42,8 @@ const Graveyard = ({confirmTransaction}) => {
         .revivePlayer(choosenPlayer.player.name.split("#")[1])
         .encodeABI(),
     };
-    confirmTransaction(params, 'Revive')
-    try {
-      const txHash = await provider.getSigner().sendTransaction(params);
-    } catch (err) {
-      console.log(err);
-    }
+    const res = confirmTransaction(params, 'Revive')
+    if(res) setErr('')
   };
 
   return (

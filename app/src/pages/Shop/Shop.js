@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useWeb3React } from "@web3-react/core";
 import { selectAllPlayers } from "../../features/playersSlice";
 import { useSelector } from "react-redux";
@@ -9,8 +9,6 @@ import Introduction from "../../components/Introduction/Introduction";
 import Product from "../../components/Product/Product";
 import ChoosePlayer from "../../components/ChoosePlayer/ChoosePlayer";
 import UpgradeConfirm from "../../components/UpgradeConfirm/UpgradeConfirm";
-import WaitingToConnect from "../../components/WaitingToConnect/WaitingToConnect";
-import Notification from "../../components/Notification/Notification";
 
 const Shop = ({ confirmTransaction }) => {
   const products = [
@@ -31,11 +29,23 @@ const Shop = ({ confirmTransaction }) => {
   const [activeStage, setActiveStage] = useState("store");
   const [choosenPlayer, setChoosenPlayer] = useState();
   const [choosenUpgrade, setChoosenUpgrade] = useState();
+  const [err, setErr] = useState(null);
+  const [playersData, setPlayersData] = useState(null);
   const {accounts, provider} = useWeb3React();
-  const playersData = useSelector(selectAllPlayers).filter(player=>player.player.alive)
+  const players = useSelector(selectAllPlayers)
   const info = useSelector(selectAllInfo)
 
+  useEffect(()=>{
+    let filterPlayers = players.filter(
+      (player) =>{ 
+        if(choosenPlayer?.id === player.id) setChoosenPlayer(player)
+        return player.player.alive
+      });
+      setPlayersData(filterPlayers)
+  },[players])
+
   const setChoosen = (choosen) => {
+    setErr(null)
     if (typeof choosen === "number") {
       setChoosenUpgrade(choosen);
       if (!choosenPlayer) setActiveStage("choosePlayer");
@@ -51,6 +61,7 @@ const Shop = ({ confirmTransaction }) => {
     setChoosenPlayer('')
     setChoosenUpgrade('')
     setActiveStage('store')
+    setErr(null)
   }
 
   const buyUpgrade = async () => {
@@ -61,7 +72,7 @@ const Shop = ({ confirmTransaction }) => {
       value: "",
       data: "",
     };
-    console.log(Number(choosenPlayer.player.name.split('#')[1]));
+    // console.log(Number(choosenPlayer.player.name.split('#')[1]));
     switch (choosenUpgrade) {
       case 0:
         params.value = String(
@@ -102,7 +113,9 @@ const Shop = ({ confirmTransaction }) => {
       default:
         return;
     }
-    confirmTransaction(params, desc)
+    const res = await confirmTransaction(params, desc)
+    if(res) setErr('insufficient funds')
+    else setErr(null)
   };
 
   return (
@@ -155,6 +168,7 @@ const Shop = ({ confirmTransaction }) => {
           setActiveStage={setActiveStage}
           resetState={resetState}
           buyUpgrade={buyUpgrade}
+          err={err}
         />
       )}
     </div>

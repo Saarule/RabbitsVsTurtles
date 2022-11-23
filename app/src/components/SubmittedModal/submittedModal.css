@@ -5,9 +5,9 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  height: 53%;
+  height: 56%;
   max-width: 98vw;
-  aspect-ratio: 1.1/1;
+  aspect-ratio: 1.05/1;
   z-index: 1;
   display: flex;
   border-radius: 40px;
@@ -15,6 +15,7 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
+  padding-bottom: 20px;
 }
 
 .submitted-exit {

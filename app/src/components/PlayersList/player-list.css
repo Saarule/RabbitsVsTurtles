@@ -5,4 +5,5 @@
     overflow-y: auto;
     row-gap: 3%;
     column-gap: 2%;
+    width: -webkit-fill-available
   }

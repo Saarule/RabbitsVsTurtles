@@ -11,7 +11,7 @@ const WaitingToConnect = ({closeFunction,header,subHeader,orangetxt,footer,loadi
 
   useEffect(()=>{
     if(accounts){
-      if(accounts[0]) closeFunction()
+      if(accounts[0] && footer) closeFunction()
     } 
   },[accounts])
 

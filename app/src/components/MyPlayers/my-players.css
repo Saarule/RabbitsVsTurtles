@@ -1,0 +1,63 @@
+.my-players{
+    background: linear-gradient(225.23deg, #0F0C29 -3.27%, #0F0C29 -3.26%, #302B63 47.48%, #24243E 103.26%);
+    border-radius: 16px;
+    z-index: 5;
+    position: absolute;
+    bottom: 8.5%;
+    left: 1.5%;
+    box-shadow: rgb(51 53 72 / 4%) 8px 12px 20px, rgb(51 53 72 / 2%) 4px 6px 12px, rgb(51 53 72 / 4%) 4px 4px 8px;
+    height: 48%;
+    aspect-ratio: 1/1.2;
+    color: #000000;
+    transition: 0.3s;
+    font-size: 1em;
+}
+
+.my-players-header{
+    display: flex;
+    height: 16%;
+    align-items: center;
+    padding: 3% 8%;
+}
+.my-players-sort{
+    margin-left: auto;
+    height: 80%;
+    outline: none;
+    border: 1px solid #fff;
+    background: none;
+    color: #fff;
+    border-radius: 4px;
+    font-size: 0.8em;
+    width: 42%;
+}
+
+.my-fitler-rabbit{
+    margin-left: 5%;
+    height: 90%;
+    cursor: pointer;
+}
+.my-fitler-turtle{
+    height: 90%;
+    cursor: pointer;
+}
+.my-players-list{
+    height: 84%;
+
+}
+.my-player{
+    height: 20%;
+    position: relative;
+}
+.my-player-frame{
+    height: 75%;
+    position: relative;
+    width: fit-content;
+}
+.my-player-img{
+    height: 85%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: -1;
+}

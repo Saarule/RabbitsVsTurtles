@@ -5,11 +5,13 @@ import "./wallet-details.css";
 import darkmodeSun from "../../assets/pic/darkmode-sun.png";
 import darkmodeMoon from "../../assets/pic/darkmode-moon.png";
 import Logout from "../Logout/Logout";
+import Transactions from "../Transactions/Transactions";
 
 const WalletDetails = ({balance, setIsWalletDetails, setIsDarkMode, isDarkMode, setIsLogout }) => {
 
   const { connector, accounts } = useWeb3React();
   const [isCopy, setIsCopy] = useState(false);
+  const [isTransaction, setIsTransaction] = useState(false);
 
 
   async function copyTextToClipboard() {
@@ -37,6 +39,7 @@ const WalletDetails = ({balance, setIsWalletDetails, setIsDarkMode, isDarkMode, 
       }
       onClick={(e) => e.stopPropagation()}
     >
+      {isTransaction && <Transactions isDarkMode={isDarkMode}/>}
       <div className="wallet-header">
         <div className="header-profile">
           <div className="profile-pic">
@@ -114,7 +117,7 @@ const WalletDetails = ({balance, setIsWalletDetails, setIsDarkMode, isDarkMode, 
         </div>
       </div>
       <div className="wallet-details-balance">
-        <div className="balance-matic">{`${balance} MATIC`}</div>
+        <div className="balance-matic">{balance&&accounts?.length ?`${balance} MATIC`:<div><div className="loader-small"></div> MATIC</div>}</div>
         <div className="balance-usd">$0.00 USD</div>
       </div>
       <div className="wallet-details-footer">
@@ -123,7 +126,7 @@ const WalletDetails = ({balance, setIsWalletDetails, setIsDarkMode, isDarkMode, 
           style={isDarkMode ? { border: "solid 1px #ffffff" } : {}}
         ></div>
         <div className="wallet-details-actions">
-          <div className="wallet-details-action">Transactions</div>
+          <div className="wallet-details-action" onClick={()=>setIsTransaction(!isTransaction)}>Transactions</div>
           <div className="wallet-details-action-icons">
             <svg
               width="11"

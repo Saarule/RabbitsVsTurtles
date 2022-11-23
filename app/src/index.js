@@ -5,6 +5,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { Web3ReactProvider } from "@web3-react/core";
 import { HashRouter } from "react-router-dom";
+import { ToastContainer} from 'react-custom-alert';
 import {
   networkConnection,
   injectedConnection,
@@ -16,10 +17,8 @@ import { Provider } from "react-redux";
 import { store } from "./features/store";
 import { fetchPlayers } from "./features/playersSlice";
 import { fetchPastEvents } from "./features/pastEventsSlice";
-// import { fetchInfo } from './features/infoSlice';
 
 store.dispatch(fetchPlayers(137));
-store.dispatch(fetchPastEvents())
 
 const connectors = [
   [injectedConnection.connector, injectedConnection.hooks],
@@ -37,6 +36,7 @@ root.render(
       <Web3ReactProvider connectors={connectors}>
         <HashRouter>
           <App />
+          <ToastContainer floatingTime={5000} />
         </HashRouter>
       </Web3ReactProvider>
     </Provider>

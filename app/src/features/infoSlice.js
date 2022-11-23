@@ -1,16 +1,22 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import Web3 from "web3";
 import contractJSON from "../contracts/contract.json";
+import abi from '../contracts/abi.json'
 
 const web3 = new Web3(
-  "https://polygon-mainnet.infura.io/v3/0d9bcb9c917745aeb37f0cb0283b203d"
+  "https://polygon-mainnet.g.alchemy.com/v2/2arFR52wPyKbFgPTwclErfm31zuLIW-y"
 );
-const contract = new web3.eth.Contract(contractJSON.abi, contractJSON.address);
+
+const web3ws = new Web3(new Web3.providers.WebsocketProvider('wss://polygon-mainnet.g.alchemy.com/v2/tK8mrIdgSeLH45dkUinsVe1VOrAudqY2'));
+
+const contract = new web3.eth.Contract(abi.abi, contractJSON.address);
+const contractWS = new web3ws.eth.Contract(abi.abi, contractJSON.address);
 
 const initialState = {
   info: {
     web3,
     contract,
+    contractWS,
     contractJSON,
   }
 };

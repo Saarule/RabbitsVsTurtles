@@ -8,6 +8,7 @@ import btn from "../../assets/pic/mint-btn.png";
 import filterRabbits from "../../assets/pic/filter-rabbits.png";
 import filterTurtles from "../../assets/pic/filter-turtles.png";
 import filterMyPlayers from "../../assets/pic/filter-my-players.png";
+import filterAllPlayers from "../../assets/pic/empty-btn.png";
 import PlayersList from "../PlayersList/PlayersList";
 
 const ChoosePlayer = ({ playersData, setChoosen }) => {
@@ -21,7 +22,7 @@ const ChoosePlayer = ({ playersData, setChoosen }) => {
   }, [filter, playersData]);
 
   const setNewFilter = (newFilter) => {
-    if (newFilter === filter) {
+    if (newFilter === filter || !newFilter) {
       setFilter("");
       return;
     }
@@ -71,7 +72,7 @@ const ChoosePlayer = ({ playersData, setChoosen }) => {
   // console.log(playersToShow);
   if (playersToShow.length === 0)
     return (
-      <div className="loader-container">
+      <div className="loader-container" style={{height: '24%'}}>
           <div className="loader"></div>
         </div>
     );
@@ -120,6 +121,12 @@ const ChoosePlayer = ({ playersData, setChoosen }) => {
             alt=""
             src={filterMyPlayers}
             onClick={() => setNewFilter("Mine")}
+          />
+          <img
+            className={filter === "" ? "active" : ""}
+            alt=""
+            src={filterAllPlayers}
+            onClick={() => setNewFilter("")}
           />
         </div>
       </div>

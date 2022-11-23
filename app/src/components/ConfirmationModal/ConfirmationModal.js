@@ -34,8 +34,6 @@ const ConfirmationModal = ({closeFunc, confirmFanc, params}) => {
         }
     }
 
-    console.log(estimateGasFee);
-
   return (
     <div className="confirmation-modal" onClick={(e)=>{e.stopPropagation()}}>
       <div className="error-exit" onClick={closeFunc}>

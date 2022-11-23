@@ -14,8 +14,10 @@
   position: relative;
   top: 16%;
   cursor: pointer;
+  display: flex;
+  align-items: center;
 }
-.footer-side:hover{
+.right:hover{
   transform: scale(1.04);
 }
 .footer-bar img {
@@ -48,4 +50,18 @@
 }
 .footer-links>*:hover{
   transform: scale(1.07);
+}
+.footer-my-warriors{
+  height: 100%;
+position: relative;
+margin-left: 5%;
+}
+.footer-my-warriors:hover{
+transform: scale(1.04);
+}
+.footer-sound{
+  height: 50%;
+}
+.footer-sound:hover{
+  transform: scale(1.05);
 }

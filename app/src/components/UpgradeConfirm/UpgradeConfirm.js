@@ -2,14 +2,15 @@ import React from 'react'
 
 import './upgrade-confirm.css'
 import MainBtn from '../../components/MainBtn/MainBtn'
-import BackBtn from '../BackBtn/BackBtn'
+import arrowBack from '../../assets/pic/arrow-left-btn.png'
 
-const UpgradeConfirm = ({player, product, resetState, buyUpgrade, setActiveStage}) => {
+const UpgradeConfirm = ({player, product, resetState, buyUpgrade, setActiveStage, err = null}) => {
   return (
     <div className='upgrade-confirm'>
         <div className='shop-frame-header'>STORE</div>
+        <div className='go-back-btn' onClick={resetState}><img alt='' src={arrowBack}/></div>
         <div className='upgrade-frame'>
-          <div className='go-back-btn'><BackBtn txt='Back' func={resetState}/></div>
+          {/* <div className='go-back-btn'><BackBtn txt='Back' func={resetState}/></div> */}
           <div className='upgrade-product'>
             <div>Your choose to give</div>
             <div className='bold-txt'>{`“${product.header}”`}</div>
@@ -19,6 +20,7 @@ const UpgradeConfirm = ({player, product, resetState, buyUpgrade, setActiveStage
           <div className='upgrade-player-img' onClick={()=>setActiveStage('choosePlayer')}><img alt='' src={player.image}/></div>
           <div className='buy-btn'><MainBtn txt='Buy' func={buyUpgrade}/></div>
         </div>
+        {err && <div className='upgrade-err'>{err}</div>}
     </div>
   )
 }
