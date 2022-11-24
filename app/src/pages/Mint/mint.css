@@ -1,0 +1,116 @@
+.mint {
+  background: #c0c0c0 url("../../assets/pic/mint-background.png");
+  height: 100%;
+  width: 100%;
+  background-position: 50% !important;
+  background-size: cover !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  color: #ffffff;
+}
+
+.mint-data {
+  max-width: 90%;
+  height: 40%;
+  max-height: 470px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0px 10px;
+  font-weight: 700;
+  font-size: 0.8125rem;
+  line-height: 16px;
+  margin-top: 2%;
+  aspect-ratio: 1.1/1;
+  border-radius: 5%;
+}
+
+.mint-nft {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 50%;
+}
+
+.mint-nft img{
+  width: 100%;
+}
+
+.mint-details {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mint-price{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 33%
+}
+
+.mint-coint {
+  display: flex;
+  align-items: center;
+}
+
+.mint-btn {
+  position: relative;
+  font-weight: 800;
+  font-size: 0.9375rem;
+  line-height: 18px;
+  color: #ffdd6e;
+  cursor: pointer;
+  width: 33%;
+  display: flex;
+  align-items: center;
+  justify-content: center;  
+}
+
+.mint-btn img{
+  width: 100%;
+}
+
+.mint-mint {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.mint-amount-players {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 33%;
+  height: 100%;
+  gap: 8%;
+}
+
+.details-container{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  flex-grow: 1;
+}
+
+.mint-rock{
+  max-width: 90%;
+  height: 24%;
+  max-height: 470px;
+}
+
+.mint-rock img{
+  height: 100%;
+  width: 100%;
+}

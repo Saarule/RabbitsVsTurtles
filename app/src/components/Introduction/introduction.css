@@ -1,0 +1,52 @@
+.introduction {
+  background: url("../../assets/pic/frame.png");
+  height: 670px;
+  max-width: 690px;
+  width: 85%;
+  /* background-position: 50% !important; */
+  background-size: 100% 100%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 130px;
+}
+
+.frame-header {
+  font-weight: 700;
+  font-size: 2.5rem;
+  line-height: 48px;
+  color: #ffd36b;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  margin-top: 10px;
+}
+
+.frame-txt {
+  font-weight: 500;
+  font-size: 1.5625rem;
+  line-height: 30px;
+  text-align: center;
+  color: #ffffff;
+}
+
+.frame-btn {
+  position: relative;
+  font-weight: 800;
+  font-size: 1.125rem;
+  line-height: 22px;
+  color: #ffd36b;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  bottom: 70px;
+  cursor: pointer;
+}
+
+.frame-btn div {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+}

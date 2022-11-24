@@ -1,0 +1,9 @@
+.players-list {
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    overflow-y: auto;
+    row-gap: 3%;
+    column-gap: 2%;
+    width: -webkit-fill-available
+  }

@@ -1,0 +1,108 @@
+.my-players {
+  background: linear-gradient(
+    225.23deg,
+    #0f0c29 -3.27%,
+    #0f0c29 -3.26%,
+    #302b63 47.48%,
+    #24243e 103.26%
+  );
+  border-radius: 16px;
+  z-index: 5;
+  position: absolute;
+  bottom: 8.5%;
+  left: 1.5%;
+  box-shadow: rgb(51 53 72 / 4%) 8px 12px 20px, rgb(51 53 72 / 2%) 4px 6px 12px,
+    rgb(51 53 72 / 4%) 4px 4px 8px;
+  height: 48%;
+  aspect-ratio: 1/1.2;
+  color: #000000;
+  transition: 0.3s;
+  font-size: 1em;
+}
+
+.my-players-header {
+  display: flex;
+  height: 16%;
+  align-items: center;
+  padding: 3% 8%;
+  justify-content: space-between;
+  border-bottom: 1px solid #80808073;
+}
+.my-players-header>*{
+  height: 90%;
+  cursor: pointer;
+}
+.my-players-header>*:hover{
+  transform: scale(1.05);
+}
+
+.my-players-list {
+  height: 84%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 2% 1% 0%;
+  gap: 6%;
+  overflow-y: auto;
+}
+.my-player {
+  height: 44%;
+  position: relative;
+}
+.my-player-frame {
+  height: 90%;
+  position: relative;
+  width: fit-content;
+}
+.my-player-img {
+  height: 85%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+}
+.empty-background {
+  background: linear-gradient(
+    132.07deg,
+    #bf4040 0%,
+    #cc6677 35.49%,
+    #bf406a 70.98%
+  );
+  top: 8%;
+  bottom: 8%;
+  left: 8%;
+  right: 8%;
+  position: absolute;
+  z-index: -1;
+}
+.mint-new-player{
+    position: absolute;
+    transform: translate(-50%,-50%);
+    top: 50%;
+    left: 50%;
+    color: #fff;
+    font-size: 0.8em;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 18% 17%;
+}
+
+.my-player-name{
+    position: absolute;
+    top: 82%;
+    height: 25%;
+    left: 18%;
+}
+.my-player-id{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    color: #fff;
+    font-size: 0.9em;
+    font-weight: 500;
+}

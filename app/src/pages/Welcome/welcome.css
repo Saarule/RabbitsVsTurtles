@@ -1,0 +1,61 @@
+.welcome {
+  background: #c0c0c0 url("../../assets/pic/welcome-background.png");
+  height: 100vh;
+  width: 100vw;
+  background-position: 50% !important;
+  background-size: cover !important;
+  background-repeat: repeat;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  align-items: center;
+  overflow-y: auto;
+  gap: 30px;
+  /* overflow: hidden; */
+  padding: 0 30px;
+}
+
+.welcome-connect {
+  background: #fffff1;
+  border-radius: 11%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+  margin: 20px 0;
+  padding: 0 50px;
+  height: 65%;
+  aspect-ratio: 1/1.2;
+  max-width: 95vw;
+  cursor: pointer;
+}
+
+.welcome-connect:hover{
+  transform: scale(1.05);
+  border: 3px solid gold;
+  box-shadow: 1px 1px 9px 5px goldenrod;
+}
+
+.connect-header {
+  font-size: 2rem;
+  line-height: 39px;
+  margin-top: 10%;
+  font-weight: 600;
+}
+
+.connect-context{
+    font-size: 1.25rem;
+    line-height: 1.6rem;
+    margin-top: 7%;
+    max-width: 337px;
+}
+
+.connect-pic{
+height: 50%;
+}
+.connect-pic img{
+    width: 100%;
+    height: 100%;
+}
+

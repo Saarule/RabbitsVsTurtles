@@ -1,0 +1,77 @@
+.main-header {
+  background-color: rgba(163, 163, 163, 0.55);
+  height: 64px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  gap: 20px;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 1.25rem;
+  line-height: 24px;
+  letter-spacing: 0.1em;
+}
+
+.network {
+  display: flex;
+  width: 160px;
+  align-items: center;
+  justify-content: space-evenly;
+  cursor: pointer;
+  padding: 9px;
+  border-radius: 20px;
+  gap: 10px;
+}
+
+.network-name {
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 24px;
+}
+
+.balance {
+  background: rgba(255, 209, 196, 0.25);
+  height: 51px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 5px;
+  cursor: pointer;
+  padding: 0 10px;
+}
+
+.user {
+  background: rgba(255, 209, 196, 0.25);
+  border-radius: 20px;
+  width: 224px;
+  height: 51px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  cursor: pointer;
+}
+
+.profile-pic {
+  background-color: aqua;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+}
+
+.more-options{
+    margin-right: 20px;
+    cursor: pointer;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    padding: 19px 10px;
+    border-radius: 10px;
+}
+
+.hover:hover{
+  background: rgba(255, 209, 196, 0.5);
+}

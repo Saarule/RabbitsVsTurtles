@@ -1,0 +1,92 @@
+.header {
+  height: 12%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  display: flex;
+  align-items: stretch;
+  padding: 0px 10px;
+  z-index: 2;
+  flex-wrap: wrap;
+}
+.header-links {
+  flex-grow: 1;
+  width: 33%;
+  display: flex;
+  gap: 3%;
+  align-items: center;
+  height: 88%;
+  min-width: 285px;
+}
+.header-links > * {
+  height: 80%;
+  cursor: pointer;
+}
+.header-links > *:hover {
+  transform: scale(1.07);
+}
+
+.header-logo {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  width: 33%;
+  cursor: pointer;
+  min-width: 285px;
+  height: 100%;
+}
+.header-logo:hover{
+  transform: scale(1.03);
+}
+.header-account {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  width: 33%;
+  height: 12vh;
+  min-width: 285px;
+}
+.header-account-container {
+  height: 80%;
+  position: relative;
+  cursor: pointer;
+}
+.header-account-container:hover{
+  transform: scale(1.04);
+}
+.header-account-container div {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.1em;
+  width: max-content;
+}
+.header-events{
+ height: 45%;
+ cursor: pointer;
+ margin-right: 3%;
+ position: relative;
+}
+.header-events:hover{
+  transform: scale(1.07);
+}
+
+.notification-unread{
+  position: absolute;
+    top: -4%;
+    left: 55%;
+    background: red;
+    border-radius: 50%;
+    height: 49%;
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: 800;
+    font-size: 0.7em;
+}

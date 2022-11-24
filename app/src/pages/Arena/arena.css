@@ -1,0 +1,72 @@
+.arena {
+  background: #c0c0c0 url("../../assets/pic/arena-background.png");
+  height: 100vh;
+  width: 100vw;
+  background-position: 50% !important;
+  background-size: cover !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 7.5%;
+}
+
+.arena-header {
+  height: 11%;
+  position: relative;
+}
+.arena-header div {
+  font-family: "CuteFrog";
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 28%;
+  left: 50%;
+  font-size: 1.75rem;
+  color: #ffd36b;
+  font-weight: 400;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.arena-players {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  height: 85%;
+}
+
+.turtle-player {
+  height: 80%;
+  max-width: 48vw;
+}
+
+.switch-position {
+  position: absolute;
+  top: 24%;
+  cursor: pointer;
+  height: 8%;
+}
+
+.switch-position:hover {
+  transform: scale(1.07);
+}
+
+.arena-attack-btn {
+  position: absolute;
+  top: 49%;
+  height: 7%;
+}
+
+.all-players-arena {
+  height: 30%;
+  width: 40%;
+  position: absolute;
+  transform: translateX(-50%);
+  left: 50%;
+  top: 60%;
+  background: rgba(217, 217, 217, 0.2);
+  box-shadow: 4px 4px 8px rgb(0 0 0 / 25%), -4px -4px 8px rgb(0 0 0 / 25%);
+  padding: 1.5%;
+  gap: 1%;
+  display: flex;
+  justify-content: space-between;
+  min-width: 300px;
+}

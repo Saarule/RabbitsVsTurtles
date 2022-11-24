@@ -1,0 +1,106 @@
+.choose-player {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.choosen-player {
+  background: rgba(217, 217, 217, 0.2);
+  box-shadow: 4px 4px 8px rgb(0 0 0 / 25%), -4px -4px 8px rgb(0 0 0 / 25%);
+  height: 38%;
+  position: absolute;
+  top: 32%;
+  aspect-ratio: 1/1;
+  padding: 3%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.choose-player img {
+  height: 100%;
+}
+
+.arrow-right {
+  position: absolute;
+  right: 0%;
+  top: 40%;
+  height: 17%;
+  cursor: pointer;
+}
+.arrow-left {
+  position: absolute;
+  left: 0%;
+  top: 40%;
+  height: 17%;
+  cursor: pointer;
+}
+.select {
+  position: relative;
+  height: 20%;
+  cursor: pointer;
+  top: -3%;
+}
+.select:hover{
+  transform: scale(1.05);
+}
+.select div {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  font-weight: 800;
+  font-size: 1.2rem;
+  line-height: 29px;
+  color: #ffffff;
+}
+
+.player-name {
+  border-radius: 2px;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 11%;
+  left: 50%;
+  padding: 2% 6%;
+  color: #ffffff;
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: 3px;
+}
+
+.all-players {
+  height: 36%;
+  width: 90%;
+  position: absolute;
+  transform: translateX(-50%);
+  left: 50%;
+  top: 53%;
+  background: rgba(217, 217, 217, 0.2);
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25), -4px -4px 8px rgba(0, 0, 0, 0.25);
+  padding: 1.5%;
+  gap: 1%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.players-filter {
+  height: 23%;
+  display: flex;
+  flex-direction: column;
+  gap: 20%;
+  padding: 0.5%;
+}
+
+.players-filter img {
+  cursor: pointer;
+}
+.players-filter .active {
+  background: #ffffff;
+  border-radius: 30%;
+}
+.players-filter img:hover {
+  transform: scale(1.05);
+}
+
+.player-display img:hover {
+  transform: scale(1.05);
+}

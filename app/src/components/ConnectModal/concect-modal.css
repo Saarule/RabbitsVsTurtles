@@ -1,0 +1,91 @@
+.modal-container {
+  background-color: #fffff1;
+  color: black;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  height: 70%;
+  z-index: 1;
+  max-width: 97vw;
+  display: flex;
+  border-radius: 40px;
+  flex-direction: column;
+  aspect-ratio: 1.1/1;
+  }
+  
+  .modal-header {
+    position: relative;
+  }
+  
+  .connect-exit {
+    position: absolute;
+    top: 55%;
+    right: 7%;
+    cursor: pointer;
+    height: 35%;
+  }
+  .modal-exit:hover{
+   transform: scale(1.07);
+  }
+  
+  .modal-title {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 1.3rem;
+    line-height: 1.875rem;
+    margin-left: 10%;
+    margin-top: 5%;
+  }
+  
+  .modal-content {
+    display: flex;
+    flex-direction: column;
+    padding: 0px 7% 4%;
+    flex-grow: 1;
+  }
+  
+  .modal-link {
+    border: 0.5px solid #afafaf;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 14%;
+    padding-left: 8%;
+    padding-right: 2%;
+    margin-top: 6%;
+  }
+  .modal-link:hover{
+    background: rgb(221 221 221 / 25%);
+  }
+  
+  .modal-link-txt {
+    font-family: 'Inter';
+    font-size: 1.5rem;
+    line-height: 30px;
+  }
+
+  .modal-link-img{
+    height: 53%;
+    text-align: center;
+    width: 20%;
+  }
+  
+  .modal-link-footer {
+    background-color: rgba(240, 240, 240, 0.8);
+    border: 0.5px solid rgba(150, 150, 150, 0.8);
+    border-radius: 11px;
+    padding: 3% 5%;
+    margin-top: 6%;
+  }
+  .modal-link-footer span {
+    font-family: 'Inter';
+    font-size: 1rem;
+    line-height: 24px;
+    font-weight: 300;
+  }
+  

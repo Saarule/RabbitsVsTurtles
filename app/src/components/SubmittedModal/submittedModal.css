@@ -1,0 +1,66 @@
+.submitted-modal {
+  background-color: #fffff1;
+  color: black;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  height: 56%;
+  max-width: 98vw;
+  aspect-ratio: 1.05/1;
+  z-index: 1;
+  display: flex;
+  border-radius: 40px;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding-bottom: 20px;
+}
+
+.submitted-exit {
+  position: absolute;
+  right: 6%;
+  top: 7%;
+  height: 5%;
+  cursor: pointer;
+}
+.submitted-exit:hover {
+  transform: scale(1.1);
+}
+
+.submitted-icon {
+  height: 34%;
+  margin-top: 10%
+}
+
+.submitted-header {
+    font-weight: 400;
+    font-size: 1.7rem;
+    color: #000000;
+    margin-top: 4%;
+
+}
+
+.submitted-btn {
+    background: #ff6d44;
+    width: 80%;
+    border-radius: 40px;
+    height: 16%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    margin-top: 6%;
+    font-size: 1.25rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+
+.view-on-website {
+    font-weight: 700;
+    font-size: 1.125rem;
+    color: #ff6d44;
+    margin-top: 3%;
+}

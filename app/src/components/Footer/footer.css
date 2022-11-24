@@ -1,0 +1,78 @@
+.footer {
+  height: 13%;
+  width: 100%;
+  position: fixed;
+  bottom: -3%;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  padding: 0px 10px;
+  z-index: 1;
+}
+.footer-side {
+  height: 70%;
+  position: relative;
+  top: 16%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  width: 35%;
+}
+
+.footer-bar img {
+  height: 100%;
+}
+.side-txt {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  font-weight: 700;
+  font-size: 0.875rem;
+  letter-spacing: 0.1em;
+}
+.footer-links{
+  position: relative;
+    bottom: 76%;
+    height: 42%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0% 19%;
+}
+.footer-links a{
+  height: 100%;
+}
+.footer-links>*{
+  cursor: pointer;
+}
+.footer-links>*:hover{
+  transform: scale(1.07);
+}
+.footer-my-warriors{
+  height: 100%;
+position: relative;
+margin-left: 5%;
+}
+.footer-my-warriors:hover{
+transform: scale(1.04);
+}
+.footer-sound{
+  height: 50%;
+  aspect-ratio: 1.1/1;
+}
+.footer-sound:hover{
+  transform: scale(1.05);
+}
+
+.footer-network{
+  height: 100%;
+  position: relative;
+}
+.footer-network:hover{
+  transform: scale(1.05);
+}
+.right{
+  direction: rtl;
+}

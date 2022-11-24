@@ -1,0 +1,43 @@
+.network-modal{
+    position: absolute;
+    bottom: 9%;
+    background: #ffffff;
+    right: 2.4%;
+    font-size: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px 0 rgb(0 0 0 / 15%);
+    display: flex;
+    flex-direction: column;
+    height: 250px;
+    width: 270px;
+    justify-content: space-around;
+    padding: 34px 10px 10px;
+}
+
+.exit-icon{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    height: 17px;
+}
+
+.network-modal-name{
+    border-radius: 10px;
+    display: flex;
+    gap: 10px;
+    cursor: pointer;
+    transition: background-color 250ms ease 0s;
+    padding: 6px 10px;
+}
+.network-modal-name:hover{
+    background-color: rgb(180, 180, 180);
+}
+.network-active{
+    margin-left: auto;
+    height: 24px;
+}
+
+.network-icon{
+    height: 21px;
+}
