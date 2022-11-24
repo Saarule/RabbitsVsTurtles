@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { useWeb3React } from "@web3-react/core";
 import { selectAllInfo } from "../../features/infoSlice";
 import { useSelector } from "react-redux";
-import { toast } from "react-toastify";
+import { toast, Flip } from "react-toastify";
 
 import "./mint.css";
 import WaitingToConnect from "../../components/WaitingToConnect/WaitingToConnect";
@@ -44,9 +44,16 @@ const Mint = ({ confirmTransaction, mintInfo }) => {
     };
     console.log(info.web3.utils.fromWei(params.value));
     const res = await confirmTransaction(params, 'Mint')
-    // console.log('res:' + res);
+    if(res){
+      toast.warning(res.message, {
+      theme: "light",
+      position: "bottom-left",
+      autoClose: 3000,
+      transition: Flip,
+    });
+  }
     }else{
-      toast.success('so easy', {theme: "dark"})
+      toast.success('Connect your wallet', {theme: "dark"})
     }
   };
 
@@ -109,13 +116,6 @@ const Mint = ({ confirmTransaction, mintInfo }) => {
             <div className="mint-amount-players">
               <div>{mintInfo.totalSupply !== '0'?`${mintInfo.totalSupply}/${info.contractJSON.total_supply}`:
               <div><div className="loader-small" style={{borderTop: '1px solid #ffffff', height: '16px'}}></div>/{info.contractJSON.total_supply}</div>}
-              </div>
-              <div>
-                {(accounts && accounts[0])
-                  ? `${String(accounts[0]).substring(0, 6)}...${String(
-                      accounts[0]
-                    ).substring(38)}`
-                  : "Guest"}
               </div>
             </div>
           </div>

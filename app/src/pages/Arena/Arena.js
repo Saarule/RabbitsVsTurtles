@@ -6,7 +6,7 @@ import {
   getPlayersStatus,
 } from "../../features/playersSlice";
 import { selectAllInfo } from "../../features/infoSlice";
-import { toast, Zoom, Flip } from "react-toastify";
+import { toast, Flip } from "react-toastify";
 
 import "./arena.css";
 import ArenaPlayer from "../../components/ArenaPlayer/ArenaPlayer";
@@ -30,8 +30,6 @@ const Arena = ({ confirmTransaction }) => {
   const [filter, setFilter] = useState("");
   const { accounts } = useWeb3React();
   const players = useSelector(selectAllPlayers)
-  const playersStatus = useSelector(getPlayersStatus);
-  const error = useSelector(getPlayersError);
   const info = useSelector(selectAllInfo);
 
   useEffect(()=>{
@@ -76,8 +74,8 @@ const Arena = ({ confirmTransaction }) => {
     if (!choosenRabbit && !choosenTurtle) {
       toast.warning("Choose Players to Attack", {
         theme: "light",
-        position: "top-center",
-        autoClose: 1000,
+        position: "bottom-center",
+        autoClose: 1500,
         transition: Flip,
       });
       return;
@@ -85,7 +83,7 @@ const Arena = ({ confirmTransaction }) => {
     if (!choosenRabbit) {
       toast.warning("Choose Rabbit before Attacking", {
         theme: "light",
-        position: "top-center",
+        position: "bottom-center",
         autoClose: 1000,
         transition: Flip,
       });
@@ -93,7 +91,7 @@ const Arena = ({ confirmTransaction }) => {
     } else if (!choosenTurtle) {
       toast.warning("Choose Turtle before Attacking", {
         theme: "light",
-        position: "top-center",
+        position: "bottom-center",
         autoClose: 1000,
         transition: Flip,
       });
@@ -116,7 +114,12 @@ const Arena = ({ confirmTransaction }) => {
     let res = await confirmTransaction(params, "Attack");
     if (res) {
       res = res.message.split(":")[2];
-      setErr(res);
+      toast.warning(res, {
+        theme: "light",
+        position: "bottom-center",
+        autoClose: 3000,
+        transition: Flip,
+      });
     }
   };
   const setNewFilter = (newFilter) => {};
@@ -160,7 +163,6 @@ const Arena = ({ confirmTransaction }) => {
       <div className="arena-attack-btn">
         <MainBtn txt="ATTACK" func={attackPlayer} />
       </div>
-      {err && <div className="arena-err">{err}</div>}
       {onChoosePlayer && (
         <div className="outside-click" onClick={() => setOnChoosePlayer(null)}>
           <div className="all-players-arena" onClick={e=>e.stopPropagation()}>

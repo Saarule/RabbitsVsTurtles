@@ -4,7 +4,7 @@ import './upgrade-confirm.css'
 import MainBtn from '../../components/MainBtn/MainBtn'
 import arrowBack from '../../assets/pic/arrow-left-btn.png'
 
-const UpgradeConfirm = ({player, product, resetState, buyUpgrade, setActiveStage, err = null}) => {
+const UpgradeConfirm = ({player, product, resetState, buyUpgrade, setActiveStage}) => {
   return (
     <div className='upgrade-confirm'>
         <div className='shop-frame-header'>STORE</div>
@@ -20,7 +20,6 @@ const UpgradeConfirm = ({player, product, resetState, buyUpgrade, setActiveStage
           <div className='upgrade-player-img' onClick={()=>setActiveStage('choosePlayer')}><img alt='' src={player.image}/></div>
           <div className='buy-btn'><MainBtn txt='Buy' func={buyUpgrade}/></div>
         </div>
-        {err && <div className='upgrade-err'>{err}</div>}
     </div>
   )
 }

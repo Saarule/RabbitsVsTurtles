@@ -5,7 +5,6 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { Web3ReactProvider } from "@web3-react/core";
 import { HashRouter } from "react-router-dom";
-import { ToastContainer} from 'react-custom-alert';
 import {
   networkConnection,
   injectedConnection,
@@ -31,16 +30,15 @@ window.Buffer = window.Buffer || Buffer;
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <Provider store={store}>
       <Web3ReactProvider connectors={connectors}>
         <HashRouter>
           <App />
-          <ToastContainer floatingTime={5000} />
         </HashRouter>
       </Web3ReactProvider>
     </Provider>
-  </React.StrictMode>
+  // </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

@@ -16,10 +16,9 @@
   cursor: pointer;
   display: flex;
   align-items: center;
+  width: 35%;
 }
-.right:hover{
-  transform: scale(1.04);
-}
+
 .footer-bar img {
   height: 100%;
 }
@@ -61,7 +60,19 @@ transform: scale(1.04);
 }
 .footer-sound{
   height: 50%;
+  aspect-ratio: 1.1/1;
 }
 .footer-sound:hover{
   transform: scale(1.05);
+}
+
+.footer-network{
+  height: 100%;
+  position: relative;
+}
+.footer-network:hover{
+  transform: scale(1.05);
+}
+.right{
+  direction: rtl;
 }

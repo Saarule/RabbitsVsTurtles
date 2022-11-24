@@ -9,6 +9,7 @@ import Introduction from "../../components/Introduction/Introduction";
 import Product from "../../components/Product/Product";
 import ChoosePlayer from "../../components/ChoosePlayer/ChoosePlayer";
 import UpgradeConfirm from "../../components/UpgradeConfirm/UpgradeConfirm";
+import { toast, Flip } from "react-toastify";
 
 const Shop = ({ confirmTransaction }) => {
   const products = [
@@ -29,7 +30,6 @@ const Shop = ({ confirmTransaction }) => {
   const [activeStage, setActiveStage] = useState("store");
   const [choosenPlayer, setChoosenPlayer] = useState();
   const [choosenUpgrade, setChoosenUpgrade] = useState();
-  const [err, setErr] = useState(null);
   const [playersData, setPlayersData] = useState(null);
   const {accounts, provider} = useWeb3React();
   const players = useSelector(selectAllPlayers)
@@ -45,7 +45,6 @@ const Shop = ({ confirmTransaction }) => {
   },[players])
 
   const setChoosen = (choosen) => {
-    setErr(null)
     if (typeof choosen === "number") {
       setChoosenUpgrade(choosen);
       if (!choosenPlayer) setActiveStage("choosePlayer");
@@ -61,7 +60,6 @@ const Shop = ({ confirmTransaction }) => {
     setChoosenPlayer('')
     setChoosenUpgrade('')
     setActiveStage('store')
-    setErr(null)
   }
 
   const buyUpgrade = async () => {
@@ -114,8 +112,15 @@ const Shop = ({ confirmTransaction }) => {
         return;
     }
     const res = await confirmTransaction(params, desc)
-    if(res) setErr('insufficient funds')
-    else setErr(null)
+    console.log(res);
+    if(res){
+        toast.warning('Insufficient funds', {
+        theme: "light",
+        position: "bottom-left",
+        autoClose: 3000,
+        transition: Flip,
+      });
+    }
   };
 
   return (
@@ -168,7 +173,6 @@ const Shop = ({ confirmTransaction }) => {
           setActiveStage={setActiveStage}
           resetState={resetState}
           buyUpgrade={buyUpgrade}
-          err={err}
         />
       )}
     </div>

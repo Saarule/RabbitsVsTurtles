@@ -35,7 +35,8 @@ function App() {
   const [activeModal, setActiveModal] = useState("");
   const [txHash, setTxHash] = useState("");
   const [chosenConnection, setChosenConnection] = useState("");
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(true);
+  const [isNotification, setIsNotification] = useState(true);
   const [balance, setBalance] = useState("");
   const [mintInfo, setMintInfo] = useState({ cost: "0", totalSupply: '0' });
   const { provider, accounts, chainId, connector } = useWeb3React();
@@ -151,42 +152,50 @@ function App() {
               dispatch(addEvent({txt: `Player number #${event.returnValues.tokenId} just joined the game! 🥳`}))
               getCost();
               getTotal()
+              if(isNotification) toast.info(`Player number #${event.returnValues.tokenId} just joined the game! 🥳`,{ autoClose: 3000 })
             }else{
               store.dispatch(updatePlayer({contract: info.contract, playerId: event.returnValues.tokenId}))
               dispatch(addEvent({txt: `User ${event.returnValues.from} transferred player number #${event.returnValues.tokenId} to user ${event.returnValues.to}! 🤝`}))
+              if(isNotification) toast.info(`User ${event.returnValues.from} transferred player number #${event.returnValues.tokenId} to user ${event.returnValues.to}! 🤝`,{ autoClose: 3000 })
             }
             break;
           case 'Attacked':
               store.dispatch(updatePlayer({contract: info.contract, playerId: event.returnValues._eaterId}))
               store.dispatch(updatePlayer({contract: info.contract, playerId: event.returnValues._eatenId}))
               dispatch(addEvent({txt: `Player number #${event.returnValues._eaterId} attacked player number #${event.returnValues._eatenId} ! 🤯 `}))
+              if(isNotification) toast.info(`User ${event.returnValues.from} transferred player number #${event.returnValues.tokenId} to user ${event.returnValues.to}! 🤝`,{ autoClose: 3000 })
               break;
           case 'AttackIncreased':
               store.dispatch(updatePlayer({contract: info.contract, playerId: event.returnValues._playerId}))
               dispatch(addEvent({txt: `Player number #${event.returnValues._playerId} increased attack! 💪`}))
+              if(isNotification) toast.info(`Player number #${event.returnValues._playerId} increased attack! 💪`,{ autoClose: 3000 })
               break;
           case 'ArmorIncreased':
               store.dispatch(updatePlayer({contract: info.contract, playerId: event.returnValues._playerId}))
               dispatch(addEvent({txt: `Player number #${event.returnValues._playerId} increased armor! 🛡️`}))
+              if(isNotification) toast.info(`Player number #${event.returnValues._playerId} increased armor! 🛡️`)
               break;
           case 'DefenseIncreased':
               store.dispatch(updatePlayer({contract: info.contract, playerId: event.returnValues._playerId}))
               dispatch(addEvent({txt: `Player number #${event.returnValues._playerId} increased defense! 🦾`}))
+              if(isNotification) toast.info(`Player number #${event.returnValues._playerId} increased defense! 🦾`,{ autoClose: 3000 })
               break;
           case 'StaminaIncreased':
               store.dispatch(updatePlayer({contract: info.contract, playerId: event.returnValues._playerId}))
               dispatch(addEvent({txt: `Player number #${event.returnValues._playerId} increased stamina! 🏋️‍♂️`}))
+              if(isNotification) toast.info(`Player number #${event.returnValues._playerId} increased stamina! 🏋️‍♂️`,{ autoClose: 3000 })
               break;
           case 'Revived':
               store.dispatch(updatePlayer({contract: info.contract, playerId: event.returnValues._playerId}))
               dispatch(addEvent({txt: `Player number #${event.returnValues._playerId} revived back into the game! 😍 😇`}))
-            break;
+              if(isNotification) toast.info(`Player number #${event.returnValues._playerId} revived back into the game! 😍 😇`,{ autoClose: 3000 })
+              break;
           default:
             break;
         }
       });
     };
-  //  console.log(activeModal === "waitingToConnect", activeModal);
+   console.log(isNotification);
   return (
     <div className="App">
       {location.pathname !== "/" && (
@@ -195,6 +204,8 @@ function App() {
           isDarkMode={isDarkMode}
           setIsDarkMode={setIsDarkMode}
           balance={balance}
+          setIsNotification={setIsNotification}
+          isNotification={isNotification}
         />
       )}
       <Routes>
@@ -256,7 +267,7 @@ function App() {
           header={"Waiting to connect"}
           subHeader={"Confirm this connection in your wallet"}
           footer={
-            "By connecting a wallet, you agree to Mverse Terms of Service and acknowledge that you have read and understand the Mverse Protocol Disclaimer."
+            "By connecting a wallet, you agree to RVT Terms of Service and acknowledge that you have read and understand the RVT Protocol Disclaimer."
           }
         />
       )}
@@ -266,8 +277,9 @@ function App() {
           chosenConnection={chosenConnection}
         />
       )}
-      <ToastContainer />
-      {/* <Alert/> */}
+      <div className="toast-container">
+        <ToastContainer autoClose={3000} theme='dark'/>
+      </div>
     </div>
   );
 }

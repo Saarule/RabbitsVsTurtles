@@ -13,13 +13,6 @@
 }
 
 .mint-data {
-  /* background: linear-gradient(
-    132.07deg,
-    #bf4040 0%,
-    #cc6677 35.49%,
-    #bf406a 70.98%
-  ); */
-  /* width: 30%; */
   max-width: 90%;
   height: 40%;
   max-height: 470px;
@@ -33,6 +26,7 @@
   line-height: 16px;
   margin-top: 2%;
   aspect-ratio: 1.1/1;
+  border-radius: 5%;
 }
 
 .mint-nft {
@@ -106,8 +100,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 10%;
+  justify-content: space-around;
   flex-grow: 1;
 }
 

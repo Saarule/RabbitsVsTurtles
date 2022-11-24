@@ -44,8 +44,11 @@
 }
 .events-clear {
   direction: rtl;
-  font-weight: 700;
-  font-size: 1.25em;
+  height: 55%;
+  cursor: pointer;
+}
+.events-clear:hover{
+  transform: scale(1.05);
 }
 
 .event-list{

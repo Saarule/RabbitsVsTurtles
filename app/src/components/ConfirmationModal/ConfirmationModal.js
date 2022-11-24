@@ -39,8 +39,11 @@ const ConfirmationModal = ({closeFunc, confirmFanc, params}) => {
       <div className="error-exit" onClick={closeFunc}>
         <img alt="" src={exitIcon} />
       </div>
-      <div className="error-header">Confirm</div>
-      <div className="confirmation-desc">Mint Warrior</div>
+      <div className="error-header">Confirm Transactions</div>
+      <div className="confirmation-desc">You are about to mint a new player and join the game!</div>
+      <div>
+        <img alt="" src=""/>
+      </div>
       <div className="estimate-cost">
         <div>Estimate Cost:</div>
         <div>

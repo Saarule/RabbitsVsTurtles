@@ -7,8 +7,14 @@ import { selectAllPlayers, selectPlayerById } from '../../features/playersSlice'
 import { store } from '../../features/store'
 
 import './transactions.css'
+import lighting from '../../assets/pic/lighting.png'
+import borkenShield from '../../assets/pic/broke-armor.png'
+import sword from '../../assets/pic/sword-right.png'
+import heart from '../../assets/pic/heart.png'
+import money from '../../assets/pic/money-block.png'
+import greenV from '../../assets/pic/green-v.png'
 
-const Transactions = ({isDarkMode}) => {
+const Transactions = ({isDarkMode, setIsTransaction}) => {
     const info = useSelector(selectAllInfo)
     const pastEvents = useSelector(selectAllPastEvents)
     const players = useSelector(selectAllPlayers)
@@ -22,53 +28,76 @@ const Transactions = ({isDarkMode}) => {
       filterAccountEvent()
     },[pastEvents])
 
-    const getIfPlayerIsOwned = (id) =>{
-      // console.log(id);
-      const player = players.filter(player=>player.id === id)
-      // console.log(!!player.length);
-      return !!player.length
+    const getIfPlayerIsOwned = (playerId) =>{
+      const player = players.find(player=>player.id === playerId)
+      return player.owner === accounts[0]
+    }
+
+    const getIcon = (eventName)=>{
+      switch (eventName) {
+        case 'Transfer':
+            return lighting
+        case 'Attacked':
+            return sword
+        case 'Defenced':
+            return borkenShield
+        case 'AttackIncreased':
+         return money;
+        case 'ArmorIncreased':
+         return money
+        case 'DefenseIncreased':
+          return money
+        case 'StaminaIncreased':
+          return money
+        case 'Revived':
+          return heart
+        default:
+          break;
+      }
     }
 
     const filterAccountEvent = () => {
-      // let myTransaction = []
-      // const filteredEvents = pastEvents.filter(event=>{
-      //   switch (event.event) {
-      //     case 'Transfer':
-      //       if(event.returnValues.from === "0x0000000000000000000000000000000000000000"){
-      //        if(getIfPlayerIsOwned(event.returnValues.from)) myTransaction.push({txt: `Player number #${event.returnValues.from} increased attack! 💪`})
-      //       }else{
-
-      //       }
-      //       break;
-      //     case 'Attacked':
-              
-      //         break;
-      //     case 'AttackIncreased':
-              
-      //       const sssdf={txt: `Player number #${event.returnValues._playerId} increased attack! 💪`}
-      //         break;
-      //     case 'ArmorIncreased':
-      //       const saaedf={txt: `Player number #${event.returnValues._playerId} increased armor! 🛡️`}
-      //         break;
-      //     case 'DefenseIncreased':
-            
-      //       const ssdfdf={txt: `Player number #${event.returnValues._playerId} increased defense! 🦾`}
-      //         break;
-      //     case 'StaminaIncreased':
-              
-      //       const ssdffdf={txt: `Player number #${event.returnValues._playerId} increased stamina! 🏋️‍♂️`}
-      //         break;
-      //     case 'Revived':
-            
-      //         const sdf={txt: `Player number #${event.returnValues._playerId} revived back into the game! 😍 😇`}
-      //       break;
-      //     default:
-      //       break;
-      //   }
-      // })
+      let myTransaction = []
+      pastEvents.filter(event=>{
+        switch (event.event) {
+          case 'Transfer':
+            if(event.returnValues.from === "0x0000000000000000000000000000000000000000"){
+             if(event.returnValues.to === accounts[0]) myTransaction.push({action: 'Transfer', txt: `Mint player number #${event.returnValues.tokenId} 🥳`})
+            }else{
+              if(event.returnValues.to === accounts[0]) myTransaction.push({action: 'Transfer', txt: `You got player number #${event.returnValues.tokenId} from another user :)`})
+              if(event.returnValues.from === accounts[0]) myTransaction.push({action: 'Transfer', txt: `You pass player number #${event.returnValues.tokenId} to another user :)`})
+            }
+            break;
+          case 'Attacked':
+              if(getIfPlayerIsOwned(event.returnValues._eaterId) && getIfPlayerIsOwned(event.returnValues._eatenId)){
+                myTransaction.push({action: 'Attacked', txt: `Attacked yourself! player number #${event.returnValues._eatenId} with player number #${event.returnValues._eaterId} successfully`})
+              }else{
+              if(getIfPlayerIsOwned(event.returnValues._eaterId)) myTransaction.push({action: 'Attacked', txt: `Attacked player number #${event.returnValues._eatenId} with player number #${event.returnValues._eaterId} successfully`})
+              if(getIfPlayerIsOwned(event.returnValues._eatenId)) myTransaction.push({action: 'Defenced', txt: `Player number #${event.returnValues._eatenId} attacked you with player number #${event.returnValues._eaterId}`})
+              }
+              break;
+          case 'AttackIncreased':
+            if(getIfPlayerIsOwned(event.returnValues._playerId)) myTransaction.push({action: 'AttackIncreased', txt: `Bought "Attack Potion" for player number #${event.returnValues._playerId}`})
+              break;
+          case 'ArmorIncreased':
+            if(getIfPlayerIsOwned(event.returnValues._playerId)) myTransaction.push({action: 'ArmorIncreased', txt: `Bought "Armor Potion" for player number #${event.returnValues._playerId}`})
+              break;
+          case 'DefenseIncreased':
+            if(getIfPlayerIsOwned(event.returnValues._playerId)) myTransaction.push({action: 'DefenseIncreased', txt: `Bought "Defence Potion" for player number #${event.returnValues._playerId}`})
+              break;
+          case 'StaminaIncreased':
+            if(getIfPlayerIsOwned(event.returnValues._playerId)) myTransaction.push({action: 'StaminaIncreased', txt: `Bought "Stamina Potion" for player number #${event.returnValues._playerId}`})
+              break;
+          case 'Revived':
+            if(getIfPlayerIsOwned(event.returnValues._playerId)) myTransaction.push({action: 'Revived', txt: `Revived player number #${event.returnValues._playerId} from the graveyard`})
+            break;
+          default:
+            break;
+        }
+      })
+      return myTransaction
     }
     
-    console.log(pastEvents);
   return (
     <div className="transaction" onClick={(e)=>e.stopPropagation()} style={
       isDarkMode
@@ -80,7 +109,7 @@ const Transactions = ({isDarkMode}) => {
         : {}
     }>
       <div className="events-header">
-        <div className="event-back" onClick={()=>{}}>
+        <div className="event-back" onClick={()=>setIsTransaction(false)}>
           <svg
             width="15"
             height="23"
@@ -95,11 +124,19 @@ const Transactions = ({isDarkMode}) => {
           </svg>
         </div>
         <div className="events-header-txt">Transactions</div>
-        <div className="events-clear" >Clear All</div>
+        <div className="events-clear" ></div>
       </div>
-      <div className="event-list">
-        {/* {events.map((event, idx) => <div key={idx} className="event-details">{event.txt}</div>)} */}
-      </div>
+      {pastEvents.length? <div className="event-list">
+        {filterAccountEvent().map((event, idx) => {
+        return(
+        <div key={idx} className="event-details">
+          <div className='event-symbol'><img alt='' src={getIcon(event.action)}/></div>
+          <div className='event-txt'>{event.txt}</div>
+          <div className='event-v'><img alt='' src={greenV}/></div>
+        </div>
+        )})}
+      </div>:
+      <div className='loader-container' style={{height: '30%'}}><div className='loader'/></div>}
     </div>
   );
 }

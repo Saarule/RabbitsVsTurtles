@@ -70,13 +70,3 @@
   justify-content: space-between;
   min-width: 300px;
 }
-
-.arena-err {
-  position: absolute;
-  transform: translate(-50%);
-  left: 50%;
-  top: 58%;
-  color: red;
-  font-weight: 700;
-  background-color: #ffffff30;
-}

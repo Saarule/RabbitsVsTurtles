@@ -5,7 +5,7 @@ import abi from "../contracts/abi.json";
 
 
 const playersAdapter = createEntityAdapter({
-  sortComparer: (a, b) => a.id.localeCompare(b.id)
+  sortComparer: (a, b) => a.id - b.id
 })
 
 const initialState = playersAdapter.getInitialState({

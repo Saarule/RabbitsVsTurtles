@@ -4,8 +4,10 @@ import { selectAllEvents } from "../../features/eventsSlice";
 import { addEvent } from "../../features/eventsSlice";
 
 import "./events.css";
+import notificationIcon from "../../assets/pic/notification-icon.png";
+import notificationMuteIcon from "../../assets/pic/notification-mute-icon.png";
 
-const Events = ({setIsEvents, isDarkMode}) => {
+const Events = ({setIsEvents, isDarkMode, isNotification, setIsNotification}) => {
     const dispatch = useDispatch()
     const events = useSelector(selectAllEvents)
     console.log(events);
@@ -39,8 +41,10 @@ const Events = ({setIsEvents, isDarkMode}) => {
             />
           </svg>
         </div>
-        <div className="events-header-txt">Last Events</div>
-        <div className="events-clear" onClick={addNewEvent}>Clear All</div>
+        <div className="events-header-txt" onClick={addNewEvent}>Last Events</div>
+        <div className="events-clear" onClick={()=>setIsNotification(!isNotification)}>
+          <img alt="" src={isNotification? notificationIcon : notificationMuteIcon}/>
+        </div>
       </div>
       <div className="event-list">
         {events.map((event, idx) => <div key={idx} className="event-details">{event.txt}</div>)}

@@ -4,6 +4,17 @@
   overflow-x: hidden;
 }
 
+.Toastify__toast-container--top-right {
+  top: 5em !important;
+}
+
+.Toastify__toast-container--bottom-center {
+  bottom: 51% !important;
+}
+.Toastify__toast-container--bottom-left {
+  bottom: 9% !important;
+  left: 40% !important;
+}
 /* .App-logo {
   height: 40vmin;
   pointer-events: none;

@@ -76,8 +76,8 @@ const ConnectModal = ({ setActiveModal, setChosenConnection }) => {
       </div> */}
         <div className="modal-link-footer">
           <span>
-            By connecting a wallet, you agree to Mverse Terms of Service and
-            acknowledge that you have read and understand the Mverse Protocol
+            By connecting a wallet, you agree to RVT Terms of Service and
+            acknowledge that you have read and understand the RVT Protocol
             Disclaimer.
           </span>
         </div>

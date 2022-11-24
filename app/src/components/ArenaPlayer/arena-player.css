@@ -41,6 +41,7 @@
   display: flex;
   align-items: center;
   cursor: pointer;
+  border-radius: 5%;
 }
 .arena-player-img img{
     max-width: 100%;

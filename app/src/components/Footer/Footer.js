@@ -31,10 +31,13 @@ const Footer = ({ isDarkMode }) => {
   return (
     <div className="footer">
       <div className="footer-side">
-        <div className="footer-sound" onClick={()=>setIsMute(!isMute)}>
+        <div className="footer-sound" onClick={() => setIsMute(!isMute)}>
           <img alt="" src={isMute ? muteBtn : unmuteBtn} />
         </div>
-        <div className="footer-my-warriors" onClick={() => setIsMyWarriors(true)}>
+        <div
+          className="footer-my-warriors"
+          onClick={() => setIsMyWarriors(true)}
+        >
           <img alt="" src={goldFrame} />
           <div className="side-txt">My Warriors</div>
         </div>
@@ -60,8 +63,10 @@ const Footer = ({ isDarkMode }) => {
         </div>
       </div>
       <div className="footer-side right" onClick={() => setIsNetwork(true)}>
-        <img alt="" src={goldFrame} />
-        <div className="side-txt">Polygon</div>
+        <div className="footer-network">
+          <img alt="" src={goldFrame} />
+          <div className="side-txt">Polygon</div>
+        </div>
       </div>
       {isNetwork && (
         <div className="outside-click" onClick={() => setIsNetwork(false)}>

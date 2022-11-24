@@ -81,12 +81,3 @@
 .go-back-btn:hover{
   transform: scale(1.07);
 }
-
-.upgrade-err {
-  position: absolute;
-  transform: translate(-50%);
-  left: 50%;
-  bottom: 4.5%;
-  color: red;
-  font-weight: 500;
-}

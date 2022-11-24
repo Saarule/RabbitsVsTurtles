@@ -58,7 +58,7 @@ const connectToWallet = async (connectionName) => {
           <div className='connect-pic'><img alt='' src={playAsGuesePic}/></div>
         </div>}
         {activeModal === 'connectModal' && <ConnectModal setActiveModal={setActiveModal} setChosenConnection={setChosenConnection}/>}
-        {activeModal === 'waitingToConnect' && <WaitingToConnect closeFunction={()=>setActiveModal('welcome')} header={'Waiting to connect'} subHeader={'Confirm this connection in your wallet'} footer={'By connecting a wallet, you agree to Mverse Terms of Service and acknowledge that you have read and understand the Mverse Protocol Disclaimer.'}/>}
+        {activeModal === 'waitingToConnect' && <WaitingToConnect closeFunction={()=>setActiveModal('welcome')} header={'Waiting to connect'} subHeader={'Confirm this connection in your wallet'} footer={'By connecting a wallet, you agree to RVT Terms of Service and acknowledge that you have read and understand the RVT Protocol Disclaimer.'}/>}
         {activeModal === 'failToConnect' && <FailToConnect setActiveModal={setActiveModal} chosenConnection={chosenConnection}/>}
     </div>
   )

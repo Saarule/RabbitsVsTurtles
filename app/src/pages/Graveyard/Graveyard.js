@@ -8,11 +8,11 @@ import "./graveyard.css";
 import ChoosePlayer from "../../components/ChoosePlayer/ChoosePlayer";
 import Player from "../../components/Player/Player";
 import MainBtn from "../../components/MainBtn/MainBtn";
+import { Flip, toast } from "react-toastify";
 
 const Graveyard = ({confirmTransaction}) => {
   const [choosenPlayer, setChoosenPlayer] = useState();
   const [activeStage, setActiveStage] = useState("choosePlayer");
-  const [err, setErr] = useState('');
   const [playersData, setPlayersData] = useState([]);
   const { accounts, provider } = useWeb3React();
   const revivePlayerCost = "500000000000000000000";
@@ -43,7 +43,14 @@ const Graveyard = ({confirmTransaction}) => {
         .encodeABI(),
     };
     const res = confirmTransaction(params, 'Revive')
-    if(res) setErr('')
+    if(res){
+      toast.warning('Insufficient funds', {
+        theme: "light",
+        position: "bottom-left",
+        autoClose: 3000,
+        transition: Flip,
+      });
+    }
   };
 
   return (

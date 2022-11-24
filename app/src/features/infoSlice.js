@@ -4,7 +4,7 @@ import contractJSON from "../contracts/contract.json";
 import abi from '../contracts/abi.json'
 
 const web3 = new Web3(
-  "https://polygon-mainnet.g.alchemy.com/v2/2arFR52wPyKbFgPTwclErfm31zuLIW-y"
+  "https://polygon-mainnet.infura.io/v3/9b81098f432a446690d089d65bc3deb9"
 );
 
 const web3ws = new Web3(new Web3.providers.WebsocketProvider('wss://polygon-mainnet.g.alchemy.com/v2/tK8mrIdgSeLH45dkUinsVe1VOrAudqY2'));

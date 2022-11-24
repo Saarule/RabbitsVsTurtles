@@ -39,7 +39,7 @@ const WalletDetails = ({balance, setIsWalletDetails, setIsDarkMode, isDarkMode, 
       }
       onClick={(e) => e.stopPropagation()}
     >
-      {isTransaction && <Transactions isDarkMode={isDarkMode}/>}
+      {isTransaction && <Transactions isDarkMode={isDarkMode} setIsTransaction={setIsTransaction}/>}
       <div className="wallet-header">
         <div className="header-profile">
           <div className="profile-pic">
@@ -125,8 +125,8 @@ const WalletDetails = ({balance, setIsWalletDetails, setIsDarkMode, isDarkMode, 
           className="wallet-details-line"
           style={isDarkMode ? { border: "solid 1px #ffffff" } : {}}
         ></div>
-        <div className="wallet-details-actions">
-          <div className="wallet-details-action" onClick={()=>setIsTransaction(!isTransaction)}>Transactions</div>
+        <div className="wallet-details-actions" onClick={()=>setIsTransaction(!isTransaction)}>
+          <div className="wallet-details-action">Transactions</div>
           <div className="wallet-details-action-icons">
             <svg
               width="11"
