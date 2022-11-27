@@ -9,6 +9,7 @@ import Introduction from "../../components/Introduction/Introduction";
 import Product from "../../components/Product/Product";
 import ChoosePlayer from "../../components/ChoosePlayer/ChoosePlayer";
 import UpgradeConfirm from "../../components/UpgradeConfirm/UpgradeConfirm";
+import frame from "../../assets/pic/frame.png";
 import { toast, Flip } from "react-toastify";
 
 const Shop = ({ confirmTransaction }) => {
@@ -31,6 +32,7 @@ const Shop = ({ confirmTransaction }) => {
   const [choosenPlayer, setChoosenPlayer] = useState();
   const [choosenUpgrade, setChoosenUpgrade] = useState();
   const [playersData, setPlayersData] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
   const {accounts, provider} = useWeb3React();
   const players = useSelector(selectAllPlayers)
   const info = useSelector(selectAllInfo)
@@ -63,7 +65,7 @@ const Shop = ({ confirmTransaction }) => {
   }
 
   const buyUpgrade = async () => {
-    let desc
+    let desc = {}
     const params = {
       to: info.contractJSON.address,
       from: accounts[0],
@@ -79,7 +81,10 @@ const Shop = ({ confirmTransaction }) => {
         params.data = info.contract.methods
           .increaseAttack(Number(choosenPlayer.player.name.split('#')[1]))
           .encodeABI();
-        desc = 'Increase Attack'
+        desc.action = 'Increase Attack'
+        desc.txt = `You are about to give player number #${choosenPlayer.player.name.split('#')[1]} attack potion.`
+        desc.img = choosenPlayer.image
+        desc.symbol = products[0].productImg
         break;
       case 1:
         params.value = String(
@@ -88,7 +93,10 @@ const Shop = ({ confirmTransaction }) => {
         params.data = info.contract.methods
           .increaseDefense(Number(choosenPlayer.player.name.split('#')[1]))
           .encodeABI();
-          desc = 'Increase Defence'
+          desc.action = 'Increase Defence'
+          desc.txt = `You are about to give player number #${choosenPlayer.player.name.split('#')[1]} Defence potion.`
+          desc.img = choosenPlayer.image
+          desc.symbol = products[1].productImg
         break;
       case 2:
         params.value = String(
@@ -97,7 +105,10 @@ const Shop = ({ confirmTransaction }) => {
         params.data = info.contract.methods
           .increaseStamina(Number(choosenPlayer.player.name.split('#')[1]))
           .encodeABI();
-        desc = 'Increase Stamina'
+        desc.action = 'Increase Stamina'
+        desc.txt = `You are about to give player number #${choosenPlayer.player.name.split('#')[1]} Stamina potion.`
+        desc.img = choosenPlayer.image
+        desc.symbol = products[2].productImg
         break;
       case 3:
         params.value = String(
@@ -106,7 +117,10 @@ const Shop = ({ confirmTransaction }) => {
         params.data = info.contract.methods
           .increaseArmor(Number(choosenPlayer.player.name.split('#')[1]))
           .encodeABI();
-        desc = 'Increase Attack'
+        desc.action = 'Increase Armor'
+        desc.txt = `You are about to give player number #${choosenPlayer.player.name.split('#')[1]} Armor potion.`
+        desc.img = choosenPlayer.image
+        desc.symbol = products[3].productImg
         break;
       default:
         return;
@@ -122,7 +136,7 @@ const Shop = ({ confirmTransaction }) => {
       });
     }
   };
-
+  if(isLoading) return <div style={{height: '100%', width: '100%', background: 'gray'}}> <img alt="" src={frame} style={{opacity: '0'}} onLoad={() => setIsLoading(false)}/><div className="loader-container" style={{height: '50%'}}><div className="loader"></div></div></div>
   return (
     <div className="shop">
       {activeStage === "introduction" && (

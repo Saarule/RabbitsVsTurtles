@@ -15,6 +15,27 @@ const Events = ({setIsEvents, isDarkMode, isNotification, setIsNotification}) =>
     const addNewEvent = ()=>{
         dispatch(addEvent({txt: `Player number #345 attacked player number #345 ! 🤯 Player number #345 attacked player number #345 ! 🤯 `}))
     }
+
+    const getTimeformat = (time) =>{
+      let timeSplit = new Date(time).toString().split(' ')
+      if(Number(timeSplit[2]) === new Date(time).getDate()){
+        return `Today at ${tConvert(timeSplit[4])}`
+      }else{
+        return `${time[2] + time[1]}`
+      }
+    }
+
+    function tConvert (time) {
+      console.log(time);
+      time = time.toString ().match (/^([01]\d|2[0-3])(:)([0-5]\d)(:[0-5]\d)?$/) || [time];
+      if (time.length > 1) {
+        time = time.slice(1,4);
+        console.log(time);
+        time[5] = +time[0] < 12 ? 'AM' : 'PM';
+        time[0] = +time[0] % 12 || 12;
+      }
+      return time.join (''); // return adjusted time or original string
+    }
     
   return (
     <div className="events" onClick={(e)=>e.stopPropagation()} style={
@@ -47,7 +68,15 @@ const Events = ({setIsEvents, isDarkMode, isNotification, setIsNotification}) =>
         </div>
       </div>
       <div className="event-list">
-        {events.map((event, idx) => <div key={idx} className="event-details">{event.txt}</div>)}
+        {events.map((event, idx) =>{
+          return (
+          <div className="event-container">
+          <div className="event-time">{getTimeformat(event.time)}</div>
+          <div key={idx} className="event-detail">{event.txt}</div>
+          </div>
+          )}
+
+        )} 
       </div>
     </div>
   );

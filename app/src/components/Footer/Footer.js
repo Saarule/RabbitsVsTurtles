@@ -17,17 +17,20 @@ import { selectAllInfo } from "../../features/infoSlice";
 import MyPlayers from "../MyPlayers/MyPlayers";
 import muteBtn from "../../assets/pic/sound-mute.png";
 import unmuteBtn from "../../assets/pic/sound-unmute.png";
+import { useWeb3React } from "@web3-react/core";
+import {toast} from 'react-toastify'
 
 const Footer = ({ isDarkMode }) => {
   const [isNetwork, setIsNetwork] = useState(false);
   const [isMyWarriors, setIsMyWarriors] = useState(false);
   const [isMute, setIsMute] = useState(false);
   const info = useSelector(selectAllInfo);
+  const {accounts} = useWeb3React()
 
   const updateNewPlayer = () => {
     store.dispatch(updatePlayer({ contract: info.contract, playerId: 90 }));
   };
-
+// console.log(accounts);
   return (
     <div className="footer">
       <div className="footer-side">
@@ -36,7 +39,13 @@ const Footer = ({ isDarkMode }) => {
         </div>
         <div
           className="footer-my-warriors"
-          onClick={() => setIsMyWarriors(true)}
+          onClick={() => {
+            if(accounts && accounts[0]){
+              setIsMyWarriors(true)
+            }else{
+              toast.warning('Connect your wallet to see your warrior')
+            }
+          }}
         >
           <img alt="" src={goldFrame} />
           <div className="side-txt">My Warriors</div>
@@ -76,7 +85,7 @@ const Footer = ({ isDarkMode }) => {
           />
         </div>
       )}
-      {isMyWarriors && (
+      {isMyWarriors&& accounts && accounts[0] && (
         <div className="outside-click" onClick={() => setIsMyWarriors(false)}>
           <MyPlayers
             isDarkMode={isDarkMode}

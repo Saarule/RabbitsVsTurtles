@@ -26,6 +26,7 @@ const Arena = ({ confirmTransaction }) => {
   const [playerHover, setPlayerHover] = useState("Rabbit");
   const [playersData, setPlayersData] = useState([]);
   const [onChoosePlayer, setOnChoosePlayer] = useState();
+  const [isLoading, setIsLoading] = useState(true);
   const [err, setErr] = useState();
   const [filter, setFilter] = useState("");
   const { accounts } = useWeb3React();
@@ -99,19 +100,23 @@ const Arena = ({ confirmTransaction }) => {
     }
     let attack;
     let victim;
+    let desc = {action: 'Attack', rabbitImg: choosenRabbit.image, turtleImg: choosenTurtle.image}
     if (attacker === "Rabbit") {
       attack = choosenRabbit.player.name.split("#")[1];
       victim = choosenTurtle.player.name.split("#")[1];
+      desc.attacker = 'Rabbit'
     } else {
       attack = choosenTurtle.player.name.split("#")[1];
       victim = choosenRabbit.player.name.split("#")[1];
+      desc.attacker = 'Turtle'
     }
+    desc.txt = `You are about to attack player number #${victim} with player number #${attack}`
     const params = {
       to: info.contractJSON.address,
       from: accounts[0],
       data: info.contract.methods.attackPlayer(attack, victim).encodeABI(),
     };
-    let res = await confirmTransaction(params, "Attack");
+    let res = await confirmTransaction(params, desc);
     if (res) {
       res = res.message.split(":")[2];
       toast.warning(res, {
@@ -125,6 +130,7 @@ const Arena = ({ confirmTransaction }) => {
   const setNewFilter = (newFilter) => {};
   const filterPlayers = () => {};
   // console.log(playerHover);
+  if(isLoading) return <div style={{height: '100%', width: '100%', background: 'gray'}}> <img alt="" src={headerImg} style={{opacity: '0'}} onLoad={() => setIsLoading(false)}/><div className="loader-container" style={{height: '50%'}}><div className="loader"></div></div></div>
   return (
     <div className="arena">
       <div className="arena-header">

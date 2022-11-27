@@ -1,5 +1,5 @@
 .overview {
-  background: #c0c0c0 url("../../assets/pic/overview-background.png");
+  background: #a7a6a6 url("../../assets/pic/overview-background.png");
   height: 100%;
   width: 100%;
   background-position: 50%, 50% !important;
@@ -113,6 +113,6 @@
   justify-content: space-between;
 }
 
-.overview-all-players .player-display-name {
+/* .overview-all-players .player-display-name {
   left: 40%;
-}
+} */

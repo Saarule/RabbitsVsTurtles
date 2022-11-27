@@ -22,6 +22,7 @@ import filterAllPlayers from "../../assets/pic/filter-all-players.png";
 const Overview = () => {
   const [gameInfo, setGameInfo] = useState([0, 0, 0, 0, 0, 0, 0, 0]);
   const [moreInfo, setMoreInfo] = useState([0, 0, 0, 0]);
+  const [isLoading, setIsLoading] = useState(true);
   const info = useSelector(selectAllInfo);
   const [filter, setFilter] = useState("");
   const playersData = useSelector(selectAllPlayers);
@@ -124,10 +125,11 @@ const Overview = () => {
     }
   };
   // console.log(playersData, playersToShow);
+  if(isLoading) return <div style={{height: '100%', width: '100%', background: 'gray'}}> <img alt="" src={headerImg} style={{opacity: '0'}} onLoad={() => setIsLoading(false)}/><div className="loader-container" style={{height: '50%'}}><div className="loader"></div></div></div>
   return (
     <div className="overview">
       <div className="overview-header">
-        <img alt="" src={headerImg} />
+        <img alt="" src={headerImg} onLoad={() => setIsLoading(false)}/>
         <div className="overview-rabbit-header">TEAM RABBIT</div>
         <div className="overview-turtle-header">TEAM TURTLE</div>
         <div className="overview-score">

@@ -22,7 +22,9 @@ const MyPlayers = () => {
     const {accounts} = useWeb3React()
 
     useEffect(()=>{
-        const myPlayers = players.filter(player=>player.owner === accounts[0])
+        let myPlayers
+        console.log(accounts, accounts && accounts[0]   );
+        if(accounts && accounts[0]) myPlayers = players.filter(player=>player.owner === accounts[0])
         setMyPlayers(myPlayers)
     },[players])
 
@@ -33,7 +35,7 @@ const MyPlayers = () => {
         }
         return myPlayers.filter(player=>player.player.playerType === filter)
     }
-
+    if(!accounts || !accounts[0]) return
   return (
     <div className='my-players' onClick={e=>e.stopPropagation()}>
         <div className='my-players-header'>

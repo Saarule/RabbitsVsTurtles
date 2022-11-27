@@ -42,7 +42,7 @@ const Graveyard = ({confirmTransaction}) => {
         .revivePlayer(choosenPlayer.player.name.split("#")[1])
         .encodeABI(),
     };
-    const res = confirmTransaction(params, 'Revive')
+    const res = confirmTransaction(params, {action: 'Revive', txt: 'You are about to revive player number #4', img: choosenPlayer.image, symbol: 'heart'})
     if(res){
       toast.warning('Insufficient funds', {
         theme: "light",

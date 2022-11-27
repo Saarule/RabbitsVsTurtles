@@ -43,7 +43,7 @@ const Mint = ({ confirmTransaction, mintInfo }) => {
       data: info.contract.methods.mint().encodeABI(),
     };
     console.log(info.web3.utils.fromWei(params.value));
-    const res = await confirmTransaction(params, 'Mint')
+    const res = await confirmTransaction(params, {action: 'Mint', txt: 'You are about to mint a new player and join the game!'})
     if(res){
       toast.warning(res.message, {
       theme: "light",

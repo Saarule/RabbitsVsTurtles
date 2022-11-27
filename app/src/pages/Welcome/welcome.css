@@ -11,8 +11,23 @@
   align-items: center;
   overflow-y: auto;
   gap: 30px;
-  /* overflow: hidden; */
   padding: 0 30px;
+}
+.welcome-connect-container {
+  background: none;
+  border-radius: 11%;
+  margin: 20px 0;
+  height: 65%;
+  padding: 0.5%;
+  aspect-ratio: 1/1.2;
+  max-width: 95vw;
+  cursor: pointer;
+  transition: 0.3s ease;
+  position: relative;
+}
+.welcome-connect-container:hover {
+  transform: scale(1.05);
+  background: linear-gradient(116.34deg,#ffbc5b,#ff2d55 50.52%,#c640cd);
 }
 
 .welcome-connect {
@@ -23,39 +38,107 @@
   justify-content: space-around;
   align-items: center;
   text-align: center;
-  margin: 20px 0;
   padding: 0 50px;
-  height: 65%;
+  height: 100%;
   aspect-ratio: 1/1.2;
   max-width: 95vw;
   cursor: pointer;
-}
-
-.welcome-connect:hover{
-  transform: scale(1.05);
-  border: 3px solid gold;
-  box-shadow: 1px 1px 9px 5px goldenrod;
+  transition: 0.3s ease;
+  position: relative;
 }
 
 .connect-header {
-  font-size: 2rem;
-  line-height: 39px;
-  margin-top: 10%;
+  font-size: 1.75rem;
   font-weight: 600;
 }
 
-.connect-context{
-    font-size: 1.25rem;
-    line-height: 1.6rem;
-    margin-top: 7%;
-    max-width: 337px;
+.connect-context {
+  font-size: 1.125rem;
+  max-width: 337px;
 }
 
-.connect-pic{
-height: 50%;
+.connect-pic {
+  height: 50%;
+  transition: 0.3s ease;
 }
-.connect-pic img{
-    width: 100%;
-    height: 100%;
+.welcome-connect-container:hover .connect-pic {
+  margin-bottom: 20%;
+}
+.connect-pic img {
+  width: 100%;
+  height: 100%;
 }
 
+.connect-btn {
+  opacity: 0;
+  background: #c50088;
+  box-shadow: -4px -4px 8px rgba(0, 0, 0, 0.1),
+    4px 4px 8px rgba(255, 109, 188, 0.2);
+  border-radius: 11px;
+  font-weight: 700;
+  font-size: 1.25rem;
+  text-align: center;
+  color: #ffffff;
+  padding: 2% 5%;
+  transition: 0.3s ease;
+  position: absolute;
+  bottom: 4%;
+}
+.welcome-connect-container:hover .connect-btn {
+  opacity: 1;
+}
+.connect-btn:hover{
+  bottom: 4.4%;
+}
+/* background: linear-gradient(116.34deg,#ffbc5b,#ff2d55 50.52%,#c640cd); */
+
+.glow-on-hover {
+  z-index: 0;
+  background: linear-gradient(116.34deg,#ffbc5b,#ff2d55 50.52%,#c640cd,#c640cd,#ff2d55 50.52%);
+}
+.glow-on-hover:before {
+  content: '';
+  background: linear-gradient(45deg, #ff0000, #ff7300, #7a00ff, #ff00c8, #ff0000);
+  position: absolute;
+  top: -2px;
+  left:-2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowing 20s linear infinite;
+  opacity: 0;
+  transition: opacity .3s ease-in-out;
+  border-radius: 10px;
+}
+
+.glow-on-hover:active {
+  color: #c50088
+}
+
+.glow-on-hover:active:after {
+  background: transparent;
+}
+
+.glow-on-hover:hover:before {
+  opacity: 1;
+}
+
+.glow-on-hover:after {
+  z-index: -1;
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #c50088;
+  left: 0;
+  top: 0;
+  border-radius: 10px;
+}
+
+@keyframes glowing {
+  0% { background-position: 0 0; }
+  50% { background-position: 400% 0; }
+  100% { background-position: 0 0; }
+}
