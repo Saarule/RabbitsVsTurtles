@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   selectAllPlayers,
   getPlayersError,
@@ -18,8 +18,9 @@ import filterRabbits from "../../assets/pic/filter-rabbits.png";
 import filterTurtles from "../../assets/pic/filter-turtles.png";
 import filterMyPlayers from "../../assets/pic/filter-my-players.png";
 import { useWeb3React } from "@web3-react/core";
+import { playerUpdate } from "../../features/playerToShowSlice";
 
-const Arena = ({ confirmTransaction }) => {
+const Arena = ({ confirmTransaction , isAudio}) => {
   const [choosenTurtle, setChoosenTurtle] = useState();
   const [choosenRabbit, setChoosenRabbit] = useState();
   const [attacker, setAttacker] = useState("Rabbit");
@@ -32,6 +33,9 @@ const Arena = ({ confirmTransaction }) => {
   const { accounts } = useWeb3React();
   const players = useSelector(selectAllPlayers)
   const info = useSelector(selectAllInfo);
+  const dispatch = useDispatch()
+  const audio = new Audio(require('../../assets/music/Aggressive ENIGMA - Arena.mp3'))
+  audio.loop = true
 
   useEffect(()=>{
     let filterPlayers = players.filter(
@@ -42,6 +46,18 @@ const Arena = ({ confirmTransaction }) => {
       });
       setPlayersData(filterPlayers)
   },[players])
+
+  useEffect(()=>{
+    if(isAudio) audio.play()
+    else{
+      audio.pause()
+      audio.currentTime = 0;
+    }
+    return ()=>{
+      audio.pause()
+      audio.currentTime = 0;
+    }
+  },[isAudio])
 
   const choosePlayer = (player) => {
     setErr(null);
@@ -130,7 +146,7 @@ const Arena = ({ confirmTransaction }) => {
   const setNewFilter = (newFilter) => {};
   const filterPlayers = () => {};
   // console.log(playerHover);
-  if(isLoading) return <div style={{height: '100%', width: '100%', background: 'gray'}}> <img alt="" src={headerImg} style={{opacity: '0'}} onLoad={() => setIsLoading(false)}/><div className="loader-container" style={{height: '50%'}}><div className="loader"></div></div></div>
+  if(isLoading) return <div style={{height: '100%', width: '100%', background: 'gray', filter: 'blur(4px)'}}> <img alt="" src={headerImg} style={{opacity: '0'}} onLoad={() => setIsLoading(false)}/><div className="loader-container" style={{height: '50%'}}><div className="loader"></div></div></div>
   return (
     <div className="arena">
       <div className="arena-header">

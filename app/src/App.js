@@ -40,6 +40,7 @@ function App() {
   const [balance, setBalance] = useState("");
   const [mintInfo, setMintInfo] = useState({ cost: "0", totalSupply: '0' });
   const { provider, accounts, chainId, connector } = useWeb3React();
+  const [isAudio, setIsAudio] = useState(true)
   const location = useLocation();
   const info = useSelector(selectAllInfo);
   const dispatch = useDispatch()
@@ -225,27 +226,27 @@ function App() {
         />
       )}
       <Routes>
-        <Route path="/" element={<Welcome />} />
-        <Route path="map" element={<Map />} />
+        <Route path="/" element={<Welcome isAudio={isAudio} />} />
+        <Route path="map" element={<Map isAudio={isAudio}/>} />
         <Route
           path="mint"
-          element={<Mint confirmTransaction={confirmTransaction} mintInfo={mintInfo}/>}
+          element={<Mint confirmTransaction={confirmTransaction} mintInfo={mintInfo} isAudio={isAudio}/>}
         />
         <Route
           path="shop"
-          element={<Shop confirmTransaction={confirmTransaction} />}
+          element={<Shop confirmTransaction={confirmTransaction} isAudio={isAudio}/>}
         />
         <Route
           path="graveyard"
-          element={<Graveyard confirmTransaction={confirmTransaction} />}
+          element={<Graveyard confirmTransaction={confirmTransaction} isAudio={isAudio}/>}
         />
         <Route
           path="arena"
-          element={<Arena confirmTransaction={confirmTransaction} />}
+          element={<Arena confirmTransaction={confirmTransaction} isAudio={isAudio}/>}
         />
-        <Route path="overview" element={<Overview />} />
+        <Route path="overview" element={<Overview isAudio={isAudio}/>} />
       </Routes>
-      {location.pathname !== "/" && <Footer isDarkMode={isDarkMode} />}
+      {location.pathname !== "/" && <Footer isDarkMode={isDarkMode} isAudio={isAudio} setIsAudio={setIsAudio}/>}
         <PlayerDetails />
       {activeModal === "confirmationModal" && (
         <div className="outside-click" onClick={() => setActiveModal("")}>
@@ -294,7 +295,7 @@ function App() {
         />
       )}
       <div className="toast-container">
-        <ToastContainer autoClose={3000} theme='dark' limit={8}/>
+        <ToastContainer autoClose={3000} theme='dark' limit={8} newestOnTop={true}/>
       </div>
     </div>
   );

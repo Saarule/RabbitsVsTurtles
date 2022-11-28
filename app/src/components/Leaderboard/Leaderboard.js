@@ -7,21 +7,23 @@ import blueShield from '../../assets/pic/leaderboard-shield-blue.png'
 import redShield from '../../assets/pic/leaderboard-shield-red.png'
 import firsFrame from '../../assets/pic/leaderboard-first-frame.png'
 import oneIcon from '../../assets/pic/leaderboard-one.png'
+import exitIconWhite from '../../assets/pic/exit-icon-white.png'
 
-const Leaderboard = () => {
+const Leaderboard = ({setIsLeaderboard}) => {
 
     const [playersData, setPlayersData] = useState([])
     const players = useSelector(selectAllPlayers)
 
     useEffect(() => {
-      let playersData = players.sort((a,b)=> b.player.kills - a.player.kills).slice(0,10)
+      let playersData = players.sort((a,b)=> b.player.kills - a.player.kills)
         setPlayersData(playersData)
     }, [players])
     
   return (
-    <div className='leaderboard'>
+    <div className='leaderboard' onClick={e=>e.stopPropagation()}>
         {!playersData.length? <div className='loader-container' style={{height: '50%'}}><div className='loader'></div></div> :
         <>
+        <div className='leaderboard-exit' onClick={()=>setIsLeaderboard(false)}><img alt='' src={exitIconWhite}/></div>
         <div className='leaderboard-first'>
             <div className='first-frame'><img alt='' src={firsFrame}/></div>
             <div className='first-image'><img alt='' src={playersData[0]?.image}/></div>

@@ -15,22 +15,33 @@ import mintRockBlue from "../../assets/pic/mint-rock-blue.png";
 import MainBtn from "../../components/MainBtn/MainBtn";
 
 
-const Mint = ({ confirmTransaction, mintInfo }) => {
+const Mint = ({ confirmTransaction, mintInfo, isAudio }) => {
   const [switchMint, setSwitchMint] = useState(true);
   const [activeModal, setActiveModal] = useState('confirmationModal');
   const intervalId = useRef(0);
   const timeoutId = useRef(0);
   const { accounts, isActive, provider } = useWeb3React();
   const info = useSelector(selectAllInfo)
+  const audio = new Audio(require('../../assets/music/Spooky4-Mint.mp3'))
+  audio.loop = true
 
   useEffect(() => {
     intervalId.current = setInterval(() => {
       setSwitchMint((switchMint) => !switchMint);
     }, 500);
-    return () => {
-      clearInterval(intervalId.current);
-    };
   }, []);
+  
+  useEffect(()=>{
+    if(isAudio) audio.play()
+    else{
+      audio.pause()
+      audio.currentTime = 0;
+    }
+    return ()=>{
+      audio.pause()
+      audio.currentTime = 0;
+    }
+  },[isAudio])
 
   const mint = async () => {
     if(accounts && accounts[0]){

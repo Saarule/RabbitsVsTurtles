@@ -9,10 +9,10 @@ const playerSlice = createSlice({
   initialState,
   reducers: {
     playerUpdate(state, action) {
-        state = action.payload;
+        state.player = action.payload;
     },
     removePlayer(state, action) {
-        state = null;
+        state.player = null;
     },
   },
 });

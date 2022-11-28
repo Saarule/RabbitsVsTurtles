@@ -10,7 +10,7 @@ import Player from "../../components/Player/Player";
 import MainBtn from "../../components/MainBtn/MainBtn";
 import { Flip, toast } from "react-toastify";
 
-const Graveyard = ({confirmTransaction}) => {
+const Graveyard = ({confirmTransaction, isAudio}) => {
   const [choosenPlayer, setChoosenPlayer] = useState();
   const [activeStage, setActiveStage] = useState("choosePlayer");
   const [playersData, setPlayersData] = useState([]);
@@ -18,6 +18,8 @@ const Graveyard = ({confirmTransaction}) => {
   const revivePlayerCost = "500000000000000000000";
   const players = useSelector(selectAllPlayers)
   const info = useSelector(selectAllInfo)
+  const audio = new Audio(require('../../assets/music/Illusory Realm - Graveyard.mp3'))
+  audio.loop = true
 
   useEffect(()=>{
     let filterPlayers = players.filter(
@@ -27,6 +29,18 @@ const Graveyard = ({confirmTransaction}) => {
       });
       setPlayersData(filterPlayers)
   },[players])
+
+  useEffect(()=>{
+    if(isAudio) audio.play()
+    else{
+      audio.pause()
+      audio.currentTime = 0;
+    }
+    return ()=>{
+      audio.pause()
+      audio.currentTime = 0;
+    }
+  },[isAudio])
 
   const setChoosen = (choosen) => {
     setChoosenPlayer(choosen);

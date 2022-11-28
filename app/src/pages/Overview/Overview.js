@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectAllInfo } from "../../features/infoSlice";
 import { selectAllPlayers } from "../../features/playersSlice";
 import { useWeb3React } from "@web3-react/core";
@@ -18,8 +18,9 @@ import filterTurtles from "../../assets/pic/filter-turtles.png";
 import filterMyPlayers from "../../assets/pic/filter-my-players.png";
 import filterDead from "../../assets/pic/filter-dead-players.png";
 import filterAllPlayers from "../../assets/pic/filter-all-players.png";
+import { playerUpdate } from "../../features/playerToShowSlice";
 
-const Overview = () => {
+const Overview = ({isAudio}) => {
   const [gameInfo, setGameInfo] = useState([0, 0, 0, 0, 0, 0, 0, 0]);
   const [moreInfo, setMoreInfo] = useState([0, 0, 0, 0]);
   const [isLoading, setIsLoading] = useState(true);
@@ -30,6 +31,9 @@ const Overview = () => {
   const [playersToShow, setPlayersToShow] = useState([]);
   // const [playersData, setPlayersData] = useState([]);
   const pastEvents = useSelector(selectAllPastEvents);
+  const dispatch = useDispatch()
+  const audio = new Audio(require('../../assets/music/Slayer-Overview.mp3'))
+  audio.loop = true
 
   useEffect(() => {
     getGameInfo();
@@ -47,6 +51,18 @@ const Overview = () => {
   useEffect(() => {
     filterPlayers();
   }, [filter]);
+
+  useEffect(()=>{
+    if(isAudio) audio.play()
+    else{
+      audio.pause()
+      audio.currentTime = 0;
+    }
+    return ()=>{
+      audio.pause()
+      audio.currentTime = 0;
+    }
+  },[isAudio])
 
   const getUpgrades = () => {
     let upgrades = [8, 2, 13, 17];
@@ -124,8 +140,12 @@ const Overview = () => {
       console.log(err);
     }
   };
+
+  const onShowPlayer = (player)=> {
+    dispatch(playerUpdate(player))
+  }
   // console.log(playersData, playersToShow);
-  if(isLoading) return <div style={{height: '100%', width: '100%', background: 'gray'}}> <img alt="" src={headerImg} style={{opacity: '0'}} onLoad={() => setIsLoading(false)}/><div className="loader-container" style={{height: '50%'}}><div className="loader"></div></div></div>
+  if(isLoading) return <div style={{height: '100%', width: '100%', background: 'gray', filter: 'blur(4px)'}}> <img alt="" src={headerImg} style={{opacity: '0'}} onLoad={() => setIsLoading(false)}/><div className="loader-container" style={{height: '50%'}}><div className="loader"></div></div></div>
   return (
     <div className="overview">
       <div className="overview-header">
@@ -170,7 +190,7 @@ const Overview = () => {
         </div>
       </div>
       <div className="overview-all-players">
-        {playersData.length? <PlayersList playersToShow={playersToShow} />:
+        {playersData.length? <PlayersList playersToShow={playersToShow} onClickFunc={onShowPlayer}/>:
         <div className="player-list"><div className="loader-container" style={{height: '40%'}}><div className="loader"></div></div></div>
         }
         <div className="players-filter">

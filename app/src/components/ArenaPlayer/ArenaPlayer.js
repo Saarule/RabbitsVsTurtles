@@ -16,11 +16,12 @@ const ArenaPlayer = ({ player, type, attacker, func }) => {
         background:
           "linear-gradient(132.07deg, #bf4040 0%, #cc6677 35.49%, #bf406a 70.98%)",
       };
-    else
+    else if(type === "Rabbit")
       return {
         background:
           "linear-gradient(138.99deg, #0000FF 6.81%, #0000FF 39.7%, #0000FF 72.59%)",
       };
+    else return {}
   };
 
   const getImg = () => {

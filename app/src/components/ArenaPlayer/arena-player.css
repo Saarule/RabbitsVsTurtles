@@ -48,15 +48,29 @@
 }
 
 .arena-player-img div{
-    max-width: 100%;
-    color: #FFFFFF
+    max-width: 90%;
+    color: #FFFFFF;
+    font-family: 'gumdrop';
+    font-size: 0.85em;
+    text-align: center;
+    margin: auto;
 }
 
 .arena-rock {
   height: 22%;
   margin-top: 6%;
   width: 100%;
+  animation: rock 3s linear infinite;
+  position: relative;
 }
 .arena-rock img{
     max-width: 100%;
+}
+@keyframes rock {
+  0%,100% {
+    top: 0%;
+  }
+  50% {
+    top: 3%;
+  }
 }

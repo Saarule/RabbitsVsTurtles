@@ -8,7 +8,7 @@ const PlayersList = ({playersToShow, onClickFunc}) => {
     <div className="players-list">
       {playersToShow.map((player, idx) => {
         return (
-          <Player key={idx} player={player} onClickFunc={()=>onClickFunc(idx)} height={'50%'}/>
+          <Player key={idx} player={player} onClickFunc={()=>onClickFunc(player)} height={'50%'}/>
         );
       })}
     </div>

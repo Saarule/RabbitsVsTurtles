@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { selectAllPlayers } from '../../features/playersSlice'
 import { useWeb3React } from '@web3-react/core'
 import { Link } from 'react-router-dom'
@@ -12,6 +12,7 @@ import filterAll from '../../assets/pic/filter-all-players.png'
 import filterDead from '../../assets/pic/filter-dead-players.png'
 import playerNameFrameRed from '../../assets/pic/player-name-frame-red.png'
 import playerNameFrameBlue from '../../assets/pic/player-name-frame-blue.png'
+import { playerUpdate } from '../../features/playerToShowSlice'
 
 
 const MyPlayers = () => {
@@ -20,6 +21,7 @@ const MyPlayers = () => {
     const [filter, setFilter] = useState('')
     const players = useSelector(selectAllPlayers)
     const {accounts} = useWeb3React()
+    const dispath = useDispatch()
 
     useEffect(()=>{
         let myPlayers
@@ -47,7 +49,7 @@ const MyPlayers = () => {
         <div className='my-players-list'>
             {filterPlayers().map(player=>{
                 return(
-            <div className='my-player' key={player.id}>
+            <div className='my-player' key={player.id} onClick={()=>dispath(playerUpdate(player))}>
                 <div className='my-player-frame'>
                     <img alt='' src={playerFrame}/>
                     <img className='my-player-img' alt='' src={player.image}/>

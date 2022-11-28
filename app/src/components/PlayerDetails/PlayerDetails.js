@@ -9,7 +9,7 @@ import './player-details.css'
 const PlayerDetails = () => {
   const dispatch = useDispatch()
   const player = useSelector(selectAllplayer)
-  // console.log(player);
+  
   const resetPlayer = ()=>{
     dispatch(
       removePlayer({})
@@ -17,10 +17,12 @@ const PlayerDetails = () => {
   }
   if(!player) return
   return (
+    <div className='outside-click' onClick={resetPlayer}>
     <div className='player-details'>
         <div className='player-img'><img alt='' src={player.image}/></div>
         {/* <div className='player-name'>{player.player.name.split('#')[1]}</div> */}
         <div className='player-exit' onClick={resetPlayer}>EXIT</div>
+    </div>
     </div>
   )
 }

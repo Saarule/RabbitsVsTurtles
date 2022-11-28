@@ -20,10 +20,9 @@ import unmuteBtn from "../../assets/pic/sound-unmute.png";
 import { useWeb3React } from "@web3-react/core";
 import {toast} from 'react-toastify'
 
-const Footer = ({ isDarkMode }) => {
+const Footer = ({ isDarkMode, isAudio, setIsAudio }) => {
   const [isNetwork, setIsNetwork] = useState(false);
   const [isMyWarriors, setIsMyWarriors] = useState(false);
-  const [isMute, setIsMute] = useState(false);
   const info = useSelector(selectAllInfo);
   const {accounts} = useWeb3React()
 
@@ -34,8 +33,8 @@ const Footer = ({ isDarkMode }) => {
   return (
     <div className="footer">
       <div className="footer-side">
-        <div className="footer-sound" onClick={() => setIsMute(!isMute)}>
-          <img alt="" src={isMute ? muteBtn : unmuteBtn} />
+        <div className="footer-sound" onClick={() => setIsAudio((prev)=>!prev)}>
+          <img alt="" src={isAudio ? unmuteBtn : muteBtn} />
         </div>
         <div
           className="footer-my-warriors"

@@ -1,21 +1,30 @@
 import React from 'react'
+import { useEffect } from 'react'
 import { useState } from 'react'
 
 import './map.css'
-import Notification from '../../components/Notification/Notification'
 
-const Map = ({setActivePage}) => {
-  const [notification,setNotification] = useState({open: false, msg: '', type: false})
+
+const Map = ({isAudio}) => {
   
-  const msg = 'You bought Defense poition succesfully.'
+  const audio = new Audio(require('../../assets/music/Slayer-Overview.mp3'))
+  audio.loop = true
 
- 
-  // const sendNotification = () =>{}
+  useEffect(()=>{
+    if(isAudio) audio.play()
+    else{
+      audio.pause()
+      audio.currentTime = 0;
+    }
+    return ()=>{
+      audio.pause()
+      audio.currentTime = 0;
+    }
+  },[isAudio])
 
   return (
     <div className='map'>
-        {notification.open && <Notification msg={msg} type={true}/>}
-        {/* <div className='move-to-mint' onClick={()=>setActivePage('mint')}>Mint</div> */}
+       
     </div>
   )
 }

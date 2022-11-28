@@ -58,8 +58,8 @@ const Header = ({ setActiveModal, isDarkMode, setIsDarkMode, balance, setIsNotif
         </Link>
       </div>
       <Link to="/map" className="header-logo" onClick={()=>{
-        if(isNotification)toast.info(`Player number #106 just joined the game! 🥳`)
-        dispatch(addEvent({time: Date.now(), txt: `Player number #345 attacked player number #345 ! 🤯 Player number #345 attacked player number #345 ! 🤯 `}))
+        // if(isNotification)toast.info(`Player number #106 just joined the game! 🥳`)
+        // dispatch(addEvent({time: Date.now(), txt: `Player number #345 attacked player number #345 ! 🤯 Player number #345 attacked player number #345 ! 🤯 `}))
         }}>
         <img alt="" src={logo} style={{ height: "100%" }} />
       </Link>

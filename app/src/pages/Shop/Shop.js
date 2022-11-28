@@ -12,7 +12,7 @@ import UpgradeConfirm from "../../components/UpgradeConfirm/UpgradeConfirm";
 import frame from "../../assets/pic/frame.png";
 import { toast, Flip } from "react-toastify";
 
-const Shop = ({ confirmTransaction }) => {
+const Shop = ({ confirmTransaction, isAudio }) => {
   const products = [
     { header: "Attack", productImg: "potion-green", price: 5 },
     { header: "Defence", productImg: "potion-blue", price: 5 },
@@ -36,6 +36,8 @@ const Shop = ({ confirmTransaction }) => {
   const {accounts, provider} = useWeb3React();
   const players = useSelector(selectAllPlayers)
   const info = useSelector(selectAllInfo)
+  const audio = new Audio(require('../../assets/music/Slayer-Overview.mp3'))
+  audio.loop = true
 
   useEffect(()=>{
     let filterPlayers = players.filter(
@@ -45,6 +47,18 @@ const Shop = ({ confirmTransaction }) => {
       });
       setPlayersData(filterPlayers)
   },[players])
+
+  useEffect(()=>{
+    if(isAudio) audio.play()
+    else{
+      audio.pause()
+      audio.currentTime = 0;
+    }
+    return ()=>{
+      audio.pause()
+      audio.currentTime = 0;
+    }
+  },[isAudio])
 
   const setChoosen = (choosen) => {
     if (typeof choosen === "number") {

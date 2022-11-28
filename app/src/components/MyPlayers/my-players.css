@@ -48,6 +48,7 @@
 .my-player {
   height: 44%;
   position: relative;
+  cursor: pointer;
 }
 .my-player-frame {
   height: 90%;

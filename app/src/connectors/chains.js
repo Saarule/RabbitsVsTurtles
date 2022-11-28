@@ -41,30 +41,30 @@ export const CHAINS = {
     ].filter((url) => url !== ''),
     name: 'Mainnet',
   },
-  3: {
-    urls: [process.env.infuraKey ? `https://ropsten.infura.io/v3/${process.env.infuraKey}` : ''].filter(
-      (url) => url !== ''
-    ),
-    name: 'Ropsten',
-  },
-  4: {
-    urls: [process.env.infuraKey ? `https://rinkeby.infura.io/v3/${process.env.infuraKey}` : ''].filter(
-      (url) => url !== ''
-    ),
-    name: 'Rinkeby',
-  },
+  // 3: {
+  //   urls: [process.env.infuraKey ? `https://ropsten.infura.io/v3/${process.env.infuraKey}` : ''].filter(
+  //     (url) => url !== ''
+  //   ),
+  //   name: 'Ropsten',
+  // },
+  // 4: {
+  //   urls: [process.env.infuraKey ? `https://rinkeby.infura.io/v3/${process.env.infuraKey}` : ''].filter(
+  //     (url) => url !== ''
+  //   ),
+  //   name: 'Rinkeby',
+  // },
   5: {
     urls: [process.env.infuraKey ? `https://goerli.infura.io/v3/${process.env.infuraKey}` : ''].filter(
       (url) => url !== ''
     ),
     name: 'Görli',
   },
-  42: {
-    urls: [process.env.infuraKey ? `https://kovan.infura.io/v3/${process.env.infuraKey}` : ''].filter(
-      (url) => url !== ''
-    ),
-    name: 'Kovan',
-  },
+  // 42: {
+  //   urls: [process.env.infuraKey ? `https://kovan.infura.io/v3/${process.env.infuraKey}` : ''].filter(
+  //     (url) => url !== ''
+  //   ),
+  //   name: 'Kovan',
+  // },
   // Optimism
   10: {
     urls: [
@@ -75,15 +75,15 @@ export const CHAINS = {
     nativeCurrency: ETH,
     blockExplorerUrls: ['https://optimistic.etherscan.io'],
   },
-  69: {
-    urls: [
-      process.env.infuraKey ? `https://optimism-kovan.infura.io/v3/${process.env.infuraKey}` : '',
-      'https://kovan.optimism.io',
-    ].filter((url) => url !== ''),
-    name: 'Optimism Kovan',
-    nativeCurrency: ETH,
-    blockExplorerUrls: ['https://kovan-optimistic.etherscan.io'],
-  },
+  // 69: {
+  //   urls: [
+  //     process.env.infuraKey ? `https://optimism-kovan.infura.io/v3/${process.env.infuraKey}` : '',
+  //     'https://kovan.optimism.io',
+  //   ].filter((url) => url !== ''),
+  //   name: 'Optimism Kovan',
+  //   nativeCurrency: ETH,
+  //   blockExplorerUrls: ['https://kovan-optimistic.etherscan.io'],
+  // },
   // Arbitrum
   42161: {
     urls: [
@@ -94,15 +94,15 @@ export const CHAINS = {
     nativeCurrency: ETH,
     blockExplorerUrls: ['https://arbiscan.io'],
   },
-  421611: {
-    urls: [
-      process.env.infuraKey ? `https://arbitrum-rinkeby.infura.io/v3/${process.env.infuraKey}` : '',
-      'https://rinkeby.arbitrum.io/rpc',
-    ].filter((url) => url !== ''),
-    name: 'Arbitrum Testnet',
-    nativeCurrency: ETH,
-    blockExplorerUrls: ['https://testnet.arbiscan.io'],
-  },
+  // 421611: {
+  //   urls: [
+  //     process.env.infuraKey ? `https://arbitrum-rinkeby.infura.io/v3/${process.env.infuraKey}` : '',
+  //     'https://rinkeby.arbitrum.io/rpc',
+  //   ].filter((url) => url !== ''),
+  //   name: 'Arbitrum Testnet',
+  //   nativeCurrency: ETH,
+  //   blockExplorerUrls: ['https://testnet.arbiscan.io'],
+  // },
   // Polygon
   137: {
     urls: [
@@ -113,14 +113,14 @@ export const CHAINS = {
     nativeCurrency: MATIC,
     blockExplorerUrls: ['https://polygonscan.com'],
   },
-  80001: {
-    urls: [process.env.infuraKey ? `https://polygon-mumbai.infura.io/v3/${process.env.infuraKey}` : ''].filter(
-      (url) => url !== ''
-    ),
-    name: 'Polygon Mumbai',
-    nativeCurrency: MATIC,
-    blockExplorerUrls: ['https://mumbai.polygonscan.com'],
-  },
+  // 80001: {
+  //   urls: [process.env.infuraKey ? `https://polygon-mumbai.infura.io/v3/${process.env.infuraKey}` : ''].filter(
+  //     (url) => url !== ''
+  //   ),
+  //   name: 'Polygon Mumbai',
+  //   nativeCurrency: MATIC,
+  //   blockExplorerUrls: ['https://mumbai.polygonscan.com'],
+  // },
   // Celo
   42220: {
     urls: ['https://forno.celo.org'],
@@ -135,16 +135,3 @@ export const CHAINS = {
     blockExplorerUrls: ['https://alfajores-blockscout.celo-testnet.org'],
   },
 }
-
-export const URLS: { [chainId: number]: string[] } = Object.keys(CHAINS).reduce<{ [chainId: number]: string[] }>(
-  (accumulator, chainId) => {
-    const validURLs: string[] = CHAINS[Number(chainId)].urls
-
-    if (validURLs.length) {
-      accumulator[Number(chainId)] = validURLs
-    }
-
-    return accumulator
-  },
-  {}
-)
