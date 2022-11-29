@@ -22,27 +22,30 @@ const Mint = ({ confirmTransaction, mintInfo, isAudio }) => {
   const timeoutId = useRef(0);
   const { accounts, isActive, provider, connector } = useWeb3React();
   const info = useSelector(selectAllInfo)
-  const audio = new Audio(require('../../assets/music/Spooky4-Mint.mp3'))
-  audio.loop = true
+  // const audio = new Audio(require('../../assets/music/Spooky4-Mint.mp3'))
+  // audio.loop = true
 
   useEffect(() => {
     intervalId.current = setInterval(() => {
       setSwitchMint((switchMint) => !switchMint);
     }, 500);
+    return ()=>{
+      clearInterval(intervalId.current)
+    }
   }, []);
   
-  useEffect(()=>{
-    console.log('aoudio');
-    if(isAudio) audio.play()
-    else{
-      audio.pause()
-      audio.currentTime = 0;
-    }
-    return ()=>{
-      audio.pause()
-      audio.currentTime = 0;
-    }
-  },[isAudio])
+  // useEffect(()=>{
+  //   console.log('aoudio');
+  //   if(isAudio) audio.play()
+  //   else{
+  //     audio.pause()
+  //     audio.currentTime = 0;
+  //   }
+  //   return ()=>{
+  //     audio.pause()
+  //     audio.currentTime = 0;
+  //   }
+  // },[isAudio])
 
   const mint = async () => {
     if(accounts && accounts[0]){
@@ -53,8 +56,10 @@ const Mint = ({ confirmTransaction, mintInfo, isAudio }) => {
         info.web3.utils.toHex(Number(mintInfo.cost)) // The 10000000000000000 is solving an issue of overflow numbers when calculating the price.
       ),
       data: info.contract.methods.mint().encodeABI(),
+      // gasLimit: '210000000',
+      // gas: '100000000',
+      // gasPrice: info.web3.utils.toWei("100", 'ether')
     };
-    console.log(info.web3.utils.fromWei(params.value));
     const res = await confirmTransaction(params, {action: 'Mint', txt: 'You are about to mint a new player and join the game!'})
     if(res){
       toast.warning(res.message, {

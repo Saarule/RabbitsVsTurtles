@@ -27,7 +27,7 @@ const PlayerDetails = () => {
     if(!player.player.alive){
       return {background: 'rgb(184, 186, 186)'}
     }else if(player.player.playerType === 'Turtle'){
-      return {background: 'rgb(235, 68, 68);'}
+      return {background: 'rgb(235, 68, 68)'}
     }else{
       return {background: 'rgb(1, 132, 249)'}
     }

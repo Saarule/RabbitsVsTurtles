@@ -21,6 +21,9 @@
     cursor: pointer;
     height: 17px;
 }
+.exit-icon:hover{
+    transform: scale(1.07);
+}
 
 .network-modal-name{
     border-radius: 10px;

@@ -19,17 +19,18 @@ import muteBtn from "../../assets/pic/sound-mute.png";
 import unmuteBtn from "../../assets/pic/sound-unmute.png";
 import { useWeb3React } from "@web3-react/core";
 import {toast} from 'react-toastify'
+import { CHAINS } from "../../connectors/chains";
 
 const Footer = ({ isDarkMode, isAudio, setIsAudio }) => {
   const [isNetwork, setIsNetwork] = useState(false);
   const [isMyWarriors, setIsMyWarriors] = useState(false);
   const info = useSelector(selectAllInfo);
-  const {accounts} = useWeb3React()
+  const {accounts, chainId} = useWeb3React()
 
   const updateNewPlayer = () => {
     store.dispatch(updatePlayer({ contract: info.contract, playerId: 90 }));
   };
-// console.log(accounts);
+// console.log(CHAINS[chainId]);
   return (
     <div className="footer">
       <div className="footer-side">
@@ -73,7 +74,7 @@ const Footer = ({ isDarkMode, isAudio, setIsAudio }) => {
       <div className="footer-side right" onClick={() => setIsNetwork(true)}>
         <div className="footer-network">
           <img alt="" src={goldFrame} />
-          <div className="side-txt">Polygon</div>
+          <div className="side-txt">{CHAINS[chainId]?.name}</div>
         </div>
       </div>
       {isNetwork && (

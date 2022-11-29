@@ -30,7 +30,7 @@ import FailToConnect from "./components/FailToConnect/FailToConnect";
 import Web3 from "web3";
 import { CHAINS } from "./connectors/chains";
 import { useRef } from "react";
-import { connect } from "./services/connect.wallet.service";
+import { Connect } from "./services/connect.wallet.service";
 
 function App() {
   const [params, setParams] = useState({});
@@ -42,7 +42,7 @@ function App() {
   const [isNotification, setIsNotification] = useState(true);
   const [balance, setBalance] = useState("");
   const [mintInfo, setMintInfo] = useState({ cost: "0", totalSupply: '0' });
-  const { provider, accounts, chainId, connector } = useWeb3React();
+  const { provider, accounts, chainId, isActive } = useWeb3React();
   const [isAudio, setIsAudio] = useState(false)
   const location = useLocation();
   const info = useSelector(selectAllInfo);
@@ -50,11 +50,11 @@ function App() {
   const emitter = useRef()
   
   useEffect(() => {
-    connect('Network')
+    if(!isActive) Connect('Network')
   }, []);
 
   useEffect(() => {
-    connect('Network')
+    if(!isActive) Connect('Network')
     startEventListener();
     getCost();
     getTotal()
@@ -65,9 +65,10 @@ function App() {
     if (accounts?.length !== 0 && accounts) {
       getUserBalance();
     }
-  }, [accounts]);
+  }, [accounts, chainId]);
   
   useEffect(()=>{
+    if(!isActive) Connect('Network')
     if(chainId === 137 || chainId === 5){
       initInfo()
       dispatch(removeAllPlayers())
@@ -86,10 +87,11 @@ function App() {
   const confirmTransaction = async (params, desc) => {
     try {
       await info.web3.eth.estimateGas(params);
+      console.log(params);
       setParams({ params, desc });
       setActiveModal("confirmationModal");
     } catch (err) {
-      // console.log(err, desc);
+      console.log(err, params);
       if(desc.action === 'Mint') {
         setActiveModal("confirmationModal");
         setParams({ params, desc });
@@ -120,6 +122,7 @@ function App() {
         error: "Transaction failed 🤯",
       });
     } catch (err) {
+      console.log(err);
       err = JSON.parse(JSON.stringify(err)).reason;
       setError(err);
       setActiveModal("errorModal");
@@ -250,7 +253,7 @@ function App() {
         />
       )}
       <Routes>
-        <Route path="/" element={<Welcome isAudio={isAudio} />} />
+        <Route path="/" element={<Welcome isAudio={isAudio} setIsAudio={setIsAudio}/>} />
         <Route path="map" element={<Map isAudio={isAudio}/>} />
         <Route
           path="mint"

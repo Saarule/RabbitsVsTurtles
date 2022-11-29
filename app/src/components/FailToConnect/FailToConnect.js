@@ -5,13 +5,13 @@ import './fail-to-connect.css'
 import exitIcon from '../../assets/pic/exit-icon.png'
 // import goBack from '../../assets/pic/akar-icons-arrow-right.png'
 import errorIcon from '../../assets/pic/error-icon.png'
-import { connect } from '../../services/connect.wallet.service'
+import { Connect } from '../../services/connect.wallet.service'
 
 const FailToConnect = ({setActiveModal,chosenConnection}) => {
 
   const connectToWallet = async () => {
     setActiveModal('waitingToConnect')
-    const res = await connect(chosenConnection)
+    const res = await Connect(chosenConnection)
     if(res) setActiveModal('failToConnect')
     // try{ 
     //   await connection.connector.connectEagerly(137)

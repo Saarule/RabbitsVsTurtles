@@ -28,8 +28,8 @@ export const CHAINS = {
   5: {
     urls: [`https://goerli.infura.io/v3/9b81098f432a446690d089d65bc3deb9`],
     WSurls: ['wss://eth-goerli.g.alchemy.com/v2/A4cu_U64cbZ_lySFcSxT73Q4N_ZQZChC'],
-    name: "Goerli",
-    symbol: "goerli-icon",
+    name: "Görli",
+    symbol: "gorli-icon",
     contractAddress: "0xE7efc0e6Bf6A12F52cf725A3A164eEd8a9292237",
   },
   // Optimism

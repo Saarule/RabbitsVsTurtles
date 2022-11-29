@@ -70,7 +70,7 @@ const ChoosePlayer = ({ playersData, setChoosen }) => {
       };
   };
   // console.log(playersToShow);
-  if (playersToShow)
+  if (!playersToShow.length)
     return (
       <div className="loader-container" style={{height: '24%'}}>
           <div className="loader"></div>

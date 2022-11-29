@@ -7,10 +7,11 @@ import metamaskIcon from "../../assets/pic/logos_metamask-icon.png";
 import coinbaseWalletIcon from "../../assets/pic/coinbase-icon.png";
 import walletConnectIcon from "../../assets/pic/walletconnect-icon.png";
 import exitIcon from "../../assets/pic/exit-icon.png";
-import { connect } from "../../services/connect.wallet.service";
+import { Connect } from "../../services/connect.wallet.service";
+import { useWeb3React } from "@web3-react/core";
 
 const ConnectModal = ({ setActiveModal, setChosenConnection }) => {
-
+  const {chainId} = useWeb3React()
   // const connectToWallet = async (connectionName) => {
   //   setChosenConnection(connectionName);
   //   const connection = getConnection(connectionName);
@@ -31,7 +32,7 @@ const ConnectModal = ({ setActiveModal, setChosenConnection }) => {
   const connectToWallet = async (connectionName) => {
     setChosenConnection(connectionName);
     setActiveModal("waitingToConnect");
-    const res = await connect(connectionName)
+    const res = await Connect(connectionName, chainId)
     if(res) setActiveModal("failToConnect");
   }
 

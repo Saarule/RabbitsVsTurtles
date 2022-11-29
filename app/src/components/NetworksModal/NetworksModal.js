@@ -7,7 +7,7 @@ import etheriumIcon from "../../assets/pic/etherium-icon.png";
 import optimismIcon from "../../assets/pic/optimism-icon.png";
 import arbitrumIcon from "../../assets/pic/arbitrum-icon.png";
 import celoIcon from "../../assets/pic/celo-icon.png";
-import exitIcon from "../../assets/pic/exit-icon.png";
+import gorliIcon from "../../assets/pic/gorli-icon.png";
 import { useWeb3React } from "@web3-react/core";
 import { toast } from "react-toastify";
 
@@ -164,7 +164,7 @@ const NetworksModal = ({ isDarkMode, closeFunc }) => {
       </div>
       <div className="network-modal-name" onClick={()=>changeNetwork(5)}>
         <div className="network-icon">
-          <img alt="" src={celoIcon} />
+          <img alt="" src={gorliIcon} />
         </div>
         <div>Goerli</div>
         <div className="network-active">

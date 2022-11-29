@@ -146,7 +146,7 @@ const Arena = ({ confirmTransaction , isAudio}) => {
   const setNewFilter = (newFilter) => {};
   const filterPlayers = () => {};
   // console.log(playerHover);
-  if(isLoading) return <div style={{height: '100%', width: '100%', background: 'gray', filter: 'blur(4px)'}}> <img alt="" src={headerImg} style={{opacity: '0'}} onLoad={() => setIsLoading(false)}/><div className="loader-container" style={{height: '50%'}}><div className="loader"></div></div></div>
+  if(isLoading) return <div style={{height: '100%', width: '100%', background: 'gray'}}> <img alt="" src={headerImg} style={{opacity: '0'}} onLoad={() => setIsLoading(false)}/><div className="loader-container" style={{height: '50%'}}><div className="loader"></div></div></div>
   return (
     <div className="arena">
       <div className="arena-header">

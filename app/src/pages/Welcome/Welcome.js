@@ -8,12 +8,16 @@ import {useNavigate} from 'react-router-dom'
 import './welcome.css'
 import connectWalletPic from '../../assets/pic/connect-wallet.png'
 import playAsGuesePic from '../../assets/pic/play-as-guese.png'
+import headerImg from '../../assets/pic/welcome-header.png'
+import discordIcon from '../../assets/pic/discord-icon.png'
+import muteIcon from '../../assets/pic/sound-mute.png'
+import unmuteIcon from '../../assets/pic/sound-unmute.png'
 import ConnectModal from '../../components/ConnectModal/ConnectModal'
 import WaitingToConnect from '../../components/WaitingToConnect/WaitingToConnect'
 import FailToConnect from '../../components/FailToConnect/FailToConnect'
-import { connect } from '../../services/connect.wallet.service';
+import { Connect } from '../../services/connect.wallet.service';
 
-const Welcome = ({isAudio}) => {
+const Welcome = ({isAudio, setIsAudio}) => {
 
   const [activeModal, setActiveModal] = useState('welcome')
   const [chosenConnection, setChosenConnection] = useState('')
@@ -50,7 +54,7 @@ const Welcome = ({isAudio}) => {
 const connectToWallet = async (connectionName) => {
   setChosenConnection(connectionName)
   setActiveModal('WaitingToConnect')
-  const res = await connect(connectionName)
+  const res = await Connect(connectionName)
   if(res) setActiveModal('FailToConnect')
   // const connection = getConnection(connectionName);
   // try{ 
@@ -64,6 +68,9 @@ const connectToWallet = async (connectionName) => {
 
   return (
     <div className='welcome'>
+        <div className='welcome-header'><img alt='' src={headerImg}/></div>
+        <a href={`https://discord.gg/FGwhMDAv3s`} target="_blank" className='welcome-discord'><img alt='' src={discordIcon}/>   JOIN OUR DISCORD</a>
+        <div className='welcome-mute' onClick={()=>setIsAudio(!isAudio)}><img alt='' src={!isAudio? muteIcon : unmuteIcon}/></div>
         {activeModal === 'welcome' && <div className='welcome-connect-container'>
           <div className='welcome-connect' onClick={()=>setActiveModal('connectModal')}>
             <div className='connect-header'>Play using your wallet</div>

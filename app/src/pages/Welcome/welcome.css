@@ -18,7 +18,7 @@
   border-radius: 11%;
   margin: 20px 0;
   height: 65%;
-  padding: 0.5%;
+  padding: 5px;
   aspect-ratio: 1/1.2;
   max-width: 95vw;
   cursor: pointer;
@@ -38,7 +38,7 @@
   justify-content: space-around;
   align-items: center;
   text-align: center;
-  padding: 0 50px;
+  padding: 7px 0px 25px;
   height: 100%;
   aspect-ratio: 1/1.2;
   max-width: 95vw;
@@ -48,21 +48,24 @@
 }
 
 .connect-header {
-  font-size: 1.75rem;
+  font-size: 1.6rem;
   font-weight: 600;
+  padding: 0 28px;
 }
 
 .connect-context {
   font-size: 1.125rem;
   max-width: 337px;
+  padding: 0 39px;
 }
 
 .connect-pic {
   height: 50%;
   transition: 0.3s ease;
+  padding: 0px 18px;
 }
 .welcome-connect-container:hover .connect-pic {
-  margin-bottom: 20%;
+  margin-bottom: 10%;
 }
 .connect-pic img {
   width: 100%;
@@ -141,4 +144,27 @@
   0% { background-position: 0 0; }
   50% { background-position: 400% 0; }
   100% { background-position: 0 0; }
+}
+
+.welcome-header{
+  position: absolute;
+  height: 25%;
+  z-index: 1;
+  top: 3%;
+}
+.welcome-discord{
+  position: absolute;
+  top: 3%;
+  right: 10%;
+  display: flex;
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+  gap: 5px;
+}
+.welcome-mute{
+  position: absolute;
+  bottom: 3%;
+  left: 3%;
+  height: 6%;
 }

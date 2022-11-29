@@ -103,6 +103,6 @@
   transform: scale(1.05);
 }
 
-.player-display div:hover {
+.player-display img:hover {
   transform: scale(1.05);
 }
