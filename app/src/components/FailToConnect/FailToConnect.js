@@ -5,25 +5,27 @@ import './fail-to-connect.css'
 import exitIcon from '../../assets/pic/exit-icon.png'
 // import goBack from '../../assets/pic/akar-icons-arrow-right.png'
 import errorIcon from '../../assets/pic/error-icon.png'
+import { connect } from '../../services/connect.wallet.service'
 
 const FailToConnect = ({setActiveModal,chosenConnection}) => {
 
   const connectToWallet = async () => {
-    console.log(chosenConnection);
-    const connection = getConnection(chosenConnection);
-    setActiveModal('WaitingToConnect')
-    try{ 
-      await connection.connector.connectEagerly(137)
-      await connection.connector.activate(137);
-    } catch (err){
-      console.log(err);
-      try{
-        await connection.connector.activate(137);
-      } catch(err){
-        console.log(err);
-        setActiveModal('FailToConnect')
-      }
-    }
+    setActiveModal('waitingToConnect')
+    const res = await connect(chosenConnection)
+    if(res) setActiveModal('failToConnect')
+    // try{ 
+    //   await connection.connector.connectEagerly(137)
+    //   await connection.connector.activate(137);
+    // } catch (err){
+    //   console.log(err);
+    //   try{
+    //     await connection.connector.activate(137);
+    //     console.log('hi');
+    //   } catch(err){
+    //     console.log(err);
+        
+    //   }
+    // }
   };
 
   return (
@@ -34,7 +36,7 @@ const FailToConnect = ({setActiveModal,chosenConnection}) => {
         <div className='fail-connect-header'>Error connecting</div>
         <div className='fail-connect-text'>The connection attempt failed. Please click try again and follow the steps to connect in your wallet.</div>
         <div className='fail-connect-btn' onClick={connectToWallet}>Try Again</div>
-        <div className='fail-connect-footer' onClick={()=>setActiveModal('ConnectModal')}>Back to wallet selection</div>
+        <div className='fail-connect-footer' onClick={()=>setActiveModal('connectModal')}>Back to wallet selection</div>
     </div>
   )
 }

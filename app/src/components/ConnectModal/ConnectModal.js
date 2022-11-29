@@ -7,27 +7,33 @@ import metamaskIcon from "../../assets/pic/logos_metamask-icon.png";
 import coinbaseWalletIcon from "../../assets/pic/coinbase-icon.png";
 import walletConnectIcon from "../../assets/pic/walletconnect-icon.png";
 import exitIcon from "../../assets/pic/exit-icon.png";
+import { connect } from "../../services/connect.wallet.service";
 
 const ConnectModal = ({ setActiveModal, setChosenConnection }) => {
 
+  // const connectToWallet = async (connectionName) => {
+  //   setChosenConnection(connectionName);
+  //   const connection = getConnection(connectionName);
+  //   setActiveModal("waitingToConnect");
+  //   try {
+  //     await connection.connector.connectEagerly(137);
+  //     await connection.connector.activate(137);
+  //   } catch (err) {
+  //     console.log(err);
+  //     try {
+  //       await connection.connector.activate(137);
+  //     } catch (err) {
+  //       console.log(err);
+  //       setActiveModal("failToConnect");
+  //     }
+  //   }
+  // };
   const connectToWallet = async (connectionName) => {
     setChosenConnection(connectionName);
-    const connection = getConnection(connectionName);
     setActiveModal("waitingToConnect");
-    try {
-      await connection.connector.connectEagerly(137);
-      await connection.connector.activate(137);
-    } catch (err) {
-      console.log(err);
-      try {
-        await connection.connector.activate(137);
-      } catch (err) {
-        console.log(err);
-        setActiveModal("failToConnect");
-      }
-    }
-  };
-
+    const res = await connect(connectionName)
+    if(res) setActiveModal("failToConnect");
+  }
 
   return (
     <div className="modal-container">

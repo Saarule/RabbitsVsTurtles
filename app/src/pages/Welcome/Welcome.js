@@ -11,8 +11,9 @@ import playAsGuesePic from '../../assets/pic/play-as-guese.png'
 import ConnectModal from '../../components/ConnectModal/ConnectModal'
 import WaitingToConnect from '../../components/WaitingToConnect/WaitingToConnect'
 import FailToConnect from '../../components/FailToConnect/FailToConnect'
+import { connect } from '../../services/connect.wallet.service';
 
-const Welcome = ({}) => {
+const Welcome = ({isAudio}) => {
 
   const [activeModal, setActiveModal] = useState('welcome')
   const [chosenConnection, setChosenConnection] = useState('')
@@ -26,23 +27,39 @@ const Welcome = ({}) => {
     connector
   } = useWeb3React();
   let navigate = useNavigate();
+  const audio = new Audio(require('../../assets/music/Fallen Leaves - Openning.mp3'))
+  audio.loop = true
 
   useEffect(()=>{
-    if(isActive) navigate('/map')
-  },[isActive])
+    if(accounts && accounts[0]) navigate('/map')
+  },[accounts])
+
+  useEffect(()=>{
+    if(isAudio) audio.play()
+    else{
+      audio.pause()
+      audio.currentTime = 0;
+    }
+    return ()=>{
+      audio.pause()
+      audio.currentTime = 0;
+    }
+  },[isAudio])
 
 
 const connectToWallet = async (connectionName) => {
   setChosenConnection(connectionName)
-  const connection = getConnection(connectionName);
   setActiveModal('WaitingToConnect')
-  try{ 
-    console.log(connection);
-    await connection.connector.activate(137);
-  } catch (err){
-    console.log(err);
-    setActiveModal('FailToConnect')
-  }
+  const res = await connect(connectionName)
+  if(res) setActiveModal('FailToConnect')
+  // const connection = getConnection(connectionName);
+  // try{ 
+  //   console.log(connection);
+  //   await connection.connector.activate(137);
+  // } catch (err){
+  //   console.log(err);
+  //   setActiveModal('FailToConnect')
+  // }
 };
 
   return (
@@ -56,7 +73,7 @@ const connectToWallet = async (connectionName) => {
           </div>
         </div>}
         {activeModal === 'welcome' && <div className='welcome-connect-container'>
-          <div className='welcome-connect' onClick={()=>connectToWallet('Network')}>
+          <div className='welcome-connect' onClick={()=>navigate('/map')}>
             <div className='connect-header'>Play as guest</div>
             <div className='connect-context'>Your information will be locally stored and your experience limited.</div>
             <div className='connect-pic'><img alt='' src={playAsGuesePic}/></div>

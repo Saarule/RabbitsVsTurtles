@@ -117,12 +117,14 @@ const Overview = ({isAudio}) => {
   };
 
   const getGameInfo = async () => {
+    console.log(info.contractJSON.address);
     const params = {
       to: info.contractJSON.address,
       data: info.contract.methods.getGameInfo().encodeABI(),
     };
     try {
       const result = await info.web3.eth.call(params);
+      console.log(result);
       let newArray = [0, 0, 0, 0, 0, 0, 0, 0];
       //   console.log("Important 1: " +result);
       //   console.log("Important 2: "+result.replace(/^0x+/, ''));

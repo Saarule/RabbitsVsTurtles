@@ -1,137 +1,69 @@
-
-const ETH  = {
-  name: 'Ether',
-  symbol: 'ETH',
+const ETH = {
+  name: "Ether",
+  symbol: "ETH",
   decimals: 18,
-}
+};
 
 const MATIC = {
-  name: 'Matic',
-  symbol: 'MATIC',
+  name: "Matic",
+  symbol: "MATIC",
   decimals: 18,
-}
+};
 
 const CELO = {
-  name: 'Celo',
-  symbol: 'CELO',
+  name: "Celo",
+  symbol: "CELO",
   decimals: 18,
-}
-
-export function getAddChainParameters(chainId){
-  const chainInformation = CHAINS[chainId]
-  if (isExtendedChainInformation(chainInformation)) {
-    return {
-      chainId,
-      chainName: chainInformation.name,
-      nativeCurrency: chainInformation.nativeCurrency,
-      rpcUrls: chainInformation.urls,
-      blockExplorerUrls: chainInformation.blockExplorerUrls,
-    }
-  } else {
-    return chainId
-  }
-}
+};
 
 export const CHAINS = {
   1: {
-    urls: [
-      process.env.infuraKey ? `https://mainnet.infura.io/v3/${process.env.infuraKey}` : '',
-      process.env.alchemyKey ? `https://eth-mainnet.alchemyapi.io/v2/${process.env.alchemyKey}` : '',
-      'https://cloudflare-eth.com',
-    ].filter((url) => url !== ''),
-    name: 'Mainnet',
+    urls: [`https://mainnet.infura.io/v3/9b81098f432a446690d089d65bc3deb9`],
+    WSurls: [],
+    name: "Ethereum",
+    symbol: "ethereum-icon",
+    contractAddress: "",
   },
-  // 3: {
-  //   urls: [process.env.infuraKey ? `https://ropsten.infura.io/v3/${process.env.infuraKey}` : ''].filter(
-  //     (url) => url !== ''
-  //   ),
-  //   name: 'Ropsten',
-  // },
-  // 4: {
-  //   urls: [process.env.infuraKey ? `https://rinkeby.infura.io/v3/${process.env.infuraKey}` : ''].filter(
-  //     (url) => url !== ''
-  //   ),
-  //   name: 'Rinkeby',
-  // },
+  // Goerli
   5: {
-    urls: [process.env.infuraKey ? `https://goerli.infura.io/v3/${process.env.infuraKey}` : ''].filter(
-      (url) => url !== ''
-    ),
-    name: 'Görli',
+    urls: [`https://goerli.infura.io/v3/9b81098f432a446690d089d65bc3deb9`],
+    WSurls: ['wss://eth-goerli.g.alchemy.com/v2/A4cu_U64cbZ_lySFcSxT73Q4N_ZQZChC'],
+    name: "Goerli",
+    symbol: "goerli-icon",
+    contractAddress: "0xE7efc0e6Bf6A12F52cf725A3A164eEd8a9292237",
   },
-  // 42: {
-  //   urls: [process.env.infuraKey ? `https://kovan.infura.io/v3/${process.env.infuraKey}` : ''].filter(
-  //     (url) => url !== ''
-  //   ),
-  //   name: 'Kovan',
-  // },
   // Optimism
   10: {
-    urls: [
-      process.env.infuraKey ? `https://optimism-mainnet.infura.io/v3/${process.env.infuraKey}` : '',
-      'https://mainnet.optimism.io',
-    ].filter((url) => url !== ''),
-    name: 'Optimism',
-    nativeCurrency: ETH,
-    blockExplorerUrls: ['https://optimistic.etherscan.io'],
+    urls: [],
+    WSurls: [],
+    name: "Optimism",
+    symbol: "optimism-icon",
+    contractAddress: "",
   },
-  // 69: {
-  //   urls: [
-  //     process.env.infuraKey ? `https://optimism-kovan.infura.io/v3/${process.env.infuraKey}` : '',
-  //     'https://kovan.optimism.io',
-  //   ].filter((url) => url !== ''),
-  //   name: 'Optimism Kovan',
-  //   nativeCurrency: ETH,
-  //   blockExplorerUrls: ['https://kovan-optimistic.etherscan.io'],
-  // },
   // Arbitrum
   42161: {
-    urls: [
-      process.env.infuraKey ? `https://arbitrum-mainnet.infura.io/v3/${process.env.infuraKey}` : '',
-      'https://arb1.arbitrum.io/rpc',
-    ].filter((url) => url !== ''),
-    name: 'Arbitrum One',
-    nativeCurrency: ETH,
-    blockExplorerUrls: ['https://arbiscan.io'],
+    urls: [],
+    WSurls: [],
+    name: "Arbitrum",
+    symbol: "arbitrum-icon",
+    contractAddress: "",
   },
-  // 421611: {
-  //   urls: [
-  //     process.env.infuraKey ? `https://arbitrum-rinkeby.infura.io/v3/${process.env.infuraKey}` : '',
-  //     'https://rinkeby.arbitrum.io/rpc',
-  //   ].filter((url) => url !== ''),
-  //   name: 'Arbitrum Testnet',
-  //   nativeCurrency: ETH,
-  //   blockExplorerUrls: ['https://testnet.arbiscan.io'],
-  // },
   // Polygon
   137: {
     urls: [
-      process.env.infuraKey ? `https://polygon-mainnet.infura.io/v3/${process.env.infuraKey}` : '',
-      'https://polygon-rpc.com',
-    ].filter((url) => url !== ''),
-    name: 'Polygon Mainnet',
-    nativeCurrency: MATIC,
-    blockExplorerUrls: ['https://polygonscan.com'],
+      `https://polygon-mainnet.infura.io/v3/9b81098f432a446690d089d65bc3deb9`,
+    ],
+    WSurls: ['wss://polygon-mainnet.g.alchemy.com/v2/2arFR52wPyKbFgPTwclErfm31zuLIW-y'],
+    name: "Polygon",
+    symbol: "polygon-icon",
+    contractAddress: "0x829a67EF339E6230FcfDbf3c8730fFBb0329e796",
   },
-  // 80001: {
-  //   urls: [process.env.infuraKey ? `https://polygon-mumbai.infura.io/v3/${process.env.infuraKey}` : ''].filter(
-  //     (url) => url !== ''
-  //   ),
-  //   name: 'Polygon Mumbai',
-  //   nativeCurrency: MATIC,
-  //   blockExplorerUrls: ['https://mumbai.polygonscan.com'],
-  // },
   // Celo
   42220: {
-    urls: ['https://forno.celo.org'],
-    name: 'Celo',
-    nativeCurrency: CELO,
-    blockExplorerUrls: ['https://explorer.celo.org'],
+    urls: ["https://forno.celo.org"],
+    WSurls: [],
+    name: "Celo",
+    symbol: "celo-icon",
+    contractAddress: "",
   },
-  44787: {
-    urls: ['https://alfajores-forno.celo-testnet.org'],
-    name: 'Celo Alfajores',
-    nativeCurrency: CELO,
-    blockExplorerUrls: ['https://alfajores-blockscout.celo-testnet.org'],
-  },
-}
+};

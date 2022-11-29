@@ -20,7 +20,7 @@ const Mint = ({ confirmTransaction, mintInfo, isAudio }) => {
   const [activeModal, setActiveModal] = useState('confirmationModal');
   const intervalId = useRef(0);
   const timeoutId = useRef(0);
-  const { accounts, isActive, provider } = useWeb3React();
+  const { accounts, isActive, provider, connector } = useWeb3React();
   const info = useSelector(selectAllInfo)
   const audio = new Audio(require('../../assets/music/Spooky4-Mint.mp3'))
   audio.loop = true
@@ -32,6 +32,7 @@ const Mint = ({ confirmTransaction, mintInfo, isAudio }) => {
   }, []);
   
   useEffect(()=>{
+    console.log('aoudio');
     if(isAudio) audio.play()
     else{
       audio.pause()
@@ -85,6 +86,7 @@ const Mint = ({ confirmTransaction, mintInfo, isAudio }) => {
     clearTimeout(timeoutId.current);
     setActiveModal("");
   };
+  // console.log(mintInfo);
   return (
     <div className="mint">
       {activeModal === "confirmation" && (
@@ -110,8 +112,8 @@ const Mint = ({ confirmTransaction, mintInfo, isAudio }) => {
           <div className="mint-details">
             <div className="mint-price">
               <div>
-                {mintInfo.cost !== '0'? Number(
-                  info.web3?.utils.fromWei(mintInfo.cost, "ether")
+                {mintInfo.cost? Number(
+                  info.web3?.utils.fromWei(String(mintInfo.cost), "ether")
                 ).toFixed(3):
                 <div className="loader-small" style={{borderTop: '1px solid #ffffff', height: '16px'}}></div>
                 }
@@ -125,7 +127,7 @@ const Mint = ({ confirmTransaction, mintInfo, isAudio }) => {
               <MainBtn txt='MINT' func={mint}/>
             </div>
             <div className="mint-amount-players">
-              <div>{mintInfo.totalSupply !== '0'?`${mintInfo.totalSupply}/${info.contractJSON.total_supply}`:
+              <div>{mintInfo.totalSupply !== '0'?`${mintInfo.totalSupply}/21000`:
               <div><div className="loader-small" style={{borderTop: '1px solid #ffffff', height: '16px'}}></div>/{info.contractJSON.total_supply}</div>}
               </div>
             </div>

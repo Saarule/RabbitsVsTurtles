@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { useWeb3React } from "@web3-react/core";
 import { useDispatch, useSelector } from "react-redux";
-import { selectAllInfo } from "./features/infoSlice";
+import { fetchInfo, selectAllInfo, updateInfo } from "./features/infoSlice";
 import { ToastContainer, toast } from "react-toastify";
-import { newPlayer, updatePlayer } from "./features/playersSlice";
+import { fetchPlayers, newPlayer, removeAllPlayers, updatePlayer } from "./features/playersSlice";
 import { store } from "./features/store";
 import { addEvent } from "./features/eventsSlice";
 import abi from './contracts/abi.json'
@@ -28,6 +28,9 @@ import PlayerDetails from "./components/PlayerDetails/PlayerDetails";
 import ConnectModal from "./components/ConnectModal/ConnectModal";
 import FailToConnect from "./components/FailToConnect/FailToConnect";
 import Web3 from "web3";
+import { CHAINS } from "./connectors/chains";
+import { useRef } from "react";
+import { connect } from "./services/connect.wallet.service";
 
 function App() {
   const [params, setParams] = useState({});
@@ -40,23 +43,45 @@ function App() {
   const [balance, setBalance] = useState("");
   const [mintInfo, setMintInfo] = useState({ cost: "0", totalSupply: '0' });
   const { provider, accounts, chainId, connector } = useWeb3React();
-  const [isAudio, setIsAudio] = useState(true)
+  const [isAudio, setIsAudio] = useState(false)
   const location = useLocation();
   const info = useSelector(selectAllInfo);
   const dispatch = useDispatch()
+  const emitter = useRef()
   
   useEffect(() => {
+    connect('Network')
+  }, []);
+
+  useEffect(() => {
+    connect('Network')
     startEventListener();
     getCost();
     getTotal()
-  }, []);
-
+  }, [info]);
+ 
   useEffect(() => {
     setBalance("");
     if (accounts?.length !== 0 && accounts) {
       getUserBalance();
     }
   }, [accounts]);
+  
+  useEffect(()=>{
+    if(chainId === 137 || chainId === 5){
+      initInfo()
+      dispatch(removeAllPlayers())
+      store.dispatch(fetchPlayers(chainId));
+    }
+  },[chainId])
+
+  const initInfo = ()=>{
+    const web3 = new Web3(CHAINS[chainId].urls[0]);
+    const web3ws = new Web3(new Web3.providers.WebsocketProvider(CHAINS[chainId].WSurls[0]));
+    const contract = new web3.eth.Contract(abi.abi, CHAINS[chainId].contractAddress);
+    const contractWS = new web3ws.eth.Contract(abi.abi, CHAINS[chainId].contractAddress);
+    dispatch(updateInfo({web3 ,contract, contractWS, contractJSON: {address: CHAINS[chainId].contractAddress}}))
+  }
 
   const confirmTransaction = async (params, desc) => {
     try {
@@ -117,6 +142,7 @@ function App() {
     };
     try {
       const result = await info.web3.eth.call(params);
+      // console.log(result);
       setMintInfo((prevState) => ({
         ...prevState,
         cost: info.web3.utils.hexToNumberString(Number(result)+ 10000000000000000),
@@ -142,16 +168,14 @@ function App() {
   }
 
   const startEventListener = () => {
-    const web3ws = new Web3(new Web3.providers.WebsocketProvider('wss://polygon-mainnet.g.alchemy.com/v2/tK8mrIdgSeLH45dkUinsVe1VOrAudqY2'));
-    const contractWS = new web3ws.eth.Contract(abi.abi, info.contractJSON.address);
       let options = {
         filter: {
           value: [],
         },
         fromBlock: 'latest',
       };
-      // console.log(info.contractWS);
-      info.contractWS.events.allEvents(options).on("data", async (event) => {
+      if(emitter.current) emitter.current.removeAllListeners('data');
+      emitter.current = info.contractWS.events.allEvents(options).on("data", async (event) => {
         let currBlock = await info.web3.eth.getBlockNumber()
         console.log(event, currBlock);
         while(event.blockNumber >= currBlock){
@@ -212,7 +236,7 @@ function App() {
         }
       });
     };
-  //  console.log(new Date(Date.now()).toString().split(' '),new Date(Date.now()).getDate());
+   console.log(chainId);
   return (
     <div className="App">
       {location.pathname !== "/" && (

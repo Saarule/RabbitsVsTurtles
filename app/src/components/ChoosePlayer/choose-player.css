@@ -90,17 +90,19 @@
   padding: 0.5%;
 }
 
-.players-filter img {
+.players-filter div{
   cursor: pointer;
+  height: 100%;
 }
-.players-filter .active {
+.players-filter .active { 
   background: #ffffff;
-  border-radius: 30%;
+  border-radius: 50%;
+  border: 2px solid #fff
 }
-.players-filter img:hover {
+.players-filter div:hover {
   transform: scale(1.05);
 }
 
-.player-display img:hover {
+.player-display div:hover {
   transform: scale(1.05);
 }

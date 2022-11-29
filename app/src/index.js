@@ -16,8 +16,9 @@ import { Provider } from "react-redux";
 import { store } from "./features/store";
 import { fetchPlayers } from "./features/playersSlice";
 import { fetchPastEvents } from "./features/pastEventsSlice";
+// require('dotenv').config();
 
-store.dispatch(fetchPlayers(137));
+// store.dispatch(fetchPlayers(5));
 
 const connectors = [
   [injectedConnection.connector, injectedConnection.hooks],
@@ -30,7 +31,7 @@ window.Buffer = window.Buffer || Buffer;
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  // <React.StrictMode>
+  <React.StrictMode>
     <Provider store={store}>
       <Web3ReactProvider connectors={connectors}>
         <HashRouter>
@@ -38,7 +39,7 @@ root.render(
         </HashRouter>
       </Web3ReactProvider>
     </Provider>
-  // </React.StrictMode>
+  </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

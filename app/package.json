@@ -13,6 +13,7 @@
     "@web3-react/network": "8.0.27-beta.0",
     "@web3-react/walletconnect": "8.0.35-beta.0",
     "buffer": "^6.0.3",
+    "dotenv": "^16.0.3",
     "framer-motion": "^7.6.2",
     "react": "^18.2.0",
     "react-custom-alert": "^1.0.4",

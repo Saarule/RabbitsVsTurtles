@@ -3,6 +3,7 @@ import { initializeConnector } from '@web3-react/core'
 import { MetaMask } from '@web3-react/metamask'
 import { Network } from '@web3-react/network'
 import { WalletConnect } from '@web3-react/walletconnect'
+import { CHAINS } from './chains'
 
 export const ConnectionType = {
   INJECTED : 'MetaMask',
@@ -12,15 +13,17 @@ export const ConnectionType = {
   GNOSIS_SAFE : 'GNOSIS_SAFE',
 }
 
-const INFURA_KEY = '0d9bcb9c917745aeb37f0cb0283b203d'
+const chainUrls = {} 
+for(const key in CHAINS){
+  chainUrls[key] = CHAINS[key].urls
+}
 
 function onError(error) {
   console.debug(`web3-react error: ${error}`)
 }
 
 const [web3Network, web3NetworkHooks] = initializeConnector(
-  (actions) => new Network({ actions, urlMap: {137:['https://polygon-mainnet.infura.io/v3/0d9bcb9c917745aeb37f0cb0283b203d',
-]}, defaultChainId: 137 })
+  (actions) => new Network({ actions, urlMap: chainUrls, defaultChainId: 137 })
 )
 
 export const networkConnection = {
@@ -41,9 +44,9 @@ const [web3WalletConnect, web3WalletConnectHooks] = initializeConnector(
     new WalletConnect({
       actions,
       options: {
-        rpc: {137: [`https://polygon-mainnet.infura.io/v3/0d9bcb9c917745aeb37f0cb0283b203d`]},
+        rpc: CHAINS,
         qrcode: true,
-        infuraId: '0d9bcb9c917745aeb37f0cb0283b203d'
+        // infuraId: '0d9bcb9c917745aeb37f0cb0283b203d'
       },
       onError,
     })
@@ -59,7 +62,7 @@ const [web3CoinbaseWallet, web3CoinbaseWalletHooks] = initializeConnector(
     new CoinbaseWallet({
       actions,
       options: {
-        url: `https://polygon-mainnet.infura.io/v3/0d9bcb9c917745aeb37f0cb0283b203d`,
+        url: CHAINS[1][0],
         appName: 'RabbitVsTurtle',
         reloadOnDisconnect: false,
       },

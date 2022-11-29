@@ -1,4 +1,5 @@
 import React from "react";
+import { CHAINS } from "../../connectors/chains";
 
 import "./network-modal.css";
 import polygonIcon from "../../assets/pic/polygon-symbol.png";
@@ -8,9 +9,21 @@ import arbitrumIcon from "../../assets/pic/arbitrum-icon.png";
 import celoIcon from "../../assets/pic/celo-icon.png";
 import exitIcon from "../../assets/pic/exit-icon.png";
 import { useWeb3React } from "@web3-react/core";
+import { toast } from "react-toastify";
 
 const NetworksModal = ({ isDarkMode, closeFunc }) => {
-  const { chainId } = useWeb3React();
+  const { chainId, connector, error } = useWeb3React();
+  
+  const changeNetwork = async (newChainId) => {
+    try{
+      connector.activate(newChainId)
+    }catch(err){
+      console.log(err);
+      console.log(error);
+      toast.info(err.message)
+    }
+  }
+
   return (
     <div
       className="network-modal"
@@ -61,7 +74,7 @@ const NetworksModal = ({ isDarkMode, closeFunc }) => {
           )}
         </div>
       </div>
-      <div className="network-modal-name">
+      <div className="network-modal-name" onClick={()=>changeNetwork(137)}>
         <div className="network-icon">
           <img alt="" src={polygonIcon} />
         </div>
@@ -89,7 +102,7 @@ const NetworksModal = ({ isDarkMode, closeFunc }) => {
         </div>
         <div>Optimism</div>
         <div className="network-active">
-          {chainId === 0 && (
+          {chainId === 10 && (
             <svg
               width="28"
               height="28"
@@ -111,7 +124,7 @@ const NetworksModal = ({ isDarkMode, closeFunc }) => {
         </div>
         <div>Arbitrum</div>
         <div className="network-active">
-          {chainId === 0 && (
+          {chainId === 42161 && (
             <svg
               width="28"
               height="28"
@@ -149,13 +162,13 @@ const NetworksModal = ({ isDarkMode, closeFunc }) => {
           )}
         </div>
       </div>
-      <div className="network-modal-name">
+      <div className="network-modal-name" onClick={()=>changeNetwork(5)}>
         <div className="network-icon">
           <img alt="" src={celoIcon} />
         </div>
-        <div>goerli</div>
+        <div>Goerli</div>
         <div className="network-active">
-          {chainId === 0 && (
+          {chainId === 5 && (
             <svg
               width="28"
               height="28"

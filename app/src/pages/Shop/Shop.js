@@ -36,7 +36,7 @@ const Shop = ({ confirmTransaction, isAudio }) => {
   const {accounts, provider} = useWeb3React();
   const players = useSelector(selectAllPlayers)
   const info = useSelector(selectAllInfo)
-  const audio = new Audio(require('../../assets/music/Slayer-Overview.mp3'))
+  const audio = new Audio(require('../../assets/music/Adventure - Store.mp3'))
   audio.loop = true
 
   useEffect(()=>{

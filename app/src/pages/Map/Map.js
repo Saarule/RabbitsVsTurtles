@@ -7,7 +7,7 @@ import './map.css'
 
 const Map = ({isAudio}) => {
   
-  const audio = new Audio(require('../../assets/music/Slayer-Overview.mp3'))
+  const audio = new Audio(require('../../assets/music/Dramatic - Map.mp3'))
   audio.loop = true
 
   useEffect(()=>{

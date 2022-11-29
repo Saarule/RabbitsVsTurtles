@@ -8,7 +8,7 @@ import btn from "../../assets/pic/mint-btn.png";
 import filterRabbits from "../../assets/pic/filter-rabbits.png";
 import filterTurtles from "../../assets/pic/filter-turtles.png";
 import filterMyPlayers from "../../assets/pic/filter-my-players.png";
-import filterAllPlayers from "../../assets/pic/empty-btn.png";
+import filterAllPlayers from "../../assets/pic/filter-all-players.png";
 import PlayersList from "../PlayersList/PlayersList";
 
 const ChoosePlayer = ({ playersData, setChoosen }) => {
@@ -70,7 +70,7 @@ const ChoosePlayer = ({ playersData, setChoosen }) => {
       };
   };
   // console.log(playersToShow);
-  if (playersToShow.length === 0)
+  if (playersToShow)
     return (
       <div className="loader-container" style={{height: '24%'}}>
           <div className="loader"></div>
@@ -104,30 +104,26 @@ const ChoosePlayer = ({ playersData, setChoosen }) => {
       <div className="all-players">
         <PlayersList playersToShow={playersToShow} onClickFunc={(playerToShow)=>setChoosenPlayer(playersToShow.findIndex(player=>player.id === playerToShow.id))}/>
         <div className="players-filter">
-          <img
-            className={filter === "Turtle" ? "active" : ""}
+          <div className={filter === "Turtle" ? "active" : ""}><img
             alt=""
             src={filterTurtles}
             onClick={() => setNewFilter("Turtle")}
-          />
-          <img
-            className={filter === "Rabbit" ? "active" : ""}
+          /></div>
+          <div className={filter === "Rabbit" ? "active" : ""}><img
             alt=""
             src={filterRabbits}
             onClick={() => setNewFilter("Rabbit")}
-          />
-          <img
-            className={filter === "Mine" ? "active" : ""}
+          /></div>
+          <div className={filter === "Mine" ? "active" : ""}><img            
             alt=""
             src={filterMyPlayers}
             onClick={() => setNewFilter("Mine")}
-          />
-          <img
-            className={filter === "" ? "active" : ""}
+          /></div>
+          <div className={filter === "" ? "active" : ""}><img            
             alt=""
             src={filterAllPlayers}
             onClick={() => setNewFilter("")}
-          />
+          /></div>
         </div>
       </div>
     </div>
