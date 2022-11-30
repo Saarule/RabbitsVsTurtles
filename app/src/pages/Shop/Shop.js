@@ -150,7 +150,7 @@ const Shop = ({ confirmTransaction, isAudio }) => {
       });
     }
   };
-  if(isLoading) return <div style={{height: '100%', width: '100%', background: 'gray'}}> <img alt="" src={frame} style={{opacity: '0'}} onLoad={() => setIsLoading(false)}/><div className="loader-container" style={{height: '50%'}}><div className="loader"></div></div></div>
+  if(isLoading) return <div className="loader-background"> <img alt="" src={frame} style={{opacity: '0'}} onLoad={() => setIsLoading(false)}/><div className="loader-container" style={{height: '50%'}}><div className="loader"></div></div></div>
   return (
     <div className="shop">
       {activeStage === "introduction" && (

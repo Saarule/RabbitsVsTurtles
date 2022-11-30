@@ -20,6 +20,7 @@ const CONNECTIONS = [
 ];
 
 export function getConnection(c) {
+    console.log(c,ConnectionType.WALLET_CONNECT);
     switch (c) {
       case ConnectionType.INJECTED:
         return injectedConnection;

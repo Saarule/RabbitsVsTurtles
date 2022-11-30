@@ -6,11 +6,20 @@ import darkmodeSun from "../../assets/pic/darkmode-sun.png";
 import darkmodeMoon from "../../assets/pic/darkmode-moon.png";
 import Logout from "../Logout/Logout";
 import Transactions from "../Transactions/Transactions";
+import leaderboardIcon from '../../assets/pic/leader-board-icon.png'
+import muteIcon from '../../assets/pic/sound-mute.png'
+import unmuteIcon from '../../assets/pic/sound-unmute.png'
+import notificationIcon from '../../assets/pic/notification-icon.png'
+import notificationMuteIcon from "../../assets/pic/notification-mute-icon.png";
+import NetworkModal from '../NetworksModal/NetworksModal'
+import MyPlayers from '../MyPlayers/MyPlayers'
 
-const WalletDetails = ({balance, setIsWalletDetails, setIsDarkMode, isDarkMode, setIsLogout }) => {
+const WalletDetails = ({balance, setIsWalletDetails, setIsDarkMode, isDarkMode, setIsLogout, setIsAudio, isAudio, setIsEvents, setIsLeaderboard, counter, isNotification }) => {
 
   const { connector, accounts } = useWeb3React();
   const [isCopy, setIsCopy] = useState(false);
+  const [isNetwork, setIsNetwork] = useState(false);
+  const [isMyPlayers, setIsMyPlayers] = useState(false);
   const [isTransaction, setIsTransaction] = useState(false);
 
 
@@ -118,7 +127,6 @@ const WalletDetails = ({balance, setIsWalletDetails, setIsDarkMode, isDarkMode, 
       </div>
       <div className="wallet-details-balance">
         <div className="balance-matic">{balance&&accounts?.length ?`${balance} MATIC`:<div><div className="loader-small"></div> MATIC</div>}</div>
-        <div className="balance-usd">$0.00 USD</div>
       </div>
       <div className="wallet-details-footer">
         <div
@@ -142,7 +150,24 @@ const WalletDetails = ({balance, setIsWalletDetails, setIsDarkMode, isDarkMode, 
             </svg>
           </div>
         </div>
-        <div className="wallet-details-actions">
+        <div className="wallet-details-actions" onClick={()=>setIsNetwork(!isNetwork)}>
+          <div className="wallet-details-action">Network</div>
+          <div className="wallet-details-action-icons">
+            <svg
+              width="11"
+              height="16"
+              viewBox="0 0 11 16"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M0.202541 14.5864L1.66831 15.9268L10.0739 8.50027L1.79274 0.927307L0.304949 2.2418L7.12037 8.47434L0.202541 14.5864Z"
+                fill={isDarkMode ? "white" : "black"}
+              />
+            </svg>
+          </div>
+        </div>
+        <div className="wallet-details-actions" onClick={()=>setIsMyPlayers(true)}>
           <div className="wallet-details-action">My Players</div>
           <div className="wallet-details-action-icons">
             <svg
@@ -173,16 +198,26 @@ const WalletDetails = ({balance, setIsWalletDetails, setIsDarkMode, isDarkMode, 
               <div
                 className={`darkmode-ball ${isDarkMode ? "dark" : ""}`}
               ></div>
-              <div className="darkmode-icon" style={{ left: "6px" }}>
+              <div className="darkmode-icon" style={{ left: "30%" }}>
                 <img alt="" src={darkmodeSun} />
               </div>
-              <div className="darkmode-icon" style={{ left: "37px" }}>
+              <div className="darkmode-icon" style={{ left: "75%" }}>
                 <img alt="" src={darkmodeMoon} />
               </div>
             </div>
           </div>
         </div>
       </div>
+      <div className="functions-btns" style={isDarkMode? {borderTop: "solid 2px #ffffff"} : {borderTop: "solid 2px #000000"}}>
+            <div className="wallet-actions" onClick={() => setIsLeaderboard(true)}><img alt="" src={leaderboardIcon}/></div>
+            <div className="wallet-actions" onClick={() => setIsAudio((isAudio)=>!isAudio)}><img alt="" src={isAudio? unmuteIcon : muteIcon}/></div>
+            <div className="wallet-actions" onClick={() => setIsEvents(true)}>
+              <img alt="" src={isNotification? notificationIcon : notificationMuteIcon}/>
+              {counter !== 0 && <div className="notification-unread">{counter}</div>}
+              </div>
+      </div>
+      {isNetwork && <NetworkModal isDarkMode={isDarkMode} closeFunc={() => setIsNetwork(false)}/>}
+      {isMyPlayers && <MyPlayers closeFunc={() => setIsMyPlayers(!isMyPlayers)} height={'90%'}/>}
     </div>
   );
 };

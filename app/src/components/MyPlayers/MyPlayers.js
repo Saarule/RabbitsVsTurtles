@@ -10,12 +10,14 @@ import filterRabbit from '../../assets/pic/filter-rabbits.png'
 import playerFrame from '../../assets/pic/my-player-frame.png'
 import filterAll from '../../assets/pic/filter-all-players.png'
 import filterDead from '../../assets/pic/filter-dead-players.png'
+import arrowLeft from '../../assets/pic/arrow-left-btn.png'
 import playerNameFrameRed from '../../assets/pic/player-name-frame-red.png'
 import playerNameFrameBlue from '../../assets/pic/player-name-frame-blue.png'
 import { playerUpdate } from '../../features/playerToShowSlice'
+import MintNewPlayer from '../MintNewPlayer/MintNewPlayer'
 
 
-const MyPlayers = () => {
+const MyPlayers = ({height, closeFunc}) => {
 
     const [myPlayers, setMyPlayers] = useState([])
     const [filter, setFilter] = useState('')
@@ -39,8 +41,20 @@ const MyPlayers = () => {
     }
     if(!accounts || !accounts[0]) return
   return (
-    <div className='my-players' onClick={e=>e.stopPropagation()}>
+    <div className='my-players' onClick={e=>e.stopPropagation()} style={height?{height: height} : {}}>
         <div className='my-players-header'>
+            <div onClick={closeFunc}>          <svg
+            width="15"
+            height="23"
+            viewBox="0 0 15 23"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M14.8621 20.7098L12.6646 22.7193L0.0629763 11.5856L12.4781 0.232271L14.7085 2.20294L4.49093 11.5467L14.8621 20.7098Z"
+              fill={"white"}
+            />
+          </svg></div>
             <div onClick={()=>setFilter('Turtle')}><img alt='' src={filterTurtle}/></div>
             <div onClick={()=>setFilter('Rabbit')}><img alt='' src={filterRabbit}/></div>
             <div onClick={()=>setFilter('')}><img alt='' src={filterAll}/></div>
@@ -61,10 +75,7 @@ const MyPlayers = () => {
             </div>
                 )
             })}
-            <Link to='/mint' className='my-player'>
-                <div className='my-player-frame'><img alt='' src={playerFrame}/><div className='empty-background'/></div>
-                <div className='mint-new-player'>Tap to mint a new warrior</div>
-            </Link>
+            <MintNewPlayer/>
         </div>
     </div>
   )

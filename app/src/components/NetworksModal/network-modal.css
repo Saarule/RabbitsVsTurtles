@@ -12,6 +12,7 @@
     width: 270px;
     justify-content: space-around;
     padding: 34px 10px 10px;
+    z-index: 5;
 }
 
 .exit-icon{

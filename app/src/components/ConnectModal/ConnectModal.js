@@ -9,27 +9,15 @@ import walletConnectIcon from "../../assets/pic/walletconnect-icon.png";
 import exitIcon from "../../assets/pic/exit-icon.png";
 import { Connect } from "../../services/connect.wallet.service";
 import { useWeb3React } from "@web3-react/core";
+import { useDispatch } from "react-redux";
+import { updateConnector } from "../../features/connectorSlice";
 
 const ConnectModal = ({ setActiveModal, setChosenConnection }) => {
   const {chainId} = useWeb3React()
-  // const connectToWallet = async (connectionName) => {
-  //   setChosenConnection(connectionName);
-  //   const connection = getConnection(connectionName);
-  //   setActiveModal("waitingToConnect");
-  //   try {
-  //     await connection.connector.connectEagerly(137);
-  //     await connection.connector.activate(137);
-  //   } catch (err) {
-  //     console.log(err);
-  //     try {
-  //       await connection.connector.activate(137);
-  //     } catch (err) {
-  //       console.log(err);
-  //       setActiveModal("failToConnect");
-  //     }
-  //   }
-  // };
+  const dispatch = useDispatch()
+
   const connectToWallet = async (connectionName) => {
+    dispatch(updateConnector(connectionName))
     setChosenConnection(connectionName);
     setActiveModal("waitingToConnect");
     const res = await Connect(connectionName, chainId)

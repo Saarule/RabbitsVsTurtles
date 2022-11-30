@@ -250,6 +250,8 @@ function App() {
           balance={balance}
           setIsNotification={setIsNotification}
           isNotification={isNotification}
+          isAudio={isAudio}
+          setIsAudio={setIsAudio}
         />
       )}
       <Routes>

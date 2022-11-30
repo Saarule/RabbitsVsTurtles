@@ -44,9 +44,9 @@ const [web3WalletConnect, web3WalletConnectHooks] = initializeConnector(
     new WalletConnect({
       actions,
       options: {
-        rpc: CHAINS,
+        rpc: chainUrls,
         qrcode: true,
-        // infuraId: '0d9bcb9c917745aeb37f0cb0283b203d'
+        infuraId: '0d9bcb9c917745aeb37f0cb0283b203d'
       },
       onError,
     })

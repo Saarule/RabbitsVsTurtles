@@ -126,13 +126,13 @@ const Transactions = ({isDarkMode, setIsTransaction}) => {
         <div className="events-header-txt">Transactions</div>
         <div className="events-clear" ></div>
       </div>
-      {pastEvents.length? <div className="event-list">
+      {pastEvents.length? <div className="transaction-event-list">
         {filterAccountEvent().map((event, idx) => {
         return(
-        <div key={idx} className="event-details">
-          <div className='event-symbol'><img alt='' src={getIcon(event.action)}/></div>
-          <div className='event-txt'>{event.txt}</div>
-          <div className='event-v'><img alt='' src={greenV}/></div>
+        <div key={idx} className="transaction-event-details">
+          <div className='transaction-event-symbol'><img alt='' src={getIcon(event.action)}/></div>
+          <div className='transaction-event-txt'>{event.txt}</div>
+          <div className='transaction-event-v'><img alt='' src={greenV}/></div>
         </div>
         )})}
       </div>:

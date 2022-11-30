@@ -102,7 +102,7 @@ const ChoosePlayer = ({ playersData, setChoosen }) => {
         </div>
       </div>
       <div className="all-players">
-        <PlayersList playersToShow={playersToShow} onClickFunc={(playerToShow)=>setChoosenPlayer(playersToShow.findIndex(player=>player.id === playerToShow.id))}/>
+        <PlayersList playersToShow={playersToShow} filter={filter} onClickFunc={(playerToShow)=>setChoosenPlayer(playersToShow.findIndex(player=>player.id === playerToShow.id))}/>
         <div className="players-filter">
           <div className={filter === "Turtle" ? "active" : ""}><img
             alt=""

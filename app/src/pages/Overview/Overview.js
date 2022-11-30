@@ -146,8 +146,8 @@ const Overview = ({isAudio}) => {
   const onShowPlayer = (player)=> {
     dispatch(playerUpdate(player))
   }
-  // console.log(playersData, playersToShow);
-  if(isLoading) return <div style={{height: '100%', width: '100%', background: 'gray'}}> <img alt="" src={headerImg} style={{opacity: '0'}} onLoad={() => setIsLoading(false)}/><div className="loader-container" style={{height: '50%'}}><div className="loader"></div></div></div>
+  // console.log(playersData, playersToShow); style={{height: '100%', width: '100%', background: 'gray'}}
+  if(isLoading) return <div className="loader-background"> <img alt="" src={headerImg} style={{opacity: '0'}} onLoad={() => setIsLoading(false)}/><div className="loader-container" style={{height: '50%'}}><div className="loader"></div></div></div>
   return (
     <div className="overview">
       <div className="overview-header">
@@ -192,40 +192,40 @@ const Overview = ({isAudio}) => {
         </div>
       </div>
       <div className="overview-all-players">
-        {playersData.length? <PlayersList playersToShow={playersToShow} onClickFunc={onShowPlayer}/>:
+        {playersData.length? <PlayersList playersToShow={playersToShow} onClickFunc={onShowPlayer} filter={filter}/>:
         <div className="player-list"><div className="loader-container" style={{height: '40%'}}><div className="loader"></div></div></div>
         }
         <div className="players-filter">
-          <img
+          <div><img
             className={filter === "Turtle" ? "active" : ""}
             alt=""
             src={filterTurtles}
             onClick={() => setNewFilter("Turtle")}
-          />
-          <img
+          /></div>
+          <div><img
             className={filter === "Rabbit" ? "active" : ""}
             alt=""
             src={filterRabbits}
             onClick={() => setNewFilter("Rabbit")}
-          />
-          <img
+          /></div>
+          <div><img
             className={filter === "Mine" ? "active" : ""}
             alt=""
             src={filterMyPlayers}
             onClick={() => setNewFilter("Mine")}
-          />
-          <img
+          /></div>
+          <div><img
             className={filter === "" ? "active" : ""}
             alt=""
             src={filterAllPlayers}
             onClick={() => setNewFilter("")}
-          />
-          <img
+          /></div>
+          <div><img
             className={filter === "Dead" ? "active" : ""}
             alt=""
             src={filterDead}
             onClick={() => setNewFilter("Dead")}
-          />
+          /></div>
         </div>
       </div>
     </div>

@@ -13,19 +13,27 @@
   transition: 0.3s;
   font-size: 1em;
 }
-
-.event-details {
-  line-height: 1.4em;
-  justify-content: space-between;
+.transaction-event-list{
+  height: 84%;
+  overflow-y: auto;
 }
-.event-symbol {
+
+.transaction-event-details {
+  justify-content: space-between;
+  display: flex;
+  height: 20%;
+  align-items: center;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.555);
+  padding: 0 5%;
+}
+.transaction-event-symbol {
   height: 30%;
 }
-.event-txt {
+.transaction-event-txt {
   font-size: 1.05em;
   width: 75%;
   letter-spacing: 0.2px;
 }
-.event-v {
+.transaction-event-v {
   height: 22%;
 }

@@ -22,8 +22,8 @@ const Mint = ({ confirmTransaction, mintInfo, isAudio }) => {
   const timeoutId = useRef(0);
   const { accounts, isActive, provider, connector } = useWeb3React();
   const info = useSelector(selectAllInfo)
-  // const audio = new Audio(require('../../assets/music/Spooky4-Mint.mp3'))
-  // audio.loop = true
+  const audio = new Audio(require('../../assets/music/Spooky4-Mint.mp3'))
+  audio.loop = true
 
   useEffect(() => {
     intervalId.current = setInterval(() => {
@@ -34,18 +34,18 @@ const Mint = ({ confirmTransaction, mintInfo, isAudio }) => {
     }
   }, []);
   
-  // useEffect(()=>{
-  //   console.log('aoudio');
-  //   if(isAudio) audio.play()
-  //   else{
-  //     audio.pause()
-  //     audio.currentTime = 0;
-  //   }
-  //   return ()=>{
-  //     audio.pause()
-  //     audio.currentTime = 0;
-  //   }
-  // },[isAudio])
+  useEffect(()=>{
+    console.log('aoudio');
+    if(isAudio) audio.play()
+    else{
+      audio.pause()
+      audio.currentTime = 0;
+    }
+    return ()=>{
+      audio.pause()
+      audio.currentTime = 0;
+    }
+  },[isAudio])
 
   const mint = async () => {
     if(accounts && accounts[0]){

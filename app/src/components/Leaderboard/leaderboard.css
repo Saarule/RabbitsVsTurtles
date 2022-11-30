@@ -10,6 +10,7 @@
     color: white;
     font-size: 1em;
     padding: 1% 0%;
+    max-width: 98vw;
 }
 .leaderboard-exit{
     position: absolute;
@@ -67,14 +68,15 @@
     align-items: center;
     border: 1px solid #ffffff73;
     border-radius: 5px;
-    padding: 0 4%;
-    background: #00000073; 
+    padding: 0 4% 0 4%;
+    background: #00000073;
     font-size: 0.9em;
 }
 .leaderboard-place{
     font-weight: 900;
-    font-size: 1.5em;
-    width: 0%;
+    font-size: 1em;
+    width: 5%;
+    text-align: center;
 }
 .leaderboard-img{
     height: 80%;

@@ -63,34 +63,6 @@
   transform: translate(-50%, -50%);
   z-index: -1;
 }
-.empty-background {
-  background: linear-gradient(
-    132.07deg,
-    #bf4040 0%,
-    #cc6677 35.49%,
-    #bf406a 70.98%
-  );
-  top: 8%;
-  bottom: 8%;
-  left: 8%;
-  right: 8%;
-  position: absolute;
-  z-index: -1;
-}
-.mint-new-player{
-    position: absolute;
-    transform: translate(-50%,-50%);
-    top: 50%;
-    left: 50%;
-    color: #fff;
-    font-size: 0.8em;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 18% 17%;
-}
 
 .my-player-name{
     position: absolute;
