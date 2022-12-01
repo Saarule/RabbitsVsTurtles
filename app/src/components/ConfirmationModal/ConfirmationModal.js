@@ -51,6 +51,23 @@ const ConfirmationModal = ({ closeFunc, confirmFanc, params }) => {
       console.log(err);
     }
   };
+
+  const getStyle = () =>{
+    if(switchMint === 'red'){
+      return{
+        background: "linear-gradient(132.07deg, #bf4040 0%, #cc6677 35.49%, #bf406a 70.98%)",
+        padding: '10%',
+        position: 'relative',
+        left: '1px'
+      }
+    }if(switchMint === 'blue'){
+      return{
+        background: "linear-gradient(138.99deg, #0000FF 6.81%, #0000FF 39.7%, #0000FF 72.59%)",
+        padding: '10%'
+      }
+    }
+    return {}
+  }
   // console.log(switchMint);
   return (
     <div
@@ -67,13 +84,16 @@ const ConfirmationModal = ({ closeFunc, confirmFanc, params }) => {
         <div className="confirmation-desc">
           {desc.txt}
         </div>
-        <div className="desc-img">
-          {switchMint === "blue" && (
-            <img alt="" style={{ background: "linear-gradient(138.99deg, #0000FF 6.81%, #0000FF 39.7%, #0000FF 72.59%)" }} src={mintRabbit} />
+        <div className="desc-img" >
+          {switchMint !== '' && (
+            <img alt="" style={getStyle()} src={switchMint === 'red'? mintTurtle: mintRabbit}/>
+          )}
+          {/* {switchMint === "blue" && (
+            <img alt="" style={{width: '100%', padding: '10%', background: "linear-gradient(138.99deg, #0000FF 6.81%, #0000FF 39.7%, #0000FF 72.59%)" }} src={mintRabbit} />
           )}
           {switchMint === "red" && (
-            <img alt="" style={{ background: "linear-gradient(132.07deg, #bf4040 0%, #cc6677 35.49%, #bf406a 70.98%)" }} src={mintTurtle} />
-          )}
+            <img alt="" style={{width: '100%', padding: '10%', background: "linear-gradient(132.07deg, #bf4040 0%, #cc6677 35.49%, #bf406a 70.98%)" }} src={mintTurtle} />
+          )} */}
           {switchMint === "" && (<>
             <img alt="" src={desc.img} />
            {desc.symbol && <div className="desc-symbol"><img alt="" src={require(`../../assets/pic/${desc.symbol}.png`)} /></div>}

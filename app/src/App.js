@@ -296,18 +296,25 @@ function App() {
         />
       )}
       {activeModal === "errorModal" && (
+        <div className="outside-click" onClick={() => setActiveModal("")}>
         <ErrorModal func={() => setActiveModal("")} error={error} />
+        </div>
       )}
       {activeModal === "submittedModal" && (
+        <div className="outside-click" onClick={() => setActiveModal("")}>
         <SubmittedModal func={() => setActiveModal("")} txHash={txHash} />
+        </div>
       )}
       {activeModal === "connectModal" && (
+        <div className="outside-click" onClick={() => setActiveModal("")}>
         <ConnectModal
           setActiveModal={setActiveModal}
           setChosenConnection={setChosenConnection}
         />
+        </div>
       )}
       {activeModal === "waitingToConnect" && (
+        <div className="outside-click" onClick={() => setActiveModal("")}>
         <WaitingToConnect
           closeFunction={() => setActiveModal("")}
           header={"Waiting to connect"}
@@ -316,12 +323,15 @@ function App() {
             "By connecting a wallet, you agree to RVT Terms of Service and acknowledge that you have read and understand the RVT Protocol Disclaimer."
           }
         />
+        </div>
       )}
       {activeModal === "failToConnect" && (
+        <div className="outside-click" onClick={() => setActiveModal("")}>
         <FailToConnect
           setActiveModal={setActiveModal}
           chosenConnection={chosenConnection}
         />
+        </div>
       )}
       <div className="toast-container">
         <ToastContainer autoClose={3000} theme='dark' limit={8} newestOnTop={true}/>

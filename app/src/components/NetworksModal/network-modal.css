@@ -5,7 +5,8 @@
     right: 2.4%;
     font-size: 1rem;
     border-radius: 10px;
-    box-shadow: 0 4px 12px 0 rgb(0 0 0 / 15%);
+    /* box-shadow: 0 4px 12px 0 rgb(0 0 0 / 15%); */
+    box-shadow: 1px 0px 6px 1px grey;
     display: flex;
     flex-direction: column;
     height: 250px;

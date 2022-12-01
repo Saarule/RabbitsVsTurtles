@@ -17,7 +17,7 @@ const chainUrls = {}
 for(const key in CHAINS){
   chainUrls[key] = CHAINS[key].urls
 }
-
+console.log(chainUrls);
 function onError(error) {
   console.debug(`web3-react error: ${error}`)
 }
@@ -44,9 +44,9 @@ const [web3WalletConnect, web3WalletConnectHooks] = initializeConnector(
     new WalletConnect({
       actions,
       options: {
-        rpc: chainUrls,
+        rpc: chainUrls[137],
         qrcode: true,
-        infuraId: '0d9bcb9c917745aeb37f0cb0283b203d'
+        // infuraId: '0d9bcb9c917745aeb37f0cb0283b203d'
       },
       onError,
     })

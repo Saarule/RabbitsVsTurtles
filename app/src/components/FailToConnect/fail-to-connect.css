@@ -5,17 +5,16 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    max-width: 639px;
-    max-height: 600px;
-    height: 75%;
-    width: 60%;
+    height: 70%;
     z-index: 1;
     display: flex;
     border-radius: 40px;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    padding: 60px 43px 0;
+    aspect-ratio: 1.1/1;
+    padding: 30px 43px 10px;
+    max-width: 98vw;
 }
 
 .fail-connect-exit{
@@ -35,24 +34,22 @@
     cursor: pointer;
 }
 .fail-connect-header{
-    font-size: 2rem;
+    font-size: 1.75rem;
     font-weight: 500;
-    line-height: 39px;
 }
 .fail-connect-text{
-    font-size: 1.5625rem;
+    font-size: 1.2rem;
     font-weight: 400;
-    line-height: 30px;
+    text-align: center;
 }
 .fail-connect-btn{
     color: #ffffff;
     background-color: #FF6D44;
     width: 100%;
     border-radius: 8px;
-    height: 84px;
+    height: 15%;
     font-size: 2rem;
     font-weight: 400;
-    line-height: 39px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -63,9 +60,8 @@
 }
 
 .fail-connect-footer{
-    font-size: 1.5625rem;
+    font-size: 1.2rem;
     font-weight: 700;
-    line-height: 30px;
     color: #FF6D44;
     cursor: pointer;
 }

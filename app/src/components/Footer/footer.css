@@ -1,5 +1,5 @@
 .footer {
-  height: 13%;
+  height: 10%;
   width: 100%;
   position: fixed;
   bottom: -3%;
@@ -87,5 +87,8 @@ transform: scale(1.04);
 @media only screen and (min-width: 800px) {
   .footer-side{
       display: flex;
+  }
+  .footer {
+    height: 13%;
   }
 }

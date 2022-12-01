@@ -65,7 +65,7 @@ const Header = ({ setActiveModal, isDarkMode, setIsDarkMode, balance, setIsNotif
 console.log(connectorName);
   return (
     <div className="header">
-      <div className="header-links" onClick={()=>setOpenLinks(!openLinks)} style={!openLinks? {marginTop: '27px'} : {}}>
+      <div className={openLinks? "header-links" : "header-links header-margin-top"} onClick={()=>setOpenLinks(!openLinks)}>
         {openLinks && <div className="lightin-links" style={{zIndex: '1'}}><img alt="" src={lighting} /></div>}
         <Link className={openLinks? "pos-absolute" : ""} to="/mint">
           <img alt="" src={lighting} />

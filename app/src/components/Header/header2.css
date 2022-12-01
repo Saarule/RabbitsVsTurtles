@@ -1,5 +1,5 @@
 .header {
-  height: 12%;
+  height: 9%;
   width: 100%;
   position: fixed;
   top: 0;
@@ -16,13 +16,13 @@
   justify-content: center;
   width: 33%;
   z-index: 1;
-  align-items: center;
+  /* align-items: center; */
 }
 .pos-absolute{
   position: absolute;
 }
 .header-links > * {
-  height: 50px;
+  height: 40px;
   cursor: pointer;
 }
 .header-links > *:hover {
@@ -49,8 +49,7 @@
   flex-direction: row-reverse;
   align-items: center;
   width: 33%;
-  height: 12vh;
-  justify-content: center;
+  height: 10vh;
 }
 .header-account-container {
   height: 80%;
@@ -62,7 +61,7 @@
 }
 .header-account-container div {
   position: absolute;
-  transform: translate(-50%, -50%);
+  transform: translate(-100%, -50%);
   top: 50%;
   left: 50%;
   font-weight: 700;
@@ -99,6 +98,12 @@
 .header-fullscreen{
   display: none;
 }
+.header-smallscreen{
+  height: 40px;
+}
+.header-margin-top{
+  margin-top: 27px;
+}
 
 @media only screen and (min-width: 1000px) {
   .header-events{
@@ -110,6 +115,9 @@
 }
 
 @media only screen and (min-width: 800px) {
+  .header{
+    height: 12%;
+  }
   .header-links{
   position: relative;
   flex-grow: 1;
@@ -135,5 +143,23 @@
   }
   .header-smallscreen{
     display: none;
+  }
+  .header-account{
+    height: 12vh;
+  }
+  .header-margin-top{
+    margin-top: 0 ;
+  }
+}
+
+@media only screen and (min-width: 450px){
+  .header-links{
+    align-items: center;
+  }
+  .header-account{
+    justify-content: center;
+  }
+  .header-account-container div{
+    transform: translate(-50%,-50%);
   }
 }

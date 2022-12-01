@@ -5,7 +5,7 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  height: 70%;
+  height: 50%;
   z-index: 1;
   max-width: 97vw;
   display: flex;
@@ -54,7 +54,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 14%;
+    height: 15%;
     padding-left: 8%;
     padding-right: 2%;
     margin-top: 6%;
@@ -87,5 +87,11 @@
     font-size: 1rem;
     line-height: 24px;
     font-weight: 300;
+  }
+
+  @media only screen and (min-width: 500px){
+    .modal-container{
+      height: 65%;
+    }
   }
   

@@ -7,20 +7,20 @@
   background-repeat: repeat;
   display: flex;
   justify-content: space-evenly;
-  flex-wrap: wrap;
   align-items: center;
   overflow-y: auto;
-  gap: 30px;
+  gap: 3px;
   padding: 0 30px;
+  font-size: 0.7rem;
 }
 .welcome-connect-container {
   background: none;
   border-radius: 11%;
   margin: 20px 0;
-  height: 65%;
+  height: 30%;
   padding: 5px;
   aspect-ratio: 1/1.2;
-  max-width: 95vw;
+  max-width: 42vw;
   cursor: pointer;
   transition: 0.3s ease;
   position: relative;
@@ -41,28 +41,25 @@
   padding: 7px 0px 25px;
   height: 100%;
   aspect-ratio: 1/1.2;
-  max-width: 95vw;
+  width: 100%;
   cursor: pointer;
   transition: 0.3s ease;
   position: relative;
 }
 
 .connect-header {
-  font-size: 1.6rem;
+  font-size: 1.6em;
   font-weight: 600;
-  padding: 0 28px;
 }
 
 .connect-context {
-  font-size: 1.125rem;
+  font-size: 1.125em;
   max-width: 337px;
-  padding: 0 39px;
 }
 
 .connect-pic {
   height: 50%;
   transition: 0.3s ease;
-  padding: 0px 18px;
 }
 .welcome-connect-container:hover .connect-pic {
   margin-bottom: 10%;
@@ -79,7 +76,7 @@
     4px 4px 8px rgba(255, 109, 188, 0.2);
   border-radius: 11px;
   font-weight: 700;
-  font-size: 1.25rem;
+  font-size: 1.25em;
   text-align: center;
   color: #ffffff;
   padding: 2% 5%;
@@ -156,15 +153,52 @@
   position: absolute;
   top: 3%;
   right: 10%;
-  display: flex;
   color: #fff;
   font-weight: 600;
   text-decoration: none;
   gap: 5px;
+  justify-content: center;
+  align-items: center; 
+  display: none; 
 }
 .welcome-mute{
   position: absolute;
   bottom: 3%;
   left: 3%;
   height: 6%;
+}
+
+@media only screen and (min-width: 500px){
+  .welcome-connect-container{
+    height: 39%;
+  }
+  .welcome{
+    font-size: 0.8remrem;
+  }
+}
+@media only screen and (min-width: 600px){
+  .welcome-connect-container{
+    height: 50%;
+  }
+  .welcome-discord{
+    display: flex;
+  }
+  .welcome{
+    font-size: 1rem;
+    gap: 30px
+  }
+  .connect-header{
+    padding: 0 28px;
+  }
+  .connect-context{
+    padding: 0 39px;
+  }
+  .connect-pic{
+    padding: 0 18px;
+  }
+}
+@media only screen and (min-width: 850px){
+  .welcome-connect-container{
+    height: 65%;
+  }
 }

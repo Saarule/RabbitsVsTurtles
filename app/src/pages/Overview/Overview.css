@@ -4,14 +4,16 @@
   width: 100%;
   background-position: 50%, 50% !important;
   background-size: cover !important;
+  font-size: 1rem;
 }
 
 .overview-header {
   position: absolute;
   transform: translate(-50%);
-  top: 13%;
+  top: 10%;
   left: 50%;
   height: 13%;
+  font-size: 0.8em;
 }
 
 /* .overview-main-header {
@@ -27,24 +29,23 @@
 } */
 .overview-rabbit-header {
   position: absolute;
-  transform: translate(-50%, -50%);
+  transform: translate(-33%, -50%);
   top: 38%;
   left: 20%;
-  font-weight: 700;
-  font-size: 1.25rem;
-  line-height: 39px;
+  font-weight: 600;
+  font-size: 1.25em;
   color: #ffd36b;
+  width: 18%;
 }
 .overview-turtle-header {
   position: absolute;
-  transform: translate(-50%, -50%);
+  transform: translate(-33%, -50%);
   top: 38%;
   left: 82.5%;
   font-weight: 600;
-  font-size: 1.25rem;
-  line-height: 39px;
+  font-size: 1.25em;
   color: #ffd36b;
-  width: max-content;
+  width: 19%;
 }
 .overview-score {
   position: absolute;
@@ -52,7 +53,7 @@
   top: 47%;
   left: 50%;
   font-weight: 700;
-  font-size: 1.7rem;
+  font-size: 1.2em;
   line-height: 54px;
   color: #ffffff;
   text-shadow: 2px 2px 4px rgb(0 0 0 / 10%), -2px -2px 4px rgb(0 0 0 / 10%);
@@ -70,7 +71,7 @@
   top: 40%;
   left: 50%;
   font-weight: 600;
-  font-size: 20px;
+  font-size: 1.25em;
   line-height: 24px;
   color: #ffffff;
 }
@@ -99,12 +100,12 @@
 }
 
 .overview-all-players {
-  height: 32%;
-  width: 90%;
+  height: 36%;
+  width: 98%;
   position: absolute;
   transform: translateX(-50%);
   left: 50%;
-  top: 56%;
+  top: 57%;
   background: rgba(217, 217, 217, 0.2);
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25), -4px -4px 8px rgba(0, 0, 0, 0.25);
   padding: 1.5%;
@@ -116,3 +117,30 @@
 /* .overview-all-players .player-display-name {
   left: 40%;
 } */
+@media only screen and (min-width: 480px){
+  .overview-turtle-header{
+    transform: translate(-50%,-50%);
+  }
+  .overview-rabbit-header{
+    transform: translate(-50%,-50%);
+  }
+  .overview-score{
+    font-size: 1.7em;
+  }
+}
+@media only screen and (min-width: 600px){
+  .overview-header{
+    font-size: 1em;
+  }
+}
+
+@media only screen and (min-width: 800px){
+  .overview-all-players {
+    height: 32%;
+    width: 90%;
+    top: 56%;
+  }
+  .overview-header{
+    top: 13%
+  }
+}

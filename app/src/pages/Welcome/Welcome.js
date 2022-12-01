@@ -69,7 +69,7 @@ const connectToWallet = async (connectionName) => {
   return (
     <div className='welcome'>
         <div className='welcome-header'><img alt='' src={headerImg}/></div>
-        <a href={`https://discord.gg/FGwhMDAv3s`} target="_blank" className='welcome-discord'><img alt='' src={discordIcon}/>   JOIN OUR DISCORD</a>
+        <a href={`https://discord.gg/FGwhMDAv3s`} target="_blank" className='welcome-discord'><img alt='' src={discordIcon}/><span> JOIN OUR DISCORD</span></a>
         <div className='welcome-mute' onClick={()=>setIsAudio(!isAudio)}><img alt='' src={!isAudio? muteIcon : unmuteIcon}/></div>
         {activeModal === 'welcome' && <div className='welcome-connect-container'>
           <div className='welcome-connect' onClick={()=>setActiveModal('connectModal')}>

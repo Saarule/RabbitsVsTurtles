@@ -12,6 +12,7 @@
   color: #000000;
   transition: 0.3s;
   font-size: 1em;
+  max-width: 98vw;
 }
 .transaction-event-list{
   height: 84%;

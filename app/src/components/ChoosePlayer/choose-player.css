@@ -15,6 +15,7 @@
   padding: 3%;
   left: 50%;
   transform: translate(-50%, -50%);
+  z-index: 1;
 }
 .choose-player img {
   height: 100%;
@@ -69,11 +70,11 @@
 
 .all-players {
   height: 36%;
-  width: 90%;
+  width: 98%;
+  top: 56%;
   position: absolute;
   transform: translateX(-50%);
   left: 50%;
-  top: 53%;
   background: rgba(217, 217, 217, 0.2);
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25), -4px -4px 8px rgba(0, 0, 0, 0.25);
   padding: 1.5%;
@@ -83,7 +84,7 @@
 }
 
 .players-filter {
-  height: 23%;
+  height: 18%;
   display: flex;
   flex-direction: column;
   gap: 20%;
@@ -106,3 +107,25 @@
 .player-display img:hover {
   transform: scale(1.05);
 }
+
+@media only screen and (min-width: 600px){
+  .players-filter{
+    height: 20%;
+  }
+}
+
+@media only screen and (min-width: 800px){
+  .all-players{
+    width: 90%;
+    top: 53%;
+  }
+  .players-filter{
+    height: 22%;
+  }
+}
+@media only screen and (min-width: 1100px){
+  .players-filter{
+    height: 24%;
+  }
+}
+

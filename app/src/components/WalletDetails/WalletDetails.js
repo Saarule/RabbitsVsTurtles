@@ -4,13 +4,17 @@ import { useWeb3React } from "@web3-react/core";
 import "./wallet-details.css";
 import darkmodeSun from "../../assets/pic/darkmode-sun.png";
 import darkmodeMoon from "../../assets/pic/darkmode-moon.png";
-import Logout from "../Logout/Logout";
 import Transactions from "../Transactions/Transactions";
 import leaderboardIcon from '../../assets/pic/leader-board-icon.png'
 import muteIcon from '../../assets/pic/sound-mute.png'
 import unmuteIcon from '../../assets/pic/sound-unmute.png'
 import notificationIcon from '../../assets/pic/notification-icon.png'
 import notificationMuteIcon from "../../assets/pic/notification-mute-icon.png";
+import openSeaLogo from "../../assets/pic/open-sea-logo.png";
+import youtubeLogo from "../../assets/pic/youtube-logo.png";
+import twitterLogo from "../../assets/pic/twitter-logo.png";
+import reddisLogo from "../../assets/pic/reddis-logo.png";
+import discordLogo from "../../assets/pic/discord-logo.png";
 import NetworkModal from '../NetworksModal/NetworksModal'
 import MyPlayers from '../MyPlayers/MyPlayers'
 
@@ -210,11 +214,18 @@ const WalletDetails = ({balance, setIsWalletDetails, setIsDarkMode, isDarkMode, 
       </div>
       <div className="functions-btns" style={isDarkMode? {borderTop: "solid 2px #ffffff"} : {borderTop: "solid 2px #000000"}}>
             <div className="wallet-actions" onClick={() => setIsLeaderboard(true)}><img alt="" src={leaderboardIcon}/></div>
-            <div className="wallet-actions" onClick={() => setIsAudio((isAudio)=>!isAudio)}><img alt="" src={isAudio? unmuteIcon : muteIcon}/></div>
             <div className="wallet-actions" onClick={() => setIsEvents(true)}>
               <img alt="" src={isNotification? notificationIcon : notificationMuteIcon}/>
               {counter !== 0 && <div className="notification-unread">{counter}</div>}
               </div>
+            <div className="wallet-actions" onClick={() => setIsAudio((isAudio)=>!isAudio)}><img alt="" src={isAudio? unmuteIcon : muteIcon}/></div>
+      </div>
+      <div className="wallet-links" style={isDarkMode? {borderTop: "solid 2px #ffffff"} : {borderTop: "solid 2px #000000"}}>
+        <a href='https://discord.gg/FGwhMDAv3s' target="_blank" className="wallet-link"><img alt="" src={discordLogo}/></a>
+        <a href='https://opensea.io/collection/rabbits-vs-turtles' target="_blank" className="wallet-link"><img alt="" src={openSeaLogo}/></a>
+        <a href='https://twitter.com/RabbitsVTurtles' target="_blank" className="wallet-link"><img alt="" src={twitterLogo}/></a>
+        <a href='https://www.reddit.com/r/RabbitsVsTurtles/' target="_blank" className="wallet-link"><img alt="" src={reddisLogo}/></a>
+        <a href='https://www.youtube.com/channel/UCHdqSybbS3OS6KYRCucZQ6Q' target="_blank" className="wallet-link"><img alt="" src={youtubeLogo}/></a>
       </div>
       {isNetwork && <NetworkModal isDarkMode={isDarkMode} closeFunc={() => setIsNetwork(false)}/>}
       {isMyPlayers && <MyPlayers closeFunc={() => setIsMyPlayers(!isMyPlayers)} height={'90%'}/>}

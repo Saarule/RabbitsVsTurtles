@@ -11,6 +11,10 @@ import swordLeft from "../../assets/pic/sword-left.png";
 
 const ArenaPlayer = ({ player, type, attacker, func }) => {
   const getMintDataBackground = () => {
+    if(player && !player.player.alive) return {
+      background:
+      "gray",
+    }
     if (type === "Turtle")
       return {
         background:
